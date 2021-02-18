@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+}
+
+$main-font: 'Lora';
+$secondary-font: 'Open Sans';
+$font-color: white;
+$secondary-color: #6a7fdb;
+
+%button-style {
+    background: $secondary-color;
+    min-width: 120px;
+    height: 40px;
+    color: $font-color !important;
+    border: 1px solid $font-color;
+    border-radius: 50px !important;
+    margin: 0 1rem;
+}
+
+%button-hover {
+    color: $secondary-color !important;
+    background: rgba($font-color, 0.9);
+    transition: ease-in-out 0.3s;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: $secondary-color;
+}
+
+.btn {
+    @extend %button-style
+}
+
+.btn:hover {
+    @extend %button-hover
+}
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+:focus {
+    outline: none !important;
+}
+
+@import 'nav';
+@import 'home';

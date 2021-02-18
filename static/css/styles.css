@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.btn {
+  background: #6a7fdb;
+  min-width: 120px;
+  height: 40px;
+  color: white !important;
+  border: 1px solid white;
+  border-radius: 50px !important;
+  margin: 0 1rem;
+}
+
+.btn:hover {
+  color: #6a7fdb !important;
+  background: rgba(255, 255, 255, 0.9);
+  transition: ease-in-out 0.3s;
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: #6a7fdb;
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+:focus {
+  outline: none !important;
+}
+
+.navbar {
+  display: flex !important;
+  justify-content: space-around !important;
+  background-color: transparent !important;
+  color: white !important;
+  min-height: 105px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.navbar-brand {
+  margin-right: 69px;
+}
+
+/* .navbar-nav {
+    margin: 0 auto;
+} */
+.navbar ul li {
+  margin: 0 30px;
+}
+
+.navbar a.btn {
+  background: transparent;
+}
+
+.navbar a.btn:hover {
+  background: #6a7fdb;
+  color: white !important;
+}
+
+.home-landing-section {
+  height: 674px;
+}
+
+.main-img-container {
+  position: absolute;
+  top: 0;
+  background: url("/media/landing-img.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* min-height: 65vh; */
+  min-height: 674px;
+  width: 100vw;
+  z-index: -1;
+}
+
+.main-img-container:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /* background: rgb(86 47 47 / 36%); */
+  /* background: rgba(106, 127, 219, 0.52) */
+  background: rgba(7, 15, 67, 0.8);
+}
+
+.search-header {
+  position: sticky;
+  text-align: center;
+  width: 80%;
+  color: white;
+  margin: 0 auto;
+  top: 30%;
+}
+
+.search-bar-container {
+  position: sticky;
+  /* grid-template-columns: repeat(4, 1fr); */
+  background: white;
+  width: 50%;
+  height: 65px;
+  margin: 0 auto;
+  top: 40%;
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.banner-search {
+  font-size: 14px;
+  font-weight: 500;
+  height: 46px;
+  border: 0px;
+  margin: 9px 0px 10px 0px;
+  border-radius: 0px;
+  width: 45%;
+}
+
+.btn.banner-search {
+  width: 20%;
+  padding: 0;
+}
+
+.banner-search:focus {
+  border: none !important;
+}
+
+.discover-section {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.discover-section h2 {
+  text-align: center;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,30 @@
+.navbar {
+    display: flex !important;
+    justify-content: space-around !important;
+    background-color: transparent !important;
+    color: white !important;
+    min-height: 105px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.navbar-brand {
+    margin-right: 69px;
+}
+
+/* .navbar-nav {
+    margin: 0 auto;
+} */
+
+.navbar ul li {
+    margin: 0 30px;
+}
+
+.navbar a.btn {
+    background: transparent;
+}
+
+.navbar a.btn:hover {
+    background: $secondary-color;
+    color: $font-color !important;
+}

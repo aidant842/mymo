@@ -1,5 +1,30 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block content %}
-    <h1 class="text-success">It works.</h1>
+<section class="home-landing-section">
+    <div class="main-img-container">
+        <div class="search-header">
+            <h2>Discover your new home</h2>
+        </div>
+        <form class="search-bar-container">
+            <input type="text" class="banner-search" placeholder="Enter Address">
+            <input type="submit" class="btn banner-search" value="Search">
+        </form>
+    </div>
+</section>
+<section class="discover-section">
+    <h2 class="text-muted">Discover</h2>
+    <h3 class="text-center">Spotlight Listings</h3>
+    <div>
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
