@@ -1,11 +1,34 @@
 .navbar {
     display: flex !important;
     justify-content: space-around !important;
-    background-color: transparent !important;
     color: white !important;
     min-height: 105px;
     width: 80%;
     margin: 0 auto;
+    z-index: 1;
+}
+
+.transparent {
+        background-color: transparent !important;
+}
+
+.purple {
+    background-color: #303e94 !important;
+    width: 100% !important;
+    padding: 0 5rem;
+}
+
+.navbar-dark .navbar-brand {
+    color: white !important;
+}
+
+.navbar-dark .navbar-toggler {
+    color: $font-color !important;
+    border: none !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
 }
 
 .navbar-brand {

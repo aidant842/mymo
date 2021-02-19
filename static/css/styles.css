@@ -22,11 +22,11 @@
 }
 
 a {
-  color: white;
+  color: white !important;
 }
 
 a:hover {
-  color: #6a7fdb;
+  color: #6a7fdb !important;
 }
 
 .icon {
@@ -44,11 +44,34 @@ a:hover {
 .navbar {
   display: flex !important;
   justify-content: space-around !important;
-  background-color: transparent !important;
   color: white !important;
   min-height: 105px;
   width: 80%;
   margin: 0 auto;
+  z-index: 1;
+}
+
+.transparent {
+  background-color: transparent !important;
+}
+
+.purple {
+  background-color: #303e94 !important;
+  width: 100% !important;
+  padding: 0 5rem;
+}
+
+.navbar-dark .navbar-brand {
+  color: white !important;
+}
+
+.navbar-dark .navbar-toggler {
+  color: white !important;
+  border: none !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .navbar-brand {
@@ -72,7 +95,7 @@ a:hover {
 }
 
 .home-landing-section {
-  height: 674px;
+  min-height: 674px;
 }
 
 .main-img-container {
@@ -82,10 +105,8 @@ a:hover {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* min-height: 65vh; */
   min-height: 674px;
-  width: 100vw;
-  z-index: -1;
+  width: 100%;
 }
 
 .main-img-container:before {
@@ -95,28 +116,27 @@ a:hover {
   right: 0;
   top: 0;
   bottom: 0;
-  /* background: rgb(86 47 47 / 36%); */
-  /* background: rgba(106, 127, 219, 0.52) */
   background: rgba(7, 15, 67, 0.8);
 }
 
 .search-header {
-  position: sticky;
+  position: absolute;
   text-align: center;
   width: 80%;
   color: white;
-  margin: 0 auto;
   top: 30%;
+  left: 10%;
+}
+
+.search-header h2 {
+  padding-bottom: 1rem;
 }
 
 .search-bar-container {
-  position: sticky;
-  /* grid-template-columns: repeat(4, 1fr); */
   background: white;
   width: 50%;
   height: 65px;
   margin: 0 auto;
-  top: 40%;
   border-radius: 50px;
   display: flex;
   justify-content: space-evenly;
@@ -142,12 +162,118 @@ a:hover {
 }
 
 .discover-section {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
 }
 
 .discover-section h2 {
   text-align: center;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
+  grid-gap: 20px;
+  padding: 3rem 0 3rem 0;
+  justify-content: center;
+}
+
+.card {
+  min-width: 100% !important;
+  transition: 1.5s;
+}
+
+.card:hover {
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19);
+}
+
+.card-img-top:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(7, 15, 67, 0.8);
+}
+
+.card-img-overlay {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  bottom: 41.5%;
+}
+
+.property-price {
+  position: absolute;
+  left: 5%;
+  bottom: 2%;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.for-rent-sale {
+  position: absolute;
+  right: 5%;
+  bottom: 15%;
+  color: white;
+  background: #6a7fdb;
+  width: fit-content;
+  border-radius: 50px;
+  padding: 2px 15px;
+  font-size: small;
+}
+
+footer {
+  background-color: #303e94;
+  min-height: 15vh;
+  /* border-top: 3px solid #6c757d */
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  width: 85%;
+  padding: 2rem 1rem;
+  justify-items: center;
+  color: white !important;
+}
+
+.footer-logo-section {
+  grid-column: 1;
+}
+
+.footer-social-section a {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  border: 1px solid white;
+  display: inline-block;
+  line-height: 35px;
+  border-radius: 50px;
+  font-size: 13px;
+  margin: 0px 3px 0px 11px;
+}
+
+.footer-social-section h4 {
+  margin-bottom: 1rem;
+}
+
+.product-section {
+  height: 100vh;
+  width: 95%;
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.product-table {
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

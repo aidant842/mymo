@@ -46,7 +46,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md">
+        <nav class="navbar navbar-expand-md navbar-dark {% if request.path == '/' %} transparent {% else %} purple {% endif %}">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">MyMo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -89,6 +89,26 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer>
+        <div class="footer">
+            <div class="footer-logo-section">
+                <h4>MyMo</h4>
+                <p>MyMo description</p>
+            </div>
+            <div class="footer-contact-section">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Location</p>
+                <p><i class="fas fa-phone-alt"></i> 0851234567</p>
+                <p><i class="fas fa-envelope"></i> mymo@support.com</p>
+            </div>
+            <div class="footer-social-section">
+                <h4>Follow Us</h4>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     {% endblock %}

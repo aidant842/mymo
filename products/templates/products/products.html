@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="product-section">
+    <div>
+        {% for cat in categories %}
+            <button class="btn">{{ cat.name }}</button>
+        {% endfor %}
+    </div>
+    <div class="product-table">
+        <table>
+            <tr class="table-header">
+                <th>Standard</th>
+                <th>Premium</th>
+            </tr>
+        </table>
+    </div>
+</section>
+{% endblock %}

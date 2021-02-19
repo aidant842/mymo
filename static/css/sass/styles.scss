@@ -27,11 +27,11 @@ $secondary-color: #6a7fdb;
 }
 
 a {
-    color: white;
+    color: white !important;
 }
 
 a:hover {
-    color: $secondary-color;
+    color: $secondary-color !important;
 }
 
 .btn {
@@ -56,3 +56,5 @@ a:hover {
 
 @import 'nav';
 @import 'home';
+@import 'footer';
+@import 'products';

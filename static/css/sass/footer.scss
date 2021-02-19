@@ -1,0 +1,35 @@
+footer {
+    background-color: #303e94;
+    min-height: 15vh;
+    /* border-top: 3px solid #6c757d */
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    width: 85%;
+    padding: 2rem 1rem;
+    justify-items: center;
+    color: $font-color !important;
+}
+
+.footer-logo-section {
+    grid-column: 1;
+}
+
+.footer-social-section a {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid $font-color;
+    display: inline-block;
+    line-height: 35px;
+    border-radius: 50px;
+    font-size: 13px;
+    margin: 0px 3px 0px 11px;
+}
+
+.footer-social-section h4 {
+    margin-bottom: 1rem;
+}
