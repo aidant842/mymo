@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block content %}
+<form>
+    <h4><i class="fas fa-user"></i> Contact Person</h4>
+    <label for="full-name">Full Name</label>
+    <input type="text" name="full-name" required>
+    <label for="email-address">Email</label>
+    <input type="email" name="email-address" required>
+    <label for="phone-number">Phone</label>
+    <input type="tel" name="phone-number" required>
+    <label for="call-hours">Call between hours (optional)</label>
+    <input type="text" name="call-hours">
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

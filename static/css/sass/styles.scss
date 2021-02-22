@@ -8,10 +8,11 @@
 $main-font: 'Lora';
 $secondary-font: 'Open Sans';
 $font-color: white;
-$secondary-color: #6a7fdb;
+$secondary-color:#303e94;
+$tertiary-color: #6a7fdb;
 
 %button-style {
-    background: $secondary-color;
+    background: $tertiary-color;
     min-width: 120px;
     height: 40px;
     color: $font-color !important;
@@ -21,7 +22,7 @@ $secondary-color: #6a7fdb;
 }
 
 %button-hover {
-    color: $secondary-color !important;
+    color: $tertiary-color !important;
     background: rgba($font-color, 0.9);
     transition: ease-in-out 0.3s;
 }
@@ -31,7 +32,7 @@ a {
 }
 
 a:hover {
-    color: $secondary-color !important;
+    color: $tertiary-color !important;
 }
 
 .btn {

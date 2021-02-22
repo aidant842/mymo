@@ -1,17 +1,64 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %}
 
 {% block content %}
 <section class="product-section">
+    <h1 class="mb-4">Ireland's most competitive housing platform</h1>
+    <h3 class="mb-4 text-muted">List your home now!</h3>
     <div>
         {% for cat in categories %}
-            <button class="btn">{{ cat.name }}</button>
+            <a class="btn" href="{% url 'products' %}?category={{ cat.name }}">{{ cat.name }}</a>
         {% endfor %}
     </div>
     <div class="product-table">
         <table>
             <tr class="table-header">
-                <th>Standard</th>
-                <th>Premium</th>
+                <th></th>
+                {% for product in products %}
+                <th class="{% if product.is_premium %} premium {% endif %}">
+                    <p>{{ product.name }}</p>
+                    <span>
+                        {% if product.is_premium %}
+                            The ultimate listing for the best properties
+                        {% else %}
+                            Promote your property on MyMo
+                        {% endif %}
+                    </span>
+                </th>
+                {% endfor %}
+            </tr>
+
+            <tr>
+                <td></td>
+                {% for product in products %}
+                <td class="{% if product.is_premium %} premium {% endif %}">
+                    <span class="td-price">€{{ product.price }}</span><br />
+                    <a href="{% url 'product_detail' product.id %}" class="btn">Select Option</a>
+                </td>
+                {% endfor %}
+            </tr>
+
+            <tr>
+                <td>
+                    <strong>Amount of days live</strong>
+                </td>
+                <td>
+                    365 Days Live
+                </td>
+                <td class="premium">
+                    365 Days Live
+                </td>
+            </tr>
+
+            <tr>
+                <td><strong>Unlimited</strong> Photos</td>
+                <td class="tick">&check;</td>
+                <td class="premium tick">&check;</td>
+            </tr>
+
+            <tr>
+                <td><strong>High Priority Listing</strong></td>
+                <td class="cross">&cross;</td>
+                <td class="premium tick">&check;</td>
             </tr>
         </table>
     </div>
