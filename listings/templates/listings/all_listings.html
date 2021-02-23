@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block content %}
+    {% for listing in listings %}
+        {{listing}}
+    {% endfor %}
+{% endblock %}

@@ -1,5 +1,7 @@
 import uuid
+import datetime
 from django.db import models
+from django.utils import timezone
 from products.models import Category, Product
 
 
@@ -42,6 +44,7 @@ class Listing(models.Model):
     times_viewed = models.IntegerField(blank=True, null=True, editable=False)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
+    expiration_date = models.DateTimeField(null=True, blank=True)
 
     def _generate_listing_number(self):
 

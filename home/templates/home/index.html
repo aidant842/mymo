@@ -15,6 +15,9 @@
 <section class="discover-section">
     <h2 class="text-muted">Discover</h2>
     <h3 class="text-center">Spotlight Listings</h3>
+    {% for listing in spotlight_listings %}
+        {{listing}}
+    {% endfor %}
     <div class="card-container">
         <div class="card" style="width: 18rem;">
             <img src="/media/landing-img.jpg" class="card-img-top" alt="...">
