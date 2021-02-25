@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block content %}
+{{ product }}
 <form action="{% url 'product_detail' product.id %}" method="POST" enctype="multipart/form-data">
    {% csrf_token %}
-   {{ sale_listing_form | crispy }}
+   {{ listing_form | crispy }}
    <button class="btn">Continue to payment</button>
 </form>
 {% endblock %}

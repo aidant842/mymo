@@ -15,7 +15,7 @@
                 <th></th>
                 {% for product in products %}
                 <th class="{% if product.is_premium %} premium {% endif %}">
-                    <p>{{ product.name }}</p>
+                    <p>{{ product.friendly_name }}</p>
                     <span>
                         {% if product.is_premium %}
                             The ultimate listing for the best properties

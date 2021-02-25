@@ -48,7 +48,7 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark {% if request.path == '/' %} transparent {% else %} purple {% endif %}">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">MyMo</a>
+                <a class="navbar-brand" href="{% url 'home' %}">MyMo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -57,10 +57,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Buy</a>
+                            <a class="nav-link" href="{% url 'for_sale_listings' %}">Buy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Rent</a>
+                            <a class="nav-link" href="{% url 'for_rent_listings' %}">Rent</a>
                         </li>
                     </ul>
                     {% if request.user.is_authenticated %}

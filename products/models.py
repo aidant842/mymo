@@ -5,6 +5,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', null=True,
                                  blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, blank=True)
     price = models.IntegerField()
     is_premium = models.BooleanField(default=False)
 

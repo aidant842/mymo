@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Listing
+from .models import SaleListing, RentListing
 
 
-class ListingAdmin(admin.ModelAdmin):
+class SaleListingAdmin(admin.ModelAdmin):
     list_display = (
         'listing_number',
         'company_name',
@@ -12,7 +12,23 @@ class ListingAdmin(admin.ModelAdmin):
         'is_listed',
         'is_spotlight',
         'product',
+        'expiration_date'
     )
 
 
-admin.site.register(Listing, ListingAdmin)
+class RentListingAdmin(admin.ModelAdmin):
+    list_display = (
+        'listing_number',
+        'company_name',
+        'full_name',
+        'category',
+        'price',
+        'is_listed',
+        'is_spotlight',
+        'product',
+        'expiration_date'
+    )
+
+
+admin.site.register(SaleListing, SaleListingAdmin)
+admin.site.register(RentListing, RentListingAdmin)

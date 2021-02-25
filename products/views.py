@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Product, Category
-from .forms import SaleListingForm
+from .forms import SaleListingForm, RentListingForm
 
 
 def products_view(request):
@@ -32,13 +32,19 @@ def product_detail(request, product_id):
     """ A view to return the form to fill out to create a listing """
     product = get_object_or_404(Product, pk=product_id)
 
-    sale_listing_form = SaleListingForm()
+    if product.category.name == 'sale':
+        listing_form = SaleListingForm()
+    elif product.category.name == 'rent':
+        listing_form = RentListingForm()
 
     if request.method == 'POST':
-        sale_listing_form = SaleListingForm(request.POST, request.FILES)
+        if product.category.name == 'sale':
+            listing_form = SaleListingForm(request.POST, request.FILES)
+        elif product.category.name == 'rent':
+            listing_form = RentListingForm(request.POST, request.FILES)
 
-        if sale_listing_form.is_valid():
-            listing = sale_listing_form.save(commit=False)
+        if listing_form.is_valid():
+            listing = listing_form.save(commit=False)
             listing.expiration_date = timezone.now() + datetime.timedelta(days=365)
             listing.product = product
             listing.save()
@@ -48,7 +54,8 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
-        'sale_listing_form': sale_listing_form,
+        'listing_form': listing_form,
     }
 
     return render(request, template, context)
+

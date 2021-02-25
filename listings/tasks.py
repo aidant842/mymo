@@ -3,12 +3,12 @@ from django.utils import timezone
 
 from celery.decorators import task
 
-from .models import Listing
+from .models import SaleListing
 
 
 @task(name='unlist_expired_listings')
 def unlist_expired_listings():
-    listings = Listing.objects.all()
+    listings = SaleListing.objects.all()
 
     for listing in listings:
         if listing.expiration_date < timezone.now():

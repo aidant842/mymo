@@ -74,6 +74,11 @@
     text-align: center;
 }
 
+.spotlight {
+    background-color: $secondary-color !important;
+    color: white;
+}
+
 // ***************** CARDS SECTION ***************** //
 
 .card-container {
@@ -91,6 +96,11 @@
 
 .card:hover {
     box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19);
+}
+
+.card-img-top {
+    width: 398px;
+    height: 256.53px;
 }
 
 .card-img-top:before {

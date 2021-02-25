@@ -15,11 +15,56 @@
 <section class="discover-section">
     <h2 class="text-muted">Discover</h2>
     <h3 class="text-center">Spotlight Listings</h3>
-    {% for listing in spotlight_listings %}
-        {{listing}}
-    {% endfor %}
     <div class="card-container">
+    {% for listing in sale_spotlight_listings %}
         <div class="card" style="width: 18rem;">
+            <img src="{{ listing.images.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+            <div class="card-img-overlay">
+                <span class="property-price">€ {{ listing.price }}</span>
+                <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
+            </div>
+            <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
+                <h5 class="card-title">Co. {{ listing.county }}</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
+                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                <hr class="card-hr"/>
+                <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+            </div>
+        </div>
+    {% endfor %}
+    {% for listing in rent_spotlight_listings %}
+
+        <div class="card" style="width: 18rem;">
+            <img src="{{ listing.images.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+            <div class="card-img-overlay">
+                <span class="property-price">€ {{ listing.price }} / {{ listing.rent_type }}</span>
+                <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
+            </div>
+            <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
+                <h5 class="card-title">Co. {{ listing.county }}</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
+                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                <hr class="card-hr"/>
+                <p class="card-text">{{ listing.full_name }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+    <div class="card" style="width: 18rem;">
+            <img src="/media/landing-img.jpg" class="card-img-top" alt="...">
+            <div class="card-img-overlay">
+                <span class="property-price">€5000</span>
+                <span class="for-rent-sale">FOR SALE</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">House Name</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i>Property Location</p>
+                <p class="card-text">5 Bathrooms | 4 beds | Area in sqM | BER rating</p>
+                <hr class="card-hr"/>
+                <p class="card-text">Seller of the property</p>
+            </div>
+        </div>
+        <!-- <div class="card" style="width: 18rem;">
             <img src="/media/landing-img.jpg" class="card-img-top" alt="...">
             <div class="card-img-overlay">
                 <span class="property-price">€5000</span>
@@ -145,20 +190,7 @@
                 <p class="card-text">Seller of the property</p>
             </div>
         </div>
-        <div class="card" style="width: 18rem;">
-            <img src="/media/landing-img.jpg" class="card-img-top" alt="...">
-            <div class="card-img-overlay">
-                <span class="property-price">€5000</span>
-                <span class="for-rent-sale">FOR SALE</span>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">House Name</h5>
-                <p class="card-text"><i class="fas fa-map-marker-alt"></i>Property Location</p>
-                <p class="card-text">5 Bathrooms | 4 beds | Area in sqM | BER rating</p>
-                <hr class="card-hr"/>
-                <p class="card-text">Seller of the property</p>
-            </div>
-        </div>
+    </div> -->
     </div>
 </section>
 {% endblock %}

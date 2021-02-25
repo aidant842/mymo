@@ -170,6 +170,11 @@ a:hover {
   text-align: center;
 }
 
+.spotlight {
+  background-color: #303e94 !important;
+  color: white;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
@@ -185,6 +190,11 @@ a:hover {
 
 .card:hover {
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19);
+}
+
+.card-img-top {
+  width: 398px;
+  height: 256.53px;
 }
 
 .card-img-top:before {
