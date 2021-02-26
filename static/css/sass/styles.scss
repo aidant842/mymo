@@ -1,15 +1,19 @@
+$main-font: 'Poppins', sans-serif;
+$secondary-font: 'Open Sans', sans-serif;
+$font-color: white;
+$secondary-color:#303e94;
+$tertiary-color: #6a7fdb;
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     scrollbar-width: thin;
+    font-family: $main-font;
 }
 
-$main-font: 'Lora';
-$secondary-font: 'Open Sans';
-$font-color: white;
-$secondary-color:#303e94;
-$tertiary-color: #6a7fdb;
+h1, h2, h3, h4, h5 {
+    font-family: $secondary-font;
+} 
 
 %button-style {
     background: $tertiary-color;
@@ -59,3 +63,4 @@ a:hover {
 @import 'home';
 @import 'footer';
 @import 'products';
+@import 'forms';

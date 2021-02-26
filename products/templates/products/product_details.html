@@ -1,10 +1,131 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block content %}
-{{ product }}
-<form action="{% url 'product_detail' product.id %}" method="POST" enctype="multipart/form-data">
-   {% csrf_token %}
-   {{ listing_form | crispy }}
-   <button class="btn">Continue to payment</button>
-</form>
+<div class="form-container">
+
+    <!------------------------------------------------ SALE FORM ------------------------------------------------------------------------->
+
+{% if product.category.name == 'sale' %}
+    <form action="{% url 'product_detail' product.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="far fa-address-book"></i>
+                Contact Info
+            </legend>
+            <hr>
+            {{ listing_form.company_name | as_crispy_field }}
+            {{ listing_form.full_name | as_crispy_field }}
+            {{ listing_form.email | as_crispy_field }}
+            {{ listing_form.phone | as_crispy_field }}
+            {{ listing_form.call_between_hrs | as_crispy_field }}
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="fas fa-map-pin"></i>
+                Location of Property
+            </legend>
+            <hr>
+            {{ listing_form.county | as_crispy_field }}
+            {{ listing_form.area | as_crispy_field }}
+            {{ listing_form.eircode | as_crispy_field }}
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="fas fa-home"></i>
+                Property Info
+            </legend>
+            <hr>
+            {{ listing_form.property_type | as_crispy_field }}
+            {{ listing_form.selling_type | as_crispy_field }}
+            {{ listing_form.price | as_crispy_field }}
+            {{ listing_form.no_of_bedrooms | as_crispy_field }}
+            {{ listing_form.no_of_bathrooms | as_crispy_field }}
+            {{ listing_form.facility_1 | as_crispy_field }}
+            {{ listing_form.facility_2 | as_crispy_field }}
+            {{ listing_form.facility_3 | as_crispy_field }}
+            {{ listing_form.facility_4 | as_crispy_field }}
+            {{ listing_form.facility_5 | as_crispy_field }}
+            {{ listing_form.facility_6 | as_crispy_field }}
+            {{ listing_form.floor_area_type | as_crispy_field }}
+            {{ listing_form.floor_area | as_crispy_field }}
+            {{ listing_form.ber_rating | as_crispy_field }}
+            {{ listing_form.tax_designation | as_crispy_field }}
+            {{ listing_form.top_features_1 | as_crispy_field }}
+            {{ listing_form.top_features_2 | as_crispy_field }}
+            {{ listing_form.top_features_3 | as_crispy_field }}
+            {{ listing_form.top_features_4 | as_crispy_field }}
+            {{ listing_form.top_features_5 | as_crispy_field }}            
+            {{ listing_form.description | as_crispy_field }}
+            {{ listing_form.images | as_crispy_field }}
+        </fieldset>
+        <hr>
+        <button class="btn form-btn">Continue to payment</button>
+    </form>
+
+{% else %}
+
+    <!------------------------------------------------ RENT FORM ------------------------------------------------------------------------->
+
+    <form action="{% url 'product_detail' product.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="far fa-address-book"></i>
+                Contact Info
+            </legend>
+            {{ listing_form.company_name | as_crispy_field }}
+            {{ listing_form.full_name | as_crispy_field }}
+            {{ listing_form.email | as_crispy_field }}
+            {{ listing_form.phone | as_crispy_field }}
+            {{ listing_form.call_between_hrs | as_crispy_field }}
+            <hr>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="fas fa-map-pin"></i>
+                Location of Property
+            </legend>
+            {{ listing_form.county | as_crispy_field }}
+            {{ listing_form.area | as_crispy_field }}
+            {{ listing_form.eircode | as_crispy_field }}
+            <hr>
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend class="fieldset-label">
+                <i class="fas fa-home"></i>
+                Property Info
+            </legend>
+            {{ listing_form.property_type | as_crispy_field }}
+            {{ listing_form.rent_type | as_crispy_field }}
+            {{ listing_form.price | as_crispy_field }}
+            {{ listing_form.available_from | as_crispy_field }}
+            {{ listing_form.lease_term | as_crispy_field }}
+            {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
+            {{ listing_form.no_of_double_bedrooms | as_crispy_field }}
+            {{ listing_form.no_of_twin_bedrooms | as_crispy_field }}
+            {{ listing_form.no_of_bathrooms | as_crispy_field }}
+            {{ listing_form.furnishing | as_crispy_field }}
+            {{ listing_form.facility_1 | as_crispy_field }}
+            {{ listing_form.facility_2 | as_crispy_field }}
+            {{ listing_form.facility_3 | as_crispy_field }}
+            {{ listing_form.facility_4 | as_crispy_field }}
+            {{ listing_form.facility_5 | as_crispy_field }}
+            {{ listing_form.facility_6 | as_crispy_field }}
+            {{ listing_form.floor_area_type | as_crispy_field }}
+            {{ listing_form.floor_area | as_crispy_field }}
+            {{ listing_form.ber_rating | as_crispy_field }}
+            {{ listing_form.description | as_crispy_field }}
+            {{ listing_form.images | as_crispy_field }}
+            <hr>
+        </fieldset>
+        <hr>
+        <button class="btn form-btn">Continue to payment</button>
+    </form>
+{% endif %}
+</div>
 {% endblock %}

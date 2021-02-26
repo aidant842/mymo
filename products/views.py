@@ -44,6 +44,9 @@ def product_detail(request, product_id):
                 listing = listing_form.save(commit=False)
                 listing.expiration_date = (timezone.now()
                                            + datetime.timedelta(days=365))
+                if product.is_premium:
+                    listing.premium_expiration = (timezone.now()
+                                                  + datetime.timedelta(days=30))
                 listing.product = product
                 listing.save()
                 return redirect('home')
@@ -53,9 +56,15 @@ def product_detail(request, product_id):
                 listing = listing_form.save(commit=False)
                 listing.expiration_date = (timezone.now()
                                            + datetime.timedelta(days=90))
+                if product.is_premium:
+                    listing.premium_expiration = (timezone.now()
+                                                  + datetime.timedelta(days=30))
                 listing.product = product
                 listing.save()
                 return redirect('home')
+            else:
+                for error in listing_form.errors:
+                    print(error)
 
     template = 'products/product_details.html'
 

@@ -21,7 +21,7 @@ class SaleListing(models.Model):
     eircode = models.CharField(max_length=256, blank=True, null=True)
     property_type = models.CharField(max_length=256, blank=False, null=False)
     selling_type = models.CharField(max_length=256, blank=False, null=False)
-    price = models.IntegerField(blank=False, null=False)
+    price = models.CharField(max_length=256, blank=False, null=False)
     no_of_bedrooms = models.IntegerField(blank=False, null=False)
     no_of_bathrooms = models.IntegerField(blank=False, null=False)
     facility_1 = models.CharField(max_length=256, blank=True, null=True)
@@ -32,6 +32,8 @@ class SaleListing(models.Model):
     facility_6 = models.CharField(max_length=256, blank=True, null=True)
     floor_area = models.DecimalField(max_digits=10,
                                      decimal_places=2, null=False, blank=False)
+    floor_area_type = models.CharField(max_length=256,
+                                       blank=True, default='Square Meters')
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     tax_designation = models.CharField(max_length=256, blank=False, null=False)
     top_features_1 = models.CharField(max_length=100, blank=True, null=True)
@@ -44,7 +46,9 @@ class SaleListing(models.Model):
     times_viewed = models.IntegerField(blank=True, null=True, editable=False)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
+    date_created = models.DateTimeField(default=timezone.now)
     expiration_date = models.DateTimeField(null=True, blank=True)
+    premium_expiration = models.DateTimeField(blank=True, null=True)
 
     def _generate_listing_number(self):
 
@@ -86,7 +90,7 @@ class RentListing(models.Model):
     rent_type = models.CharField(max_length=256, blank=False, null=False)
     available_from = models.DateField(blank=False, null=False)
     lease_term = models.CharField(max_length=256, blank=False, null=False)
-    price = models.IntegerField(blank=False, null=False)
+    price = models.CharField(max_length=256, blank=False, null=False)
     no_of_single_bedrooms = models.IntegerField(blank=False, null=False)
     no_of_double_bedrooms = models.IntegerField(blank=False, null=False)
     no_of_twin_bedrooms = models.IntegerField(blank=False, null=False)
@@ -100,13 +104,17 @@ class RentListing(models.Model):
     facility_6 = models.CharField(max_length=256, blank=True, null=True)
     floor_area = models.DecimalField(max_digits=10,
                                      decimal_places=2, null=False, blank=False)
+    floor_area_type = models.CharField(max_length=256,
+                                       blank=True, default='Square Meters')
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
     images = models.ImageField()
     times_viewed = models.IntegerField(blank=True, null=True, editable=False)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
+    date_created = models.DateTimeField(default=timezone.now)
     expiration_date = models.DateTimeField(null=True, blank=True)
+    premium_expiration = models.DateTimeField(blank=True, null=True)
 
     def _generate_listing_number(self):
 

@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
   scrollbar-width: thin;
+  font-family: "Poppins", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Open Sans", sans-serif;
 }
 
 .btn {
@@ -340,6 +345,27 @@ th.premium p {
   color: red !important;
   font-size: 1.5rem;
   text-shadow: 2px 2px black;
+}
+
+.form-container {
+  width: 50%;
+  margin: 2rem auto;
+}
+
+.form-container input {
+  margin: 0.5rem 0;
+}
+
+.form-container select {
+  margin: 0.5rem 0;
+}
+
+.form-btn {
+  margin: 0.5rem 0;
+}
+
+.form-style {
+  background: green !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
