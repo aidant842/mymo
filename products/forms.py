@@ -72,6 +72,7 @@ class RentListingForm(forms.ModelForm):
             'no_of_double_bedrooms',
             'no_of_twin_bedrooms',
             'no_of_bathrooms',
+            'furnishing',
             'facility_1',
             'facility_2',
             'facility_3',

@@ -40,15 +40,22 @@ def product_detail(request, product_id):
     if request.method == 'POST':
         if product.category.name == 'sale':
             listing_form = SaleListingForm(request.POST, request.FILES)
+            if listing_form.is_valid():
+                listing = listing_form.save(commit=False)
+                listing.expiration_date = (timezone.now()
+                                           + datetime.timedelta(days=365))
+                listing.product = product
+                listing.save()
+                return redirect('home')
         elif product.category.name == 'rent':
             listing_form = RentListingForm(request.POST, request.FILES)
-
-        if listing_form.is_valid():
-            listing = listing_form.save(commit=False)
-            listing.expiration_date = timezone.now() + datetime.timedelta(days=365)
-            listing.product = product
-            listing.save()
-            return redirect('home')
+            if listing_form.is_valid():
+                listing = listing_form.save(commit=False)
+                listing.expiration_date = (timezone.now()
+                                           + datetime.timedelta(days=90))
+                listing.product = product
+                listing.save()
+                return redirect('home')
 
     template = 'products/product_details.html'
 
