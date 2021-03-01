@@ -2,7 +2,8 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Product, Category
-from .forms import SaleListingForm, RentListingForm
+from .forms import SaleListingForm, RentListingForm, SaleImageForm
+from listings.models import SaleListingImage
 
 
 def products_view(request):
@@ -34,13 +35,15 @@ def product_detail(request, product_id):
 
     if product.category.name == 'sale':
         listing_form = SaleListingForm()
+        images_form = SaleImageForm()
     elif product.category.name == 'rent':
         listing_form = RentListingForm()
 
     if request.method == 'POST':
         if product.category.name == 'sale':
             listing_form = SaleListingForm(request.POST, request.FILES)
-            if listing_form.is_valid():
+            images_form = SaleImageForm(request.POST, request.FILES)
+            if listing_form.is_valid() and images_form.is_valid():
                 listing = listing_form.save(commit=False)
                 listing.expiration_date = (timezone.now()
                                            + datetime.timedelta(days=365))
@@ -49,6 +52,15 @@ def product_detail(request, product_id):
                                                   + datetime.timedelta(days=30))
                 listing.product = product
                 listing.save()
+
+                images_form.save()
+
+                """ for file_num in range(0, int(length)):
+                    SaleListingImage.objects.create(
+                        listing=listing,
+                        image=request.FILES.get(f'images{file_num}')
+                    ) """
+
                 return redirect('home')
         elif product.category.name == 'rent':
             listing_form = RentListingForm(request.POST, request.FILES)
@@ -71,6 +83,7 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'listing_form': listing_form,
+        'images_form': images_form,
     }
 
     return render(request, template, context)

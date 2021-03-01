@@ -60,9 +60,10 @@
             {{ listing_form.top_features_5 | as_crispy_field }}            
             {{ listing_form.description | as_crispy_field }}
             {{ listing_form.images | as_crispy_field }}
+            {{ image_form | crispy }}
         </fieldset>
         <hr>
-        <button class="btn form-btn">Continue to payment</button>
+        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
     </form>
 
 {% else %}
@@ -120,12 +121,62 @@
             {{ listing_form.floor_area | as_crispy_field }}
             {{ listing_form.ber_rating | as_crispy_field }}
             {{ listing_form.description | as_crispy_field }}
-            {{ listing_form.images | as_crispy_field }}
+            <!-- {{ listing_form.images | as_crispy_field }} -->
+            <input type="file" multiple>
             <hr>
         </fieldset>
         <hr>
-        <button class="btn form-btn">Continue to payment</button>
+        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
     </form>
 {% endif %}
 </div>
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var files =[]
+        const inputElement = document.querySelector('input[type="file"]');
+        const pond = FilePond.create( inputElement, {
+            onaddfile: (err, fileItem) => {
+                files.push(fileItem.file)
+                console.log(files)
+            },
+            onremovefile:(err, fileItem) => {
+                const index = files.indexOf(fileItem.file)
+                if (index > -1) {
+                    files.splice(index, 1)
+                }
+                console.log(files)
+            }
+        } );
+
+        var formData = new FormData();
+        $(document).on('click', '#submitBtn', function(e) {
+            formData.append('length', files.length)
+            for (i = 0; i < files.length; i++) {
+                formData.append('images' + i, files[i])
+            }
+
+            formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+            
+            $.ajax({
+                type: 'POST',
+                url: '{% url "product_detail" product.id %}',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                success: function() {
+                    alert('The listing was created')
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ":" + xhr.responseText)
+                }
+            })
+
+        });
+
+    });
+</script> -->
 {% endblock %}

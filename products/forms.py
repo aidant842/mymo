@@ -1,6 +1,6 @@
 from django import forms
 
-from listings.models import SaleListing, RentListing
+from listings.models import SaleListing, RentListing, SaleListingImage
 
 
 class DateInputWidget(forms.DateInput):
@@ -279,3 +279,14 @@ class RentListingForm(forms.ModelForm):
             self.fields['full_name'].widget.attrs['autofocus'] = True
             for field in self.fields:
                 self.fields[field].widget.attrs['class'] = 'form-style'
+
+
+class SaleImageForm(forms.ModelForm):
+    image = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
+    class Meta:
+        model = SaleListingImage
+        fields = [
+            'image'
+        ]
+

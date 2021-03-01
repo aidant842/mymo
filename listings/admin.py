@@ -1,8 +1,13 @@
 from django.contrib import admin
-from .models import SaleListing, RentListing
+from .models import SaleListing, RentListing, SaleListingImage
+
+
+class SaleListingImageAdmin(admin.StackedInline):
+    model = SaleListingImage
 
 
 class SaleListingAdmin(admin.ModelAdmin):
+    inlines = [SaleListingImageAdmin]
     list_display = (
         'listing_number',
         'company_name',
@@ -28,6 +33,11 @@ class RentListingAdmin(admin.ModelAdmin):
         'product',
         'expiration_date'
     )
+
+
+@admin.register(SaleListingImage)
+class SaleListingImageAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.register(SaleListing, SaleListingAdmin)

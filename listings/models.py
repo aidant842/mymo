@@ -136,3 +136,11 @@ class RentListing(models.Model):
 
     def __str__(self):
         return self.listing_number
+
+
+class SaleListingImage(models.Model):
+    listing = models.ForeignKey(SaleListing, default=None, on_delete=models.CASCADE, related_name='listingImages')
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.listing.listing_number
