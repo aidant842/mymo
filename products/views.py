@@ -40,6 +40,7 @@ def product_detail(request, product_id):
         listing_form = RentListingForm()
 
     if request.method == 'POST':
+        images = request.FILES.getlist('images')
         if product.category.name == 'sale':
             listing_form = SaleListingForm(request.POST, request.FILES)
             images_form = SaleImageForm(request.POST, request.FILES)
@@ -52,8 +53,11 @@ def product_detail(request, product_id):
                                                   + datetime.timedelta(days=30))
                 listing.product = product
                 listing.save()
-
-                images_form.save()
+                for image in images:
+                    SaleListingImage.objects.create(
+                        listing=listing,
+                        images=image
+                    )
 
                 """ for file_num in range(0, int(length)):
                     SaleListingImage.objects.create(

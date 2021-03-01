@@ -59,8 +59,8 @@
             {{ listing_form.top_features_4 | as_crispy_field }}
             {{ listing_form.top_features_5 | as_crispy_field }}            
             {{ listing_form.description | as_crispy_field }}
-            {{ listing_form.images | as_crispy_field }}
-            {{ image_form | crispy }}
+            {{ listing_form.header_image | as_crispy_field }}
+            {{ images_form | crispy }}
         </fieldset>
         <hr>
         <button class="btn form-btn" id="submitBtn">Continue to payment</button>
@@ -121,7 +121,7 @@
             {{ listing_form.floor_area | as_crispy_field }}
             {{ listing_form.ber_rating | as_crispy_field }}
             {{ listing_form.description | as_crispy_field }}
-            <!-- {{ listing_form.images | as_crispy_field }} -->
+            {{ listing_form.header_image | as_crispy_field }}
             <input type="file" multiple>
             <hr>
         </fieldset>

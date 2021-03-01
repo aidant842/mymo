@@ -4,7 +4,7 @@
 <div class="card-container">
     {% for listing in listings %}
         <div class="card" style="width: 18rem;">
-            <img src="{{ listing.images.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+            <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
             <div class="card-img-overlay">
                 <span class="property-price">€ {{ listing.price }}</span>
                 <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>

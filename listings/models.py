@@ -4,6 +4,8 @@ from django.db import models
 from django.utils import timezone
 from products.models import Category, Product
 
+from PIL import Image
+
 
 class SaleListing(models.Model):
     listing_number = models.CharField(max_length=32, null=True, editable=False)
@@ -42,7 +44,7 @@ class SaleListing(models.Model):
     top_features_4 = models.CharField(max_length=100, blank=True, null=True)
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=False, null=False)
-    images = models.ImageField()
+    header_image = models.ImageField()
     times_viewed = models.IntegerField(blank=True, null=True, editable=False)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
@@ -57,6 +59,12 @@ class SaleListing(models.Model):
     def save(self, *args, **kwargs):
         """ Override origonal save method
             to set the listing number if not already set """
+
+        img = Image.open(self.header_image.path)
+        output_size = (300, 300)
+        img.thumbnail(output_size)
+        img.save(self.header_image.path)
+
         if self.product.is_premium:
             self.is_spotlight = True
         else:
@@ -108,7 +116,7 @@ class RentListing(models.Model):
                                        blank=True, default='Square Meters')
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
-    images = models.ImageField()
+    header_image = models.ImageField()
     times_viewed = models.IntegerField(blank=True, null=True, editable=False)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
@@ -123,6 +131,12 @@ class RentListing(models.Model):
     def save(self, *args, **kwargs):
         """ Override origonal save method
             to set the listing number if not already set """
+
+        img = Image.open(self.header_image.path)
+        output_size = (300, 300)
+        img.thumbnail(output_size)
+        img.save(self.header_image.path)
+
         if self.product.is_premium:
             self.is_spotlight = True
         else:
@@ -140,7 +154,7 @@ class RentListing(models.Model):
 
 class SaleListingImage(models.Model):
     listing = models.ForeignKey(SaleListing, default=None, on_delete=models.CASCADE, related_name='listingImages')
-    image = models.ImageField()
+    images = models.ImageField()
 
     def __str__(self):
         return self.listing.listing_number

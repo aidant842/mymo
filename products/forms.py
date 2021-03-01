@@ -127,7 +127,7 @@ class SaleListingForm(forms.ModelForm):
             'top_features_4',
             'top_features_5',
             'description',
-            'images',
+            'header_image',
         ]
 
         def __init__(self, *args, **kwargs):
@@ -267,7 +267,7 @@ class RentListingForm(forms.ModelForm):
             'floor_area',
             'ber_rating',
             'description',
-            'images',
+            'header_image',
         ]
 
         def __init__(self, *args, **kwargs):
@@ -282,11 +282,11 @@ class RentListingForm(forms.ModelForm):
 
 
 class SaleImageForm(forms.ModelForm):
-    image = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True, 'accept': 'image/*'}))
 
     class Meta:
         model = SaleListingImage
         fields = [
-            'image'
+            'images'
         ]
 
