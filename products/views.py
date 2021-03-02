@@ -2,8 +2,8 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Product, Category
-from .forms import SaleListingForm, RentListingForm, SaleImageForm
-from listings.models import SaleListingImage
+from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
+from listings.models import SaleListingImage, RentListingImage
 
 
 def products_view(request):
@@ -38,6 +38,7 @@ def product_detail(request, product_id):
         images_form = SaleImageForm()
     elif product.category.name == 'rent':
         listing_form = RentListingForm()
+        images_form = RentImageForm()
 
     if request.method == 'POST':
         images = request.FILES.getlist('images')
@@ -58,13 +59,6 @@ def product_detail(request, product_id):
                         listing=listing,
                         images=image
                     )
-
-                """ for file_num in range(0, int(length)):
-                    SaleListingImage.objects.create(
-                        listing=listing,
-                        image=request.FILES.get(f'images{file_num}')
-                    ) """
-
                 return redirect('home')
         elif product.category.name == 'rent':
             listing_form = RentListingForm(request.POST, request.FILES)
@@ -77,6 +71,11 @@ def product_detail(request, product_id):
                                                   + datetime.timedelta(days=30))
                 listing.product = product
                 listing.save()
+                for image in images:
+                    RentListingImage.objects.create(
+                        listing=listing,
+                        images=image
+                    )
                 return redirect('home')
             else:
                 for error in listing_form.errors:

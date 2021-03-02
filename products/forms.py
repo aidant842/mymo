@@ -1,6 +1,6 @@
 from django import forms
 
-from listings.models import SaleListing, RentListing, SaleListingImage
+from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 
 
 class DateInputWidget(forms.DateInput):
@@ -94,6 +94,7 @@ class SaleListingForm(forms.ModelForm):
                                  (choices=BER_CHOICES))
     tax_designation = forms.CharField(widget=forms.Select
                                       (choices=TAX_DESIGNATION_CHOICES))
+    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*'}))
 
     class Meta:
         model = SaleListing
@@ -234,6 +235,7 @@ class RentListingForm(forms.ModelForm):
                                  (choices=FURNISHING_CHOICES))
     rent_type = forms.CharField(widget=forms.Select
                                 (choices=RENT_TYPE_CHOICES))
+    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*'}))
 
     class Meta:
         model = RentListing
@@ -282,10 +284,20 @@ class RentListingForm(forms.ModelForm):
 
 
 class SaleImageForm(forms.ModelForm):
-    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True, 'accept': 'image/*'}))
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*'}))
 
     class Meta:
         model = SaleListingImage
+        fields = [
+            'images'
+        ]
+
+
+class RentImageForm(forms.ModelForm):
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*'}))
+
+    class Meta:
+        model = RentListingImage
         fields = [
             'images'
         ]

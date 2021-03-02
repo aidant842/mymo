@@ -60,7 +60,13 @@
             {{ listing_form.top_features_5 | as_crispy_field }}            
             {{ listing_form.description | as_crispy_field }}
             {{ listing_form.header_image | as_crispy_field }}
+            <!-- To display image from header image -->
+            <div class="header-image-preview">
+            </div>
             {{ images_form | crispy }}
+            <!-- To display images from images form -->
+            <div class="image-preview">
+            </div>
         </fieldset>
         <hr>
         <button class="btn form-btn" id="submitBtn">Continue to payment</button>
@@ -122,7 +128,13 @@
             {{ listing_form.ber_rating | as_crispy_field }}
             {{ listing_form.description | as_crispy_field }}
             {{ listing_form.header_image | as_crispy_field }}
-            <input type="file" multiple>
+            <!-- To display image from header image -->
+            <div class="header-image-preview">
+            </div>
+            {{ images_form | crispy }}
+            <!-- To display images from images form -->
+            <div class="image-preview">
+            </div>
             <hr>
         </fieldset>
         <hr>
@@ -131,6 +143,40 @@
 {% endif %}
 </div>
 
+
+<script>
+    function readHeaderURL(input){
+        if (input.files && input.files[0]) {
+            var files = input.files
+            
+            for (let file of files) {
+                console.log(file);
+                let img = new Image;
+                img.src = URL.createObjectURL(file);
+                console.log(img);
+                
+                document.querySelector('.header-image-preview').appendChild(img);
+            }
+
+        }
+    }
+
+    function readURL(input){
+        if (input.files && input.files[0]) {
+            var files = input.files
+            
+            for (let file of files) {
+                console.log(file);
+                let img = new Image;
+                img.src = URL.createObjectURL(file);
+                console.log(img);
+                
+                document.querySelector('.image-preview').appendChild(img);
+            }
+
+        }
+    }
+</script>
 
 <!-- <script>
     document.addEventListener('DOMContentLoaded', function() {

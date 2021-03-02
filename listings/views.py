@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
-from .models import SaleListing, RentListing, SaleListingImage
+from .models import SaleListing, RentListing, SaleListingImage, RentListingImage
 
 
 def all_listings_view(request):
@@ -63,11 +63,13 @@ def sale_listing_detail_view(request, listing_id):
 
 def rent_listing_detail_view(request, listing_id):
     listing = get_object_or_404(RentListing, pk=listing_id)
+    photos = RentListingImage.objects.filter(listing=listing)
 
     template = 'listings/for_rent_detail.html'
 
     context = {
         'listing': listing,
+        'photos': photos,
     }
 
     return render(request, template, context)
