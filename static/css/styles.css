@@ -348,8 +348,10 @@ th.premium p {
 }
 
 .form-container {
-  width: 50%;
-  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+  margin: 50px 10% 0 10%;
+  grid-row-gap: 30px;
 }
 
 .form-container input {
@@ -362,6 +364,18 @@ th.premium p {
 
 .form-btn {
   margin: 0.5rem 0;
+}
+
+legend a {
+  color: #212529 !important;
+}
+
+.divider {
+  height: 100%;
+  background-color: #303e94;
+  width: 1px;
+  grid-column: 2;
+  justify-self: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

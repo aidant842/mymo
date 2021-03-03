@@ -11,61 +11,138 @@
         <fieldset>
             <legend class="fieldset-label">
                 <i class="far fa-address-book"></i>
-                Contact Info
+                Contact Info 
+                <a data-bs-toggle="collapse" href="#contactInfo" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <i class="fas fa-angle-down"></i>
+                </a>
             </legend>
-            <hr>
-            {{ listing_form.company_name | as_crispy_field }}
-            {{ listing_form.full_name | as_crispy_field }}
-            {{ listing_form.email | as_crispy_field }}
-            {{ listing_form.phone | as_crispy_field }}
-            {{ listing_form.call_between_hrs | as_crispy_field }}
+            <div class="collapse multi-collapse show" id="contactInfo">
+                <hr>
+                {{ listing_form.company_name | as_crispy_field }}
+                {{ listing_form.full_name | as_crispy_field }}
+                {{ listing_form.email | as_crispy_field }}
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.phone | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.call_between_hrs | as_crispy_field }}
+                    </div>
+                </div>
+            </div>
         </fieldset>
         <hr>
         <fieldset>
             <legend class="fieldset-label">
                 <i class="fas fa-map-pin"></i>
                 Location of Property
+                <a data-bs-toggle="collapse" href="#propertyLocation" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <i class="fas fa-angle-down"></i>
+                </a>
             </legend>
-            <hr>
-            {{ listing_form.county | as_crispy_field }}
-            {{ listing_form.area | as_crispy_field }}
-            {{ listing_form.eircode | as_crispy_field }}
+            <div class="collapse multi-collapse" id="propertyLocation">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.county | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.area | as_crispy_field }}
+                    </div>
+                    {{ listing_form.eircode | as_crispy_field }}
+                </div>
+            </div>
         </fieldset>
         <hr>
         <fieldset>
             <legend class="fieldset-label">
                 <i class="fas fa-home"></i>
                 Property Info
+                <a data-bs-toggle="collapse" href="#propertyInfo" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+                    <i class="fas fa-angle-down"></i>
+                </a>
             </legend>
+            <div class="collapse multi-collapse" id="propertyInfo">
             <hr>
-            {{ listing_form.property_type | as_crispy_field }}
-            {{ listing_form.selling_type | as_crispy_field }}
-            {{ listing_form.price | as_crispy_field }}
-            {{ listing_form.no_of_bedrooms | as_crispy_field }}
-            {{ listing_form.no_of_bathrooms | as_crispy_field }}
-            {{ listing_form.facility_1 | as_crispy_field }}
-            {{ listing_form.facility_2 | as_crispy_field }}
-            {{ listing_form.facility_3 | as_crispy_field }}
-            {{ listing_form.facility_4 | as_crispy_field }}
-            {{ listing_form.facility_5 | as_crispy_field }}
-            {{ listing_form.facility_6 | as_crispy_field }}
-            {{ listing_form.floor_area_type | as_crispy_field }}
-            {{ listing_form.floor_area | as_crispy_field }}
-            {{ listing_form.ber_rating | as_crispy_field }}
-            {{ listing_form.tax_designation | as_crispy_field }}
-            {{ listing_form.top_features_1 | as_crispy_field }}
-            {{ listing_form.top_features_2 | as_crispy_field }}
-            {{ listing_form.top_features_3 | as_crispy_field }}
-            {{ listing_form.top_features_4 | as_crispy_field }}
-            {{ listing_form.top_features_5 | as_crispy_field }}            
-            {{ listing_form.description | as_crispy_field }}
-            {{ listing_form.header_image | as_crispy_field }}
-            <!-- To display image from header image -->
-            <div class="header-image-preview">
-            </div>
-            {{ images_form | crispy }}
-            <!-- To display images from images form -->
-            <div class="image-preview">
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.property_type | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.selling_type | as_crispy_field }}
+                    </div>
+                </div>
+                {{ listing_form.price | as_crispy_field }}
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.no_of_bedrooms | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.no_of_bathrooms | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.facility_1 | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.facility_2 | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.facility_3 | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.facility_4 | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.facility_5 | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.facility_6 | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.floor_area_type | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.floor_area | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.ber_rating | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.tax_designation | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="features">
+                    {{ listing_form.top_features_1 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_2 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_3 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_4 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_5 | as_crispy_field }}            
+                </div>
+                {{ listing_form.description | as_crispy_field }}
+                {{ listing_form.header_image | as_crispy_field }}
+                <!-- To display image from header image -->
+                <div class="header-image-preview">
+                </div>
+                {{ images_form | crispy }}
+                <!-- To display images from images form -->
+                <div class="image-preview">
+                </div>
             </div>
         </fieldset>
         <hr>
@@ -141,6 +218,8 @@
         <button class="btn form-btn" id="submitBtn">Continue to payment</button>
     </form>
 {% endif %}
+    <div class="divider"></div>
+
 </div>
 
 
@@ -176,6 +255,16 @@
 
         }
     }
+
+    function displayFeatures() {
+        $('.features').keyup(function (){
+            $(this).next('.features').attr('hidden', false);
+            if ($(this).find('.textInput').val() == '') {
+                $(this).next('.features').attr('hidden', true);
+            }
+        });
+    }
+    displayFeatures();
 </script>
 
 <!-- <script>

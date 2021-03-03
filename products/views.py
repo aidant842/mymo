@@ -72,6 +72,7 @@ def product_detail(request, product_id):
                 listing.product = product
                 listing.save()
                 for image in images:
+                    print(image)
                     RentListingImage.objects.create(
                         listing=listing,
                         images=image
