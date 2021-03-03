@@ -73,27 +73,27 @@ class SaleListingForm(forms.ModelForm):
     ]
 
     facility_1 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_2 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_3 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_4 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_5 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_6 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     property_type = forms.CharField(widget=forms.Select
-                                    (choices=PROPERTY_TYPE_CHOICES))
+                                    (choices=PROPERTY_TYPE_CHOICES, attrs={'class': 'form-select'}))
     selling_type = forms.CharField(widget=forms.Select
-                                   (choices=SELLING_TYPE_CHOICES))
+                                   (choices=SELLING_TYPE_CHOICES, attrs={'class': 'form-select'}))
     floor_area_type = forms.CharField(widget=forms.Select
-                                      (choices=FLOOR_AREA_TYPE_CHOICES))
+                                      (choices=FLOOR_AREA_TYPE_CHOICES, attrs={'class': 'form-select'}))
     ber_rating = forms.CharField(widget=forms.Select
-                                 (choices=BER_CHOICES))
+                                 (choices=BER_CHOICES, attrs={'class': 'form-select'}))
     tax_designation = forms.CharField(widget=forms.Select
-                                      (choices=TAX_DESIGNATION_CHOICES))
+                                      (choices=TAX_DESIGNATION_CHOICES, attrs={'class': 'form-select'}))
     header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*'}))
 
     class Meta:

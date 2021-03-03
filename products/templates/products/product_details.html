@@ -225,6 +225,7 @@
 
 <script>
     function readHeaderURL(input){
+        document.querySelector('.header-image-preview').innerHTML = '';
         if (input.files && input.files[0]) {
             var files = input.files
             
@@ -241,15 +242,16 @@
     }
 
     function readURL(input){
+        document.querySelector('.image-preview').innerHTML = '';
         if (input.files && input.files[0]) {
             var files = input.files
+            console.log(files);
             
             for (let file of files) {
                 console.log(file);
                 let img = new Image;
                 img.src = URL.createObjectURL(file);
                 console.log(img);
-                
                 document.querySelector('.image-preview').appendChild(img);
             }
 
