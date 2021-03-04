@@ -4,6 +4,8 @@ from django.utils import timezone
 from .models import Product, Category
 from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage
+from checkout.forms import OrderForm
+from checkout.models import Order
 
 
 def products_view(request):
@@ -32,6 +34,7 @@ def products_view(request):
 def product_detail(request, product_id):
     """ A view to return the form to fill out to create a listing """
     product = get_object_or_404(Product, pk=product_id)
+    order_form = OrderForm()
 
     if product.category.name == 'sale':
         listing_form = SaleListingForm()
@@ -40,53 +43,13 @@ def product_detail(request, product_id):
         listing_form = RentListingForm()
         images_form = RentImageForm()
 
-    if request.method == 'POST':
-        images = request.FILES.getlist('images')
-        if product.category.name == 'sale':
-            listing_form = SaleListingForm(request.POST, request.FILES)
-            images_form = SaleImageForm(request.POST, request.FILES)
-            if listing_form.is_valid() and images_form.is_valid():
-                listing = listing_form.save(commit=False)
-                listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=365))
-                if product.is_premium:
-                    listing.premium_expiration = (timezone.now()
-                                                  + datetime.timedelta(days=30))
-                listing.product = product
-                listing.save()
-                for image in images:
-                    SaleListingImage.objects.create(
-                        listing=listing,
-                        images=image
-                    )
-                return redirect('home')
-        elif product.category.name == 'rent':
-            listing_form = RentListingForm(request.POST, request.FILES)
-            if listing_form.is_valid():
-                listing = listing_form.save(commit=False)
-                listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=90))
-                if product.is_premium:
-                    listing.premium_expiration = (timezone.now()
-                                                  + datetime.timedelta(days=30))
-                listing.product = product
-                listing.save()
-                for image in images:
-                    RentListingImage.objects.create(
-                        listing=listing,
-                        images=image
-                    )
-                return redirect('home')
-            else:
-                for error in listing_form.errors:
-                    print(error)
-
     template = 'products/product_details.html'
 
     context = {
         'product': product,
         'listing_form': listing_form,
         'images_form': images_form,
+        'order_form': order_form,
     }
 
     return render(request, template, context)

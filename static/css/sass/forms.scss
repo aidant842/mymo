@@ -1,9 +1,11 @@
 .form-container {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 45% 10% 45%;
     margin: 50px 10% 0 10%;
-    grid-row-gap: 30px;
-    min-height: 100vh;
+    grid-row-gap: 30px; */
+    /* min-height: 100vh; */
+    width: 90%;
+    margin: 5rem auto;
 }
 
 .form-container input {
@@ -26,8 +28,7 @@ legend a {
     height: 100%;
     background-color: $secondary-color;
     width: 1px;
-    grid-column: 2;
-    justify-self: center;
+    margin: 0 auto;
 }
 
 .header-image-preview img, .image-preview img {
@@ -35,9 +36,20 @@ legend a {
     width: 250px;
     margin: 1rem;
     box-shadow: 0px 10px 13px -7px #000000;
+    border-radius: 10px;
 }
 
-input:focus {
+input:focus, select:focus {
     border-color: $tertiary-color !important;
-    box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.25) !important;
+    box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.5) !important;
+}
+
+.scroll-section {
+  max-height: 50px;
+  overflow-y: auto;
+}
+
+.order-form {
+    display: grid;
+    grid-column: 3;
 }

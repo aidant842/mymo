@@ -94,7 +94,7 @@ class SaleListingForm(forms.ModelForm):
                                  (choices=BER_CHOICES, attrs={'class': 'form-select'}))
     tax_designation = forms.CharField(widget=forms.Select
                                       (choices=TAX_DESIGNATION_CHOICES, attrs={'class': 'form-select'}))
-    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*'}))
+    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*', 'hidden': 'true'}))
 
     class Meta:
         model = SaleListing
@@ -132,8 +132,6 @@ class SaleListingForm(forms.ModelForm):
         ]
 
         def __init__(self, *args, **kwargs):
-            """ Add placeholders and classes, remove auto generated labels
-                and set autofocus on first field """
 
             super().__init__(*args, **kwargs)
 
@@ -212,30 +210,30 @@ class RentListingForm(forms.ModelForm):
     ]
 
     facility_1 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_2 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_3 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_4 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_5 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     facility_6 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES), required=False)
+                                 (choices=FACILITY_CHOICES, attrs={'class': 'form-select'}), required=False)
     property_type = forms.CharField(widget=forms.Select
-                                    (choices=PROPERTY_TYPE_CHOICES))
+                                    (choices=PROPERTY_TYPE_CHOICES, attrs={'class': 'form-select'}))
     floor_area_type = forms.CharField(widget=forms.Select
-                                      (choices=FLOOR_AREA_TYPE_CHOICES))
+                                      (choices=FLOOR_AREA_TYPE_CHOICES, attrs={'class': 'form-select'}))
     ber_rating = forms.CharField(widget=forms.Select
-                                 (choices=BER_CHOICES))
+                                 (choices=BER_CHOICES, attrs={'class': 'form-select'}))
     lease_term = forms.CharField(widget=forms.Select
-                                 (choices=LEASE_TERM_CHOICES))
+                                 (choices=LEASE_TERM_CHOICES, attrs={'class': 'form-select'}))
     furnishing = forms.CharField(widget=forms.Select
-                                 (choices=FURNISHING_CHOICES))
+                                 (choices=FURNISHING_CHOICES, attrs={'class': 'form-select'}))
     rent_type = forms.CharField(widget=forms.Select
-                                (choices=RENT_TYPE_CHOICES))
-    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*'}))
+                                (choices=RENT_TYPE_CHOICES, attrs={'class': 'form-select'}))
+    header_image = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readHeaderURL(this);', 'accept': 'image/*', 'hidden': 'true'}))
 
     class Meta:
         model = RentListing
@@ -284,7 +282,7 @@ class RentListingForm(forms.ModelForm):
 
 
 class SaleImageForm(forms.ModelForm):
-    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*'}))
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*', 'hidden': 'true'}))
 
     class Meta:
         model = SaleListingImage
@@ -294,7 +292,7 @@ class SaleImageForm(forms.ModelForm):
 
 
 class RentImageForm(forms.ModelForm):
-    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*'}))
+    images = forms.FileField(widget=forms.ClearableFileInput(attrs={'name': 'images', 'onchange': 'readURL(this);', 'multiple': True, 'accept': 'image/*', 'hidden': 'true'}))
 
     class Meta:
         model = RentListingImage
