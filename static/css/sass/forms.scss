@@ -10,10 +10,12 @@
 
 .form-container input {
     margin: 0.5rem 0;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
 }
 
 .form-container select {
     margin: 0.5rem 0;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
 }
 
 .form-btn {
@@ -41,7 +43,8 @@ legend a {
 
 input:focus, select:focus {
     border-color: $tertiary-color !important;
-    box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.5) !important;
+    /* box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.5) !important; */
+    box-shadow: none !important;
 }
 
 .scroll-section {
@@ -52,4 +55,39 @@ input:focus, select:focus {
 .order-form {
     display: grid;
     grid-column: 3;
+}
+
+/* Stripe elements */
+
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  border-color: $tertiary-color !important;
+    /* box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.5) !important; */
+}
+
+
+.StripeElement--webkit-autofill {
+  background-color: transparent !important;
+}
+
+.card-errors {
+    color: red;
 }

@@ -5,7 +5,6 @@ from products.models import Product
 from products.forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage
 from checkout.forms import OrderForm
-from checkout.models import Order
 
 
 def checkout(request):
