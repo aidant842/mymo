@@ -57,24 +57,38 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'for_sale_listings' %}">Buy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'for_rent_listings' %}">Rent</a>
-                        </li>
+                    <ul class="navbar-nav">
+                        <div class="left">
+                            <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}">Buy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}">Rent</a>
+                            </li>
+                        </div>
+                        <div class="right">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                    <li class="nav-item">
+                                        <a href="#" class="hover-link nav-link">Admin</a>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <a href="#" class="hover-link nav-link">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'account_logout' %}" class="hover-link nav-link">Logout</a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a class="hover-link nav-link" href="{% url 'account_login' %}">Login</a>
+                                </li>
+                                {% endif %}
+                            <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'products' %}">Place Ad</a>
+                            </li>
+                        </div>
                     </ul>
-                    {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    <a href="#" class="btn">Admin</a>
-                    {% endif %}
-                    <a href="#" class="btn">Profile</a>
-                    <a href="{% url 'account_logout' %}" class="btn">Logout</a>
-                    {% else %}
-                    <a class="btn" href="{% url 'account_login' %}">Login</a>
-                    {% endif %}
-                    <a class="btn" href="{% url 'products' %}">Place Ad</a>
                 </div>
             </div>
         </nav>

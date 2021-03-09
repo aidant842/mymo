@@ -35,9 +35,9 @@ a {
     color: white !important;
 }
 
-a:hover {
+/* a:hover {
     color: $tertiary-color !important;
-}
+} */
 
 .btn {
     @extend %button-style
@@ -64,3 +64,4 @@ a:hover {
 @import 'footer';
 @import 'products';
 @import 'forms';
+@import 'hover_effects';

@@ -24,6 +24,12 @@ class SaleListingAdmin(admin.ModelAdmin):
         'expiration_date'
     )
 
+    readonly_fields = (
+        'category',
+        'product',
+        'date_created',
+    )
+
 
 class RentListingAdmin(admin.ModelAdmin):
     inlines = [RentListingImageAdmin]
