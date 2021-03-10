@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+{% block content %}
+{{ listing }}
+<div class="form-container">
+    <form action="{% url 'checkout' %}" method="POST" class="checkout-form">
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                <i class="fas fa-user"></i>
+                Billing Info
+            </legend>
+            {{ order_form | crispy }}
+        </fieldset>
+        <hr>
+        <fieldset>
+            <legend>
+                <i class="fas fa-credit-card"></i>
+                Card Info
+            </legend>
+            <div class="my-2" id="card-element"></div>
+            <div class="card-errors"></div>
+        </fieldset>
+        <hr>
+        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
+    </form>
+            
+</div>
+
+<!-- Loader -->
+
+<div id="loading-overlay">
+    <p class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-spinner fa-pulse"></i>
+        </span>
+    </p>
+</div>
+<!-- End of loader -->
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+
+{% endblock %}

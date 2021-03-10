@@ -164,3 +164,17 @@ STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+
+# Celery
+
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', '')
+
+
+""" Optional way to create schedule tasks if not using admin panel """
+
+""" CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "listings.tasks.unlist_expired_listings",
+        "schedule": 25.0,
+    },
+} """

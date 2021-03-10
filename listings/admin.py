@@ -19,6 +19,7 @@ class SaleListingAdmin(admin.ModelAdmin):
         'category',
         'price',
         'is_listed',
+        'is_paid',
         'is_spotlight',
         'product',
         'expiration_date'
@@ -40,6 +41,7 @@ class RentListingAdmin(admin.ModelAdmin):
         'category',
         'price',
         'is_listed',
+        'is_paid',
         'is_spotlight',
         'product',
         'expiration_date'

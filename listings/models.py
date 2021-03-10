@@ -10,6 +10,7 @@ from PIL import Image
 class SaleListing(models.Model):
     listing_number = models.CharField(max_length=32, null=True, editable=False)
     is_listed = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
     is_spotlight = models.BooleanField(default=False, blank=True)
     category = models.ForeignKey(Category, null=True,
                                  blank=True, on_delete=models.SET_NULL)
@@ -83,6 +84,7 @@ class SaleListing(models.Model):
 class RentListing(models.Model):
     listing_number = models.CharField(max_length=32, null=True, editable=False)
     is_listed = models.BooleanField(default=False)
+    is_paid = models.BooleanField(default=False)
     is_spotlight = models.BooleanField(default=False, blank=True)
     category = models.ForeignKey(Category, null=True,
                                  blank=True, on_delete=models.SET_NULL)
@@ -166,3 +168,4 @@ class RentListingImage(models.Model):
 
     def __str__(self):
         return self.listing.listing_number
+

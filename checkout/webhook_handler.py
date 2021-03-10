@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 
 
-class StripeWH_Hanlder:
+class StripeWH_Handler():
     """ Handle stripe webhooks """
 
     def __init__(self, request):
