@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% load tools %}
 
 {% block content %}
 <section class="product-section">
@@ -31,7 +31,7 @@
                 <td></td>
                 {% for product in products %}
                 <td class="{% if product.is_premium %} premium {% endif %}">
-                    <span class="td-price">€{{ product.price }}</span><br />
+                    <span class="td-price">€{{ product.price | display_price }}</span><br />
                     <a href="{% url 'product_detail' product.id %}" class="btn">Select Option</a>
                 </td>
                 {% endfor %}

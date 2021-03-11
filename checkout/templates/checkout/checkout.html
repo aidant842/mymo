@@ -1,29 +1,255 @@
-{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% load tools %}
 
 {% block content %}
-{{ listing }}
 <div class="form-container">
-    <form action="{% url 'checkout' %}" method="POST" class="checkout-form">
-        {% csrf_token %}
-        <fieldset>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'checkout' %}" method="POST" class="checkout-form">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>
+                        <i class="fas fa-user"></i>
+                        Billing Info
+                    </legend>
+                    <hr>
+                    {{ order_form | crispy }}
+                </fieldset>
+                <hr>
+                <fieldset>
+                    <legend>
+                        <i class="fas fa-credit-card"></i>
+                        Card Info
+                    </legend>
+                    <div class="my-2" id="card-element"></div>
+                    <div class="text-muted">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Your card will be charged €{{ product.price | display_price }}
+                    </div>
+                    <div class="card-errors"></div>
+                </fieldset>
+                <hr>
+                <button class="btn form-btn" id="submitBtn">Continue to payment</button>
+            </form>
+        </div>
+        <div class="col-1">
+            <div class="divider"></div>
+        </div>
+        <div class="col listing-preview">
             <legend>
-                <i class="fas fa-user"></i>
-                Billing Info
+                <i class="fas fa-list"></i> 
+                Listing Preview
             </legend>
-            {{ order_form | crispy }}
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend>
-                <i class="fas fa-credit-card"></i>
-                Card Info
-            </legend>
-            <div class="my-2" id="card-element"></div>
-            <div class="card-errors"></div>
-        </fieldset>
-        <hr>
-        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
-    </form>
+            <hr>
+            <img src="{{ listing.header_image.url }}" alt="image of {{ listing.header_image }}">
+            <ul class="preview-list">
+                <legend class="text-muted">
+                    <i class="far fa-address-book"></i>
+                    Contact Info
+                </legend>
+                <hr>
+                {% if listing.company_name %}
+                <li>
+                    <span>
+                        Company Name: 
+                    </span>
+                    {{ listing.company_name }}
+                </li>
+                {% else %}
+                <li>
+                    <span>
+                        Full Name: 
+                    </span>
+                    {{ listing.full_name }}
+                </li>
+                {% endif %}
+                <li>
+                    <span>
+                        Email: 
+                    </span>
+                    {{ listing.email }}
+                </li>
+
+                <li>
+                    <span>
+                        Phone:
+                    </span>
+                    {{ listing.phone }}
+                </li>
+
+                <li>
+                    <span>
+                        Call Between:
+                    </span>
+                    {{ listing.call_between_hrs }}
+                </li>
+                <hr>
+                <legend class="text-muted">
+                    <i class="fas fa-map-pin"></i>
+                    Property Location
+                </legend>
+                <hr>
+                <li>
+                    <span>
+                        County:
+                    </span>
+                    {{ listing.county }}
+                </li>
+
+                <li>
+                    <span>
+                        Area:
+                    </span>
+                    {{ listing.area }}
+                </li>
+
+                <li>
+                    <span>
+                        Eircode:
+                    </span>
+                    {{ listing.eircode }}
+                </li>
+                <hr>
+                <legend class="text-muted">
+                    <i class="fas fa-home"></i>
+                    Property Info
+                </legend>
+                <li>
+                    <span>
+                        Property Type:
+                    </span>
+                    {{ listing.property_type }}
+                </li>
+                
+                <li>
+                    <span>
+                        Selling Type:
+                    </span>
+                    {{ listing.selling_type }}
+                </li>
+
+                <li>
+                    <span>
+                        Price:
+                    </span>
+                    {{ listing.price }}
+                </li>
+
+                <li>
+                    <span>
+                        No. of Bedrooms:
+                    </span>
+                    {{ listing.no_of_bedrooms }}
+                </li>
+
+                <li>
+                    <span>
+                        No. of Bathrooms:
+                    </span>
+                    {{ listing.no_of_bathrooms }}
+                </li>
+
+                <li>
+                    <span>
+                        Facilities
+                    </span>
+                    <ol>
+                        {% if listing.facility_1 %}
+                            <li>
+                                {{ listing.facility_1 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.facility_1 %}
+                            <li>
+                                {{ listing.facility_2 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.facility_3 %}
+                            <li>
+                                {{ listing.facility_3 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.facility_4 %}
+                            <li>
+                                {{ listing.facility_4 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.facility_5 %}
+                            <li>
+                                {{ listing.facility_5 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.facility_6 %}
+                            <li>
+                                {{ listing.facility_6 }}
+                            </li>
+                        {% endif %}
+                    </ol>
+                </li>
+
+                <li>
+                    <span>
+                        Floor Area:
+                    </span>
+                    {{ listing.floor_area }} {{ listing.floor_area_type }}
+                </li>
+
+                <li>
+                    <span>
+                        Ber Rating:
+                    </span>
+                    {{ listing.ber_rating }}
+                </li>
+
+                <li>
+                    <span>
+                        Tax Designation:
+                    </span>
+                    {{ listing.tax_designation }}
+                </li>
+
+                <li>
+                    <span>
+                        Top Features:
+                    </span>
+                    <ol>
+                        {% if listing.top_features_1 %}
+                            <li>
+                                {{ listing.top_features_1}}
+                            </li>
+                        {% endif %}
+                        {% if listing.top_features_2 %}
+                            <li>
+                                {{ listing.top_features_2 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.top_features_3 %}
+                            <li>
+                                {{ listing.top_features_3 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.top_features_4 %}
+                            <li>
+                                {{ listing.top_features_4 }}
+                            </li>
+                        {% endif %}
+                        {% if listing.top_features_5 %}
+                            <li>
+                                {{ listing.top_features_5 }}
+                            </li>
+                        {% endif %}
+                    </ol>
+                </li>
+
+                <li>
+                    <span>
+                        Description:
+                    </span>
+                    {{ listing.description }}
+                </li>
+            </ul>
+        </div>
+
+    </div>
             
 </div>
 

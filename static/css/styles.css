@@ -552,4 +552,17 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
 }
 
+.preview-list {
+  text-align: left;
+  padding: 1rem 0;
+}
+.preview-list span {
+  color: #6c757d !important;
+}
+
+.listing-preview img {
+  text-align: center !important;
+  margin: 0 auto;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -1,5 +1,5 @@
 import datetime
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, reverse
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.conf import settings
@@ -100,7 +100,7 @@ def checkout(request):
                 order.product = listing.product
                 order.save()
 
-                return redirect('checkout_success')
+                return redirect(reverse('checkout_success', args=[order.order_number]))
         elif product.category.name == 'rent':
             listing = get_object_or_404(RentListing, pk=listing_id)
             order_form = OrderForm(request.POST)
@@ -113,8 +113,17 @@ def checkout(request):
                 order.product = listing.product
                 order.save()
 
-                return redirect('checkout_success')
+                return redirect(reverse('checkout_success', args=[order.order_number]))
 
+    if not product_id:
+        print('returning to home no product_id')
+        print(product_id)
+        return redirect('home')
+
+    if product.category.name == 'sale':
+        listing = get_object_or_404(SaleListing, pk=listing_id)
+    elif product.category.name == 'rent':
+        listing = get_object_or_404(RentListing, pk=listing_id)
     stripe_total = product.price
     stripe.api_key = stripe_secret_key
 
@@ -132,12 +141,14 @@ def checkout(request):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
         'order_form': order_form,
+        'product': product,
+        'listing': listing,
     }
 
     return render(request, template, context)
 
 
-def checkout_success(request):
+def checkout_success(request, order_number):
     del request.session['listing_id']
     del request.session['product_id']
     template = 'checkout/checkout_success.html'

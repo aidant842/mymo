@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_celery_beat',
     'crispy_forms',
+    'custom_tools',
     'home',
     'products',
     'listings',
