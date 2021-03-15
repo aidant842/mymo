@@ -91,3 +91,8 @@ input:focus, select:focus {
 .card-errors {
     color: red;
 }
+
+select:invalid,
+select option:first-child {
+    color: #6c757d !important;
+}

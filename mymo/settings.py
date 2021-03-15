@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'crispy_forms',
     'custom_tools',
+    'localflavor',
     'home',
     'products',
     'listings',

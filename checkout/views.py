@@ -116,8 +116,6 @@ def checkout(request):
                 return redirect(reverse('checkout_success', args=[order.order_number]))
 
     if not product_id:
-        print('returning to home no product_id')
-        print(product_id)
         return redirect('home')
 
     if product.category.name == 'sale':

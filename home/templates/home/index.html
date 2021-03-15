@@ -5,10 +5,10 @@
     <div class="main-img-container">
         <div class="search-header">
             <h2>Discover your new home</h2>
-            <form class="search-bar-container">
-                <input type="text" class="banner-search" placeholder="Enter Address">
-            <input type="submit" class="btn banner-search" value="Search">
-        </form>
+            <form method="GET" action="{% url 'listings' %}" class="search-bar-container">
+                <input type="text" class="banner-search" placeholder="Search e.g Crossmolina" name="q">
+                <button type="submit" class="btn banner-search" value="">Search <i class="fas fa-search-location"></i></button>
+            </form>
         </div>
     </div>
 </section>

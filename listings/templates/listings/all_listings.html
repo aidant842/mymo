@@ -1,8 +1,68 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="filters">
+    <form>
+        <!-- <div class="row">
+            <div class="col">
+                <input type="number" placeholder="Max (€)">
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>County</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Property Type</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Bedrooms</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Bathrooms</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>BER rating</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Category</option>
+                    <option value="1">For Sale</option>
+                    <option value="2">For Rent</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" value="Submit">Submit</button>
+            </div>
+        </div> -->
+        {{ filters | crispy }}
+    </form>
+</div>
 <div class="card-container">
-    {% for listing in for_sale_listings %}
+    {% for listing in result_list %}
         <div class="card" style="width: 18rem;">
             <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
             <div class="card-img-overlay">
@@ -19,7 +79,7 @@
         </div>
     {% endfor %}
 
-    {% for listing in for_rent_listings %}
+   <!--  {% for listing in for_rent_listings %}
         <div class="card" style="width: 18rem;">
             <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
             <div class="card-img-overlay">
@@ -34,7 +94,7 @@
                 <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
             </div>
         </div>
-    {% endfor %}
+    {% endfor %} -->
 
 </div>
 {% endblock %}

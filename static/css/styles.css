@@ -510,6 +510,11 @@ input:focus, select:focus {
   color: red;
 }
 
+select:invalid,
+select option:first-child {
+  color: #6c757d !important;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -558,11 +563,6 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 .preview-list span {
   color: #6c757d !important;
-}
-
-.listing-preview img {
-  text-align: center !important;
-  margin: 0 auto;
 }
 
 /*# sourceMappingURL=styles.css.map */
