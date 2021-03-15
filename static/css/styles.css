@@ -515,6 +515,16 @@ select option:first-child {
   color: #6c757d !important;
 }
 
+.filters-container {
+  background: #eff0f0;
+  padding: 1rem;
+}
+
+.filters {
+  width: 75%;
+  margin: 2rem auto 0 auto;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

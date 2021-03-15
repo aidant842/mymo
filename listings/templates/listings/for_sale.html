@@ -1,10 +1,51 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block content %}
+<div class="filters-container">
+    <div class="filters">
+        <form method="POST" action="{% url 'for_sale_listings' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    {{ filter_form.price | as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ filter_form.county | as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ filter_form.category | as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ filter_form.property_type | as_crispy_field }}
+                </div>
+            </div>
+            <a data-bs-toggle="collapse" href="#extraFilters" role="button" aria-expanded="false"
+                class="text-muted">
+                Extra Filters
+                <i class="fas fa-angle-down chevron"></i>
+            </a>
+            <div class="collapse multi-collapse" id="extraFilters">
+                <div class="row">
+                    <div class="col">
+                        {{ filter_form.ber_rating | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ filter_form.bedrooms | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ filter_form.bathrooms | as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="query" value="{{ search_term }}">
+            <button class="btn form-btn w-50" type="submit" value="">Filter <i class="fas fa-filter"></i></button>
+        </form>
+    </div>
+</div>
 <div class="card-container">
     {% for listing in listings %}
         <a href="{% url 'sale_listing_detail' listing.id %}">
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                 <div class="card-img-overlay">
                     <span class="property-price">€ {{ listing.price }}</span>

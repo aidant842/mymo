@@ -104,6 +104,7 @@ class RentListing(models.Model):
     no_of_single_bedrooms = models.IntegerField(blank=False, null=False)
     no_of_double_bedrooms = models.IntegerField(blank=False, null=False)
     no_of_twin_bedrooms = models.IntegerField(blank=False, null=False)
+    no_of_bedrooms = models.IntegerField(null=True, blank=True)
     no_of_bathrooms = models.IntegerField(blank=False, null=False)
     furnishing = models.CharField(max_length=256, blank=False, null=False)
     facility_1 = models.CharField(max_length=256, blank=True, null=True)
@@ -130,6 +131,9 @@ class RentListing(models.Model):
 
         return uuid.uuid4().hex.upper()
 
+    def _calc_no_of_bedrooms(self):
+        return self.no_of_single_bedrooms + self.no_of_twin_bedrooms + self.no_of_double_bedrooms
+
     def save(self, *args, **kwargs):
         """ Override origonal save method
             to set the listing number if not already set """
@@ -145,6 +149,9 @@ class RentListing(models.Model):
             self.is_spotlight = False
 
         self.category = self.product.category
+
+        if not self.no_of_bedrooms:
+            self.no_of_bedrooms = self._calc_no_of_bedrooms()
 
         if not self.listing_number:
             self.listing_number = self._generate_listing_number()
