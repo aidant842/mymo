@@ -74,12 +74,18 @@
     text-align: center;
 }
 
-.spotlight {
-    background-color: $secondary-color !important;
-    color: white;
-}
 
 // ***************** CARDS SECTION ***************** //
+    .spotlight-tag {
+        letter-spacing: 2px;
+        font-weight: bold;
+        color: rgba(255,255,255 , 0.8);
+    }
+
+    .spotlight {
+        background-color: $secondary-color !important;
+        color: white;
+    }
 
 .card-container {
     display: grid;

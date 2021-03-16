@@ -15,6 +15,9 @@
                 <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
                 <hr class="card-hr"/>
                 <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+                {% if listing.is_spotlight %}
+                    <span class="spotlight-tag">SPOTLIGHT</span>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

@@ -3,8 +3,7 @@
 {% block content %}
 <div class="filters-container">
     <div class="filters">
-        <form method="POST" action="{% url 'for_sale_listings' %}">
-            {% csrf_token %}
+        <form method="GET" action=".">
             <div class="row">
                 <div class="col">
                     {{ filter_form.price | as_crispy_field }}
@@ -13,7 +12,7 @@
                     {{ filter_form.county | as_crispy_field }}
                 </div>
                 <div class="col">
-                    {{ filter_form.category | as_crispy_field }}
+                    {{ filter_form.query | as_crispy_field }}
                 </div>
                 <div class="col">
                     {{ filter_form.property_type | as_crispy_field }}
@@ -35,9 +34,11 @@
                     <div class="col">
                         {{ filter_form.bathrooms | as_crispy_field }}
                     </div>
+                    <div class="col">
+                        {{ filter_form.sort | as_crispy_field }}
+                    </div>
                 </div>
             </div>
-            <input type="hidden" name="query" value="{{ search_term }}">
             <button class="btn form-btn w-50" type="submit" value="">Filter <i class="fas fa-filter"></i></button>
         </form>
     </div>
@@ -57,6 +58,9 @@
                     <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
                     <hr class="card-hr"/>
                     <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+                    {% if listing.is_spotlight %}
+                        <span class="spotlight-tag">SPOTLIGHT</span>
+                    {% endif %}
                 </div>
             </div>
         </a>

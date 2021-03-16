@@ -205,6 +205,12 @@ a {
   text-align: center;
 }
 
+.spotlight-tag {
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .spotlight {
   background-color: #303e94 !important;
   color: white;

@@ -70,7 +70,7 @@
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
                                     <li class="nav-item">
-                                        <a href="#" class="hover-link nav-link">Admin</a>
+                                        <a href="{% url 'admin:index' %}" class="hover-link nav-link">Admin</a>
                                     </li>
                                 {% endif %}
                                 <li class="nav-item">

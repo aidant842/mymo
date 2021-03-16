@@ -53,7 +53,14 @@ class FilterForm(forms.Form):
         ('sligo', 'Sligo'), ('tipperary', 'Tipperary'),
         ('waterford', 'Waterford'), ('westmeath', 'Westmeath'),
         ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
-        ]
+    ]
+
+    SORT_CHOICES = [
+        ('', 'Sort'),
+        ('price-desc', 'Price High to Low'),
+        ('price-asc', 'Price Low to High'),
+        ('date_created-asc', 'Most Recent')
+    ]
 
     price = forms.IntegerField(widget=forms.NumberInput(
                                attrs={'placeholder': 'Max (€)'}),
@@ -61,12 +68,12 @@ class FilterForm(forms.Form):
                                required=False)
 
     bedrooms = forms.IntegerField(widget=forms.NumberInput(
-        attrs={'placeholder': 'Bedrooms'}),
+        attrs={'placeholder': 'Bedrooms (Min)'}),
         label='',
         required=False)
 
     bathrooms = forms.IntegerField(widget=forms.NumberInput(
-        attrs={'placeholder': 'Bathrooms'}),
+        attrs={'placeholder': 'Bathrooms (Min)'}),
         label='',
         required=False)
 
@@ -88,8 +95,12 @@ class FilterForm(forms.Form):
                              label='',
                              required=False)
 
-    category = forms.CharField(widget=forms.Select
-                               (choices=CATEGORY_CHOICES,
-                                attrs={'class': 'form-select'}),
-                               label='',
-                               required=False)
+    query = forms.CharField(widget=forms.TextInput(
+                            attrs={'placeholder': 'Custom Query'}),
+                            label='',
+                            required=False)
+    sort = forms.CharField(widget=forms.Select
+                           (choices=SORT_CHOICES,
+                            attrs={'class': 'form-select'}),
+                           label='',
+                           required=False)
