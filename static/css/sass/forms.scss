@@ -100,9 +100,18 @@ select option:first-child {
 .filters-container {
     background: #eff0f0;
     padding: 1rem;
+    position: relative;
 }
 
 .filters {
     width: 75%;
     margin: 2rem auto 0 auto;
+
+    input, select {
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        display: block;
+    }
 }

@@ -2,6 +2,7 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.conf import settings
+from django.contrib import messages
 from .models import Product, Category
 from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage
@@ -17,6 +18,8 @@ def products_view(request):
     """ Filter by category """
 
     selected_category = request.GET.get('category', None)
+
+    messages.success(request, 'Hello')
 
     if selected_category:
         products = Product.objects.filter(category__name=selected_category)

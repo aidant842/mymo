@@ -8,7 +8,6 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 0 auto;
-    width: 85%;
     padding: 2rem 1rem;
     justify-items: center;
     color: $font-color !important;
@@ -32,4 +31,13 @@ footer {
 
 .footer-social-section h4 {
     margin-bottom: 1rem;
+}
+
+ // ***************** MEDIA QUERIES ***************** //
+
+ @media only screen and (max-width: 650px) {
+    .footer {
+        display: block;
+        text-align: center;
+    }
 }

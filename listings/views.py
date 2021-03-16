@@ -61,6 +61,7 @@ def for_sale_listings(request):
     sort = request.GET.get('sort', None)
 
     if price_query != '' and price_query is not None:
+        price_query = int(price_query)
         listings = listings.filter(price__lte=price_query,)
     if county_query != '' and county_query is not None:
         listings = listings.filter(county__icontains=county_query,)
@@ -82,6 +83,8 @@ def for_sale_listings(request):
             print('Descending order')
             sortkey = f'-{sortkey}'
         listings = listings.order_by(sortkey)
+    else:
+        listings = listings.order_by('-is_spotlight')
 
 
 
@@ -110,6 +113,7 @@ def for_rent_listings(request):
     sort = request.GET.get('sort')
 
     if price_query != '' and price_query is not None:
+        price_query = int(price_query)
         listings = listings.filter(price__lte=price_query,)
     if county_query != '' and county_query is not None:
         listings = listings.filter(county__icontains=county_query,)

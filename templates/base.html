@@ -94,11 +94,23 @@
         </nav>
     </header>
 
-    {% if messages %}
-    <div class="message-contaier">
-
+ {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
     </div>
-    {% endif %}
+  {% endif %}
 
     {% block page_header %}
     {% endblock %}
@@ -127,6 +139,20 @@
     </footer>
 
     {% block postloadjs %}
+    <script>
+        var option = {
+            animation: true,
+            autohide: false,
+            delay: 5000,
+        }
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, option)
+        })
+        for (var i=0; i<toastList.length; i++) {
+            toastList[i].show()
+        }
+    </script>
     {% endblock %}
 </body>
 

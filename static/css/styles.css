@@ -45,6 +45,23 @@ a {
   outline: none !important;
 }
 
+.message-container {
+  position: fixed;
+  top: 10px;
+  right: 15px;
+  z-index: 9999999999999;
+}
+
+.toast {
+  background-color: #303e94;
+  color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .toast {
+    width: max-content !important;
+  }
+}
 .navbar {
   display: flex !important;
   justify-content: space-around !important;
@@ -127,6 +144,11 @@ a {
 
   .navbar-collapse.show {
     background: rgba(48, 62, 148, 0.8) !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .purple {
+    padding: 0 2rem;
   }
 }
 .home-landing-section {
@@ -234,51 +256,88 @@ a {
 }
 
 .card-img-top {
-  width: 398px;
   height: 256.53px;
 }
 
-.card-img-top:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(7, 15, 67, 0.8);
-}
-
+/* .card-img-top:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(7, 15, 67, 0.8);
+} */
 .card-img-overlay {
   content: "";
-  position: absolute;
-  left: 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  /* left: 0;
   right: 0;
-  top: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  bottom: 41.5%;
+  top: 50%; */
+  background: rgba(48, 62, 148, 0.8);
+  border-radius: 0;
+  /* bottom: 41.5%; */
 }
 
 .property-price {
-  position: absolute;
+  /* position: absolute;
   left: 5%;
-  bottom: 2%;
+  bottom: 2%; */
   color: white;
   font-weight: bold;
   font-size: 1.3rem;
 }
 
 .for-rent-sale {
-  position: absolute;
+  /* position: absolute;
   right: 5%;
-  bottom: 15%;
+  bottom: 15%; */
   color: white;
   background: #303e94;
   width: fit-content;
   border-radius: 5px;
-  padding: 2px 15px;
+  padding: 5px 15px;
   font-size: small;
+  height: max-content;
 }
 
+@media only screen and (max-width: 940px) {
+  .search-bar-container {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .search-bar-container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .search-bar-container {
+    width: 100%;
+    display: grid;
+    justify-content: space-evenly;
+  }
+
+  .banner-search {
+    width: 90%;
+    border-radius: 50px;
+    margin: 9px 0 10px auto;
+  }
+
+  .btn.banner-search {
+    width: 100%;
+  }
+
+  .property-price {
+    font-size: 1rem;
+  }
+
+  .for-rent-sale {
+    padding: 2px 15px;
+  }
+}
 /* Link Hover animation */
 /* [class^="link-"] {
   display: inline-block;
@@ -314,7 +373,6 @@ footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 auto;
-  width: 85%;
   padding: 2rem 1rem;
   justify-items: center;
   color: white !important;
@@ -340,6 +398,12 @@ footer {
   margin-bottom: 1rem;
 }
 
+@media only screen and (max-width: 650px) {
+  .footer {
+    display: block;
+    text-align: center;
+  }
+}
 .product-section {
   height: 100vh;
   width: 95%;
@@ -367,7 +431,7 @@ footer {
 
 .table-header th {
   height: 6rem;
-  width: 10rem;
+  /* width: 10rem; */
   border: 1px solid darkgrey;
   padding: 2rem;
 }
@@ -524,11 +588,18 @@ select option:first-child {
 .filters-container {
   background: #eff0f0;
   padding: 1rem;
+  position: relative;
 }
 
 .filters {
   width: 75%;
   margin: 2rem auto 0 auto;
+}
+.filters input, .filters select {
+  margin-bottom: 1rem;
+}
+.filters .btn {
+  display: block;
 }
 
 ul {

@@ -9,7 +9,7 @@
             <a class="btn" href="{% url 'products' %}?category={{ cat.name }}">{{ cat.name }}</a>
         {% endfor %}
     </div>
-    <div class="product-table">
+    <!-- <div class="product-table">
         <table>
             <tr class="table-header">
                 <th></th>
@@ -61,6 +61,14 @@
                 <td class="premium tick">&check;</td>
             </tr>
         </table>
+    </div> -->
+    <div class="product-table">
+        <div class="row">
+            <div class="col"></div>
+            {% for product in products %}
+                <div class="col"></div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}

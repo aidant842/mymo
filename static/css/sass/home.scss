@@ -76,16 +76,16 @@
 
 
 // ***************** CARDS SECTION ***************** //
-    .spotlight-tag {
-        letter-spacing: 2px;
-        font-weight: bold;
-        color: rgba(255,255,255 , 0.8);
-    }
+.spotlight-tag {
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: rgba(255,255,255 , 0.8);
+}
 
-    .spotlight {
-        background-color: $secondary-color !important;
-        color: white;
-    }
+.spotlight {
+    background-color: $secondary-color !important;
+    color: white;
+}
 
 .card-container {
     display: grid;
@@ -105,11 +105,10 @@
 }
 
 .card-img-top {
-    width: 398px;
     height: 256.53px;
 }
 
-.card-img-top:before {
+/* .card-img-top:before {
     content: "";
     position: absolute;
     left: 0;
@@ -117,38 +116,81 @@
     top: 0;
     bottom: 0;
     background: rgba(7, 15, 67, 0.8);
-}
+} */
 
 // Change this with a media query for very small screens, the bottom parameter
 .card-img-overlay {
     content: "";
-    position: absolute;
-    left: 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* left: 0;
     right: 0;
-    top: 50%;
-    background: rgba(255,255,255, 0.3);
-    bottom: 41.5%;
+    top: 50%; */
+    background: rgba($secondary-color, 0.8);
+    border-radius: 0;
+    /* bottom: 41.5%; */
 }
 
 .property-price {
-    position: absolute;
+    /* position: absolute;
     left: 5%;
-    bottom: 2%;
+    bottom: 2%; */
     color: $font-color;
     font-weight: bold;
     font-size: 1.3rem;
 }
  .for-rent-sale {
-    position: absolute;
+    /* position: absolute;
     right: 5%;
-    bottom: 15%;
+    bottom: 15%; */
     color: $font-color;
     background: $secondary-color;
     width: fit-content;
     border-radius: 5px;
-    padding: 2px 15px;
+    padding: 5px 15px;
     font-size: small;
+    height: max-content;
  }
+
+ // ***************** MEDIA QUERIES ***************** //
+@media only screen and (max-width: 940px) {
+    .search-bar-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .search-bar-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .search-bar-container {
+        width: 100%;
+        display: grid;
+        justify-content: space-evenly;
+    }
+
+    .banner-search {
+        width: 90%;
+        border-radius: 50px;
+        margin: 9px 0 10px auto;
+    }
+
+    .btn.banner-search {
+        width: 100%;
+    }
+
+    .property-price {
+        font-size: 1rem;
+    }
+
+    .for-rent-sale {
+        padding: 2px 15px;
+    }
+}
 
  /* Link Hover animation */
 
