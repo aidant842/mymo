@@ -3,6 +3,7 @@
     width: 95%;
     margin: 5rem auto;
     text-align: center;
+    overflow: auto;
 }
 
 .product-section h1 {
@@ -16,29 +17,7 @@
 .product-table {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
-}
-
-.product-table table {
-    background-color: rgba(lightgrey, 0.7);
-}
-
-.table-header th {
-    height: 6rem;
-    /* width: 10rem; */
-    border: 1px solid darkgrey;
-    padding: 2rem;
-}
-
-.product-table td {
-    border: 1px solid darkgrey;
-    padding: 0.5rem 3rem;
-}
-
-.product-table td a {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem 3rem;
+    margin-top: 5rem;
 }
 
 .td-price {
@@ -47,7 +26,7 @@
 
 .premium {
     color: $font-color !important;
-    background-color: $secondary-color;
+    background-color: $secondary-color !important;
 }
 
 th.premium p {

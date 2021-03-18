@@ -6,68 +6,66 @@
     <h3 class="mb-4 text-muted">List your home now!</h3>
     <div>
         {% for cat in categories %}
-            <a class="btn" href="{% url 'products' %}?category={{ cat.name }}">{{ cat.name }}</a>
+        <a class="btn" href="{% url 'products' %}?category={{ cat.name }}">{{ cat.name }}</a>
         {% endfor %}
     </div>
-    <!-- <div class="product-table">
-        <table>
-            <tr class="table-header">
-                <th></th>
-                {% for product in products %}
-                <th class="{% if product.is_premium %} premium {% endif %}">
-                    <p>{{ product.friendly_name }}</p>
-                    <span>
-                        {% if product.is_premium %}
-                            The ultimate listing for the best properties
-                        {% else %}
-                            Promote your property on MyMo
-                        {% endif %}
-                    </span>
-                </th>
-                {% endfor %}
-            </tr>
 
-            <tr>
-                <td></td>
-                {% for product in products %}
-                <td class="{% if product.is_premium %} premium {% endif %}">
-                    <span class="td-price">€{{ product.price | display_price }}</span><br />
-                    <a href="{% url 'product_detail' product.id %}" class="btn">Select Option</a>
-                </td>
-                {% endfor %}
-            </tr>
 
-            <tr>
-                <td>
-                    <strong>Amount of days live</strong>
-                </td>
-                <td>
-                    365 Days Live
-                </td>
-                <td class="premium">
-                    365 Days Live
-                </td>
-            </tr>
-
-            <tr>
-                <td><strong>Unlimited</strong> Photos</td>
-                <td class="tick">&check;</td>
-                <td class="premium tick">&check;</td>
-            </tr>
-
-            <tr>
-                <td><strong>High Priority Listing</strong></td>
-                <td class="cross">&cross;</td>
-                <td class="premium tick">&check;</td>
-            </tr>
-        </table>
-    </div> -->
     <div class="product-table">
-        <div class="row">
-            <div class="col"></div>
-            {% for product in products %}
-                <div class="col"></div>
-            {% endfor %}
+        <div class="row row-cols-1 row-cols-md-2 g-4 w-75">
+            <div class="col">
+                {% for product in products %}
+                {% if product.is_premium == True %}
+                <div class="card bg-light spotlight spotlight-shadow h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.friendly_name}}</h5>
+                        <p class="card-text">The ultimate way to advertise your property</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item td-price spotlight">€{{ product.price | display_price }}</li>
+                        <li class="list-group-item spotlight">
+                            {% if product.category.name == 'rent' %}
+                                90 Days
+                            {% else %}
+                                365 Days Live
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item spotlight">Unlimited Photos</li>
+                        <li class="list-group-item spotlight">Premium Listing</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="{% url 'product_detail' product.id %}" class="card-link btn">Select Option</a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% for product in products %}
+                {% if product.is_premium == False %}
+                <div class="card bg-light h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.friendly_name}}</h5>
+                        <p class="card-text">Advertise your house on MyMo</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item td-price">€{{ product.price | display_price }}</li>
+                        <li class="list-group-item">
+                            {% if product.category.name == 'rent' %}
+                                90 Days
+                            {% else %}
+                                365 Days Live
+                            {% endif %}
+                        </li>
+                        <li class="list-group-item">Unlimited Photos</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="{% url 'product_detail' product.id %}" class="card-link btn">Select Option</a>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </section>
