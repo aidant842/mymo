@@ -8,6 +8,9 @@ from products.models import Product
 from products.forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage, SaleListing, RentListing
 from checkout.forms import OrderForm
+from profiles.models import UserProfile
+
+from .models import Order
 
 import stripe
 import json
@@ -95,6 +98,8 @@ def checkout(request):
                 listing.is_paid = True
                 listing.save()
                 order = order_form.save(commit=False)
+                pid = request.POST.get('client_secret').split('_secret')[0]
+                order.stripe_pid = pid
                 order.order_total = listing.product.price
                 order.sale_listing = listing
                 order.product = listing.product
@@ -147,6 +152,11 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile
+        order.save()
     del request.session['listing_id']
     del request.session['product_id']
     template = 'checkout/checkout_success.html'

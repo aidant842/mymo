@@ -115,9 +115,12 @@
     {% block page_header %}
     {% endblock %}
 
-    {% block content %}
+    {% block allauth %}
     {% endblock %}
 
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
     <footer>
         <div class="footer">
             <div class="footer-logo-section">
@@ -137,6 +140,7 @@
             </div>
         </div>
     </footer>
+    {% endblock %}
 
     {% block postloadjs %}
     <script>

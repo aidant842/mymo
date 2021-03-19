@@ -42,6 +42,7 @@ class OrderAdmin(admin.ModelAdmin):
         'sale_listing',
         'rent_listing',
         'date',
+        'user_profile',
     )
 
 

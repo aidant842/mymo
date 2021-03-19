@@ -1,13 +1,12 @@
 <!DOCTYPE html>
+{% extends 'base.html' %} {% load static %}
 <html>
   <head>
-    <title>{% block head_title %}{% endblock %}</title>
+    <title>{% block extra_title %} {% block head_title %}{% endblock %} {% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
-    {% block body %}
-
     {% if messages %}
     <div>
       <strong>Messages:</strong>
@@ -31,10 +30,9 @@
         {% endif %}
       </ul>
     </div>
-    {% block content %}
-    {% endblock %}
-    {% endblock %}
     {% block extra_body %}
+    {% endblock %}
+    {% block footer %}
     {% endblock %}
   </body>
 </html>
