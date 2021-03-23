@@ -642,4 +642,14 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: #6a7fdb !important;
 }
 
+.listing-detail-container img {
+  width: 75%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.images {
+  justify-content: center;
+}
+
 /*# sourceMappingURL=styles.css.map */

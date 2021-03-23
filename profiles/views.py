@@ -8,14 +8,28 @@ from checkout.models import Order
 def profile(request):
     """ Display User's Profile """
 
-    sale_listings = []
-    rent_listings = []
-
     profile = get_object_or_404(UserProfile, user=request.user)
 
     orders = profile.orders.all()
 
-    profile_orders = Order.objects.filter(user_profile=request.user.userprofile)
+    template = 'profiles/profile.html'
+    context = {
+        'orders': orders,
+        'profile': profile,
+    }
+
+    return render(request, template, context)
+
+
+def public_profile(request, profile_id):
+    sale_listings = []
+    rent_listings = []
+
+    profile = get_object_or_404(UserProfile, pk=profile_id)
+
+    orders = profile.orders.all()
+
+    profile_orders = Order.objects.filter(user_profile=profile)
 
     for order in profile_orders:
         if order.product.category.name == 'sale':
@@ -23,17 +37,11 @@ def profile(request):
         elif order.product.category.name == 'rent':
             rent_listings.append(order.rent_listing)
 
+    template = 'profiles/public_profile.html'
 
-    """ sale_listings = profile.orders.sale_listing
-    rent_listings = profile.orders.rent_listing """
-
-    template = 'profiles/profile.html'
     context = {
-        'orders': orders,
         'profile': profile,
-        'profile_orders': profile_orders,
-        'sale_listings': sale_listings,
-        'rent_listings': rent_listings,
+        'orders': orders,
     }
 
     return render(request, template, context)

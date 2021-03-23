@@ -52,6 +52,7 @@
             <hr>
             {% for order in orders %}
             {% if order.product.category.name == 'sale' %}
+            {% if not order.sale_listing.id is null %}
             <legend>
                 <p>
                     <i class="fas fa-list"></i>
@@ -162,7 +163,7 @@
                         <span>
                             Price:
                         </span>
-                        {{ order.sale_listing.price }}
+                        € {{ order.sale_listing.price }}
                     </li>
         
                     <li>
@@ -286,7 +287,9 @@
                     </li>
                 </ul>
             </div>
+            {% endif %}
             {% elif order.product.category.name == 'rent' %}
+            {% if not order.rent_listing.id is null %}
             <legend>
                 <p>
                     <i class="fas fa-list"></i>
@@ -397,7 +400,7 @@
                         <span>
                             Price:
                         </span>
-                        {{ order.rent_listing.price }}
+                        € {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}
                     </li>
         
                     <li>
@@ -521,6 +524,7 @@
                     </li>
                 </ul>
             </div>
+            {% endif %}
             {% endif %}
             {% endfor %}
         </div>

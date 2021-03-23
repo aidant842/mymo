@@ -3,12 +3,16 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from products.models import Category, Product
+from profiles.models import UserProfile
 
 from PIL import Image
 
 
 class SaleListing(models.Model):
     listing_number = models.CharField(max_length=32, null=True, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     default=None)
     is_listed = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
     is_spotlight = models.BooleanField(default=False, blank=True)
@@ -46,7 +50,8 @@ class SaleListing(models.Model):
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
-    times_viewed = models.IntegerField(blank=True, null=True, editable=False)
+    times_viewed = models.IntegerField(blank=True, null=True, editable=False,
+                                       default=0)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
@@ -83,6 +88,9 @@ class SaleListing(models.Model):
 
 class RentListing(models.Model):
     listing_number = models.CharField(max_length=32, null=True, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     default=None)
     is_listed = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
     is_spotlight = models.BooleanField(default=False, blank=True)
@@ -120,7 +128,8 @@ class RentListing(models.Model):
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
-    times_viewed = models.IntegerField(blank=True, null=True, editable=False)
+    times_viewed = models.IntegerField(blank=True, null=True, editable=False,
+                                       default=0)
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)

@@ -3,6 +3,9 @@
 {% block content %}
 <div class="card-container">
     {{ listing }}
+    <a href="{% url 'public_profile' listing.user_profile.id %}">
+        {{ listing.user_profile }}
+    </a>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             {% for p in photos %}

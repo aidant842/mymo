@@ -17,7 +17,8 @@
     <h3 class="text-center">Spotlight Listings</h3>
     <div class="card-container">
     {% for listing in sale_spotlight_listings %}
-        <div class="card" style="width: 18rem;">
+    <a href="{% url 'sale_listing_detail' listing.id %}">
+        <div class="card h-100" style="width: 18rem;">
             <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
             <div class="card-img-overlay">
                 <span class="property-price">€ {{ listing.price }}</span>
@@ -26,15 +27,18 @@
             <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
                 <h5 class="card-title">Co. {{ listing.county }}</h5>
                 <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
-                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds 
+                    | {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} sqM {% else %} {{ listing.floor_area_type }} {% endif %}
+                    | BER rating: {{ listing.ber_rating }} </p>
                 <hr class="card-hr"/>
                 <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
             </div>
         </div>
+    </a>
     {% endfor %}
     {% for listing in rent_spotlight_listings %}
-
-        <div class="card" style="width: 18rem;">
+    <a href="{% url 'rent_listing_detail' listing.id %}">
+        <div class="card h-100" style="width: 18rem;">
             <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
             <div class="card-img-overlay">
                 <span class="property-price">€ {{ listing.price }} / {{ listing.rent_type }}</span>
@@ -43,12 +47,14 @@
             <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
                 <h5 class="card-title">Co. {{ listing.county }}</h5>
                 <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
-                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds 
+                    | {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} sqM {% else %} {{ listing.floor_area_type }} {% endif %}
+                    | BER rating: {{ listing.ber_rating }} </p>
                 <hr class="card-hr"/>
                 <p class="card-text">{{ listing.full_name }}</p>
             </div>
         </div>
-
+    </a>
     {% endfor %}
     <div class="card" style="width: 18rem;">
             <img src="/media/landing-img.jpg" class="card-img-top" alt="...">

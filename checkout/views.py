@@ -1,6 +1,7 @@
 import datetime
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, reverse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.conf import settings
 
@@ -25,6 +26,7 @@ def cache_checkout_data(request):
     })
 
 
+@login_required
 @require_POST
 def create_listings(request):
     product_id = request.POST.get('product_id')
@@ -86,6 +88,7 @@ def checkout(request):
     listing_id = request.session.get('listing_id', '')
     product_id = request.session.get('product_id', '')
     product = get_object_or_404(Product, pk=product_id)
+    profile = UserProfile.objects.get(user=request.user)
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     order_form = OrderForm()
@@ -96,6 +99,7 @@ def checkout(request):
             order_form = OrderForm(request.POST)
             if order_form.is_valid():
                 listing.is_paid = True
+                listing.user_profile = profile
                 listing.save()
                 order = order_form.save(commit=False)
                 pid = request.POST.get('client_secret').split('_secret')[0]
@@ -111,6 +115,7 @@ def checkout(request):
             order_form = OrderForm(request.POST)
             if order_form.is_valid():
                 listing.is_paid = True
+                listing.user_profile = profile
                 listing.save()
                 order = order_form.save(commit=False)
                 order.order_total = listing.product.price

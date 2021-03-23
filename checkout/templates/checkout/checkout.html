@@ -132,7 +132,10 @@
                     <span>
                         Price:
                     </span>
-                    {{ listing.price }}
+                    € {{ listing.price }}
+                    {% if listing.rent_type %}
+                        / {{ listing.rent_type }}
+                    {% endif %}
                 </li>
 
                 <li>

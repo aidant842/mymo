@@ -1,0 +1,84 @@
+{% extends 'base.html' %} {% load static %} {% load tools %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Listings from
+    {% if profile.company_name %}
+        {{ profile.company_name }}
+    {% elif profile.full_name %}
+        {{ profile.full_name }}
+    {% else %}
+        {{ profile }}
+    {% endif %}
+    </h1>
+    {% if profile.phone_number is not None %}
+    <p>
+        <strong>Phone:</strong> {{ profile.phone_number }}
+    </p>
+    {% endif %}
+    {% if profile.email is not None %}
+    <p>
+        <strong>
+            Email:
+        </strong>
+         {{ profile.email }}
+    </p>
+    {% endif %}
+    <hr>
+</div>
+<div class="card-container">
+    {% for order in orders %}
+    {% if order.product.category.name == 'sale' %}
+    {% if order.sale_listing.is_listed %}
+    <a href="{% url 'sale_listing_detail' order.sale_listing.id %}">
+        <div class="card h-100">
+            <img src="{{ order.sale_listing.header_image.url }}" class="card-img-top" alt="Photo of {{ order.sale_listing }}">
+            <div class="card-img-overlay">
+                <span class="property-price">€ {{ order.sale_listing.price }}</span>
+                <span class="for-rent-sale">FOR {{ order.sale_listing.category | upper }}</span>
+            </div>
+            <div class="card-body {% if order.sale_listing.is_spotlight %} spotlight {% endif %}">
+                <h5 class="card-title">Co. {{ order.sale_listing.county }}</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
+                <p class="card-text">{{ order.sale_listing.no_of_bathrooms }} Bathrooms | {{ order.sale_listing.no_of_bedrooms }} beds |
+                    {{ order.sale_listing.floor_area }} {% if order.sale_listing.floor_area_type == 'Square Meters' %} sqM {% else %} {{ order.sale_listing.floor_area_type }} {% endif %}
+                     | BER rating: {{ order.sale_listing.ber_rating }} </p>
+                <hr class="card-hr" />
+                <p class="card-text">{% if order.sale_listing.company_name %} {{ order.sale_listing.company_name }} {% else %}
+                    {{ order.sale_listing.full_name }} {% endif %}</p>
+                {% if order.sale_listing.is_spotlight %}
+                <span class="spotlight-tag">SPOTLIGHT</span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+    {% endif %}
+    {% elif order.product.category.name == 'rent' %}
+    {% if order.rent_listing.is_listed %}
+    <a href="{% url 'rent_listing_detail' order.rent_listing.id %}">
+        <div class="card h-100">
+            <img src="{{ order.rent_listing.header_image.url }}" class="card-img-top" alt="Photo of {{ order.rent_listing }}">
+            <div class="card-img-overlay">
+                <span class="property-price">€ {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}</span>
+                <span class="for-rent-sale">FOR {{ order.rent_listing.category | upper }}</span>
+            </div>
+            <div class="card-body {% if order.rent_listing.is_spotlight %} spotlight {% endif %}">
+                <h5 class="card-title">Co. {{ order.rent_listing.county }}</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ order.rent_listing.area }}</p>
+                <p class="card-text">{{ order.rent_listing.no_of_bathrooms }} Bathrooms | {{ order.rent_listing.no_of_bedrooms }} beds |
+                    {{ order.rent_listing.floor_area }} {% if order.rent_listing.floor_area_type == 'Square Meters' %} sqM {% else %} {{ order.rent_listing.floor_area_type }} {% endif %}
+                    | BER rating: {{ order.rent_listing.ber_rating }} </p>
+                <hr class="card-hr" />
+                <p class="card-text">{% if order.rent_listing.company_name %} {{ order.rent_listing.company_name }} {% else %}
+                    {{ order.rent_listing.full_name }} {% endif %}</p>
+                {% if order.rent_listing.is_spotlight %}
+                <span class="spotlight-tag">SPOTLIGHT</span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

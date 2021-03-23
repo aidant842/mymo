@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils import timezone
 from django.db.models import Q
+from django.contrib import messages
 
 from itertools import chain
 from operator import attrgetter
@@ -150,7 +151,15 @@ def for_rent_listings(request):
 
 def sale_listing_detail_view(request, listing_id):
     listing = get_object_or_404(SaleListing, pk=listing_id)
-    photos = SaleListingImage.objects.filter(listing=listing)
+    if listing.times_viewed is None:
+        listing.times_viewed = 1
+        listing.save()
+    else:
+        listing.times_viewed += 1
+        listing.save()
+
+    photos = list(SaleListingImage.objects.filter(listing=listing))
+    photos.insert(0, listing.header_image.url)
 
     template = 'listings/for_sale_detail.html'
 
@@ -159,7 +168,11 @@ def sale_listing_detail_view(request, listing_id):
         'photos': photos,
     }
 
-    return render(request, template, context)
+    if listing.is_listed:
+        return render(request, template, context)
+    else:
+        messages.error(request, 'Listing does not exist or has expired')
+        return redirect(reverse('home'))
 
 
 def rent_listing_detail_view(request, listing_id):
@@ -172,5 +185,8 @@ def rent_listing_detail_view(request, listing_id):
         'listing': listing,
         'photos': photos,
     }
-
-    return render(request, template, context)
+    if listing.is_listed:
+        return render(request, template, context)
+    else:
+        messages.error(request, 'Listing does not exist or has expired')
+        return redirect(reverse('home'))
