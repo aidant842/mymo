@@ -26,10 +26,9 @@ h1, h2, h3, h4, h5 {
   transition: ease-in-out 0.3s;
 }
 
-a {
-  color: white !important;
-}
-
+/* a {
+    color: white !important;
+} */
 /* a:hover {
     color: $tertiary-color !important;
 } */
@@ -78,6 +77,7 @@ a {
 }
 .navbar-nav .nav-link {
   padding: 0 1rem !important;
+  color: white !important;
 }
 
 .navbar-collapse {
