@@ -182,3 +182,4 @@ class RentListingImage(models.Model):
     def __str__(self):
         return self.listing.listing_number
 
+

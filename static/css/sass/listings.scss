@@ -6,6 +6,20 @@
     }
 }
 
-.images {
-    justify-content: center;
+.image-container {
+    text-align: center;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.modal {
+    background: rgba($tertiary-color, 0.6);
+}
+
+.modal-dialog {
+    max-width: 90%;
 }

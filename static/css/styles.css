@@ -648,8 +648,22 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   margin: 0 auto;
 }
 
-.images {
-  justify-content: center;
+.image-container {
+  text-align: center;
+}
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.modal {
+  background: rgba(106, 127, 219, 0.6);
+}
+
+.modal-dialog {
+  max-width: 90%;
+  max-height: 80vh;
 }
 
 /*# sourceMappingURL=styles.css.map */

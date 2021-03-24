@@ -1,84 +1,223 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block content %}
-<div class="container listing-detail-container my-5">
-    <div class="container">
+<div class="container my-5">
+    <!-- Image -->
+    <div class="image-container">
         <!-- Button trigger modal -->
-        <a type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
-            <img class="d-block mx-auto rounded img-fluid" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
+        <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
+            <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
         </a>
     </div>
+    <!-- Overview -->
+    <div class="row text-center mt-2">
+        <div class="col border-end border-start border-secondary">
+            <p>
+                {{ listing.price }}
+            </p>
+            <i class="fas fa-euro-sign"></i>
+        </div>
+        <div class="col border-end border-secondary">
+            <p>
+                {{ listing.no_of_bathrooms }}
+            </p>
+            <i class="fas fa-bath"></i>
+        </div>
+        <div class="col border-end border-secondary">
+            <p>
+                {{ listing.no_of_bedrooms }}
+            </p>
+            <i class="fas fa-bed"></i>
+        </div>
+        <div class="col border-end border-secondary">
+            <p>
+                {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} sqM {% else %}
+                {{ listing.floor_area_type }} {% endif %}
+            </p>
+            <i class="fas fa-chart-area"></i>
+        </div>
+        <div class="col border-end border-secondary">
+            BER Rating
+            <p>
+                {{ listing.ber_rating }}
+            </p>
+        </div>
+    </div>
+    <!-- Area -->
+    <div class="row mt-5 bg-light p-4">
+        <p>
+            <strong>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ listing.area }}
+                Co. {{ listing.county }}
+                {{ listing.eircode }}
+            </strong>
+        </p>
+        <p><strong>For sale by</strong>: {{ listing.selling_type }}</p>
+    </div>
+    <!-- Facilities -->
+    <div class="row mt-3 p-4">
+        <legend>
+            Facilities
+        </legend>
+        <hr>
+        <ul class="text-start">
+            {% if listing.facility_1 %}
+                <li>{{ listing.facility_1 }}</li>
+            {% endif %}
+            {% if listing.facility_2 %}
+                <li>{{ listing.facility_2 }}</li>
+            {% endif %}
+            {% if listing.facility_3 %}
+                <li>{{ listing.facility_3 }}</li>
+            {% endif %}
+            {% if listing.facility_4 %}
+                <li>{{ listing.facility_4 }}</li>
+            {% endif %}
+            {% if listing.facility_5 %}
+                <li>{{ listing.facility_5 }}</li>
+            {% endif %}
+            {% if listing.facility_6 %}
+                <li>{{ listing.facility_6 }}</li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- Description -->
+    <div class="row mt-3 bg-light p-4">
+        <legend>
+            Description
+        </legend>
+        <hr>
+        <p>{{ listing.description }}</p>
+    </div>
+    <!-- Top Features -->
+    <div class="row mt-3 p-4">
+        <legend>
+            Top Features
+        </legend>
+        <hr>
+        <ul class="text-start">
+            {% if listing.top_features_1 %}
+            <li>
+                {{ listing.top_features_1 }}
+            </li>
+            {% endif %}
+            {% if listing.top_features_2 %}
+            <li>
+                {{ listing.top_features_2 }}
+            </li>
+            {% endif %}
+            {% if listing.top_features_3 %}
+            <li>
+                {{ listing.top_features_3 }}
+            </li>
+            {% endif %}
+            {% if listing.top_features_4 %}
+            <li>
+                {{ listing.top_features_4 }}
+            </li>
+            {% endif %}
+            {% if listing.top_features_5 %}
+            <li>
+                {{ listing.top_features_5 }}
+            </li>
+            {% endif %}
+            {% if listing.top_features_6 %}
+            <li>
+                {{ listing.top_features_6 }}
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- Listing Contact Info -->
+    <div class="row mt-3 p-4 bg-light">
+        <legend>
+            Contact Seller
+        </legend>
+        <hr>
+        {% if listing.company_name %}
+            <h4 class="purple text-center p-2 text-white">
+                <strong>
+                    {{ listing.company_name }}
+                </strong>
+            </h4>
+        {% endif %}
+        <p>
+            {{ listing.full_name }}
+        </p>
+        <p>
+            {{ listing.phone }}
+        </p>
+        <p>
+            Available Hours: {{ listing.call_between_hrs }}
+        </p>
+        <p>
+            {{ listing.email }}
+        </p>
+        <a href="{% url 'public_profile' listing.user_profile.id %}">
+            View all properties
+        </a>
+        <a href="mailto:{{ listing.email }}" class="btn form-btn">
+            Email Seller
+        </a>
+        <a href="tel:{{ listing.phone }}" class="btn form-btn">
+            Call Seller
+        </a>
+    </div>
+    <!-- Listing MetaData -->
+    <div class="row mt-3 p-4">
+        <p class="text-muted">
+            <strong>Times Viewed</strong>: {{ listing.times_viewed }}
+        </p>
+        <p class="text-muted">
+            <strong>Date Created</strong>: {{ listing.date_created.date }}
+        </p>
+        <p class="text-muted text-break">
+            <strong>Listing Number</strong>: {{ listing.listing_number }}
+        </p>
+    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            {% for p in photos %}
-                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
-                                class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                            {% endfor %}
-                        </div>
-                        <div class="carousel-inner">
-                            {% for p in photos %}
-                            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                                {% if not p.images %}
-                                <img src="{{ p }}" class="d-block w-100" alt="{{ p }}">
-                                {% else %}
-                                <img src="{{ p.images.url }}" class="d-block w-100" alt="{{ p.images.url }}">
-                                {% endif %}
-                            </div>
-                            {% endfor %}
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for p in photos %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
+                            class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
+                        {% endfor %}
                     </div>
+                    <div class="carousel-inner">
+                        {% for p in photos %}
+                        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                            {% if not p.images %}
+                            <img src="{{ p }}" class="d-block w-100" alt="{{ p }}">
+                            {% else %}
+                            <img src="{{ p.images.url }}" class="d-block w-100" alt="{{ p.images.url }}">
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
-<!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    {% for p in photos %}
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}"
-                        aria-label="Slide 3" class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                    {% endfor %}
-                </div>
-                <div class="carousel-inner">
-                    {% for p in photos %}
-                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                        {% if not p.images %}
-                        <img src="{{ p }}" class="d-block w-100" alt="{{ p }}">
-                        {% else %}
-                        <img src="{{ p.images.url }}" class="d-block w-100" alt="{{ p.images.url }}">
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div> -->
