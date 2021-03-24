@@ -2,6 +2,7 @@ import datetime
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.utils import timezone
 from django.conf import settings
 
@@ -19,11 +20,21 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
-    pid = request.POST.get('client_secret').split('_secret')[0]
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    stripe.PaymentIntent.modify(pid, metadata = {
-
-    })
+    try:
+        listing_id = request.session.get('listing_id', '')
+        product_id = request.session.get('product_id', '')
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata = {
+            'listing_id': listing_id,
+            'product_id': product_id,
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry your payment cannot be \
+            processed right now. Please try again later')
+        return HttpResponse(content=e, status=400)
 
 
 @login_required
@@ -118,6 +129,8 @@ def checkout(request):
                 listing.user_profile = profile
                 listing.save()
                 order = order_form.save(commit=False)
+                pid = request.POST.get('client_secret').split('_secret')[0]
+                order.stripe_pid = pid
                 order.order_total = listing.product.price
                 order.rent_listing = listing
                 order.product = listing.product

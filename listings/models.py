@@ -50,6 +50,7 @@ class SaleListing(models.Model):
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
+    thumbnail_image = models.ImageField(blank=True, null=True)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -65,11 +66,6 @@ class SaleListing(models.Model):
     def save(self, *args, **kwargs):
         """ Override origonal save method
             to set the listing number if not already set """
-
-        img = Image.open(self.header_image.path)
-        output_size = (300, 300)
-        img.thumbnail(output_size)
-        img.save(self.header_image.path)
 
         if self.product.is_premium:
             self.is_spotlight = True
@@ -128,6 +124,7 @@ class RentListing(models.Model):
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
+    thumbnail_image = models.ImageField(blank=True, null=True)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -147,10 +144,10 @@ class RentListing(models.Model):
         """ Override origonal save method
             to set the listing number if not already set """
 
-        img = Image.open(self.header_image.path)
+        """ img = Image.open(self.header_image.path)
         output_size = (300, 300)
         img.thumbnail(output_size)
-        img.save(self.header_image.path)
+        img.save(self.header_image.path) """
 
         if self.product.is_premium:
             self.is_spotlight = True
