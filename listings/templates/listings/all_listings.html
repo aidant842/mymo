@@ -3,9 +3,10 @@
 {% block content %}
 <div class="card-container">
     {% for listing in result_list %}
+    <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
         <div class="card h-100">
             <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
-            <div class="card-img-overlay">
+            <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                 <span class="property-price">€ {{ listing.price }}</span>
                 <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
             </div>
@@ -20,6 +21,11 @@
                 {% endif %}
             </div>
         </div>
+    </a>
     {% endfor %}
+</div>
+{% include 'pagination_all_listings.html' with page=result_list %}
+<div class="text-center">
+    <p class="text-muted">Total listings: {{ total_listings }}</p>
 </div>
 {% endblock %}

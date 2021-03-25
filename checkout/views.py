@@ -67,6 +67,7 @@ def create_listings(request):
                     )
                 if user.is_agent and user.subscription_paid:
                     listing.is_paid = True
+                    listing.user_profile = user
                     listing.save()
                     messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
                     return redirect('home')
@@ -93,6 +94,7 @@ def create_listings(request):
                     )
                 if user.is_agent and user.subscription_paid:
                     listing.is_paid = True
+                    listing.user_profile = user
                     listing.save()
                     messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
                     return redirect('home')
@@ -170,7 +172,6 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
-    print(intent)
 
     if not stripe_public_key:
         messages.error(request, '********* ALERT STRIPE PUBLIC KEY NOT SET IN ENVIRON *************')

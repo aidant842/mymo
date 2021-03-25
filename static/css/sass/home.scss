@@ -84,7 +84,7 @@
 
 .spotlight {
     background-color: $secondary-color !important;
-    color: white;
+    color: $font-color !important;
 }
 
 .spotlight-shadow {
@@ -102,6 +102,10 @@
 .card {
     min-width: 100% !important;
     transition: 1.5s;
+}
+
+.card-body {
+    color: #212529;
 }
 
 .card:hover {
@@ -128,12 +132,17 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    /* left: 0;
-    right: 0;
-    top: 50%; */
-    background: rgba($secondary-color, 0.8);
+    background: rgba(gray, 0.8);
     border-radius: 0;
-    /* bottom: 41.5%; */
+}
+
+.card-img-overlay-spotlight {
+    content: "";
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background: rgba($tertiary-color, 0.8);
+    border-radius: 0;
 }
 
 .property-price {

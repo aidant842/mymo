@@ -24,18 +24,13 @@ h1, h2, h3, h4, h5 {
   color: #6a7fdb !important;
   background: rgba(255, 255, 255, 0.9);
   transition: ease-in-out 0.3s;
+  border: 1px solid #6a7fdb;
 }
 
 a {
   text-decoration: none;
 }
 
-/* a {
-    color: white !important;
-} */
-/* a:hover {
-    color: $tertiary-color !important;
-} */
 .icon {
   align-items: center;
   display: inline-flex;
@@ -273,7 +268,7 @@ a {
 
 .spotlight {
   background-color: #303e94 !important;
-  color: white;
+  color: white !important;
 }
 
 .spotlight-shadow {
@@ -291,6 +286,10 @@ a {
 .card {
   min-width: 100% !important;
   transition: 1.5s;
+}
+
+.card-body {
+  color: #212529;
 }
 
 .card:hover {
@@ -315,12 +314,17 @@ a {
   position: relative;
   display: flex;
   justify-content: space-between;
-  /* left: 0;
-  right: 0;
-  top: 50%; */
-  background: rgba(48, 62, 148, 0.8);
+  background: rgba(128, 128, 128, 0.8);
   border-radius: 0;
-  /* bottom: 41.5%; */
+}
+
+.card-img-overlay-spotlight {
+  content: "";
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(106, 127, 219, 0.8);
+  border-radius: 0;
 }
 
 .property-price {
@@ -408,7 +412,9 @@ a {
 footer {
   background-color: #303e94;
   min-height: 15vh;
-  /* border-top: 3px solid #6c757d */
+}
+footer a {
+  color: white !important;
 }
 
 .footer {

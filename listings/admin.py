@@ -27,7 +27,6 @@ class SaleListingAdmin(admin.ModelAdmin):
 
     readonly_fields = (
         'category',
-        'product',
         'date_created',
     )
 

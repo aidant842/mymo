@@ -29,19 +29,12 @@ h1, h2, h3, h4, h5 {
     color: $tertiary-color !important;
     background: rgba($font-color, 0.9);
     transition: ease-in-out 0.3s;
+    border: 1px solid $tertiary-color;
 }
 
 a {
     text-decoration: none;
 }
-
-/* a {
-    color: white !important;
-} */
-
-/* a:hover {
-    color: $tertiary-color !important;
-} */
 
 .btn {
     @extend %button-style

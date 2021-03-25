@@ -74,6 +74,22 @@ class SaleListingForm(forms.ModelForm):
         ('Section 48', 'Section 48'),
     ]
 
+    IE_COUNTY_CHOICES = [
+        (None, 'County'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
+        ('clare', 'Clare'), ('cork', 'Cork'),
+        ('donegal', 'Donegal'), ('dublin', 'Dublin'),
+        ('galway', 'Galway'), ('kerry', 'Kerry'),
+        ('kildare', 'Kildare'), ('kilkenny', 'Kilkenny'),
+        ('laois', 'Laois'), ('leitrim', 'Leitrim'),
+        ('limerick', 'Limerick'), ('longford', 'Longford'),
+        ('louth', 'Louth'), ('mayo', 'Mayo'),
+        ('meath', 'Meath'), ('monaghan', 'Monaghan'),
+        ('offaly', 'Offaly'), ('roscommon', 'Roscommon'),
+        ('sligo', 'Sligo'), ('tipperary', 'Tipperary'),
+        ('waterford', 'Waterford'), ('westmeath', 'Westmeath'),
+        ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
+    ]
+
     facility_1 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
@@ -121,6 +137,9 @@ class SaleListingForm(forms.ModelForm):
                                        'hidden': 'true'
                                     }),
                                    required=True)
+    county = forms.CharField(widget=forms.Select
+                             (choices=IE_COUNTY_CHOICES,
+                              attrs={'class': 'form-select'}))
 
     class Meta:
         model = SaleListing
@@ -236,6 +255,22 @@ class RentListingForm(forms.ModelForm):
         ('Weekly', 'Weekly'),
     ]
 
+    IE_COUNTY_CHOICES = [
+        (None, 'County'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
+        ('clare', 'Clare'), ('cork', 'Cork'),
+        ('donegal', 'Donegal'), ('dublin', 'Dublin'),
+        ('galway', 'Galway'), ('kerry', 'Kerry'),
+        ('kildare', 'Kildare'), ('kilkenny', 'Kilkenny'),
+        ('laois', 'Laois'), ('leitrim', 'Leitrim'),
+        ('limerick', 'Limerick'), ('longford', 'Longford'),
+        ('louth', 'Louth'), ('mayo', 'Mayo'),
+        ('meath', 'Meath'), ('monaghan', 'Monaghan'),
+        ('offaly', 'Offaly'), ('roscommon', 'Roscommon'),
+        ('sligo', 'Sligo'), ('tipperary', 'Tipperary'),
+        ('waterford', 'Waterford'), ('westmeath', 'Westmeath'),
+        ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
+    ]
+
     facility_1 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
@@ -286,6 +321,9 @@ class RentListingForm(forms.ModelForm):
                                        'hidden': 'true'
                                     }),
                                    required=True)
+    county = forms.CharField(widget=forms.Select
+                             (choices=IE_COUNTY_CHOICES,
+                              attrs={'class': 'form-select'}))
 
     class Meta:
         model = RentListing

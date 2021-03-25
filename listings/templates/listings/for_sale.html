@@ -48,7 +48,7 @@
         <a href="{% url 'sale_listing_detail' listing.id %}">
             <div class="card h-100">
                 <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
-                <div class="card-img-overlay">
+                <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                     <span class="property-price">€ {{ listing.price }}</span>
                     <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
                 </div>
@@ -67,5 +67,9 @@
             </div>
         </a>
     {% endfor %}
+</div>
+{% include 'pagination.html' with page=listings %}
+<div class="text-center">
+    <p class="text-muted">Total listings: {{ total_listings }}</p>
 </div>
 {% endblock %}

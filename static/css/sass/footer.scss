@@ -1,7 +1,9 @@
 footer {
     background-color: #303e94;
     min-height: 15vh;
-    /* border-top: 3px solid #6c757d */
+    a {
+        color: $font-color !important;
+    }
 }
 
 .footer {
