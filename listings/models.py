@@ -50,7 +50,6 @@ class SaleListing(models.Model):
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
-    thumbnail_image = models.ImageField(blank=True, null=True)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -124,7 +123,6 @@ class RentListing(models.Model):
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
     header_image = models.ImageField()
-    thumbnail_image = models.ImageField(blank=True, null=True)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -181,5 +179,6 @@ class RentListingImage(models.Model):
 
     def __str__(self):
         return self.listing.listing_number
+
 
 

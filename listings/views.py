@@ -177,7 +177,15 @@ def sale_listing_detail_view(request, listing_id):
 
 def rent_listing_detail_view(request, listing_id):
     listing = get_object_or_404(RentListing, pk=listing_id)
-    photos = RentListingImage.objects.filter(listing=listing)
+    if listing.times_viewed is None:
+        listing.times_viewed = 1
+        listing.save()
+    else:
+        listing.times_viewed += 1
+        listing.save()
+
+    photos = list(RentListingImage.objects.filter(listing=listing))
+    photos.insert(0, listing.header_image.url)
 
     template = 'listings/for_rent_detail.html'
 

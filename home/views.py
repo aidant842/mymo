@@ -8,8 +8,6 @@ from listings.models import SaleListing, RentListing
 def index(request):
     """ A view to return the home """
 
-    messages.success(request, 'Welcome home')
-
     sale_spotlight_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), is_spotlight=True)
     rent_spotlight_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), is_spotlight=True)
 

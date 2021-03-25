@@ -53,9 +53,24 @@
                 {{ listing.eircode }}
             </strong>
         </p>
-        <p><strong>For sale by</strong>: {{ listing.selling_type }}</p>
+        <p><strong>Property type</strong>: {{ listing.property_type }}</p>
+        <p><strong>Rent type</strong>: {{ listing.rent_type }}</p>
+        <p><strong>Available from</strong>: {{ listing.available_from }}</p>
+        <p><strong>Lease Term</strong>: {{ listing.lease_term }}</p>
+        {% if listing.no_of_single_bedrooms != 0 %}
+            <p><strong>No. of single bedrooms</strong>: {{ listing.no_of_single_bedrooms }}</p>
+        {% endif %}
+        {% if listing.no_of_double_bedrooms != 0 %}
+            <p><strong>No. of double bedrooms</strong>: {{ listing.no_of_double_bedrooms }}</p>
+        {% endif %}
+        {% if listing.no_of_twin_bedrooms != 0 %}
+            <p><strong>No. of twin bedrooms</strong>: {{ listing.no_of_twin_bedrooms }}</p>
+        {% endif %}
+        <p><strong>Furnishings</strong>: {{ listing.furnishing }}</p>
+        
     </div>
     <!-- Facilities -->
+    {% if listing.facility_1 %}
     <div class="row mt-3 p-4">
         <legend>
             Facilities
@@ -82,6 +97,7 @@
             {% endif %}
         </ul>
     </div>
+    {% endif %}
     <!-- Description -->
     <div class="row mt-3 bg-light p-4">
         <legend>
@@ -89,45 +105,6 @@
         </legend>
         <hr>
         <p>{{ listing.description }}</p>
-    </div>
-    <!-- Top Features -->
-    <div class="row mt-3 p-4">
-        <legend>
-            Top Features
-        </legend>
-        <hr>
-        <ul class="text-start">
-            {% if listing.top_features_1 %}
-            <li>
-                {{ listing.top_features_1 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_2 %}
-            <li>
-                {{ listing.top_features_2 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_3 %}
-            <li>
-                {{ listing.top_features_3 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_4 %}
-            <li>
-                {{ listing.top_features_4 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_5 %}
-            <li>
-                {{ listing.top_features_5 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_6 %}
-            <li>
-                {{ listing.top_features_6 }}
-            </li>
-            {% endif %}
-        </ul>
     </div>
     <!-- Listing Contact Info -->
     <div class="row mt-3 p-4 bg-light">

@@ -42,6 +42,7 @@ def cache_checkout_data(request):
 def create_listings(request):
     product_id = request.POST.get('product_id')
     product = get_object_or_404(Product, pk=product_id)
+    user = UserProfile.objects.get(user=request.user)
 
     if request.method == 'POST':
         images = request.FILES.getlist('images')
@@ -64,7 +65,13 @@ def create_listings(request):
                         listing=listing,
                         images=image
                     )
-                return redirect('checkout')
+                if user.is_agent and user.subscription_paid:
+                    listing.is_paid = True
+                    listing.save()
+                    messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                    return redirect('home')
+                else:
+                    return redirect('checkout')
         elif product.category.name == 'rent':
             listing_form = RentListingForm(request.POST, request.FILES)
             images_form = RentImageForm(request.POST, request.FILES)
@@ -84,7 +91,13 @@ def create_listings(request):
                         listing=listing,
                         images=image
                     )
-                return redirect('checkout')
+                if user.is_agent and user.subscription_paid:
+                    listing.is_paid = True
+                    listing.save()
+                    messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                    return redirect('home')
+                else:
+                    return redirect('checkout')
             else:
                 for error in listing_form.errors:
                     print('listing form error ***********')
@@ -94,9 +107,14 @@ def create_listings(request):
                     print(error)
 
 
+@login_required
 def checkout(request):
 
     listing_id = request.session.get('listing_id', '')
+    if not listing_id or listing_id == '':
+        messages.error(request, 'There was an error processing your request, \
+            if this continues please contact us.')
+        return redirect('home')
     product_id = request.session.get('product_id', '')
     product = get_object_or_404(Product, pk=product_id)
     profile = UserProfile.objects.get(user=request.user)
@@ -155,7 +173,7 @@ def checkout(request):
     print(intent)
 
     if not stripe_public_key:
-        print('********* ALERT STRIPE PUBLIC KEY NOT SET IN ENVIRON *************')
+        messages.error(request, '********* ALERT STRIPE PUBLIC KEY NOT SET IN ENVIRON *************')
 
     template = 'checkout/checkout.html'
     context = {
@@ -169,13 +187,21 @@ def checkout(request):
     return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         order.user_profile = profile
         order.save()
+    if not request.session.get('listing_id'):
+        messages.error(request, 'There was an error processing your request, \
+            if this continues please contact us.')
+        return redirect('home')
     del request.session['listing_id']
     del request.session['product_id']
     template = 'checkout/checkout_success.html'
-    return render(request, template)
+    context = {
+        'order': order,
+    }
+    return render(request, template, context)

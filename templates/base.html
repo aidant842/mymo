@@ -19,7 +19,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     {% endblock %}
 
     {% block extra_css %}
@@ -35,7 +34,6 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/3c2820491c.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
@@ -50,7 +48,9 @@
         <nav
             class="navbar navbar-expand-md navbar-dark {% if request.path == '/' %} transparent {% else %} purple {% endif %}">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">MyMo</a>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="/media/Artboard-9.png" alt="MyMo Logo">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
         </nav>
     </header>
 
- {% if messages %}
+    {% if messages %}
     <div class="message-container">
         {% for message in messages %}
             {% with message.level as level %}
@@ -110,7 +110,9 @@
             {% endwith %}
         {% endfor %}
     </div>
-  {% endif %}
+    {% endif %}
+
+  <button class="bttLink" title="Back to top"><i class="far fa-arrow-alt-circle-up"></i></button>
 
     {% block page_header %}
     {% endblock %}
@@ -124,7 +126,9 @@
     <footer>
         <div class="footer">
             <div class="footer-logo-section">
-                <h4>MyMo</h4>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="/media/Artboard-9.png" alt="MyMo Logo">
+                </a>
                 <p>MyMo description</p>
             </div>
             <div class="footer-contact-section">
@@ -143,10 +147,10 @@
     {% endblock %}
 
     {% block postloadjs %}
+    <script src="{% static 'js/app.js' %}"></script>
     <script>
         var option = {
             animation: true,
-            autohide: false,
             delay: 5000,
         }
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))

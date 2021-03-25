@@ -165,7 +165,11 @@
             </div>
         </fieldset>
         <hr>
+        {% if user.is_agent and user.subscription_paid %}
+        <button class="btn form-btn" id="submitBtn">Create Listing</button>
+        {% else %}
         <button class="btn form-btn" id="submitBtn">Continue to payment</button>
+        {% endif %}
         <input type="hidden" value="{{ product.id }}" name="product_id">
     </form>
 

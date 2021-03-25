@@ -54,8 +54,11 @@
             </strong>
         </p>
         <p><strong>For sale by</strong>: {{ listing.selling_type }}</p>
+        <p><strong>Property type</strong>: {{ listing.property_type }}</p>
+        <p><strong>Tax designation</strong>: {{ listing.tax_designation }}</p>
     </div>
     <!-- Facilities -->
+    {% if listing.facility_1 %}
     <div class="row mt-3 p-4">
         <legend>
             Facilities
@@ -82,6 +85,7 @@
             {% endif %}
         </ul>
     </div>
+    {% endif %}
     <!-- Description -->
     <div class="row mt-3 bg-light p-4">
         <legend>

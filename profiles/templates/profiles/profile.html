@@ -391,16 +391,23 @@
         
                     <li>
                         <span>
-                            Selling Type:
-                        </span>
-                        {{ order.rent_listing.selling_type }}
-                    </li>
-        
-                    <li>
-                        <span>
                             Price:
                         </span>
                         € {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}
+                    </li>
+
+                    <li>
+                        <span>
+                            Available from:
+                        </span>
+                        {{ order.rent_listing.available_from }}
+                    </li>
+
+                    <li>
+                        <span>
+                            Lease term:
+                        </span>
+                        {{ order.rent_listing.lease_term }}
                     </li>
         
                     <li>
@@ -415,6 +422,13 @@
                             No. of Bathrooms:
                         </span>
                         {{ order.rent_listing.no_of_bathrooms }}
+                    </li>
+
+                    <li>
+                        <span>
+                            Furnishings:
+                        </span>
+                        {{ order.rent_listing.furnishing }}
                     </li>
         
                     <li>
@@ -467,46 +481,6 @@
                             Ber Rating:
                         </span>
                         {{ order.rent_listing.ber_rating }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Tax Designation:
-                        </span>
-                        {{ order.rent_listing.tax_designation }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Top Features:
-                        </span>
-                        <ol>
-                            {% if order.rent_listing.top_features_1 %}
-                            <li>
-                                {{ order.rent_listing.top_features_1}}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.top_features_2 %}
-                            <li>
-                                {{ order.rent_listing.top_features_2 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.top_features_3 %}
-                            <li>
-                                {{ order.rent_listing.top_features_3 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.top_features_4 %}
-                            <li>
-                                {{ order.rent_listing.top_features_4 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.top_features_5 %}
-                            <li>
-                                {{ order.rent_listing.top_features_5 }}
-                            </li>
-                            {% endif %}
-                        </ol>
                     </li>
         
                     <li>
