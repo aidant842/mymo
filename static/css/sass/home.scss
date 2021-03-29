@@ -132,8 +132,10 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    background: rgba(gray, 0.8);
+    /* background: rgba(gray, 0.8); */
     border-radius: 0;
+    color: #212529;
+    border-bottom: 1px solid lightgrey;
 }
 
 .card-img-overlay-spotlight {
@@ -143,13 +145,15 @@
     justify-content: space-between;
     background: rgba($tertiary-color, 0.8);
     border-radius: 0;
+    color: white !important;
+    border-bottom: 1px solid $tertiary-color;
 }
 
 .property-price {
     /* position: absolute;
     left: 5%;
     bottom: 2%; */
-    color: $font-color;
+    /* color: black; */
     font-weight: bold;
     font-size: 1.3rem;
 }

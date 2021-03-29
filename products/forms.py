@@ -134,7 +134,7 @@ class SaleListingForm(forms.ModelForm):
                                        'name': 'images',
                                        'onchange': 'readHeaderURL(this);',
                                        'accept': 'image/*',
-                                       'hidden': 'true'
+                                       'class': 'form-control',
                                     }),
                                    required=True)
     county = forms.CharField(widget=forms.Select
@@ -318,7 +318,7 @@ class RentListingForm(forms.ModelForm):
                                        'name': 'images',
                                        'onchange': 'readHeaderURL(this);',
                                        'accept': 'image/*',
-                                       'hidden': 'true'
+                                       'class': 'form-control',
                                     }),
                                    required=True)
     county = forms.CharField(widget=forms.Select
@@ -378,7 +378,7 @@ class SaleImageForm(forms.ModelForm):
                                  'onchange': 'readURL(this);',
                                  'multiple': True,
                                  'accept': 'image/*',
-                                 'hidden': 'true'
+                                 'class': 'form-control',
                              }),
                              required=True)
 
@@ -396,7 +396,7 @@ class RentImageForm(forms.ModelForm):
                                  'onchange': 'readURL(this);',
                                  'multiple': True,
                                  'accept': 'image/*',
-                                 'hidden': 'true'
+                                 'class': 'form-control',
                              }),
                              required=True)
 

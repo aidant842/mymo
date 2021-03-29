@@ -1,514 +1,516 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
 {% block content %}
-<div class="container my-5">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button"
-                role="tab" aria-controls="orders" aria-selected="true">Orders</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="listings-tab" data-bs-toggle="tab" data-bs-target="#listings" type="button"
-                role="tab" aria-controls="listings" aria-selected="false">Listings</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
-                role="tab" aria-controls="settings" aria-selected="false">Settings</button>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <div class="tab-pane active" id="orders" role="tabpanel" aria-labelledby="home-tab">
-            <h1>Order History</h1>
-            <hr>
-            {% for order in orders %}
-            <div class="row">
+<div class="min-vh-100">
+    <div class="container my-5">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button"
+                    role="tab" aria-controls="orders" aria-selected="true">Orders</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="listings-tab" data-bs-toggle="tab" data-bs-target="#listings" type="button"
+                    role="tab" aria-controls="listings" aria-selected="false">Listings</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
+                    role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+            </li>
+        </ul>
+    
+        <div class="tab-content">
+            <div class="tab-pane active" id="orders" role="tabpanel" aria-labelledby="home-tab">
+                <h1>Order History</h1>
+                <hr>
+                {% for order in orders %}
                 <div class="row">
-                    <span>
-                        Product: {{ order.product.name }}
-                    </span>
+                    <div class="row">
+                        <span>
+                            Product: {{ order.product.name }}
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            Date: {{ order.date.date }}
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            Total: €{{ order.order_total | display_price }}
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="">
+                            order Number: {{ order.order_number }}
+                        </span>
+                    </div>
                 </div>
-                <div class="row">
-                    <span>
-                        Date: {{ order.date.date }}
-                    </span>
-                </div>
-                <div class="row">
-                    <span>
-                        Total: €{{ order.order_total | display_price }}
-                    </span>
-                </div>
-                <div class="row">
-                    <span class="">
-                        order Number: {{ order.order_number }}
-                    </span>
-                </div>
+                <hr>
+                {% endfor %}
             </div>
-            <hr>
-            {% endfor %}
-        </div>
-        <div class="tab-pane" id="listings" role="tabpanel" aria-labelledby="profile-tab">
-            <h1>Listings</h1>
-            <hr>
-            {% for order in orders %}
-            {% if order.product.category.name == 'sale' %}
-            {% if not order.sale_listing.id is null %}
-            <legend>
-                <p>
-                    <i class="fas fa-list"></i>
-                    Listing Preview
-                    <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fas fa-angle-down chevron"></i>
-                    </a>
-                </p>
-                <img src="{{ order.sale_listing.header_image.url }}" alt="image of {{ order.sale_listing.header_image }}">
-                {% if order.sale_listing.is_listed %}
-                    <p class="text-success">LISTED</p>
-                {% else %}
-                    <p class="text-danger">
-                        UNLISTED
+            <div class="tab-pane" id="listings" role="tabpanel" aria-labelledby="profile-tab">
+                <h1>Listings</h1>
+                <hr>
+                {% for order in orders %}
+                {% if order.product.category.name == 'sale' %}
+                {% if not order.sale_listing.id is null %}
+                <legend>
+                    <p>
+                        <i class="fas fa-list"></i>
+                        Listing Preview
+                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-angle-down chevron"></i>
+                        </a>
                     </p>
-                {% endif %}
-            </legend>
-            <hr>
-            <div class="collapse" id="collapse{{ order.order_number }}">
-                <ul class="preview-list">
-                    <legend class="text-muted">
-                        <i class="far fa-address-book"></i>
-                        Contact Info
-                    </legend>
-                    <hr>
-                    {% if order.sale_listing.company_name %}
-                    <li>
-                        <span>
-                            Company Name:
-                        </span>
-                        {{ order.sale_listing.company_name }}
-                    </li>
+                    <img src="{{ order.sale_listing.header_image.url }}" alt="image of {{ order.sale_listing.header_image }}" class="img-fluid">
+                    {% if order.sale_listing.is_listed %}
+                        <p class="text-success">LISTED</p>
                     {% else %}
-                    <li>
-                        <span>
-                            Full Name:
-                        </span>
-                        {{ order.sale_listing.full_name }}
-                    </li>
+                        <p class="text-danger">
+                            UNLISTED
+                        </p>
                     {% endif %}
-                    <li>
-                        <span>
-                            Email:
-                        </span>
-                        {{ order.sale_listing.email }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Phone:
-                        </span>
-                        {{ order.sale_listing.phone }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Call Between:
-                        </span>
-                        {{ order.sale_listing.call_between_hrs }}
-                    </li>
-                    <hr>
-                    <legend class="text-muted">
-                        <i class="fas fa-map-pin"></i>
-                        Property Location
-                    </legend>
-                    <hr>
-                    <li>
-                        <span>
-                            County:
-                        </span>
-                        {{ order.sale_listing.county }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Area:
-                        </span>
-                        {{ order.sale_listing.area }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Eircode:
-                        </span>
-                        {{ order.sale_listing.eircode }}
-                    </li>
-                    <hr>
-                    <legend class="text-muted">
-                        <i class="fas fa-home"></i>
-                        Property Info
-                    </legend>
-                    <li>
-                        <span>
-                            Property Type:
-                        </span>
-                        {{ order.sale_listing.property_type }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Selling Type:
-                        </span>
-                        {{ order.sale_listing.selling_type }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Price:
-                        </span>
-                        € {{ order.sale_listing.price }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            No. of Bedrooms:
-                        </span>
-                        {{ order.sale_listing.no_of_bedrooms }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            No. of Bathrooms:
-                        </span>
-                        {{ order.sale_listing.no_of_bathrooms }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Facilities
-                        </span>
-                        <ol>
-                            {% if order.sale_listing.facility_1 %}
-                            <li>
-                                {{ order.sale_listing.facility_1 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.facility_1 %}
-                            <li>
-                                {{ order.sale_listing.facility_2 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.facility_3 %}
-                            <li>
-                                {{ order.sale_listing.facility_3 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.facility_4 %}
-                            <li>
-                                {{ order.sale_listing.facility_4 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.facility_5 %}
-                            <li>
-                                {{ order.sale_listing.facility_5 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.facility_6 %}
-                            <li>
-                                {{ order.sale_listing.facility_6 }}
-                            </li>
-                            {% endif %}
-                        </ol>
-                    </li>
-        
-                    <li>
-                        <span>
-                            Floor Area:
-                        </span>
-                        {{ order.sale_listing.floor_area }} {{ order.sale_listing.floor_area_type }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Ber Rating:
-                        </span>
-                        {{ order.sale_listing.ber_rating }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Tax Designation:
-                        </span>
-                        {{ order.sale_listing.tax_designation }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Top Features:
-                        </span>
-                        <ol>
-                            {% if order.sale_listing.top_features_1 %}
-                            <li>
-                                {{ order.sale_listing.top_features_1}}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.top_features_2 %}
-                            <li>
-                                {{ order.sale_listing.top_features_2 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.top_features_3 %}
-                            <li>
-                                {{ order.sale_listing.top_features_3 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.top_features_4 %}
-                            <li>
-                                {{ order.sale_listing.top_features_4 }}
-                            </li>
-                            {% endif %}
-                            {% if order.sale_listing.top_features_5 %}
-                            <li>
-                                {{ order.sale_listing.top_features_5 }}
-                            </li>
-                            {% endif %}
-                        </ol>
-                    </li>
-        
-                    <li>
-                        <span>
-                            Description:
-                        </span>
-                        {{ order.sale_listing.description }}
-                    </li>
-
-                    <li>
-                        <span>
-                            Listing No.:
-                        </span>
-                        {{ order.sale_listing.listing_number }}
-                    </li>
-                </ul>
-            </div>
-            {% endif %}
-            {% elif order.product.category.name == 'rent' %}
-            {% if not order.rent_listing.id is null %}
-            <legend>
-                <p>
-                    <i class="fas fa-list"></i>
-                    Listing Preview
-                    <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fas fa-angle-down chevron"></i>
-                    </a>
-                </p>
-                <img src="{{ order.rent_listing.header_image.url }}" alt="image of {{ order.rent_listing.header_image }}">
-                {% if order.rent_listing.is_listed %}
-                    <p class="text-success">LISTED</p>
-                {% else %}
-                    <p class="text-danger">
-                        UNLISTED
+                </legend>
+                <hr>
+                <div class="collapse" id="collapse{{ order.order_number }}">
+                    <ul class="preview-list">
+                        <legend class="text-muted">
+                            <i class="far fa-address-book"></i>
+                            Contact Info
+                        </legend>
+                        <hr>
+                        {% if order.sale_listing.company_name %}
+                        <li>
+                            <span>
+                                Company Name:
+                            </span>
+                            {{ order.sale_listing.company_name }}
+                        </li>
+                        {% else %}
+                        <li>
+                            <span>
+                                Full Name:
+                            </span>
+                            {{ order.sale_listing.full_name }}
+                        </li>
+                        {% endif %}
+                        <li>
+                            <span>
+                                Email:
+                            </span>
+                            {{ order.sale_listing.email }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Phone:
+                            </span>
+                            {{ order.sale_listing.phone }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Call Between:
+                            </span>
+                            {{ order.sale_listing.call_between_hrs }}
+                        </li>
+                        <hr>
+                        <legend class="text-muted">
+                            <i class="fas fa-map-pin"></i>
+                            Property Location
+                        </legend>
+                        <hr>
+                        <li>
+                            <span>
+                                County:
+                            </span>
+                            {{ order.sale_listing.county }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Area:
+                            </span>
+                            {{ order.sale_listing.area }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Eircode:
+                            </span>
+                            {{ order.sale_listing.eircode }}
+                        </li>
+                        <hr>
+                        <legend class="text-muted">
+                            <i class="fas fa-home"></i>
+                            Property Info
+                        </legend>
+                        <li>
+                            <span>
+                                Property Type:
+                            </span>
+                            {{ order.sale_listing.property_type }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Selling Type:
+                            </span>
+                            {{ order.sale_listing.selling_type }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Price:
+                            </span>
+                            € {{ order.sale_listing.price }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                No. of Bedrooms:
+                            </span>
+                            {{ order.sale_listing.no_of_bedrooms }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                No. of Bathrooms:
+                            </span>
+                            {{ order.sale_listing.no_of_bathrooms }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Facilities
+                            </span>
+                            <ol>
+                                {% if order.sale_listing.facility_1 %}
+                                <li>
+                                    {{ order.sale_listing.facility_1 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.facility_1 %}
+                                <li>
+                                    {{ order.sale_listing.facility_2 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.facility_3 %}
+                                <li>
+                                    {{ order.sale_listing.facility_3 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.facility_4 %}
+                                <li>
+                                    {{ order.sale_listing.facility_4 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.facility_5 %}
+                                <li>
+                                    {{ order.sale_listing.facility_5 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.facility_6 %}
+                                <li>
+                                    {{ order.sale_listing.facility_6 }}
+                                </li>
+                                {% endif %}
+                            </ol>
+                        </li>
+            
+                        <li>
+                            <span>
+                                Floor Area:
+                            </span>
+                            {{ order.sale_listing.floor_area }} {{ order.sale_listing.floor_area_type }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Ber Rating:
+                            </span>
+                            {{ order.sale_listing.ber_rating }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Tax Designation:
+                            </span>
+                            {{ order.sale_listing.tax_designation }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Top Features:
+                            </span>
+                            <ol>
+                                {% if order.sale_listing.top_features_1 %}
+                                <li>
+                                    {{ order.sale_listing.top_features_1}}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.top_features_2 %}
+                                <li>
+                                    {{ order.sale_listing.top_features_2 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.top_features_3 %}
+                                <li>
+                                    {{ order.sale_listing.top_features_3 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.top_features_4 %}
+                                <li>
+                                    {{ order.sale_listing.top_features_4 }}
+                                </li>
+                                {% endif %}
+                                {% if order.sale_listing.top_features_5 %}
+                                <li>
+                                    {{ order.sale_listing.top_features_5 }}
+                                </li>
+                                {% endif %}
+                            </ol>
+                        </li>
+            
+                        <li>
+                            <span>
+                                Description:
+                            </span>
+                            {{ order.sale_listing.description }}
+                        </li>
+    
+                        <li>
+                            <span>
+                                Listing No.:
+                            </span>
+                            {{ order.sale_listing.listing_number }}
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% elif order.product.category.name == 'rent' %}
+                {% if not order.rent_listing.id is null %}
+                <legend>
+                    <p>
+                        <i class="fas fa-list"></i>
+                        Listing Preview
+                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-angle-down chevron"></i>
+                        </a>
                     </p>
-                {% endif %}
-            </legend>
-            <hr>
-            <div class="collapse" id="collapse{{ order.order_number }}">
-                <ul class="preview-list">
-                    <legend class="text-muted">
-                        <i class="far fa-address-book"></i>
-                        Contact Info
-                    </legend>
-                    <hr>
-                    {% if order.rent_listing.company_name %}
-                    <li>
-                        <span>
-                            Company Name:
-                        </span>
-                        {{ order.rent_listing.company_name }}
-                    </li>
+                    <img src="{{ order.rent_listing.header_image.url }}" alt="image of {{ order.rent_listing.header_image }}">
+                    {% if order.rent_listing.is_listed %}
+                        <p class="text-success">LISTED</p>
                     {% else %}
-                    <li>
-                        <span>
-                            Full Name:
-                        </span>
-                        {{ order.rent_listing.full_name }}
-                    </li>
+                        <p class="text-danger">
+                            UNLISTED
+                        </p>
                     {% endif %}
-                    <li>
-                        <span>
-                            Email:
-                        </span>
-                        {{ order.rent_listing.email }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Phone:
-                        </span>
-                        {{ order.rent_listing.phone }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Call Between:
-                        </span>
-                        {{ order.rent_listing.call_between_hrs }}
-                    </li>
-                    <hr>
-                    <legend class="text-muted">
-                        <i class="fas fa-map-pin"></i>
-                        Property Location
-                    </legend>
-                    <hr>
-                    <li>
-                        <span>
-                            County:
-                        </span>
-                        {{ order.rent_listing.county }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Area:
-                        </span>
-                        {{ order.rent_listing.area }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Eircode:
-                        </span>
-                        {{ order.rent_listing.eircode }}
-                    </li>
-                    <hr>
-                    <legend class="text-muted">
-                        <i class="fas fa-home"></i>
-                        Property Info
-                    </legend>
-                    <li>
-                        <span>
-                            Property Type:
-                        </span>
-                        {{ order.rent_listing.property_type }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Price:
-                        </span>
-                        € {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}
-                    </li>
-
-                    <li>
-                        <span>
-                            Available from:
-                        </span>
-                        {{ order.rent_listing.available_from }}
-                    </li>
-
-                    <li>
-                        <span>
-                            Lease term:
-                        </span>
-                        {{ order.rent_listing.lease_term }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            No. of Bedrooms:
-                        </span>
-                        {{ order.rent_listing.no_of_bedrooms }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            No. of Bathrooms:
-                        </span>
-                        {{ order.rent_listing.no_of_bathrooms }}
-                    </li>
-
-                    <li>
-                        <span>
-                            Furnishings:
-                        </span>
-                        {{ order.rent_listing.furnishing }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Facilities
-                        </span>
-                        <ol>
-                            {% if order.rent_listing.facility_1 %}
-                            <li>
-                                {{ order.rent_listing.facility_1 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.facility_1 %}
-                            <li>
-                                {{ order.rent_listing.facility_2 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.facility_3 %}
-                            <li>
-                                {{ order.rent_listing.facility_3 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.facility_4 %}
-                            <li>
-                                {{ order.rent_listing.facility_4 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.facility_5 %}
-                            <li>
-                                {{ order.rent_listing.facility_5 }}
-                            </li>
-                            {% endif %}
-                            {% if order.rent_listing.facility_6 %}
-                            <li>
-                                {{ order.rent_listing.facility_6 }}
-                            </li>
-                            {% endif %}
-                        </ol>
-                    </li>
-        
-                    <li>
-                        <span>
-                            Floor Area:
-                        </span>
-                        {{ order.rent_listing.floor_area }} {{ order.rent_listing.floor_area_type }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Ber Rating:
-                        </span>
-                        {{ order.rent_listing.ber_rating }}
-                    </li>
-        
-                    <li>
-                        <span>
-                            Description:
-                        </span>
-                        {{ order.rent_listing.description }}
-                    </li>
-
-                    <li>
-                        <span>
-                            Listing No.:
-                        </span>
-                        {{ order.rent_listing.listing_number }}
-                    </li>
-                </ul>
+                </legend>
+                <hr>
+                <div class="collapse" id="collapse{{ order.order_number }}">
+                    <ul class="preview-list">
+                        <legend class="text-muted">
+                            <i class="far fa-address-book"></i>
+                            Contact Info
+                        </legend>
+                        <hr>
+                        {% if order.rent_listing.company_name %}
+                        <li>
+                            <span>
+                                Company Name:
+                            </span>
+                            {{ order.rent_listing.company_name }}
+                        </li>
+                        {% else %}
+                        <li>
+                            <span>
+                                Full Name:
+                            </span>
+                            {{ order.rent_listing.full_name }}
+                        </li>
+                        {% endif %}
+                        <li>
+                            <span>
+                                Email:
+                            </span>
+                            {{ order.rent_listing.email }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Phone:
+                            </span>
+                            {{ order.rent_listing.phone }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Call Between:
+                            </span>
+                            {{ order.rent_listing.call_between_hrs }}
+                        </li>
+                        <hr>
+                        <legend class="text-muted">
+                            <i class="fas fa-map-pin"></i>
+                            Property Location
+                        </legend>
+                        <hr>
+                        <li>
+                            <span>
+                                County:
+                            </span>
+                            {{ order.rent_listing.county }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Area:
+                            </span>
+                            {{ order.rent_listing.area }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Eircode:
+                            </span>
+                            {{ order.rent_listing.eircode }}
+                        </li>
+                        <hr>
+                        <legend class="text-muted">
+                            <i class="fas fa-home"></i>
+                            Property Info
+                        </legend>
+                        <li>
+                            <span>
+                                Property Type:
+                            </span>
+                            {{ order.rent_listing.property_type }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Price:
+                            </span>
+                            € {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}
+                        </li>
+    
+                        <li>
+                            <span>
+                                Available from:
+                            </span>
+                            {{ order.rent_listing.available_from }}
+                        </li>
+    
+                        <li>
+                            <span>
+                                Lease term:
+                            </span>
+                            {{ order.rent_listing.lease_term }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                No. of Bedrooms:
+                            </span>
+                            {{ order.rent_listing.no_of_bedrooms }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                No. of Bathrooms:
+                            </span>
+                            {{ order.rent_listing.no_of_bathrooms }}
+                        </li>
+    
+                        <li>
+                            <span>
+                                Furnishings:
+                            </span>
+                            {{ order.rent_listing.furnishing }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Facilities
+                            </span>
+                            <ol>
+                                {% if order.rent_listing.facility_1 %}
+                                <li>
+                                    {{ order.rent_listing.facility_1 }}
+                                </li>
+                                {% endif %}
+                                {% if order.rent_listing.facility_1 %}
+                                <li>
+                                    {{ order.rent_listing.facility_2 }}
+                                </li>
+                                {% endif %}
+                                {% if order.rent_listing.facility_3 %}
+                                <li>
+                                    {{ order.rent_listing.facility_3 }}
+                                </li>
+                                {% endif %}
+                                {% if order.rent_listing.facility_4 %}
+                                <li>
+                                    {{ order.rent_listing.facility_4 }}
+                                </li>
+                                {% endif %}
+                                {% if order.rent_listing.facility_5 %}
+                                <li>
+                                    {{ order.rent_listing.facility_5 }}
+                                </li>
+                                {% endif %}
+                                {% if order.rent_listing.facility_6 %}
+                                <li>
+                                    {{ order.rent_listing.facility_6 }}
+                                </li>
+                                {% endif %}
+                            </ol>
+                        </li>
+            
+                        <li>
+                            <span>
+                                Floor Area:
+                            </span>
+                            {{ order.rent_listing.floor_area }} {{ order.rent_listing.floor_area_type }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Ber Rating:
+                            </span>
+                            {{ order.rent_listing.ber_rating }}
+                        </li>
+            
+                        <li>
+                            <span>
+                                Description:
+                            </span>
+                            {{ order.rent_listing.description }}
+                        </li>
+    
+                        <li>
+                            <span>
+                                Listing No.:
+                            </span>
+                            {{ order.rent_listing.listing_number }}
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
+            <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <a href="{% url 'account_change_password' %}">Change Password</a>
+            </div>
         </div>
-        <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-            <a href="{% url 'account_change_password' %}">Change Password</a>
-        </div>
+    
+    
+    
     </div>
-
-
-
 </div>
 
 {% endblock %}

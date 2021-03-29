@@ -13,6 +13,10 @@
     {% endblock %}
 
     {% block corecss %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -49,7 +53,7 @@
             class="navbar navbar-expand-md navbar-dark {% if request.path == '/' %} transparent {% else %} purple {% endif %}">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="/media/Artboard-9.png" alt="MyMo Logo">
+                    <img src="/media/mymo.png" alt="MyMo Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -127,7 +131,7 @@
         <div class="footer">
             <div class="footer-logo-section">
                 <a class="navbar-brand" href="{% url 'home' %}">
-                    <img src="/media/Artboard-9.png" alt="MyMo Logo">
+                    <img src="/media/mymo.png" alt="MyMo Logo">
                 </a>
                 <p>MyMo description</p>
             </div>

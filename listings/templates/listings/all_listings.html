@@ -1,28 +1,30 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block content %}
-<div class="card-container">
-    {% for listing in result_list %}
-    <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
-        <div class="card h-100">
-            <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
-            <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
-                <span class="property-price">€ {{ listing.price }}</span>
-                <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
+<div class="min-vh-100">
+    <div class="card-container">
+        {% for listing in result_list %}
+        <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+            <div class="card h-100">
+                <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+                <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
+                    <span class="property-price">€ {{ listing.price }}</span>
+                    <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
+                </div>
+                <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
+                    <h5 class="card-title">Co. {{ listing.county }}</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
+                    <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                    <hr class="card-hr"/>
+                    <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+                    {% if listing.is_spotlight %}
+                        <span class="spotlight-tag">SPOTLIGHT</span>
+                    {% endif %}
+                </div>
             </div>
-            <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
-                <h5 class="card-title">Co. {{ listing.county }}</h5>
-                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
-                <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
-                <hr class="card-hr"/>
-                <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
-                {% if listing.is_spotlight %}
-                    <span class="spotlight-tag">SPOTLIGHT</span>
-                {% endif %}
-            </div>
-        </div>
-    </a>
-    {% endfor %}
+        </a>
+        {% endfor %}
+    </div>
 </div>
 {% include 'pagination_all_listings.html' with page=result_list %}
 <div class="text-center">

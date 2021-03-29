@@ -1,23 +1,173 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="form-container">
-
-    <!------------------------------------------------ SALE FORM ------------------------------------------------------------------------->
-
-    {% if product.category.name == 'sale' %}
-    <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
-        {% csrf_token %}
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="far fa-address-book"></i>
-                Contact Info
-                <a data-bs-toggle="collapse" href="#contactInfo" role="button" aria-expanded="false"
-                    aria-controls="multiCollapseExample1">
-                    <i class="fas fa-angle-down chevron"></i>
-                </a>
-            </legend>
-            <div class="collapse multi-collapse show" id="contactInfo">
+<div class="min-vh-100">
+    <div class="form-container">
+    
+        <!------------------------------------------------ SALE FORM ------------------------------------------------------------------------->
+    
+        {% if product.category.name == 'sale' %}
+        <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="far fa-address-book"></i>
+                    Contact Info
+                </legend>
+                <div id="contactInfo">
+                    <hr>
+                    {{ listing_form.company_name | as_crispy_field }}
+                    {{ listing_form.full_name | as_crispy_field }}
+                    {{ listing_form.email | as_crispy_field }}
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.phone | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.call_between_hrs | as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="fas fa-map-pin"></i>
+                    Location of Property
+                </legend>
+                <div id="propertyLocation">
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.county | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.area | as_crispy_field }}
+                        </div>
+                        {{ listing_form.eircode | as_crispy_field }}
+                    </div>
+                </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="fas fa-home"></i>
+                    Property Info
+                </legend>
+                <div id="propertyInfo">
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.property_type | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.selling_type | as_crispy_field }}
+                        </div>
+                    </div>
+                    {{ listing_form.price | as_crispy_field }}
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.no_of_bedrooms | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.no_of_bathrooms | as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.facility_1 | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.facility_2 | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.facility_3 | as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.facility_4 | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.facility_5 | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.facility_6 | as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.floor_area_type | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.floor_area | as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {{ listing_form.ber_rating | as_crispy_field }}
+                        </div>
+                        <div class="col">
+                            {{ listing_form.tax_designation | as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="features">
+                        {{ listing_form.top_features_1 | as_crispy_field }}
+                    </div>
+                    <div class="features" hidden>
+                        {{ listing_form.top_features_2 | as_crispy_field }}
+                    </div>
+                    <div class="features" hidden>
+                        {{ listing_form.top_features_3 | as_crispy_field }}
+                    </div>
+                    <div class="features" hidden>
+                        {{ listing_form.top_features_4 | as_crispy_field }}
+                    </div>
+                    <div class="features" hidden>
+                        {{ listing_form.top_features_5 | as_crispy_field }}
+                    </div>
+                    {{ listing_form.description | as_crispy_field }}
+                </div>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-images"></i>
+                    Property Images
+                </legend>
+                <div id="propertyImages">
+                    <hr>
+                    {{ listing_form.header_image | as_crispy_field }}
+                    <!-- <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a> -->
+                    <!-- To display image from header image -->
+                    <div class="header-image-preview">
+                    </div>
+                    {{ images_form | crispy }}
+                    <!-- <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a> -->
+                    <!-- To display images from images form -->
+                    <div class="image-preview">
+                    </div>
+                </div>
+            </fieldset>
+            <hr>
+            {% if user.is_agent and user.subscription_paid %}
+            <button class="btn form-btn" id="submitBtn">Create Listing</button>
+            {% else %}
+            <button class="btn form-btn" id="submitBtn">Continue to payment</button>
+            {% endif %}
+            <input type="hidden" value="{{ product.id }}" name="product_id">
+        </form>
+    
+        {% else %}
+    
+        <!------------------------------------------------ RENT FORM ------------------------------------------------------------------------->
+        <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="far fa-address-book"></i>
+                    Contact Info
+                </legend>
                 <hr>
                 {{ listing_form.company_name | as_crispy_field }}
                 {{ listing_form.full_name | as_crispy_field }}
@@ -30,60 +180,47 @@
                         {{ listing_form.call_between_hrs | as_crispy_field }}
                     </div>
                 </div>
-            </div>
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="fas fa-map-pin"></i>
-                Location of Property
-                <a data-bs-toggle="collapse" href="#propertyLocation" role="button" aria-expanded="false"
-                    aria-controls="multiCollapseExample1">
-                    <i class="fas fa-angle-down chevron"></i>
-                </a>
-            </legend>
-            <div class="collapse multi-collapse" id="propertyLocation">
-                <hr>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="fas fa-map-pin"></i>
+                    Location of Property
+                </legend>
+                {{ listing_form.county | as_crispy_field }}
+                {{ listing_form.area | as_crispy_field }}
+                {{ listing_form.eircode | as_crispy_field }}
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend class="fieldset-label">
+                    <i class="fas fa-home"></i>
+                    Property Info
+                </legend>
+                {{ listing_form.property_type | as_crispy_field }}
                 <div class="row">
                     <div class="col">
-                        {{ listing_form.county | as_crispy_field }}
+                        {{ listing_form.rent_type | as_crispy_field }}
                     </div>
                     <div class="col">
-                        {{ listing_form.area | as_crispy_field }}
+                        {{ listing_form.price | as_crispy_field }}
                     </div>
-                    {{ listing_form.eircode | as_crispy_field }}
                 </div>
-            </div>
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="fas fa-home"></i>
-                Property Info
-                <a data-bs-toggle="collapse" href="#propertyInfo" role="button" aria-expanded="false"
-                    aria-controls="multiCollapseExample1">
-                    <i class="fas fa-angle-down chevron"></i>
-                </a>
-            </legend>
-            <div class="collapse multi-collapse" id="propertyInfo">
-                <hr>
+                {{ listing_form.available_from | as_crispy_field }}
+                {{ listing_form.lease_term | as_crispy_field }}
                 <div class="row">
                     <div class="col">
-                        {{ listing_form.property_type | as_crispy_field }}
+                        {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
                     </div>
                     <div class="col">
-                        {{ listing_form.selling_type | as_crispy_field }}
+                        {{ listing_form.no_of_double_bedrooms | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.no_of_twin_bedrooms | as_crispy_field }}
                     </div>
                 </div>
-                {{ listing_form.price | as_crispy_field }}
-                <div class="row">
-                    <div class="col">
-                        {{ listing_form.no_of_bedrooms | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.no_of_bathrooms | as_crispy_field }}
-                    </div>
-                </div>
+                {{ listing_form.no_of_bathrooms | as_crispy_field }}
+                {{ listing_form.furnishing | as_crispy_field }}
                 <div class="row">
                     <div class="col">
                         {{ listing_form.facility_1 | as_crispy_field }}
@@ -114,183 +251,36 @@
                         {{ listing_form.floor_area | as_crispy_field }}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        {{ listing_form.ber_rating | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.tax_designation | as_crispy_field }}
-                    </div>
-                </div>
-                <div class="features">
-                    {{ listing_form.top_features_1 | as_crispy_field }}
-                </div>
-                <div class="features" hidden>
-                    {{ listing_form.top_features_2 | as_crispy_field }}
-                </div>
-                <div class="features" hidden>
-                    {{ listing_form.top_features_3 | as_crispy_field }}
-                </div>
-                <div class="features" hidden>
-                    {{ listing_form.top_features_4 | as_crispy_field }}
-                </div>
-                <div class="features" hidden>
-                    {{ listing_form.top_features_5 | as_crispy_field }}
-                </div>
+                {{ listing_form.ber_rating | as_crispy_field }}
                 {{ listing_form.description | as_crispy_field }}
-            </div>
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend>
-                <i class="fas fa-images"></i>
-                Property Images
-                <a data-bs-toggle="collapse" href="#propertyImages" role="button" aria-expanded="false"
-                    aria-controls="multiCollapseExample1">
-                    <i class="fas fa-angle-down chevron"></i>
-                </a>
-            </legend>
-            <div class="collapse multi-collapse" id="propertyImages">
-                <hr>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-images"></i>
+                    Property Images
+                </legend>
+    
                 {{ listing_form.header_image | as_crispy_field }}
-                <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a>
+                <!-- <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a> -->
                 <!-- To display image from header image -->
                 <div class="header-image-preview">
                 </div>
                 {{ images_form | crispy }}
-                <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a>
+                <!-- <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a> -->
                 <!-- To display images from images form -->
                 <div class="image-preview">
                 </div>
-            </div>
-        </fieldset>
-        <hr>
-        {% if user.is_agent and user.subscription_paid %}
-        <button class="btn form-btn" id="submitBtn">Create Listing</button>
-        {% else %}
-        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
-        {% endif %}
-        <input type="hidden" value="{{ product.id }}" name="product_id">
-    </form>
-
-    {% else %}
-
-    <!------------------------------------------------ RENT FORM ------------------------------------------------------------------------->
-    <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
-        {% csrf_token %}
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="far fa-address-book"></i>
-                Contact Info
-            </legend>
+            </fieldset>
             <hr>
-            {{ listing_form.company_name | as_crispy_field }}
-            {{ listing_form.full_name | as_crispy_field }}
-            {{ listing_form.email | as_crispy_field }}
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.phone | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.call_between_hrs | as_crispy_field }}
-                </div>
-            </div>
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="fas fa-map-pin"></i>
-                Location of Property
-            </legend>
-            {{ listing_form.county | as_crispy_field }}
-            {{ listing_form.area | as_crispy_field }}
-            {{ listing_form.eircode | as_crispy_field }}
-        </fieldset>
-        <hr>
-        <fieldset>
-            <legend class="fieldset-label">
-                <i class="fas fa-home"></i>
-                Property Info
-            </legend>
-            {{ listing_form.property_type | as_crispy_field }}
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.rent_type | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.price | as_crispy_field }}
-                </div>
-            </div>
-            {{ listing_form.available_from | as_crispy_field }}
-            {{ listing_form.lease_term | as_crispy_field }}
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.no_of_double_bedrooms | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.no_of_twin_bedrooms | as_crispy_field }}
-                </div>
-            </div>
-            {{ listing_form.no_of_bathrooms | as_crispy_field }}
-            {{ listing_form.furnishing | as_crispy_field }}
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.facility_1 | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.facility_2 | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.facility_3 | as_crispy_field }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.facility_4 | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.facility_5 | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.facility_6 | as_crispy_field }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    {{ listing_form.floor_area_type | as_crispy_field }}
-                </div>
-                <div class="col">
-                    {{ listing_form.floor_area | as_crispy_field }}
-                </div>
-            </div>
-            {{ listing_form.ber_rating | as_crispy_field }}
-            {{ listing_form.description | as_crispy_field }}
-        </fieldset>
-        <fieldset>
-            <legend>
-                <i class="fas fa-images"></i>
-                Property Images
-            </legend>
-
-            {{ listing_form.header_image | as_crispy_field }}
-            <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a>
-            <!-- To display image from header image -->
-            <div class="header-image-preview">
-            </div>
-            {{ images_form | crispy }}
-            <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a>
-            <!-- To display images from images form -->
-            <div class="image-preview">
-            </div>
-        </fieldset>
-        <hr>
-        <button class="btn form-btn" id="submitBtn">Continue to payment</button>
-        <input type="hidden" value="{{ product.id }}" name="product_id">
-    </form>
-    {% endif %}
+            {% if user.is_agent and user.subscription_paid %}
+            <button class="btn form-btn" id="submitBtn">Create Listing</button>
+            {% else %}
+            <button class="btn form-btn" id="submitBtn">Continue to payment</button>
+            {% endif %}
+            <input type="hidden" value="{{ product.id }}" name="product_id">
+        </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
 
@@ -304,12 +294,13 @@
             var files = input.files
 
             for (let file of files) {
-                console.log(file);
-                let img = new Image;
-                img.src = URL.createObjectURL(file);
-                console.log(img);
-
-                document.querySelector('.header-image-preview').appendChild(img);
+                if (file.size < 6000000) {
+                    let img = new Image;
+                    img.src = URL.createObjectURL(file);
+                    document.querySelector('.header-image-preview').appendChild(img);
+                } else {
+                    alert('One or more of your files is too large, max 6MB');
+                }
             }
 
         }
@@ -319,20 +310,14 @@
         document.querySelector('.image-preview').innerHTML = '';
         if (input.files && input.files[0]) {
             var files = input.files
-            console.log(files);
-            console.log(typeof (files));
 
             for (let file of files) {
-                console.log(file);
-                console.log(typeof (file));
-                if (file.size < 4000000) {
+                if (file.size < 6000000) {
                     let img = new Image;
                     img.src = URL.createObjectURL(file);
-                    console.log(img);
                     document.querySelector('.image-preview').appendChild(img);
                 } else {
-                    alert('One or more of your files is too large, max 10MB');
-                    console.log(files);
+                    alert('One or more of your files is too large, max 6MB');
                 }
             }
 
@@ -348,19 +333,18 @@
         });
     }
 
-    const realHeaderImg = $('#id_header_image');
+/*     const realHeaderImg = $('#id_header_image');
     const cloneBtn = $('#headerImgClone');
     const realImgsBtn = $('#id_images');
-    const imagesCloneBtn = $('#imagesClone');
+    const imagesCloneBtn = $('#imagesClone'); */
 
-    cloneBtn.click(function () {
+/*     cloneBtn.click(function () {
         realHeaderImg.click();
     });
 
     imagesCloneBtn.click(function () {
         realImgsBtn.click();
-    });
-
+    }); */
 
     displayFeatures();
 </script>
