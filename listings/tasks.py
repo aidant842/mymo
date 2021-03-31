@@ -20,5 +20,13 @@ def unlist_expired_listings():
 
 
 @shared_task
+def delete_listings():
+    listings = SaleListing.objects.all()
+
+    for listing in listings:
+        listing.delete()
+
+
+@shared_task
 def say_hi():
     print('Hello from celery')
