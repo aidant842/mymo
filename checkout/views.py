@@ -65,7 +65,7 @@ def create_listings(request):
                         listing=listing,
                         images=image
                     )
-                if user.is_agent and user.subscription_paid:
+                if user.is_agent and user.subscription_paid and not product.is_premium:
                     listing.is_paid = True
                     listing.user_profile = user
                     listing.save()

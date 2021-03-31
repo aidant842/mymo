@@ -46,11 +46,11 @@
 
     <title>MyMo {% block extra_title %}{% endblock %}</title>
 </head>
-
+<!-- {% if request.path == '/' %} transparent {% else %} purple {% endif %} -->
 <body>
     <header>
         <nav
-            class="navbar navbar-expand-md navbar-dark {% if request.path == '/' %} transparent {% else %} purple {% endif %}">
+            class="navbar navbar-expand-md navbar-dark purple">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
@@ -156,6 +156,7 @@
         var option = {
             animation: true,
             delay: 5000,
+            autohide: false,
         }
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))
         var toastList = toastElList.map(function (toastEl) {

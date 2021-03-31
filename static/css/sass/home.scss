@@ -2,7 +2,8 @@
     min-height: 674px;
 }
 .main-img-container {
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     top: 0;
     background: url('/media/landing-img.jpg');
     background-position: center;
@@ -20,7 +21,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(7, 15, 67, 0.8);
+    background: rgba(7, 15, 67, 0.3);
 }
 
 .search-header {

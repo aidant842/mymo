@@ -43,6 +43,7 @@ a {
   outline: none !important;
 }
 
+/* ---------------- Toasts ------------------- */
 .message-container {
   position: fixed;
   top: 10px;
@@ -55,6 +56,7 @@ a {
   color: white !important;
 }
 
+/* --------------------------------------------- */
 /* ---------------- btt Link ------------------- */
 .bttLink {
   position: fixed;
@@ -87,7 +89,7 @@ a {
 /* --------------------------------------------- */
 @media only screen and (max-width: 600px) {
   .toast {
-    width: max-content !important;
+    max-width: 200px !important;
   }
 }
 .navbar {
@@ -145,12 +147,6 @@ a {
   padding-bottom: 10px;
 }
 
-/* .navbar-nav {
-    margin: 0 auto;
-} */
-/* .navbar ul li {
-    margin: 0 30px;
-} */
 .navbar a.btn {
   background: transparent;
 }
@@ -195,7 +191,8 @@ a {
 }
 
 .main-img-container {
-  position: absolute;
+  /* position: absolute; */
+  position: relative;
   top: 0;
   background: url("/media/landing-img.jpg");
   background-position: center;
@@ -212,7 +209,7 @@ a {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(7, 15, 67, 0.8);
+  background: rgba(7, 15, 67, 0.3);
 }
 
 .search-header {

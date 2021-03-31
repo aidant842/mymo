@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.utils import timezone
-from django.contrib import messages
 from operator import attrgetter
 
 from listings.models import SaleListing, RentListing
@@ -22,6 +21,7 @@ def index(request):
     result_list = list(chain(sale_spotlight_listings, rent_spotlight_listings))
 
     result_list.sort(key=attrgetter('date_created'), reverse=True)
+    result_list = result_list[:20]
 
     context = {
         'sale_spotlight_listings': sale_spotlight_listings,

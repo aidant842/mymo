@@ -56,6 +56,8 @@ a {
     outline: none !important;
 }
 
+/* ---------------- Toasts ------------------- */
+
 .message-container {
     position: fixed;
     top: 10px;
@@ -67,6 +69,8 @@ a {
     background-color: $secondary-color;
     color: $font-color !important;
 }
+
+/* --------------------------------------------- */
 
 /* ---------------- btt Link ------------------- */
 .bttLink {
@@ -102,7 +106,7 @@ a {
 
  @media only screen and (max-width: 600px) {
     .toast {
-        width: max-content !important;
+        max-width: 200px !important;
     }
 }
 @import 'nav';

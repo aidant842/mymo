@@ -150,7 +150,7 @@
                 </div>
             </fieldset>
             <hr>
-            {% if user.is_agent and user.subscription_paid %}
+            {% if user.is_agent and user.subscription_paid and not product.is_premium %}
             <button class="btn form-btn" id="submitBtn">Create Listing</button>
             {% else %}
             <button class="btn form-btn" id="submitBtn">Continue to payment</button>
@@ -272,7 +272,7 @@
                 </div>
             </fieldset>
             <hr>
-            {% if user.is_agent and user.subscription_paid %}
+            {% if user.is_agent and user.subscription_paid and not product.is_premium %}
             <button class="btn form-btn" id="submitBtn">Create Listing</button>
             {% else %}
             <button class="btn form-btn" id="submitBtn">Continue to payment</button>
