@@ -52,8 +52,9 @@ def create_listings(request):
             if listing_form.is_valid() and images_form.is_valid():
                 listing = listing_form.save(commit=False)
                 listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=365))
+                                           + datetime.timedelta(days=1))
                 if product.is_premium:
+                    listing.is_spotlight = True
                     listing.premium_expiration = (timezone.now()
                                                   + datetime.timedelta(days=30))
                 listing.product = product
@@ -79,8 +80,9 @@ def create_listings(request):
             if listing_form.is_valid() and images_form.is_valid():
                 listing = listing_form.save(commit=False)
                 listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=90))
+                                           + datetime.timedelta(days=1))
                 if product.is_premium:
+                    listing.is_spotlight= True
                     listing.premium_expiration = (timezone.now()
                                                   + datetime.timedelta(days=30))
                 listing.product = product
@@ -92,7 +94,7 @@ def create_listings(request):
                         listing=listing,
                         images=image
                     )
-                if user.is_agent and user.subscription_paid:
+                if user.is_agent and user.subscription_paid  and not product.is_premium:
                     listing.is_paid = True
                     listing.user_profile = user
                     listing.save()
@@ -131,6 +133,8 @@ def checkout(request):
             if order_form.is_valid():
                 listing.is_paid = True
                 listing.user_profile = profile
+                listing.expiration_date = (timezone.now()
+                                           + datetime.timedelta(days=365))
                 listing.save()
                 order = order_form.save(commit=False)
                 pid = request.POST.get('client_secret').split('_secret')[0]
@@ -147,6 +151,8 @@ def checkout(request):
             if order_form.is_valid():
                 listing.is_paid = True
                 listing.user_profile = profile
+                listing.expiration_date = (timezone.now()
+                                           + datetime.timedelta(days=90))
                 listing.save()
                 order = order_form.save(commit=False)
                 pid = request.POST.get('client_secret').split('_secret')[0]

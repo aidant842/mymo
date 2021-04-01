@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.utils import timezone
 
 from .forms import OrderForm
 from .models import Order
@@ -7,6 +8,7 @@ from products.models import Product
 from profiles.models import UserProfile
 
 import time
+import datetime
 
 
 class StripeWH_Handler():
@@ -60,6 +62,8 @@ class StripeWH_Handler():
                 try:
                     listing.is_paid = True
                     listing.user_profile = profile
+                    listing.expiration_date = (timezone.now()
+                                               + datetime.timedelta(days=365))
                     listing.save()
                     order = Order.objects.create(
                         user_profile=profile,
@@ -76,12 +80,13 @@ class StripeWH_Handler():
                         order.delete()
                     return HttpResponse(
                         content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                        status=500)
+                        status=500
+                        )
             # self._send_confirmation_email(order) SEND EMAIL
             return HttpResponse(
-            content=f'Webhook recieved. {event["type"]}'
-            ' | SUCCESS: Created order in webhook',
-            status=200
+                content=f'Webhook recieved. {event["type"]}'
+                ' | SUCCESS: Created order in webhook',
+                status=200
             )
 
         # IF RENT
@@ -109,6 +114,8 @@ class StripeWH_Handler():
                 try:
                     listing.is_paid = True
                     listing.user_profile = profile
+                    listing.expiration_date = (timezone.now()
+                                               + datetime.timedelta(days=90))
                     listing.save()
                     order = Order.objects.create(
                         user_profile=profile,

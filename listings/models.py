@@ -66,11 +66,6 @@ class SaleListing(models.Model):
         """ Override origonal save method
             to set the listing number if not already set """
 
-        if self.product.is_premium:
-            self.is_spotlight = True
-        else:
-            self.is_spotlight = False
-
         self.category = self.product.category
 
         if not self.listing_number:

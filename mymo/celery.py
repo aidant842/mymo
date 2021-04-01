@@ -12,6 +12,7 @@ app = Celery('mymo')
 app.config_from_object(settings, namespace='CELERY')
 
 app.autodiscover_tasks()
+app.conf.update(CELERY_REDIS_MAX_CONNECTIONS=20,)
 
 
 @app.task(bind=True)

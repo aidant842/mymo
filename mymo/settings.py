@@ -177,6 +177,7 @@ USE_L10N = True
 USE_THOUSAND_SEPARATOR = True
 
 USE_TZ = True
+TIME_ZONE = 'UTC'
 
 
 # Static files (CSS, JavaScript, Images)
