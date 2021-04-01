@@ -82,7 +82,7 @@ def create_listings(request):
                 listing.expiration_date = (timezone.now()
                                            + datetime.timedelta(days=1))
                 if product.is_premium:
-                    listing.is_spotlight= True
+                    listing.is_spotlight = True
                     listing.premium_expiration = (timezone.now()
                                                   + datetime.timedelta(days=30))
                 listing.product = product

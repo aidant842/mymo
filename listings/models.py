@@ -142,11 +142,6 @@ class RentListing(models.Model):
         img.thumbnail(output_size)
         img.save(self.header_image.path) """
 
-        if self.product.is_premium:
-            self.is_spotlight = True
-        else:
-            self.is_spotlight = False
-
         self.category = self.product.category
 
         if not self.no_of_bedrooms:
