@@ -516,14 +516,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-
-<script>
-    var firstTabEl = document.querySelector('#myTab li:last-child a')
-    var firstTab = new bootstrap.Tab(firstTabEl)
-
-    firstTab.show()
-</script>
-
+{{ block.super }}
 {% endblock %}
 
 <!--  <h1>Sale Listings</h1>

@@ -25,12 +25,14 @@
     padding: 0 !important;
 }
 
-.btn-close {
-    position: absolute;
-    z-index: 9;
-    background-color: white;
-    right: 5px;
-    top: 5px;
+.modal-content {
+    .btn-close {
+        position: absolute;
+        z-index: 9;
+        background-color: white;
+        right: 5px;
+        top: 5px;
+    }
 }
 
 .modal-dialog {

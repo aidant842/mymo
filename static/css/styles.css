@@ -737,7 +737,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   padding: 0 !important;
 }
 
-.btn-close {
+.modal-content .btn-close {
   position: absolute;
   z-index: 9;
   background-color: white;
