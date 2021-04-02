@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('MYMO_DJANGO_SECRET_KEY', '')
 """ DEBUG = True """
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['mymoireland.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['site.mymo.ie','mymoireland.herokuapp.com', 'localhost']
 
 
 # Application definition
