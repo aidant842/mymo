@@ -18,9 +18,27 @@
 }
 
 .modal {
-    background: rgba($tertiary-color, 0.6);
+    background: rgba(0,0,0, 0.2);
+}
+
+.modal-body {
+    padding: 0 !important;
+}
+
+.btn-close {
+    position: absolute;
+    z-index: 9;
+    background-color: white;
+    right: 5px;
+    top: 5px;
 }
 
 .modal-dialog {
     max-width: 90%;
+}
+
+@media only screen and (max-width: 576px) {
+    .modal-dialog {
+        margin: .5rem auto;
+    }
 }

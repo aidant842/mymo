@@ -65,6 +65,22 @@ th.premium p {
     font-size: 4rem;
 }
 
+/* .loading-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+} */
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
 /* #id_images {
     display: none;
 }

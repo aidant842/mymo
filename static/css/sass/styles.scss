@@ -44,16 +44,12 @@ a {
     @extend %button-hover
 }
 
-.icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
-}
-
 :focus {
     outline: none !important;
+}
+
+.hidden {
+    display: none;
 }
 
 /* ---------------- Toasts ------------------- */
@@ -118,3 +114,4 @@ a {
 @import 'checkout';
 @import 'profiles';
 @import 'listings';
+@import 'loaders';

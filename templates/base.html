@@ -70,7 +70,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav mb-3 mb-md-0">
                         <div class="left">
                             <li class="nav-item">
                                 <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}">Buy</a>
@@ -107,6 +107,7 @@
         </nav>
     </header>
 
+    <!-- Message container -->
     {% if messages %}
     <div class="message-container">
         {% for message in messages %}
@@ -125,7 +126,25 @@
     </div>
     {% endif %}
 
-  <button class="bttLink" title="Back to top"><i class="far fa-arrow-alt-circle-up"></i></button>
+    <!-- Back to top button -->
+    <button class="bttLink" title="Back to top"><i class="far fa-arrow-alt-circle-up"></i></button>
+
+    <!-- Loading overlay -->
+    <div id="loader-bg">
+      <div class="loading-container">
+        <div class="loading-text">
+        <div class="heading">
+            <img class="loading-logo" src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
+        </div>
+        </div>
+            <div class="loading-bubble">
+                <div class="bubble-1"></div>
+                <div class="bubble-2"></div>
+                <div class="bubble-3"></div>
+
+            </div>
+        </div>
+    </div>
 
     {% block page_header %}
     {% endblock %}

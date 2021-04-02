@@ -282,10 +282,31 @@
         {% endif %}
     </div>
 </div>
+
+<!-- Loader -->
+<div class="loader-bg">
+    <div class="loading-container">
+        <div class="loading-text">
+            <div class="heading">
+                Please wait while your images are uploaded.
+                <br>
+                Don't navigate away from this page.
+            </div>
+        </div>
+        <div class="loading-bubble">
+            <div class="bubble-1"></div>
+            <div class="bubble-2"></div>
+            <div class="bubble-3"></div>
+        </div>
+    </div>
+</div>
+<!-- End of loader -->
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
+
+<script src="{% static 'checkout/js/loading-overlay.js' %}"></script>
 
 <script>
     function readHeaderURL(input) {

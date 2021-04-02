@@ -31,7 +31,7 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#submitBtn').attr('disabled', true);
     $('.checkout-form').fadeToggle(100);
-    $('#loading-overlay').fadeToggle(100);
+    $('.loader-bg').fadeToggle(100);
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -59,7 +59,7 @@ form.addEventListener('submit', function(ev) {
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 $('.checkout-form').fadeToggle(100);
-                $('#loading-overlay').fadeToggle(100);
+                $('.loader-bg').fadeToggle(100);
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
