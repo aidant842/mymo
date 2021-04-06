@@ -44,8 +44,9 @@
             {% endif %}
             <a class="button secondaryAction"
                 href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-            <button class="primaryAction btn form-btn" type="submit">{% trans "Sign In" %}</button>
+            <button class="primaryAction btn form-btn d-block" type="submit">{% trans "Sign In" %}</button>
         </form>
+        <p>If you are an agent please email <a href="mailto:support@mymo.ie">support@mymo.ie</a> or call <a href="tel:+353877648382">0877648382</a> to setup an account.</p>
     </div>
 </div>
 {% endblock %}

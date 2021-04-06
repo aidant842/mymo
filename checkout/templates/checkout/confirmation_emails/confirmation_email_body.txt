@@ -12,7 +12,7 @@ Please allow upto 24 hours for your listing to be reviewed.
 
 We've got your phone number on file as {{ order.phone_number }}
 
-If you have any questions, feel free to contact us at {{ contact_email }} or through our on site contact form.
+If you have any questions, feel free to contact us at {{ contact_email }}.
 
 Thank you for your order!
 

@@ -44,6 +44,13 @@
     </div>
 </div>
 <div class="min-vh-100">
+    {% if total_listings == 0 %}
+    <div class="no-results">
+        <h5><i class="fas fa-question"></i></h5>
+        <h5>Sorry no results were found for that query</h5>
+        <p>Please try a different query</p>
+    </div>
+    {% endif %}
     <div class="card-container">
         {% for listing in listings %}
             <a href="{% url 'rent_listing_detail' listing.id %}">

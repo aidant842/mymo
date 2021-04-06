@@ -70,7 +70,6 @@ def for_sale_listings(request):
 
     listings = SaleListing.objects.filter(is_listed=True,
                                           expiration_date__gt=timezone.now(),)
-    total_listings = listings.count()
 
     query_dictionary = {}
     price_query = request.GET.get('price')
@@ -115,6 +114,8 @@ def for_sale_listings(request):
     else:
         listings = listings.order_by('-is_spotlight', '-date_created')
 
+    total_listings = listings.count()
+
     """ setup paginator """
 
     paginator = Paginator(listings, 20)
@@ -146,8 +147,7 @@ def for_rent_listings(request):
     filter_form = FilterForm()
     listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
 
-    total_listings = listings.count()
-
+    query_dictionary = {}
     price_query = request.GET.get('price')
     county_query = request.GET.get('county')
     property_type_query = request.GET.get('property_type')
@@ -189,6 +189,8 @@ def for_rent_listings(request):
         listings = listings.order_by(sortkey)
     else:
         listings = listings.order_by('-is_spotlight', '-date_created')
+
+    total_listings = listings.count()
 
     """ setup paginator """
 

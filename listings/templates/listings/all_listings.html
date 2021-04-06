@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="min-vh-100">
+    {% if total_listings == 0 %}
+    <div class="no-results">
+        <h5><i class="fas fa-question"></i></h5>
+        <h5>Sorry no results were found for that query</h5>
+        <p>Please try a different query</p>
+    </div>
+    {% endif %}
     <div class="card-container">
         {% for listing in result_list %}
         <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">

@@ -19,8 +19,9 @@
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <button class="btn form-btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+            <button class="btn form-btn d-block" type="submit">{% trans "Sign Up" %} &raquo;</button>
         </form>
+        <p>If you are an agent please email <a href="mailto:support@mymo.ie">support@mymo.ie</a> or call <a href="tel:+353877648382">0877648382</a> to setup an account.</p>
     </div>
 </div>
 {% endblock %}

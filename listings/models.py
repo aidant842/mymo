@@ -79,7 +79,7 @@ class SaleListing(models.Model):
 
         body = render_to_string(
             'listings/listed_emails/listed_email_body.txt',
-            {'listing': self, 'contact_email': settings.SUPPORT_EMAIL}
+            {'listing': self, 'contact_email': settings.REPLY_EMAIL}
         )
 
         cust_email = self.email
@@ -150,6 +150,7 @@ class RentListing(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     expiration_date = models.DateTimeField(null=True, blank=True)
     premium_expiration = models.DateTimeField(blank=True, null=True)
+    email_sent = models.BooleanField(default=False)
 
     def _generate_listing_number(self):
 
@@ -168,6 +169,27 @@ class RentListing(models.Model):
         img.save(self.header_image.path) """
 
         self.category = self.product.category
+
+        subject = render_to_string(
+            'listings/listed_emails/listed_email_subject.txt',
+            {'listing': self}
+        )
+
+        body = render_to_string(
+            'listings/listed_emails/listed_email_body.txt',
+            {'listing': self, 'contact_email': settings.REPLY_EMAIL}
+        )
+
+        cust_email = self.email
+
+        if self.is_listed is True and self.email_sent is False:
+            send_mail(
+                subject,
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [cust_email]
+            )
+            self.email_sent = True
 
         if not self.no_of_bedrooms:
             self.no_of_bedrooms = self._calc_no_of_bedrooms()

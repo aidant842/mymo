@@ -713,10 +713,21 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: #6a7fdb !important;
 }
 
+.max-width-60 {
+  max-width: 60%;
+}
+
 .listing-detail-container img {
   width: 75%;
   height: auto;
   margin: 0 auto;
+}
+
+.no-results {
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  margin-top: 5rem;
 }
 
 .image-container {
