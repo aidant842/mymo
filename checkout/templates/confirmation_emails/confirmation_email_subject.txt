@@ -1,0 +1,1 @@
+MyMo.ie confirmation for Order Number  {{ order.order_number }}

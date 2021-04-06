@@ -1,0 +1,21 @@
+{% load tools %}
+Hello {{ order.full_name }}
+
+This is a confirmation of your order at MyMo.ie. Your order information is below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Order Total: €{{ order.order_total | display_price }}
+
+Please allow upto 24 hours for your listing to be reviewed.
+
+We've got your phone number on file as {{ order.phone_number }}
+
+If you have any questions, feel free to contact us at {{ contact_email }} or through our on site contact form.
+
+Thank you for your order!
+
+Sincerely,
+
+MyMo.ie.
