@@ -2,6 +2,9 @@ import uuid
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from products.models import Category, Product
 from profiles.models import UserProfile
 
@@ -57,6 +60,7 @@ class SaleListing(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     expiration_date = models.DateTimeField(null=True, blank=True)
     premium_expiration = models.DateTimeField(blank=True, null=True)
+    email_sent = models.BooleanField(default=False)
 
     def _generate_listing_number(self):
 
@@ -67,6 +71,27 @@ class SaleListing(models.Model):
             to set the listing number if not already set """
 
         self.category = self.product.category
+
+        subject = render_to_string(
+            'listings/listed_emails/listed_email_subject.txt',
+            {'listing': self}
+        )
+
+        body = render_to_string(
+            'listings/listed_emails/listed_email_body.txt',
+            {'listing': self, 'contact_email': settings.SUPPORT_EMAIL}
+        )
+
+        cust_email = self.email
+
+        if self.is_listed is True and self.email_sent is False:
+            send_mail(
+                subject,
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [cust_email]
+            )
+            self.email_sent = True
 
         if not self.listing_number:
             self.listing_number = self._generate_listing_number()

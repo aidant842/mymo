@@ -1,0 +1,17 @@
+Hello {{ listing.email }}
+
+We thought you'd like to know that your listing is now live. Your listing information is below:
+
+Listing Number: {{ listing.listing_number }}
+Expiration Date: {{ listing.expiration_date }}
+{% if listing.is_spotlight %}
+Premium Expiration Date: {{ listing.premium_expiration }}
+{% endif %}
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+MyMo.ie.

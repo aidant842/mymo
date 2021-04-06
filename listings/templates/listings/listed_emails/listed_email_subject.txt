@@ -1,0 +1,1 @@
+Your MyMo.ie listing {{ listing }} has been listed
