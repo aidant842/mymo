@@ -51,20 +51,20 @@
             <div class="tab-pane" id="listings" role="tabpanel" aria-labelledby="profile-tab">
                 <h1>Listings</h1>
                 <hr>
-                {% for order in orders %}
-                {% if order.product.category.name == 'sale' %}
-                {% if not order.sale_listing.id is null %}
+                {% for listing in profile_listings %}
+                {% if listing.category.name == 'sale' %}
+                {{ listing }}
                 <legend>
                     <p>
                         <i class="fas fa-list"></i>
                         Listing Preview
-                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
+                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ listing.listing_number }}"
                             aria-expanded="false" aria-controls="collapseExample">
                             <i class="fas fa-angle-down chevron"></i>
                         </a>
                     </p>
-                    <img src="{{ order.sale_listing.header_image.url }}" alt="image of {{ order.sale_listing.header_image }}" class="img-fluid max-width-60">
-                    {% if order.sale_listing.is_listed %}
+                    <img src="{{ listing.header_image.url }}" alt="image of {{ listing.header_image }}" class="img-fluid max-width-60">
+                    {% if listing.is_listed %}
                         <p class="text-success">LISTED</p>
                     {% else %}
                         <p class="text-danger">
@@ -72,17 +72,17 @@
                         </p>
                     {% endif %}
                     <p class="fs-6">
-                        Expiration Date: {{ order.sale_listing.expiration_date.date }}
+                        Expiration Date: {{ listing.expiration_date.date }}
                     </p>
-                    {% if order.sale_listing.is_spotlight %}
-                        <p class="fs-6">Premium Expiration: {{ order.sale_listing.premium_expiration.date }}</p>
+                    {% if listing.is_spotlight %}
+                        <p class="fs-6">Premium Expiration: {{ listing.premium_expiration.date }}</p>
                     {% endif %}
                     <!-- Remove Listing Button -->
-                    <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal">
+                    <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal_{{ listing.listing_number }}">
                         Remove listing
                     </button>
                     <!-- Remove listing Modal -->
-                    <div class="modal" id="confirm-delete-modal" tabindex="-1">
+                    <div class="modal" id="confirm-delete-modal_{{ listing.listing_number }}" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -102,8 +102,10 @@
                                         </p>
                                     </div>
                                     <hr>
-                                    <form action="{% url 'delete_listing' order.id %}" method="POST">
+                                    <!-- CHANGE TO LISTING ID!! dont forget to do the same for rent -->
+                                    <form action="{% url 'delete_listing' listing.product.id %}" method="POST">
                                         {% csrf_token %}
+                                        <input type="hidden" name="listing_id" value="{{ listing.id }}">
                                         <button type="submit" class="btn float-end mb-2">Remove Listing</button>
                                         <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
                                     </form>
@@ -113,47 +115,47 @@
                     </div>
                 </legend>
                 <hr>
-                <div class="collapse" id="collapse{{ order.order_number }}">
+                <div class="collapse" id="collapse{{ listing.listing_number }}">
                     <ul class="preview-list">
                         <legend class="text-muted">
                             <i class="far fa-address-book"></i>
                             Contact Info
                         </legend>
                         <hr>
-                        {% if order.sale_listing.company_name %}
+                        {% if listing.company_name %}
                         <li>
                             <span>
                                 Company Name:
                             </span>
-                            {{ order.sale_listing.company_name }}
+                            {{ listing.company_name }}
                         </li>
                         {% else %}
                         <li>
                             <span>
                                 Full Name:
                             </span>
-                            {{ order.sale_listing.full_name }}
+                            {{ listing.full_name }}
                         </li>
                         {% endif %}
                         <li>
                             <span>
                                 Email:
                             </span>
-                            {{ order.sale_listing.email }}
+                            {{ listing.email }}
                         </li>
             
                         <li>
                             <span>
                                 Phone:
                             </span>
-                            {{ order.sale_listing.phone }}
+                            {{ listing.phone }}
                         </li>
             
                         <li>
                             <span>
                                 Call Between:
                             </span>
-                            {{ order.sale_listing.call_between_hrs }}
+                            {{ listing.call_between_hrs }}
                         </li>
                         <hr>
                         <legend class="text-muted">
@@ -165,21 +167,21 @@
                             <span>
                                 County:
                             </span>
-                            {{ order.sale_listing.county }}
+                            {{ listing.county }}
                         </li>
             
                         <li>
                             <span>
                                 Area:
                             </span>
-                            {{ order.sale_listing.area }}
+                            {{ listing.area }}
                         </li>
             
                         <li>
                             <span>
                                 Eircode:
                             </span>
-                            {{ order.sale_listing.eircode }}
+                            {{ listing.eircode }}
                         </li>
                         <hr>
                         <legend class="text-muted">
@@ -190,35 +192,35 @@
                             <span>
                                 Property Type:
                             </span>
-                            {{ order.sale_listing.property_type }}
+                            {{ listing.property_type }}
                         </li>
             
                         <li>
                             <span>
                                 Selling Type:
                             </span>
-                            {{ order.sale_listing.selling_type }}
+                            {{ listing.selling_type }}
                         </li>
             
                         <li>
                             <span>
                                 Price:
                             </span>
-                            € {{ order.sale_listing.price }}
+                            € {{ listing.price }}
                         </li>
             
                         <li>
                             <span>
                                 No. of Bedrooms:
                             </span>
-                            {{ order.sale_listing.no_of_bedrooms }}
+                            {{ listing.no_of_bedrooms }}
                         </li>
             
                         <li>
                             <span>
                                 No. of Bathrooms:
                             </span>
-                            {{ order.sale_listing.no_of_bathrooms }}
+                            {{ listing.no_of_bathrooms }}
                         </li>
             
                         <li>
@@ -226,34 +228,34 @@
                                 Facilities
                             </span>
                             <ol>
-                                {% if order.sale_listing.facility_1 %}
+                                {% if listing.facility_1 %}
                                 <li>
-                                    {{ order.sale_listing.facility_1 }}
+                                    {{ listing.facility_1 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.facility_1 %}
+                                {% if listing.facility_1 %}
                                 <li>
-                                    {{ order.sale_listing.facility_2 }}
+                                    {{ listing.facility_2 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.facility_3 %}
+                                {% if listing.facility_3 %}
                                 <li>
-                                    {{ order.sale_listing.facility_3 }}
+                                    {{ listing.facility_3 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.facility_4 %}
+                                {% if listing.facility_4 %}
                                 <li>
-                                    {{ order.sale_listing.facility_4 }}
+                                    {{ listing.facility_4 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.facility_5 %}
+                                {% if listing.facility_5 %}
                                 <li>
-                                    {{ order.sale_listing.facility_5 }}
+                                    {{ listing.facility_5 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.facility_6 %}
+                                {% if listing.facility_6 %}
                                 <li>
-                                    {{ order.sale_listing.facility_6 }}
+                                    {{ listing.facility_6 }}
                                 </li>
                                 {% endif %}
                             </ol>
@@ -263,21 +265,21 @@
                             <span>
                                 Floor Area:
                             </span>
-                            {{ order.sale_listing.floor_area }} {{ order.sale_listing.floor_area_type }}
+                            {{ listing.floor_area }} {{ listing.floor_area_type }}
                         </li>
             
                         <li>
                             <span>
                                 Ber Rating:
                             </span>
-                            {{ order.sale_listing.ber_rating }}
+                            {{ listing.ber_rating }}
                         </li>
             
                         <li>
                             <span>
                                 Tax Designation:
                             </span>
-                            {{ order.sale_listing.tax_designation }}
+                            {{ listing.tax_designation }}
                         </li>
             
                         <li>
@@ -285,29 +287,29 @@
                                 Top Features:
                             </span>
                             <ol>
-                                {% if order.sale_listing.top_features_1 %}
+                                {% if listing.top_features_1 %}
                                 <li>
-                                    {{ order.sale_listing.top_features_1}}
+                                    {{ listing.top_features_1}}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.top_features_2 %}
+                                {% if listing.top_features_2 %}
                                 <li>
-                                    {{ order.sale_listing.top_features_2 }}
+                                    {{ listing.top_features_2 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.top_features_3 %}
+                                {% if listing.top_features_3 %}
                                 <li>
-                                    {{ order.sale_listing.top_features_3 }}
+                                    {{ listing.top_features_3 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.top_features_4 %}
+                                {% if listing.top_features_4 %}
                                 <li>
-                                    {{ order.sale_listing.top_features_4 }}
+                                    {{ listing.top_features_4 }}
                                 </li>
                                 {% endif %}
-                                {% if order.sale_listing.top_features_5 %}
+                                {% if listing.top_features_5 %}
                                 <li>
-                                    {{ order.sale_listing.top_features_5 }}
+                                    {{ listing.top_features_5 }}
                                 </li>
                                 {% endif %}
                             </ol>
@@ -317,31 +319,30 @@
                             <span>
                                 Description:
                             </span>
-                            {{ order.sale_listing.description }}
+                            {{ listing.description }}
                         </li>
     
                         <li>
                             <span>
                                 Listing No.:
                             </span>
-                            {{ order.sale_listing.listing_number }}
+                            {{ listing.listing_number }}
                         </li>
                     </ul>
                 </div>
-                {% endif %}
-                {% elif order.product.category.name == 'rent' %}
-                {% if not order.rent_listing.id is null %}
+                {% elif listing.category.name == 'rent' %}
+                {{ listing }}
                 <legend>
                     <p>
                         <i class="fas fa-list"></i>
                         Listing Preview
-                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_number }}"
+                        <a class="" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ listing.listing_number }}"
                             aria-expanded="false" aria-controls="collapseExample">
                             <i class="fas fa-angle-down chevron"></i>
                         </a>
                     </p>
-                    <img src="{{ order.rent_listing.header_image.url }}" alt="image of {{ order.rent_listing.header_image }}" class="img-fluid max-width-60">
-                    {% if order.rent_listing.is_listed %}
+                    <img src="{{ listing.header_image.url }}" alt="image of {{ listing.header_image }}" class="img-fluid max-width-60">
+                    {% if listing.is_listed %}
                         <p class="text-success">LISTED</p>
                     {% else %}
                         <p class="text-danger">
@@ -349,10 +350,10 @@
                         </p>
                     {% endif %}
                     <p class="fs-6">
-                        Expiration Date: {{ order.rent_listing.expiration_date.date }}
+                        Expiration Date: {{ listing.expiration_date.date }}
                     </p>
-                    {% if order.rent_listing.is_spotlight %}
-                        <p class="fs-6">Premium Expiration: {{ order.rent_listing.premium_expiration.date }}</p>
+                    {% if listing.is_spotlight %}
+                        <p class="fs-6">Premium Expiration: {{ listing.premium_expiration.date }}</p>
                     {% endif %}
                     <!-- Remove Listing Button -->
                     <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-rent-delete-modal">
@@ -378,7 +379,7 @@
                                             This is permanent and you will have to re-advertise this property again!
                                         </p>
                                     </div>
-                                    <form action="{% url 'delete_listing' order.id %}" method="POST">
+                                    <form action="" method="POST">
                                         {% csrf_token %}
                                         <button type="submit" class="btn float-end mb-2">Remove Listing</button>
                                         <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
@@ -389,47 +390,47 @@
                     </div>
                 </legend>
                 <hr>
-                <div class="collapse" id="collapse{{ order.order_number }}">
+                <div class="collapse" id="collapse{{ listing.listing_number }}">
                     <ul class="preview-list">
                         <legend class="text-muted">
                             <i class="far fa-address-book"></i>
                             Contact Info
                         </legend>
                         <hr>
-                        {% if order.rent_listing.company_name %}
+                        {% if listing.company_name %}
                         <li>
                             <span>
                                 Company Name:
                             </span>
-                            {{ order.rent_listing.company_name }}
+                            {{ listing.company_name }}
                         </li>
                         {% else %}
                         <li>
                             <span>
                                 Full Name:
                             </span>
-                            {{ order.rent_listing.full_name }}
+                            {{ listing.full_name }}
                         </li>
                         {% endif %}
                         <li>
                             <span>
                                 Email:
                             </span>
-                            {{ order.rent_listing.email }}
+                            {{ listing.email }}
                         </li>
             
                         <li>
                             <span>
                                 Phone:
                             </span>
-                            {{ order.rent_listing.phone }}
+                            {{ listing.phone }}
                         </li>
             
                         <li>
                             <span>
                                 Call Between:
                             </span>
-                            {{ order.rent_listing.call_between_hrs }}
+                            {{ listing.call_between_hrs }}
                         </li>
                         <hr>
                         <legend class="text-muted">
@@ -441,21 +442,21 @@
                             <span>
                                 County:
                             </span>
-                            {{ order.rent_listing.county }}
+                            {{ listing.county }}
                         </li>
             
                         <li>
                             <span>
                                 Area:
                             </span>
-                            {{ order.rent_listing.area }}
+                            {{ listing.area }}
                         </li>
             
                         <li>
                             <span>
                                 Eircode:
                             </span>
-                            {{ order.rent_listing.eircode }}
+                            {{ listing.eircode }}
                         </li>
                         <hr>
                         <legend class="text-muted">
@@ -466,49 +467,49 @@
                             <span>
                                 Property Type:
                             </span>
-                            {{ order.rent_listing.property_type }}
+                            {{ listing.property_type }}
                         </li>
             
                         <li>
                             <span>
                                 Price:
                             </span>
-                            € {{ order.rent_listing.price }} / {{ order.rent_listing.rent_type }}
+                            € {{ listing.price }} / {{ listing.rent_type }}
                         </li>
     
                         <li>
                             <span>
                                 Available from:
                             </span>
-                            {{ order.rent_listing.available_from }}
+                            {{ listing.available_from }}
                         </li>
     
                         <li>
                             <span>
                                 Lease term:
                             </span>
-                            {{ order.rent_listing.lease_term }}
+                            {{ listing.lease_term }}
                         </li>
             
                         <li>
                             <span>
                                 No. of Bedrooms:
                             </span>
-                            {{ order.rent_listing.no_of_bedrooms }}
+                            {{ listing.no_of_bedrooms }}
                         </li>
             
                         <li>
                             <span>
                                 No. of Bathrooms:
                             </span>
-                            {{ order.rent_listing.no_of_bathrooms }}
+                            {{ listing.no_of_bathrooms }}
                         </li>
     
                         <li>
                             <span>
                                 Furnishings:
                             </span>
-                            {{ order.rent_listing.furnishing }}
+                            {{ listing.furnishing }}
                         </li>
             
                         <li>
@@ -516,34 +517,34 @@
                                 Facilities
                             </span>
                             <ol>
-                                {% if order.rent_listing.facility_1 %}
+                                {% if listing.facility_1 %}
                                 <li>
-                                    {{ order.rent_listing.facility_1 }}
+                                    {{ listing.facility_1 }}
                                 </li>
                                 {% endif %}
-                                {% if order.rent_listing.facility_1 %}
+                                {% if listing.facility_1 %}
                                 <li>
-                                    {{ order.rent_listing.facility_2 }}
+                                    {{ listing.facility_2 }}
                                 </li>
                                 {% endif %}
-                                {% if order.rent_listing.facility_3 %}
+                                {% if listing.facility_3 %}
                                 <li>
-                                    {{ order.rent_listing.facility_3 }}
+                                    {{ listing.facility_3 }}
                                 </li>
                                 {% endif %}
-                                {% if order.rent_listing.facility_4 %}
+                                {% if listing.facility_4 %}
                                 <li>
-                                    {{ order.rent_listing.facility_4 }}
+                                    {{ listing.facility_4 }}
                                 </li>
                                 {% endif %}
-                                {% if order.rent_listing.facility_5 %}
+                                {% if listing.facility_5 %}
                                 <li>
-                                    {{ order.rent_listing.facility_5 }}
+                                    {{ listing.facility_5 }}
                                 </li>
                                 {% endif %}
-                                {% if order.rent_listing.facility_6 %}
+                                {% if listing.facility_6 %}
                                 <li>
-                                    {{ order.rent_listing.facility_6 }}
+                                    {{ listing.facility_6 }}
                                 </li>
                                 {% endif %}
                             </ol>
@@ -553,32 +554,31 @@
                             <span>
                                 Floor Area:
                             </span>
-                            {{ order.rent_listing.floor_area }} {{ order.rent_listing.floor_area_type }}
+                            {{ listing.floor_area }} {{ listing.floor_area_type }}
                         </li>
             
                         <li>
                             <span>
                                 Ber Rating:
                             </span>
-                            {{ order.rent_listing.ber_rating }}
+                            {{ listing.ber_rating }}
                         </li>
             
                         <li>
                             <span>
                                 Description:
                             </span>
-                            {{ order.rent_listing.description }}
+                            {{ listing.description }}
                         </li>
     
                         <li>
                             <span>
                                 Listing No.:
                             </span>
-                            {{ order.rent_listing.listing_number }}
+                            {{ listing.listing_number }}
                         </li>
                     </ul>
                 </div>
-                {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -602,14 +602,3 @@
 {% block postloadjs %}
 {{ block.super }}
 {% endblock %}
-
-<!--  <h1>Sale Listings</h1>
-    <hr>
-    {% for listing in sale_listings %}
-    {{ listing.price }}
-    {% endfor %}
-
-    <h1>Rent Listings</h1>
-    {% for listing in rent_listings %}
-    {{ listing }}
-    {% endfor %} -->

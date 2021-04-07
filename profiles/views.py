@@ -7,6 +7,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
+from products.models import Product
 
 from operator import attrgetter
 from itertools import chain
@@ -18,6 +19,11 @@ def profile(request):
 
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
+    profile_sale_listings = SaleListing.objects.filter(user_profile=profile)
+    profile_rent_listings = RentListing.objects.filter(user_profile=profile)
+
+    profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
+
 
     if request.method == 'POST':
         user_profile_form = UserProfileForm(request.POST, instance=profile)
@@ -38,6 +44,7 @@ def profile(request):
         'orders': orders,
         'profile': profile,
         'user_profile_form': user_profile_form,
+        'profile_listings': profile_listings,
     }
 
     return render(request, template, context)
@@ -71,21 +78,23 @@ def public_profile(request, profile_id):
 
 @require_POST
 @login_required
-def delete_listing(request, order_id):
-    order = Order.objects.get(pk=order_id)
+def delete_listing(request, product_id):
+    product = Product.objects.get(pk=product_id)
     user_profile = UserProfile(user=request.user)
 
-    if order.user_profile.user.id != user_profile.user.id:
+    """ if order.user_profile.user.id != user_profile.user.id:
         messages.success(request, 'You do not own this listing.')
-        return redirect('home')
+        return redirect('home') """
 
-    if order.product.category.name == 'sale':
-        listing_id = order.sale_listing.id
+    if product.category.name == 'sale':
+        listing_id = request.POST.get('listing_id')
         listing = SaleListing(pk=listing_id)
         listing_images = SaleListingImage.objects.filter(listing=listing)
-        """ listing_images.delete() """
+        for image in listing_images:
+            print(image)
+        listing_images.delete()
         listing.delete()
-    elif order.product.category.name == 'rent':
+    elif product.category.name == 'rent':
         listing_id = order.rent_listing.id
         listing = RentListing(pk=listing_id)
         listing.delete()

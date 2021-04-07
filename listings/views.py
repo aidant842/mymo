@@ -14,6 +14,9 @@ from .forms import FilterForm
 def all_listings_view(request):
     """ A view to return all listings """
 
+    """ IF ADDING FILTERS TO THIS VIEW """
+    """ FILTER FORSALE AND FORRENT FIRST, THEN CHAIN INTO LIST """
+
     filter_form = FilterForm()
     for_sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
     for_rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
