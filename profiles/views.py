@@ -78,25 +78,16 @@ def public_profile(request, profile_id):
 
 @require_POST
 @login_required
-def delete_listing(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    user_profile = UserProfile(user=request.user)
+def delete_listing(request, listing_id):
+    profile = UserProfile.objects.get(user=request.user)
+    profile_sale_listings = SaleListing.objects.filter(user_profile=profile)
+    profile_rent_listings = RentListing.objects.filter(user_profile=profile)
 
-    """ if order.user_profile.user.id != user_profile.user.id:
-        messages.success(request, 'You do not own this listing.')
-        return redirect('home') """
+    profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
 
-    if product.category.name == 'sale':
-        listing_id = request.POST.get('listing_id')
-        listing = SaleListing(pk=listing_id)
-        listing_images = SaleListingImage.objects.filter(listing=listing)
-        for image in listing_images:
-            image.delete()
-        """ listing_images.delete() """
-        listing.delete()
-    elif product.category.name == 'rent':
-        listing_id = order.rent_listing.id
-        listing = RentListing(pk=listing_id)
-        listing.delete()
+    for listing in profile_listings:
+        if listing.id == listing_id:
+            listing.delete()
+    
     messages.success(request, 'Your listing was successfully removed.')
     return redirect('profile')

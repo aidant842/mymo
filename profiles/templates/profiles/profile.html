@@ -102,10 +102,8 @@
                                         </p>
                                     </div>
                                     <hr>
-                                    <!-- CHANGE TO LISTING ID!! dont forget to do the same for rent -->
-                                    <form action="{% url 'delete_listing' listing.product.id %}" method="POST">
+                                    <form action="{% url 'delete_listing' listing.id %}" method="POST">
                                         {% csrf_token %}
-                                        <input type="hidden" name="listing_id" value="{{ listing.id }}">
                                         <button type="submit" class="btn float-end mb-2">Remove Listing</button>
                                         <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
                                     </form>
@@ -379,7 +377,7 @@
                                             This is permanent and you will have to re-advertise this property again!
                                         </p>
                                     </div>
-                                    <form action="" method="POST">
+                                    <form action="{% url 'delete_listing' listing.id %}" method="POST">
                                         {% csrf_token %}
                                         <button type="submit" class="btn float-end mb-2">Remove Listing</button>
                                         <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
