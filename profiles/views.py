@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
-from listings.models import SaleListing, RentListing
+from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 
 from operator import attrgetter
 from itertools import chain
@@ -82,6 +82,8 @@ def delete_listing(request, order_id):
     if order.product.category.name == 'sale':
         listing_id = order.sale_listing.id
         listing = SaleListing(pk=listing_id)
+        listing_images = SaleListingImage.objects.filter(listing=listing)
+        """ listing_images.delete() """
         listing.delete()
     elif order.product.category.name == 'rent':
         listing_id = order.rent_listing.id
