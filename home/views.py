@@ -32,3 +32,19 @@ def index(request):
 
     template = 'home/index.html'
     return render(request, template, context)
+
+
+def error_404_view(request, exception):
+    """ A view to return custom 404 page """
+
+    template = 'home/404.html'
+
+    return render(request, template, status=404)
+
+
+def error_500_view(request):
+    """ A view to return custom 500 page """
+
+    template = 'home/500.html'
+
+    return render(request, template, status=500)

@@ -83,6 +83,17 @@ a {
 }
 
 /* --------------------------------------------- */
+/* ---------------- http error styling ------------------- */
+.http-error {
+  font-size: 10rem;
+  color: lightgrey;
+  /* opacity: 0.3;
+  span {
+      opacity: 1;
+  } */
+}
+
+/* --------------------------------------------- */
 @media only screen and (max-width: 600px) {
   .toast {
     max-width: 200px !important;
