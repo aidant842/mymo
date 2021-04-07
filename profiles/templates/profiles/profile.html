@@ -71,6 +71,12 @@
                             UNLISTED
                         </p>
                     {% endif %}
+                    <p class="fs-6">
+                        Expiration Date: {{ order.sale_listing.expiration_date.date }}
+                    </p>
+                    {% if order.sale_listing.is_spotlight %}
+                        <p class="fs-6">Premium Expiration: {{ order.sale_listing.premium_expiration.date }}</p>
+                    {% endif %}
                     <!-- Remove Listing Button -->
                     <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal">
                         Remove listing
@@ -341,6 +347,12 @@
                         <p class="text-danger">
                             UNLISTED
                         </p>
+                    {% endif %}
+                    <p class="fs-6">
+                        Expiration Date: {{ order.rent_listing.expiration_date.date }}
+                    </p>
+                    {% if order.rent_listing.is_spotlight %}
+                        <p class="fs-6">Premium Expiration: {{ order.rent_listing.premium_expiration.date }}</p>
                     {% endif %}
                     <!-- Remove Listing Button -->
                     <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-rent-delete-modal">
