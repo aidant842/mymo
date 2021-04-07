@@ -44,71 +44,79 @@ def create_listings(request):
     product = get_object_or_404(Product, pk=product_id)
     user = UserProfile.objects.get(user=request.user)
 
-    if request.method == 'POST':
-        images = request.FILES.getlist('images')
-        if product.category.name == 'sale':
-            listing_form = SaleListingForm(request.POST, request.FILES)
-            images_form = SaleImageForm(request.POST, request.FILES)
-            if listing_form.is_valid() and images_form.is_valid():
-                listing = listing_form.save(commit=False)
-                listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=1))
-                if product.is_premium:
-                    listing.is_spotlight = True
-                    listing.premium_expiration = (timezone.now()
-                                                  + datetime.timedelta(days=30))
-                listing.product = product
-                listing.save()
-                request.session['listing_id'] = listing.id
-                request.session['product_id'] = product_id
-                for image in images:
-                    SaleListingImage.objects.create(
-                        listing=listing,
-                        images=image
-                    )
-                if user.is_agent and user.subscription_paid and not product.is_premium:
-                    listing.is_paid = True
-                    listing.user_profile = user
+    if request.session.get('listing_id'):
+        return redirect('checkout')
+    else:
+        if request.method == 'POST':
+            images = request.FILES.getlist('images')
+            if product.category.name == 'sale':
+                listing_form = SaleListingForm(request.POST, request.FILES)
+                images_form = SaleImageForm(request.POST, request.FILES)
+                if listing_form.is_valid() and images_form.is_valid():
+                    listing = listing_form.save(commit=False)
+                    listing.expiration_date = (timezone.now()
+                                            + datetime.timedelta(days=1))
+                    if product.is_premium:
+                        listing.is_spotlight = True
+                        listing.premium_expiration = (timezone.now()
+                                                    + datetime.timedelta(days=30))
+                    listing.product = product
                     listing.save()
-                    messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
-                    return redirect('home')
+                    request.session['listing_id'] = listing.id
+                    request.session['product_id'] = product_id
+                    for image in images:
+                        SaleListingImage.objects.create(
+                            listing=listing,
+                            images=image
+                        )
+                    if user.is_agent and user.subscription_paid and not product.is_premium:
+                        listing.is_paid = True
+                        listing.user_profile = user
+                        listing.save()
+                        messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                        return redirect('home')
+                    else:
+                        return redirect('checkout')
                 else:
-                    return redirect('checkout')
-        elif product.category.name == 'rent':
-            listing_form = RentListingForm(request.POST, request.FILES)
-            images_form = RentImageForm(request.POST, request.FILES)
-            if listing_form.is_valid() and images_form.is_valid():
-                listing = listing_form.save(commit=False)
-                listing.expiration_date = (timezone.now()
-                                           + datetime.timedelta(days=1))
-                if product.is_premium:
-                    listing.is_spotlight = True
-                    listing.premium_expiration = (timezone.now()
-                                                  + datetime.timedelta(days=30))
-                listing.product = product
-                listing.save()
-                request.session['listing_id'] = listing.id
-                request.session['product_id'] = product_id
-                for image in images:
-                    RentListingImage.objects.create(
-                        listing=listing,
-                        images=image
-                    )
-                if user.is_agent and user.subscription_paid  and not product.is_premium:
-                    listing.is_paid = True
-                    listing.user_profile = user
+                    messages.error(request, 'form error, try re-uploading images')
+                    return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
+            elif product.category.name == 'rent':
+                listing_form = RentListingForm(request.POST, request.FILES)
+                images_form = RentImageForm(request.POST, request.FILES)
+                if listing_form.is_valid() and images_form.is_valid():
+                    listing = listing_form.save(commit=False)
+                    listing.expiration_date = (timezone.now()
+                                            + datetime.timedelta(days=1))
+                    if product.is_premium:
+                        listing.is_spotlight = True
+                        listing.premium_expiration = (timezone.now()
+                                                    + datetime.timedelta(days=30))
+                    listing.product = product
                     listing.save()
-                    messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
-                    return redirect('home')
+                    request.session['listing_id'] = listing.id
+                    request.session['product_id'] = product_id
+                    for image in images:
+                        RentListingImage.objects.create(
+                            listing=listing,
+                            images=image
+                        )
+                    if user.is_agent and user.subscription_paid  and not product.is_premium:
+                        listing.is_paid = True
+                        listing.user_profile = user
+                        listing.save()
+                        messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                        return redirect('home')
+                    else:
+                        return redirect('checkout')
                 else:
-                    return redirect('checkout')
-            else:
-                for error in listing_form.errors:
-                    print('listing form error ***********')
-                    print(error)
-                for error in images_form.errors:
-                    print('images form error ***********')
-                    print(error)
+                    for error in listing_form.errors:
+                        print('listing form error ***********')
+                        print(error)
+                    for error in images_form.errors:
+                        print('images form error ***********')
+                        print(error)
+                    messages.error(request, 'form error, try re-uploading images')
+                    return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
 
 
 @login_required

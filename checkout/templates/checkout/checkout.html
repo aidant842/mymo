@@ -29,6 +29,7 @@
                 </fieldset>
                 <hr>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                <a href="{% url 'product_detail' product.id %}" class="btn form-btn">Make amendments <i class="fas fa-edit"></i></a>
                 <button class="btn form-btn" id="submitBtn">Make Payment</button>
             </form>
             <hr class="d-xl-none">

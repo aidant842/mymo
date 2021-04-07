@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
-from listings.models import SaleListingImage, RentListingImage
+from listings.models import SaleListingImage, RentListingImage, SaleListing, RentListing
 from checkout.forms import OrderForm
 from checkout.models import Order
 from profiles.models import UserProfile
@@ -43,13 +43,26 @@ def product_detail(request, product_id):
     """ A view to return the form to fill out to create a listing """
     product = get_object_or_404(Product, pk=product_id)
     user = UserProfile.objects.get(user=request.user)
+    print()
 
     if product.category.name == 'sale':
-        listing_form = SaleListingForm()
-        images_form = SaleImageForm()
+        if 'listing_id' in request.session:
+            listing_id = request.session.get('listing_id')
+            listing = SaleListing.objects.get(pk=listing_id)
+            listing_form = SaleListingForm(instance=listing)
+            images_form = SaleImageForm(instance=listing)
+        else:
+            listing_form = SaleListingForm()
+            images_form = SaleImageForm()
     elif product.category.name == 'rent':
-        listing_form = RentListingForm()
-        images_form = RentImageForm()
+        if 'listing_id' in request.session:
+            listing_id = request.session.get('listing_id')
+            listing = RentListing.objects.get(pk=listing_id)
+            listing_form = RentListingForm(instance=listing)
+            images_form = RentImageForm(instance=listing)
+        else:
+            listing_form = RentListingForm()
+            images_form = RentImageForm()
 
     template = 'products/product_details.html'
 
