@@ -91,8 +91,8 @@ def delete_listing(request, product_id):
         listing = SaleListing(pk=listing_id)
         listing_images = SaleListingImage.objects.filter(listing=listing)
         for image in listing_images:
-            print(image)
-        listing_images.delete()
+            image.delete()
+        """ listing_images.delete() """
         listing.delete()
     elif product.category.name == 'rent':
         listing_id = order.rent_listing.id
