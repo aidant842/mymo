@@ -48,7 +48,7 @@ def create_listings(request):
     user = UserProfile.objects.get(user=request.user)
 
     if request.session.get('listing_id'):
-        """ request.session['product_id'] = product_id """
+        request.session['product_id'] = product_id
         return redirect('checkout')
     else:
         if request.method == 'POST':
