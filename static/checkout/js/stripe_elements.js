@@ -64,7 +64,7 @@ form.addEventListener('submit', function(ev) {
                 $('#submitBtn').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    form.submit();
+                    /* form.submit(); */
                 }
             }
         });

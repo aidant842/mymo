@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage, SaleListing, RentListing
+from django.contrib import messages
 from checkout.forms import OrderForm
 from checkout.models import Order
 from profiles.models import UserProfile
@@ -19,6 +20,9 @@ def products_view(request):
     """ A view to return the products """
 
     """ Filter by category """
+
+    if 'product_id' in request.session:
+        del request.session['product_id']
 
     selected_category = request.GET.get('category', None)
 
@@ -47,7 +51,12 @@ def product_detail(request, product_id):
     if product.category.name == 'sale':
         if 'listing_id' in request.session:
             listing_id = request.session.get('listing_id')
-            listing = SaleListing.objects.get(pk=listing_id)
+            try:
+                listing = SaleListing.objects.get(pk=listing_id)
+            except SaleListing.DoesNotExist:
+                messages.error(request, 'An error occured, please try again.')
+                del request.session['listing_id']
+                return redirect('products')
             listing_form = SaleListingForm(instance=listing)
             images_form = SaleImageForm(instance=listing)
         else:
@@ -56,7 +65,12 @@ def product_detail(request, product_id):
     elif product.category.name == 'rent':
         if 'listing_id' in request.session:
             listing_id = request.session.get('listing_id')
-            listing = RentListing.objects.get(pk=listing_id)
+            try:
+                listing = RentListing.objects.get(pk=listing_id)
+            except RentListing.DoesNotExist:
+                messages.error(request, 'An error occured, please try again.')
+                del request.session['listing_id']
+                return redirect('products')
             listing_form = RentListingForm(instance=listing)
             images_form = RentImageForm(instance=listing)
         else:
