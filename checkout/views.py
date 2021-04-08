@@ -22,15 +22,6 @@ import json
 
 
 @require_POST
-def apply_coupon(request):
-    try:
-        coupon_code = request.POST.get('coupon_code')
-        return
-    except Exception as e:
-        messages.error(request, 'An error occured when applying that coupon code')
-        return HttpResponse(content=e, status=400)
-
-@require_POST
 def cache_checkout_data(request):
     try:
         listing_id = request.session.get('listing_id', '')
@@ -139,6 +130,16 @@ def checkout(request):
         messages.error(request, 'There was an error processing your request, \
             if this continues please contact us.')
         return redirect('home')
+    if Order.objects.filter(sale_listing=listing_id).exists():
+        messages.error(request, 'There is a listing in your session that is already linked to an order.\
+                                it has been deleted to prevent any errors.')
+        del request.session['listing_id']
+        return redirect('home')
+    elif Order.objects.filter(rent_listing=listing_id).exists():
+        messages.error(request, 'There is a listing in your session that is already linked to an order.\
+                                it has been deleted to prevent any errors.')
+        del request.session['listing_id']
+        return redirect('home')
     product_id = request.session.get('product_id', '')
     product = get_object_or_404(Product, pk=product_id)
     profile = UserProfile.objects.get(user=request.user)
@@ -195,9 +196,18 @@ def checkout(request):
 
     coupon_id = request.session.get('coupon_id')
     if coupon_id is not None:
-        coupon = Coupon.objects.get(pk=coupon_id)
-        discount = (coupon.discount / Decimal('100') * product.price)
-        stripe_total = int(product.price - discount)
+        if Coupon.objects.filter(pk=coupon_id,
+                                 valid_from__lte=timezone.now(),
+                                 valid_to__gte=timezone.now(),
+                                 active=True).exists():
+            coupon = Coupon.objects.get(pk=coupon_id)
+            discount = (coupon.discount / Decimal('100') * product.price)
+            stripe_total = int(product.price - discount)
+        else:
+            request.session['coupon_id'] = None
+            messages.error(request, 'There seems to have been an old coupon in your session,\
+                                    it has been removed to prevent any errors.')
+            stripe_total = product.price
     else:
         stripe_total = product.price
 
