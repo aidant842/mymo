@@ -48,7 +48,7 @@ def create_listings(request):
     user = UserProfile.objects.get(user=request.user)
 
     if request.session.get('listing_id'):
-        request.session['product_id'] = product_id
+        """ request.session['product_id'] = product_id """
         return redirect('checkout')
     else:
         if request.method == 'POST':
@@ -142,7 +142,13 @@ def checkout(request):
         del request.session['listing_id']
         return redirect('home')
     product_id = request.session.get('product_id', '')
-    product = get_object_or_404(Product, pk=product_id)
+
+    try:
+        product = get_object_or_404(Product, pk=product_id)
+    except Exception as e:
+        messages.error(request, 'An error occured, please try again.')
+        return redirect('products')
+
     profile = UserProfile.objects.get(user=request.user)
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
