@@ -14,6 +14,7 @@ class RentListingOrderAdmin(admin.StackedInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = (
         'order_number',
+        'stripe_pid',
         'date',
         'email',
         'product',
@@ -44,6 +45,8 @@ class OrderAdmin(admin.ModelAdmin):
         'date',
         'user_profile',
     )
+
+    search_fields = ['stripe_pid']
 
 
 admin.site.register(Order, OrderAdmin)

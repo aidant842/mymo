@@ -30,6 +30,8 @@ class SaleListingAdmin(admin.ModelAdmin):
         'date_created',
     )
 
+    search_fields = ['listing_number']
+
 
 class RentListingAdmin(admin.ModelAdmin):
     inlines = [RentListingImageAdmin]
@@ -45,6 +47,13 @@ class RentListingAdmin(admin.ModelAdmin):
         'product',
         'expiration_date'
     )
+
+    readonly_fields = (
+        'category',
+        'date_created',
+    )
+
+    search_fields = ['listing_number']
 
 
 @admin.register(SaleListingImage)

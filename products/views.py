@@ -43,7 +43,6 @@ def product_detail(request, product_id):
     """ A view to return the form to fill out to create a listing """
     product = get_object_or_404(Product, pk=product_id)
     user = UserProfile.objects.get(user=request.user)
-    print()
 
     if product.category.name == 'sale':
         if 'listing_id' in request.session:

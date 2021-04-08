@@ -1,4 +1,5 @@
 import datetime
+from decimal import Decimal
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, reverse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -11,12 +12,23 @@ from products.forms import SaleListingForm, RentListingForm, SaleImageForm, Rent
 from listings.models import SaleListingImage, RentListingImage, SaleListing, RentListing
 from checkout.forms import OrderForm
 from profiles.models import UserProfile
+from coupons.models import Coupon
+from coupons.forms import CouponApplyForm
 
 from .models import Order
 
 import stripe
 import json
 
+
+@require_POST
+def apply_coupon(request):
+    try:
+        coupon_code = request.POST.get('coupon_code')
+        return
+    except Exception as e:
+        messages.error(request, 'An error occured when applying that coupon code')
+        return HttpResponse(content=e, status=400)
 
 @require_POST
 def cache_checkout_data(request):
@@ -133,6 +145,7 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     order_form = OrderForm()
+    coupon_form = CouponApplyForm()
 
     if request.method == 'POST':
         if product.category.name == 'sale':
@@ -179,7 +192,15 @@ def checkout(request):
         listing = get_object_or_404(SaleListing, pk=listing_id)
     elif product.category.name == 'rent':
         listing = get_object_or_404(RentListing, pk=listing_id)
-    stripe_total = product.price
+
+    coupon_id = request.session.get('coupon_id')
+    if coupon_id is not None:
+        coupon = Coupon.objects.get(pk=coupon_id)
+        discount = (coupon.discount / Decimal('100') * product.price)
+        stripe_total = int(product.price - discount)
+    else:
+        stripe_total = product.price
+
     stripe.api_key = stripe_secret_key
 
     intent = stripe.PaymentIntent.create(
@@ -195,8 +216,10 @@ def checkout(request):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
         'order_form': order_form,
+        'coupon_form': coupon_form,
         'product': product,
         'listing': listing,
+        'stripe_total': stripe_total,
     }
 
     return render(request, template, context)
@@ -215,6 +238,8 @@ def checkout_success(request, order_number):
         return redirect('home')
     del request.session['listing_id']
     del request.session['product_id']
+    if 'coupon_id' in request.session:
+        del request.session['coupon_id']
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,

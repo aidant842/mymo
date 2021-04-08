@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'listings',
     'checkout',
     'profiles',
+    'coupons',
     'storages',
     'django_cleanup.apps.CleanupConfig',
 ]

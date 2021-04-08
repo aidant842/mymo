@@ -26,6 +26,7 @@ urlpatterns = [
     path('listings/', include('listings.urls')),
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
+    path('apply_coupon/', include('coupons.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handling
