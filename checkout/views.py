@@ -113,12 +113,6 @@ def create_listings(request):
                     else:
                         return redirect('checkout')
                 else:
-                    for error in listing_form.errors:
-                        print('listing form error ***********')
-                        print(error)
-                    for error in images_form.errors:
-                        print('images form error ***********')
-                        print(error)
                     messages.error(request, 'form error, try re-uploading images')
                     return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
 

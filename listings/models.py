@@ -1,6 +1,8 @@
 import uuid
+import os
 import datetime
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
 from django.conf import settings
 from django.core.mail import send_mail
@@ -9,6 +11,16 @@ from products.models import Category, Product
 from profiles.models import UserProfile
 
 from PIL import Image
+
+
+def path_and_rename(instance, filename):
+    upload_to = 'listing_images'
+    ext = filename.split('.')[-1]
+    # get filename
+    # set filename as random string
+    filename = '{}.{}'.format(uuid.uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
 
 
 class SaleListing(models.Model):
@@ -52,7 +64,7 @@ class SaleListing(models.Model):
     top_features_4 = models.CharField(max_length=100, blank=True, null=True)
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=False, null=False)
-    header_image = models.ImageField()
+    header_image = models.ImageField(upload_to=path_and_rename)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -142,7 +154,7 @@ class RentListing(models.Model):
                                        blank=True, default='Square Meters')
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
     description = models.TextField(max_length=1000, blank=False, null=False)
-    header_image = models.ImageField()
+    header_image = models.ImageField(upload_to=path_and_rename)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
     product = models.ForeignKey(Product, null=True,
@@ -204,7 +216,7 @@ class RentListing(models.Model):
 
 class SaleListingImage(models.Model):
     listing = models.ForeignKey(SaleListing, default=None, on_delete=models.CASCADE, related_name='listingImages')
-    images = models.ImageField()
+    images = models.ImageField(upload_to=path_and_rename)
 
     def __str__(self):
         return self.listing.listing_number
@@ -212,7 +224,7 @@ class SaleListingImage(models.Model):
 
 class RentListingImage(models.Model):
     listing = models.ForeignKey(RentListing, default=None, on_delete=models.CASCADE, related_name='listingImages')
-    images = models.ImageField()
+    images = models.ImageField(upload_to=path_and_rename)
 
     def __str__(self):
         return self.listing.listing_number
