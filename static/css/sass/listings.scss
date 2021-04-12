@@ -46,6 +46,12 @@
     max-width: 90%;
 }
 
+.carousel-item {
+    img {
+        max-height: 80vh;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .modal-dialog {
         margin: .5rem auto;

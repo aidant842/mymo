@@ -153,7 +153,7 @@
             {{ listing.phone }}
         </p>
         <p>
-            Available Hours: {{ listing.call_between_hrs }}
+            Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
         </p>
         <p>
             {{ listing.email }}

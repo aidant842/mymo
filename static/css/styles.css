@@ -774,6 +774,10 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   max-width: 90%;
 }
 
+.carousel-item img {
+  max-height: 80vh;
+}
+
 @media only screen and (max-width: 576px) {
   .modal-dialog {
     margin: 0.5rem auto;
