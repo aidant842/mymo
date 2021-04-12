@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% load tools %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
-    <meta property="og:description" content="Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Profile for{% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }}{% else %} {{ request.user }}{% endif %} | MyMo.ie" />
-    <meta name="description" content="Profile for {% if request.user.userprofile.is_agent %}{{ request.user.userprofile.company_name }}{% else %}{{ request.user }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
+    <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />
+    <meta name="description" content="Profile for {% if profile.is_agent %}{{ profile.company_name }}{% else %}{{ profile }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
     {% endblock %}
     
 
-<title>{% block extra_title %}Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %}{% endblock %}</title>
+<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">
@@ -593,7 +593,11 @@
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form" class="my-3">
                         {% csrf_token %}
+                        {% if profile.is_agent %}
+                        {{ agent_profile_form | crispy }}
+                        {% else %}
                         {{ user_profile_form | crispy }}
+                        {% endif %}
                         <button class="btn form-btn" id="submit-button">Save <i class="far fa-save"></i></button>
                 </form>
                 <a href="{% url 'account_change_password' %}">Change Password</a>

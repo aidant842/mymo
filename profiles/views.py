@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.contrib import messages
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, AgentProfileForm
 from checkout.models import Order
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 from products.models import Product
@@ -24,26 +24,35 @@ def profile(request):
 
     profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
 
-
     if request.method == 'POST':
-        user_profile_form = UserProfileForm(request.POST, instance=profile)
-
-        if user_profile_form.is_valid():
-            user_profile_form.save()
-            messages.success(request, 'Changes made successfully.')
-            return redirect('profile')
+        if profile.is_agent:
+            agent_profile_form = AgentProfileForm(request.POST, instance=profile)
+            if agent_profile_form.is_valid():
+                agent_profile_form.save()
+                messages.success(request, 'Changes made successfully.')
+                return redirect('profile')
+            else:
+                messages.error(request, 'Update failed, please ensure the form is valid.')
         else:
-            messages.error(request,
-                           'Update failed, please ensure the form is valid.')
+            user_profile_form = UserProfileForm(request.POST, instance=profile)
+
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+                messages.success(request, 'Changes made successfully.')
+                return redirect('profile')
+            else:
+                messages.error(request,
+                               'Update failed, please ensure the form is valid.')
 
     user_profile_form = UserProfileForm(instance=profile)
-
+    agent_profile_form = AgentProfileForm(instance=profile)
 
     template = 'profiles/profile.html'
     context = {
         'orders': orders,
         'profile': profile,
         'user_profile_form': user_profile_form,
+        'agent_profile_form': agent_profile_form,
         'profile_listings': profile_listings,
     }
 

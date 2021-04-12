@@ -10,3 +10,14 @@ class UserProfileForm(forms.ModelForm):
             'email',
             'phone_number'
         ]
+
+
+class AgentProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = [
+            'full_name',
+            'email',
+            'phone_number',
+            'psr_number'
+        ]

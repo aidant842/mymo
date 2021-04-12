@@ -141,6 +141,9 @@
         <p>
             {{ listing.email }}
         </p>
+        <p>
+            {% if listing.user_profile.psr_number %}PSR No.: {{ listing.user_profile.psr_number }}{% endif %}
+        </p>
         <a href="{% url 'public_profile' listing.user_profile.id %}">
             View all properties
         </a>

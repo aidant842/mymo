@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
 {% block extra_meta %}
-    <meta property="og:description" content="Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Profile for{% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }}{% else %} {{ request.user }}{% endif %} | MyMo.ie" />
-    <meta name="description" content="Profile for {% if request.user.userprofile.is_agent %}{{ request.user.userprofile.company_name }}{% else %}{{ request.user }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
+    <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />
+    <meta name="description" content="Profile for {% if profile.is_agent %}{{ profile.company_name }}{% else %}{{ profile }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
     {% endblock %}
     
 
-<title>{% block extra_title %}Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %}{% endblock %}</title>
+<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">
@@ -16,6 +16,7 @@
         <h1>Listings from
         {% if profile.company_name %}
             {{ profile.company_name }}
+            <p class="text-muted fs-6 mt-2">PSR No.: {{ profile.psr_number }}</p>
         {% elif profile.full_name %}
             {{ profile.full_name }}
         {% else %}
