@@ -41,5 +41,9 @@ footer {
     .footer {
         display: block;
         text-align: center;
+
+        .navbar-brand {
+            margin-right: 0;
+        }
     }
 }

@@ -467,6 +467,9 @@ footer a {
     display: block;
     text-align: center;
   }
+  .footer .navbar-brand {
+    margin-right: 0;
+  }
 }
 .product-section {
   height: 100vh;

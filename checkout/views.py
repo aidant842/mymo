@@ -78,6 +78,8 @@ def create_listings(request):
                         listing.user_profile = user
                         listing.save()
                         messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                        del request.session['listing_id']
+                        del request.session['product_id']
                         return redirect('home')
                     else:
                         return redirect('checkout')
@@ -109,12 +111,15 @@ def create_listings(request):
                         listing.user_profile = user
                         listing.save()
                         messages.success(request, 'Your listing has been submitted, please allow upto 48 hours for it to be reviewed by one of our team')
+                        del request.session['listing_id']
+                        del request.session['product_id']
                         return redirect('home')
                     else:
                         return redirect('checkout')
                 else:
                     messages.error(request, 'form error, try re-uploading images')
                     return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
+    request.session.set_expiry(1800)
 
 
 @login_required
