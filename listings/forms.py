@@ -96,7 +96,7 @@ class FilterForm(forms.Form):
                              required=False)
 
     query = forms.CharField(widget=forms.TextInput(
-                            attrs={'placeholder': 'Custom Query'}),
+                            attrs={'placeholder': 'Town, Area or City'}),
                             label='',
                             required=False)
     sort = forms.CharField(widget=forms.Select

@@ -11,6 +11,14 @@
 <title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}</title>
 
 {% block content %}
+<div class="filters-container">
+    <div class="filters">
+        <form method="GET" action="{% url 'listings' %}" class="search-bar-container mb-4">
+            <input type="text" class="banner-search" placeholder="Search e.g Town, Area or City" name="q">
+            <button type="submit" class="btn banner-search" value="">Search <i class="fas fa-search-location"></i></button>
+        </form> 
+    </div>
+</div>
 <div class="min-vh-100">
     {% if total_listings == 0 %}
     <div class="no-results">
@@ -25,7 +33,7 @@
             <div class="card h-100">
                 <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                 <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
-                    <span class="property-price">€ {{ listing.price }}</span>
+                    <span class="property-price">€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}</span>
                     <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
                 </div>
                 <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">

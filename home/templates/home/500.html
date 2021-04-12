@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Uh Oh, it seems that there was an error, Please let us know if this continues. | MyMo.ie" />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Uh Oh! It's seems that there was an error. | MyMo.ie" />
+    <meta name="description" content="Uh Oh, it seems that there was an error, Please let us know if this continues. | MyMo.ie">
+    {% endblock %}
+    
+
+<title>{% block extra_title %}Uh Oh! It's seems that there was an error.{% endblock %}</title>
+
 {% block content %}
 <div class="container min-vh-100 d-flex align-items-center justify-content-center">
     <h1 class="http-error text-center lh-1">500. <br/> <span class="h4 text-dark lh-1">Sorry, an error occured. Please contact us if this continues to happen.</span></h1>
