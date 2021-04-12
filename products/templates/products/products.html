@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Choose A Product To List Your Property {% if request.GET.category == 'sale' %}For Sale{% elif request.GET.category == 'rent' %}To Rent{% endif %} on MyMo.ie, Ireland's Best Online Property Marketplace. | MyMo.ie" />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Choose a product to list your Property {% if request.GET.category == 'sale' %}for Sale{% elif request.GET.category == 'rent' %}to Rent{% endif %} on MyMo.ie | MyMo.ie" />
+    <meta name="description" content="Choose A Product To List Your Property {% if request.GET.category == 'sale' %}For Sale{% elif request.GET.category == 'rent' %}To Rent{% endif %} on MyMo.ie, Ireland's Best Online Property Marketplace. | MyMo.ie">
+{% endblock %}
+    
+
+<title>{% block extra_title %}Choose a product to list your Property {% if request.GET.category == 'sale' %}for Sale{% elif request.GET.category == 'rent' %}to Rent{% endif %} on MyMo.ie {% endblock %}</title>
+
 {% block content %}
 <section class="product-section">
     <h1 class="mb-4">Ireland's most competitive housing platform</h1>

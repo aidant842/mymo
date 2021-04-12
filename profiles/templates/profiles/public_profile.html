@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Profile for{% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }}{% else %} {{ request.user }}{% endif %} | MyMo.ie" />
+    <meta name="description" content="Profile for {% if request.user.userprofile.is_agent %}{{ request.user.userprofile.company_name }}{% else %}{{ request.user }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
+    {% endblock %}
+    
+
+<title>{% block extra_title %}Profile for {% if request.user.userprofile.is_agent %} {{ request.user.userprofile.company_name }} {% else %} {{ request.user }} {% endif %}{% endblock %}</title>
+
 {% block content %}
 <div class="min-vh-100">
     <div class="container mt-5">
@@ -38,7 +48,7 @@
             <div class="card h-100">
                 <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                 <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
-                    <span class="property-price">€ {{ listing.price }}</span>
+                    <span class="property-price">€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }} {% endif %}</span>
                     <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
                 </div>
                 <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">

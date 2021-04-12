@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Property to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Ireland {% endif %}| MyMo.ie" />
+    <meta name="description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie.">
+    {% endblock %}
+    
+
+<title>{% block extra_title %}Property to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Ireland {% endif %} {% endblock %}</title>
+
 {% block content %}
 <div class="filters-container">
     <div class="filters">
