@@ -1,12 +1,19 @@
 {% extends 'base.html' %} {% load static %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Search Through Thousands Of Houses, Apartments And Properties For Sale And Rent, All In One Location - From Ireland's Best Estate Agents" />
+    <meta property="og:url" content="https://www.mymo.ie/" />
+    <meta property="og:title" content="Explore Ireland's Best Property Marketplace | MyMo.ie" />
+    <meta name="description" content="Search Through Thousands Of Houses, Apartments And Properties For Sale And Rent, All In One Location - From Ireland's Best Estate Agents">
+{% endblock %}
+
 {% block content %}
 <section class="home-landing-section">
     <div class="main-img-container">
         <div class="search-header">
             <h2>Discover your new home</h2>
             <form method="GET" action="{% url 'listings' %}" class="search-bar-container">
-                <input type="text" class="banner-search" placeholder="Search e.g Crossmolina" name="q">
+                <input type="text" class="banner-search" placeholder="Search e.g Town, Area or City" name="q">
                 <button type="submit" class="btn banner-search" value="">Search <i class="fas fa-search-location"></i></button>
             </form>
         </div>

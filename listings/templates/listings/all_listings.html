@@ -1,5 +1,15 @@
 {% extends 'base.html' %} {% load static %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Search Through Thousands Of Houses, Apartments And Properties For Sale And Rent, All In One Location - From Ireland's Best Estate Agents" />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Property for Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }} {% else %}Ireland {% endif %}| MyMo.ie" />
+    <meta name="description" content="Find Property For Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties for Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie.">
+    {% endblock %}
+    
+
+<title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}</title>
+
 {% block content %}
 <div class="min-vh-100">
     {% if total_listings == 0 %}

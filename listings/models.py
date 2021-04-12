@@ -63,7 +63,7 @@ class SaleListing(models.Model):
     top_features_3 = models.CharField(max_length=100, blank=True, null=True)
     top_features_4 = models.CharField(max_length=100, blank=True, null=True)
     top_features_5 = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(max_length=1000, blank=False, null=False)
+    description = models.TextField(blank=False, null=False)
     header_image = models.ImageField(upload_to=path_and_rename)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
@@ -153,7 +153,7 @@ class RentListing(models.Model):
     floor_area_type = models.CharField(max_length=256,
                                        blank=True, default='Square Meters')
     ber_rating = models.CharField(max_length=256, blank=False, null=False)
-    description = models.TextField(max_length=1000, blank=False, null=False)
+    description = models.TextField(blank=False, null=False)
     header_image = models.ImageField(upload_to=path_and_rename)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,
                                        default=0)
