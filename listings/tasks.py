@@ -38,3 +38,20 @@ def tasks():
             listing.save()
             print(f'Completed remove premium status at {timezone.now()}')
 
+
+@shared_task
+def get_average_views():
+    sale_listings = SaleListing.objects.all()
+    rent_listings = RentListing.objects.all()
+    viewed_total = 0
+
+    listings = list(chain(sale_listings, rent_listings))
+
+    for listing in listings:
+        listing_views = listing.times_viewed
+        viewed_total += listing_views
+
+    average_views = int(viewed_total / len(listings))
+    print(average_views)
+
+
