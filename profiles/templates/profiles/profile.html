@@ -410,6 +410,7 @@
                                             This is permanent and you will have to re-advertise this property again!
                                         </p>
                                     </div>
+                                    <hr>
                                     <form action="{% url 'delete_listing' listing.id %}" method="POST">
                                         {% csrf_token %}
                                         <button type="submit" class="btn float-end mb-2">Remove Listing</button>

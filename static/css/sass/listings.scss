@@ -24,6 +24,15 @@
     }
 }
 
+.agent-header {
+    color: $font-color;
+    img {
+        width: 80px;
+    }
+}
+
+/************** Modal Section *****************/
+
 .modal {
     background: rgba(0,0,0, 0.2);
 }
@@ -42,25 +51,33 @@
     }
 }
 
-.modal-dialog {
-    max-width: 90%;
-}
+/* .modal-dialog {
+    max-width: max-content;
+} */
 
-.carousel-item {
+/* .carousel-item {
     img {
         max-height: 80vh;
     }
-}
+} */
 
-.agent-header {
-    color: $font-color;
+.carousel-item {
     img {
-        width: 80px;
+        max-width: 100vh;
+        height: 60vw;
+        object-fit: cover;
+      
+      @media (min-width: 576px) {
+        height: auto;
+      }
     }
-}
+  }
+
+/* --------------------------------------------------------------- */
 
 @media only screen and (max-width: 576px) {
     .modal-dialog {
         margin: .5rem auto;
+        max-width: 90%;
     }
 }

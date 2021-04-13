@@ -762,6 +762,14 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   min-width: 50vw;
 }
 
+.agent-header {
+  color: white;
+}
+.agent-header img {
+  width: 80px;
+}
+
+/************** Modal Section *****************/
 .modal {
   background: rgba(0, 0, 0, 0.2);
 }
@@ -778,24 +786,30 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   top: 5px;
 }
 
-.modal-dialog {
-  max-width: 90%;
-}
-
+/* .modal-dialog {
+    max-width: max-content;
+} */
+/* .carousel-item {
+    img {
+        max-height: 80vh;
+    }
+} */
 .carousel-item img {
-  max-height: 80vh;
+  max-width: 100vh;
+  height: 60vw;
+  object-fit: cover;
+}
+@media (min-width: 576px) {
+  .carousel-item img {
+    height: auto;
+  }
 }
 
-.agent-header {
-  color: white;
-}
-.agent-header img {
-  width: 80px;
-}
-
+/* --------------------------------------------------------------- */
 @media only screen and (max-width: 576px) {
   .modal-dialog {
     margin: 0.5rem auto;
+    max-width: 90%;
   }
 }
 .loader-bg {

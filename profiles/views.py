@@ -25,6 +25,7 @@ def profile(request):
     listing_analytics = ListingAnalytics.objects.get(pk=1)
 
     profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
+    profile_listings.sort(key=attrgetter('date_created'), reverse=True)
 
     if request.method == 'POST':
         if profile.is_agent:
