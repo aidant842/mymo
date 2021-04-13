@@ -32,7 +32,14 @@
                         <p class="card-text">The ultimate way to advertise your property</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item td-price spotlight">€{{ product.price | display_price }}</li>
+                        <li class="list-group-item td-price spotlight">
+                           <p class="text-decoration-line-through fs-4">
+                               €{{ product.pre_sale_price | display_price}}
+                           </p> 
+                           <p>
+                               €{{ product.price | display_price }}
+                           </p>
+                        </li>
                         <li class="list-group-item spotlight">
                             {% if product.category.name == 'rent' %}
                                 90 Days
@@ -67,7 +74,14 @@
                         <p class="card-text">Advertise your house on MyMo</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item td-price">€{{ product.price | display_price }}</li>
+                        <li class="list-group-item td-price">
+                            <p class="text-decoration-line-through fs-4">
+                                €{{ product.pre_sale_price | display_price}}
+                            </p> 
+                            <p>
+                                €{{ product.price | display_price }}
+                            </p>
+                         </li>
                         <li class="list-group-item">
                             {% if product.category.name == 'rent' %}
                                 90 Days

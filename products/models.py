@@ -7,6 +7,7 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, blank=True)
     price = models.IntegerField()
+    pre_sale_price = models.IntegerField(default=None, null=True, blank=True)
     is_premium = models.BooleanField(default=False)
 
     def __str__(self):

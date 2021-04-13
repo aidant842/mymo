@@ -65,6 +65,14 @@
         {% for listing in listings %}
             <a href="{% url 'sale_listing_detail' listing.id %}">
                 <div class="card h-100">
+                    {% if listing.user_profile.company_name %}
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        {{ listing.user_profile.company_name }}
+                        {% if listing.user_profile.company_logo %}
+                            <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
+                        {% endif %}
+                    </div>
+                    {% endif %}
                     <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                     <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                         <span class="property-price">€ {{ listing.price }}</span>

@@ -16,8 +16,10 @@ class AgentProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = [
+            'company_name',
             'full_name',
             'email',
             'phone_number',
-            'psr_number'
+            'psr_number',
+            'company_logo',
         ]

@@ -272,6 +272,14 @@ a {
   text-align: center;
 }
 
+.card-header {
+  background-color: #303e94;
+  color: white;
+}
+.card-header img {
+  width: 50px;
+}
+
 .spotlight-tag {
   letter-spacing: 2px;
   font-weight: bold;
@@ -776,6 +784,13 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .carousel-item img {
   max-height: 80vh;
+}
+
+.agent-header {
+  color: white;
+}
+.agent-header img {
+  width: 80px;
 }
 
 @media only screen and (max-width: 576px) {

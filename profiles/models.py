@@ -9,6 +9,7 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=256, null=True, blank=True)
+    company_logo = models.ImageField(upload_to='agent_logos', null=True, blank=True)
     full_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
     phone_number = models.CharField(max_length=32, null=True, blank=True)

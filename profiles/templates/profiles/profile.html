@@ -63,7 +63,6 @@
                 <hr>
                 {% for listing in profile_listings %}
                 {% if listing.category.name == 'sale' %}
-                {{ listing }}
                 <legend>
                     <p>
                         <i class="fas fa-list"></i>
@@ -81,6 +80,18 @@
                             UNLISTED
                         </p>
                     {% endif %}
+                    {% if listing.times_viewed > average_views %}
+                        <p class="text-success">
+                            This Ad is performing above the average.
+                        </p>
+                    {% else %}
+                        <p class="text-danger">
+                            This Ad is performing under the average
+                        </p>
+                    {% endif %}
+                    <p class="fs-6">
+                        Times viewed: {{ listing.times_viewed }}
+                    </p>
                     <p class="fs-6">
                         Expiration Date: {{ listing.expiration_date.date }}
                     </p>
@@ -357,6 +368,18 @@
                             UNLISTED
                         </p>
                     {% endif %}
+                    {% if listing.times_viewed > average_views %}
+                        <p class="text-success">
+                            This Ad is performing above average.
+                        </p>
+                    {% else %}
+                        <p class="text-danger">
+                            This Ad is performing under the average
+                        </p>
+                    {% endif %}
+                    <p class="fs-6">
+                        Times viewed: {{ listing.times_viewed }}
+                    </p>
                     <p class="fs-6">
                         Expiration Date: {{ listing.expiration_date.date }}
                     </p>

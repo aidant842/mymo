@@ -122,13 +122,21 @@
             Contact Seller
         </legend>
         <hr>
-        {% if listing.company_name %}
+        {% if listing.user_profile.company_name %}
+        <div class="agent-header purple d-flex justify-content-between align-items-center mb-3">
+            {{ listing.user_profile.company_name }}
+            {% if listing.user_profile.company_logo %}
+                <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
+            {% endif %}
+        </div>
+        {% endif %}
+        <!-- {% if listing.company_name %}
             <h4 class="purple text-center p-2 text-white">
                 <strong>
                     {{ listing.company_name }}
                 </strong>
             </h4>
-        {% endif %}
+        {% endif %} -->
         <p>
             {{ listing.full_name }}
         </p>

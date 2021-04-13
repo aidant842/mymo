@@ -77,6 +77,15 @@
 
 
 // ***************** CARDS SECTION ***************** //
+.card-header {
+    background-color: $secondary-color;
+    color: $font-color;
+
+    img {
+        width: 50px;
+    }
+}
+
 .spotlight-tag {
     letter-spacing: 2px;
     font-weight: bold;

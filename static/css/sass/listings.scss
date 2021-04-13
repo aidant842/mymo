@@ -52,6 +52,13 @@
     }
 }
 
+.agent-header {
+    color: $font-color;
+    img {
+        width: 80px;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .modal-dialog {
         margin: .5rem auto;

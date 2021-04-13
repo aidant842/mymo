@@ -8,6 +8,7 @@ from .forms import UserProfileForm, AgentProfileForm
 from checkout.models import Order
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 from products.models import Product
+from analytics.models import ListingAnalytics
 
 from operator import attrgetter
 from itertools import chain
@@ -21,6 +22,7 @@ def profile(request):
     orders = profile.orders.all()
     profile_sale_listings = SaleListing.objects.filter(user_profile=profile)
     profile_rent_listings = RentListing.objects.filter(user_profile=profile)
+    listing_analytics = ListingAnalytics.objects.get(pk=1)
 
     profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
 
@@ -46,6 +48,7 @@ def profile(request):
 
     user_profile_form = UserProfileForm(instance=profile)
     agent_profile_form = AgentProfileForm(instance=profile)
+    average_views = listing_analytics.average_listing_views
 
     template = 'profiles/profile.html'
     context = {
@@ -54,6 +57,7 @@ def profile(request):
         'user_profile_form': user_profile_form,
         'agent_profile_form': agent_profile_form,
         'profile_listings': profile_listings,
+        'average_views': average_views,
     }
 
     return render(request, template, context)
