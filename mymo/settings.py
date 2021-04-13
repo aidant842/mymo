@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'checkout',
     'profiles',
     'coupons',
+    'analytics',
     'storages',
     'django_cleanup.apps.CleanupConfig',
 ]

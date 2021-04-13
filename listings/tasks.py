@@ -7,6 +7,7 @@ import datetime
 from celery.decorators import task
 
 from .models import SaleListing, RentListing
+from analytics.models import ListingAnalytics
 
 
 @shared_task
@@ -41,6 +42,7 @@ def tasks():
 
 @shared_task
 def get_average_views():
+    listing_analytics = ListingAnalytics.objects.get(pk=1)
     sale_listings = SaleListing.objects.all()
     rent_listings = RentListing.objects.all()
     viewed_total = 0
@@ -52,6 +54,8 @@ def get_average_views():
         viewed_total += listing_views
 
     average_views = int(viewed_total / len(listings))
-    print(average_views)
+    listing_analytics.average_listing_views = average_views
+    listing_analytics.save()
+    print(listing_analytics.average_listing_views)
 
 

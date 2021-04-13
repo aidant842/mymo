@@ -28,6 +28,7 @@ class SaleListingAdmin(admin.ModelAdmin):
     readonly_fields = (
         'category',
         'date_created',
+        'times_viewed',
     )
 
     search_fields = ['listing_number']
@@ -51,6 +52,7 @@ class RentListingAdmin(admin.ModelAdmin):
     readonly_fields = (
         'category',
         'date_created',
+        'times_viewed',
     )
 
     search_fields = ['listing_number']
