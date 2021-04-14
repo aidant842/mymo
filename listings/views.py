@@ -221,6 +221,15 @@ def for_rent_listings(request):
 
 def sale_listing_detail_view(request, listing_id):
     listing = get_object_or_404(SaleListing, pk=listing_id)
+    profile = listing.user_profile.user.id
+    sale_listings = SaleListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    rent_listings = RentListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+
+    result_list = list(chain(sale_listings, rent_listings))
+
+    result_list.sort(key=attrgetter('date_created'), reverse=True)
+    result_list = result_list[:3]
+
     if listing.times_viewed is None:
         listing.times_viewed = 1
         listing.save()
@@ -236,6 +245,7 @@ def sale_listing_detail_view(request, listing_id):
 
     context = {
         'listing': listing,
+        'result_list': result_list,
         'photos': photos,
         'no_of_photos': no_of_photos,
     }
@@ -249,6 +259,14 @@ def sale_listing_detail_view(request, listing_id):
 
 def rent_listing_detail_view(request, listing_id):
     listing = get_object_or_404(RentListing, pk=listing_id)
+    profile = listing.user_profile.user.id
+    sale_listings = SaleListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    rent_listings = RentListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+
+    result_list = list(chain(sale_listings, rent_listings))
+
+    result_list.sort(key=attrgetter('date_created'), reverse=True)
+    result_list = result_list[:3]
     if listing.times_viewed is None:
         listing.times_viewed = 1
         listing.save()
@@ -265,6 +283,7 @@ def rent_listing_detail_view(request, listing_id):
     context = {
         'no_of_photos': no_of_photos,
         'listing': listing,
+        'result_list': result_list,
         'photos': photos,
     }
     if listing.is_listed:
