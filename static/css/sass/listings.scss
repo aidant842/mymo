@@ -51,33 +51,25 @@
     }
 }
 
-/* .modal-dialog {
-    max-width: max-content;
-} */
+.modal-dialog {
+    max-width: 90%;
 
-/* .carousel-item {
-    img {
-        max-height: 80vh;
+    @media only screen and (min-width: 576px) {
+        max-width: 70%;
     }
-} */
+}
 
 .carousel-item {
     img {
-        max-width: 100vh;
-        height: 60vw;
-        object-fit: cover;
-      
-      @media (min-width: 576px) {
-        height: auto;
-      }
+        max-height: 80vh;
+        width: 100%;
     }
-  }
+}
 
 /* --------------------------------------------------------------- */
 
 @media only screen and (max-width: 576px) {
     .modal-dialog {
-        margin: .5rem auto;
-        max-width: 90%;
+        margin: 0 auto;
     }
 }

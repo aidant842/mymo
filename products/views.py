@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from listings.models import SaleListingImage, RentListingImage, SaleListing, RentListing
-from django.contrib import messages
 from checkout.forms import OrderForm
 from checkout.models import Order
 from profiles.models import UserProfile
@@ -15,7 +14,6 @@ from profiles.models import UserProfile
 import stripe
 
 
-@login_required
 def products_view(request):
     """ A view to return the products """
 
