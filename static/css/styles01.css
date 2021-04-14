@@ -764,7 +764,15 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .image-container {
   text-align: center;
 }
+.image-container p {
+  position: absolute;
+  z-index: 9;
+  background-color: #6a7fdb;
+  color: white;
+  padding: 10px;
+}
 .image-container img {
+  position: relative;
   display: block;
   width: 100%;
   height: auto;

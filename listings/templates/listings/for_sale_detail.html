@@ -14,7 +14,7 @@
 <div class="container my-5">
     <!-- Image -->
     <div class="image-container">
-        <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
+        <!-- <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
             <div id="header_carousel" class="carousel">
                 <div class="carousel-indicators">
                     {% for p in photos %}
@@ -35,11 +35,12 @@
                     {% endfor %}
                 </div>
             </div>
-            </a>
+            </a> -->
         <!-- Button trigger modal -->
-        <!-- <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
+        <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
+            <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
             <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
-        </a> -->
+        </a>
     </div>
     <!-- Overview -->
     <div class="row text-center mt-2">
@@ -231,7 +232,7 @@
         <div class="modal-content">
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
-                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="carousel-indicators">
                         {% for p in photos %}
                         <button type="button" data-bs-target="#carouselExampleIndicators"

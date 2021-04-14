@@ -230,12 +230,14 @@ def sale_listing_detail_view(request, listing_id):
 
     photos = list(SaleListingImage.objects.filter(listing=listing))
     photos.insert(0, listing.header_image.url)
+    no_of_photos = len(photos)
 
     template = 'listings/for_sale_detail.html'
 
     context = {
         'listing': listing,
         'photos': photos,
+        'no_of_photos': no_of_photos,
     }
 
     if listing.is_listed:
@@ -256,10 +258,12 @@ def rent_listing_detail_view(request, listing_id):
 
     photos = list(RentListingImage.objects.filter(listing=listing))
     photos.insert(0, listing.header_image.url)
+    no_of_photos = len(photos)
 
     template = 'listings/for_rent_detail.html'
 
     context = {
+        'no_of_photos': no_of_photos,
         'listing': listing,
         'photos': photos,
     }
