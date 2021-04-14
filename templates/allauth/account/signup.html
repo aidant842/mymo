@@ -1,8 +1,15 @@
 {% extends "account/base.html" %} {% load crispy_forms_tags %}
 
+{% block extra_meta %}
+    <meta property="og:description" content="Sign up To Ireland's Best Online Property Market | MyMo.ie" />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Sign up | MyMo.ie" />
+    <meta name="description" content="Sign up to Ireland's Best Online Property Market | MyMo.ie">
+{% endblock %}
+
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+<title>{% block extra_title %}Sign Up {% endblock %}</title>
 
 {% block content %}
 <div class="container allauth-container">

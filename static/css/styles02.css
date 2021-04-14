@@ -670,10 +670,15 @@ select option:first-child {
   color: #6c757d !important;
 }
 
-.filters-container {
+.filters-container.all-listings {
   background: #eff0f0;
   padding: 1rem;
   position: relative;
+}
+@media only screen and (max-width: 400px) {
+  .filters-container.all-listings {
+    height: 200px;
+  }
 }
 
 .filters {

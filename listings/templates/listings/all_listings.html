@@ -5,13 +5,13 @@
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
     <meta property="og:title" content="Property for Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }} {% else %}Ireland {% endif %}| MyMo.ie" />
     <meta name="description" content="Find Houses, Apartments and Properties For Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties for Sale or to Rent in {% if request.GET.q %}{{ request.GET.q.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie.">
-    {% endblock %}
+{% endblock %}
     
 
 <title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}</title>
 
 {% block content %}
-<div class="filters-container">
+<div class="filters-container all-listings">
     <div class="filters">
         <form method="GET" action="{% url 'listings' %}" class="search-bar-container mb-4">
             <input type="text" class="banner-search" placeholder="Search e.g Town, Area or City" name="q">

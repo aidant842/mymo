@@ -103,6 +103,16 @@ select option:first-child {
     position: relative;
 }
 
+.filters-container.all-listings {
+    background: #eff0f0;
+    padding: 1rem;
+    position: relative;
+
+    @media only screen and (max-width: 400px) {
+        height: 200px;
+    }
+}
+
 .filters {
     width: 75%;
     margin: 2rem auto 0 auto;

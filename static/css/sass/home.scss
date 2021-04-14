@@ -107,6 +107,18 @@
     grid-gap: 20px;
     padding: 3rem 0 3rem 0;
     justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.card-container.detail-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
+    grid-gap: 20px;
+    padding: 3rem 0 3rem 0;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
 }
 
 .card {

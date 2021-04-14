@@ -249,7 +249,7 @@
             Other Listings from this seller
             <hr>
         </legend>
-        <div class="card-container">
+        <div class="card-container detail-page">
             {% for listing in result_list %}
             <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
                 <div class="card h-100">
