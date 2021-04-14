@@ -109,6 +109,10 @@
     justify-content: center;
     width: 80%;
     margin: 0 auto;
+
+    @media only screen and (max-width: 500px) {
+        width: 100%;
+    }
 }
 
 .card-container.detail-page {
