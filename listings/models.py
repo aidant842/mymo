@@ -152,7 +152,7 @@ class RentListing(models.Model):
                                      decimal_places=2, null=False, blank=False)
     floor_area_type = models.CharField(max_length=256,
                                        blank=True, default='Square Meters')
-    ber_rating = models.CharField(max_length=256, blank=False, null=False)
+    ber_rating = models.CharField(max_length=256, blank=False, null=False, default=None)
     description = models.TextField(blank=False, null=False)
     header_image = models.ImageField(upload_to=path_and_rename)
     times_viewed = models.IntegerField(blank=True, null=True, editable=False,

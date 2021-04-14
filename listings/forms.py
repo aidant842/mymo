@@ -30,7 +30,7 @@ class FilterForm(forms.Form):
         ('E2', 'E2'),
         ('F', 'F'),
         ('G', 'G'),
-        ('BER exempt', 'BER exempt'),
+        ('exempt', 'BER exempt'),
     ]
 
     CATEGORY_CHOICES = [

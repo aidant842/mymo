@@ -96,10 +96,10 @@ def for_sale_listings(request):
         listings = listings.filter(property_type__icontains=property_type_query,)
     if no_of_bedrooms_query != '' and no_of_bathrooms_query is not None:
         query_dictionary['no_of_bedrooms_query'] = no_of_bedrooms_query
-        listings = listings.filter(no_of_bedrooms__lte=no_of_bedrooms_query,)
+        listings = listings.filter(no_of_bedrooms__gte=no_of_bedrooms_query,)
     if no_of_bathrooms_query != '' and no_of_bathrooms_query is not None:
         query_dictionary['no_of_bathrooms_query'] = no_of_bathrooms_query
-        listings = listings.filter(no_of_bathrooms__lte=no_of_bathrooms_query,)
+        listings = listings.filter(no_of_bathrooms__gte=no_of_bathrooms_query,)
     if ber_rating_query != '' and ber_rating_query is not None:
         query_dictionary['ber_rating_query'] = ber_rating_query
         listings = listings.filter(ber_rating__icontains=ber_rating_query,)

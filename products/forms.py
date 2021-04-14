@@ -61,7 +61,7 @@ class SaleListingForm(forms.ModelForm):
         ('E2', 'E2'),
         ('F', 'F'),
         ('G', 'G'),
-        ('BER exempt', 'BER exempt'),
+        ('exempt', 'BER exempt'),
     ]
 
     TAX_DESIGNATION_CHOICES = [
@@ -230,7 +230,7 @@ class RentListingForm(forms.ModelForm):
         ('E2', 'E2'),
         ('F', 'F'),
         ('G', 'G'),
-        ('BER exempt', 'BER exempt'),
+        ('exempt', 'BER exempt'),
     ]
 
     LEASE_TERM_CHOICES = [

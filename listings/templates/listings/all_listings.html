@@ -47,7 +47,13 @@
                 <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
                     <h5 class="card-title">Co. {{ listing.county }}</h5>
                     <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
-                    <p class="card-text">{{ listing.no_of_bathrooms }} Bathrooms | {{ listing.no_of_bedrooms }} beds | {{ listing.floor_area }} SqM | BER rating: {{ listing.ber_rating }} </p>
+                    <p class="card-text"><i class="fas fa-bed"></i> {{ listing.no_of_bedrooms }} | <i class="fas fa-bath"></i> {{ listing.no_of_bathrooms }} | <i class="fas fa-chart-area"></i> {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
+                        {% if listing.ber_rating is None %} 
+                            BER Exempt
+                        {% else %}
+                            <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="54" height="18" alt="BER Rating: {{ listing.ber_rating }}">
+                        {% endif %} 
+                    </p>
                     <hr class="card-hr"/>
                     <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
                     {% if listing.is_spotlight %}
