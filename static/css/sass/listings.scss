@@ -52,17 +52,17 @@
 }
 
 .modal-dialog {
-    max-width: 90%;
+    max-width: fit-content;
 
-    @media only screen and (min-width: 576px) {
+    /* @media only screen and (min-width: 576px) {
         max-width: 70%;
-    }
+    } */
 }
 
 .carousel-item {
     img {
         max-height: 80vh;
-        width: 100%;
+        /* width: 100%; */
     }
 }
 
