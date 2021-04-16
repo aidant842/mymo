@@ -33,6 +33,12 @@ class SaleListingAdmin(admin.ModelAdmin):
 
     search_fields = ['listing_number']
 
+    def save_model(self, request, obj, form, change):
+        obj.save()
+
+        for afile in request.FILES.getlist('photos_multiple'):
+            obj.listingImages.create(images=afile)
+
 
 class RentListingAdmin(admin.ModelAdmin):
     inlines = [RentListingImageAdmin]
@@ -56,6 +62,12 @@ class RentListingAdmin(admin.ModelAdmin):
     )
 
     search_fields = ['listing_number']
+
+    def save_model(self, request, obj, form, change):
+        obj.save()
+
+        for afile in request.FILES.getlist('photos_multiple'):
+            obj.listingImages.create(images=afile)
 
 
 @admin.register(SaleListingImage)
