@@ -28,9 +28,8 @@ def all_listings_view(request):
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
-            if not query:
-                """ Show message to user """
-                return redirect(reverse('listings'))
+            """ if not query:
+                return redirect(reverse('listings')) """
 
             queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query)
 
