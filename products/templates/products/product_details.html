@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
+    <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
+    <meta property="og:image:alt" content="MyMo.ie Logo" />
     <meta property="og:description" content="Fill out the form below to join thousands of other user's who have advertised their Houses, Apartments and Properties on Ireland's Best Online Property Marketplace. | MyMo.ie" />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
     <meta property="og:title" content="{%if product.is_premium %}Premium {% endif %}Listing Entry for {{ product.category.name.capitalize }} | MyMo.ie" />

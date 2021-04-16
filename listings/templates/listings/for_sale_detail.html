@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block extra_meta %}
+    <meta property="og:image" content="{{ listing.header_image.url }}" />
+    <meta property="og:image:alt" content="Image of {{ listing.property_type }} for Sale by {% if listing.company_name %}{{ listing.company_name }}{% else %}{{ listing.full_name }}{% endif %} on MyMo.ie }}" />
     <meta property="og:description" content="{{ listing.property_type.capitalize }} for Sale, {{ listing.area.capitalize }}, Co. {{ listing.county.capitalize }} for €{{ listing.price }} by {% if listing.company_name %}{{ listing.company_name }}{% else %}{{ listing.full_name }}{% endif %} on MyMo.ie" />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
     <meta property="og:title" content="{{ listing.property_type.capitalize }} for Sale in {{ listing.area.capitalize }}, Co. {{ listing.county.capitalize }} on MyMo.ie | MyMo.ie" />

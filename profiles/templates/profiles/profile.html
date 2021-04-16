@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% load tools %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
+    <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
+    <meta property="og:image:alt" content="MyMo.ie Logo" />
     <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
     <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />

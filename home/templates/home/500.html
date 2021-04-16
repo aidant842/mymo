@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% load tools %}
 
 {% block extra_meta %}
+    <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
+    <meta property="og:image:alt" content="MyMo.ie Logo" />
     <meta property="og:description" content="Uh Oh, it seems that there was an error, Please let us know if this continues. | MyMo.ie" />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
     <meta property="og:title" content="Uh Oh! It's seems that there was an error. | MyMo.ie" />
