@@ -748,6 +748,11 @@ select option:first-child {
   display: block;
 }
 
+.form-check-label {
+  padding-top: 0.3rem;
+  text-transform: uppercase;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

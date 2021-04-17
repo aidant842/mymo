@@ -62,7 +62,7 @@
                 {% endif %}
                 <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                 <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
-                    <span class="property-price">€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }} {% endif %}</span>
+                    <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
                     <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
                 </div>
                 <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">

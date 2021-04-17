@@ -227,7 +227,11 @@
                             <span>
                                 Price:
                             </span>
+                            {% if listing.poa %}
+                            POA
+                            {% else %}
                             € {{ listing.price }}
+                            {% endif %}
                         </li>
             
                         <li>

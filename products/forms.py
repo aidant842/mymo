@@ -155,6 +155,7 @@ class SaleListingForm(forms.ModelForm):
             'property_type',
             'selling_type',
             'price',
+            'poa',
             'no_of_bedrooms',
             'no_of_bathrooms',
             'facility_1',

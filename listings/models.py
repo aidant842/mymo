@@ -44,6 +44,7 @@ class SaleListing(models.Model):
     property_type = models.CharField(max_length=256, blank=False, null=False)
     selling_type = models.CharField(max_length=256, blank=False, null=False)
     price = models.PositiveIntegerField(blank=False, null=False)
+    poa = models.BooleanField(default=False)
     no_of_bedrooms = models.PositiveIntegerField(blank=False, null=False)
     no_of_bathrooms = models.PositiveIntegerField(blank=False, null=False)
     facility_1 = models.CharField(max_length=256, blank=True, null=True)

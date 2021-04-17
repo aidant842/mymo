@@ -47,7 +47,13 @@
     <!-- Price and BER -->
     <div class="row text-center mt-2 mb-5 mx-3">
         <div class="col text-start fs-3 fw-bold">
+            {% if listing.poa %}
+            <span>
+                POA
+            </span>
+            {% else %}
             € <span>{{ listing.price }}</span>
+            {% endif %}
         </div>
         <div class="col text-end">
             <span>
