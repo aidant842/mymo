@@ -27,10 +27,12 @@
 .search-header {
     position: absolute;
     text-align: center;
-    width: 80%;
+    /* width: 80%; */
+    width: 95%;
     color: $font-color;
     top: 30%;
-    left: 10%;
+    /* left: 10%; */
+    left: 2.5%;
 }
 
 .search-header h2 {
@@ -210,6 +212,7 @@
 }
 
 @media only screen and (max-width: 400px) {
+
     .search-bar-container {
         width: 100%;
         display: grid;
@@ -217,7 +220,7 @@
     }
 
     .banner-search {
-        width: 90%;
+        width: 110%;
         border-radius: 50px;
         margin: 9px 0 10px auto;
     }

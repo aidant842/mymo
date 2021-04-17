@@ -149,6 +149,7 @@
         <p>{{ listing.description | linebreaks }}</p>
     </div>
     <!-- Top Features -->
+    {% if listing.top_featues_1 %}
     <div class="row mt-3 p-4">
         <legend>
             Top Features
@@ -187,6 +188,7 @@
             {% endif %}
         </ul>
     </div>
+    {% endif %}
     <!-- Listing Contact Info -->
     <div class="row mt-3 p-4 bg-light">
         <legend>

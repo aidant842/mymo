@@ -244,10 +244,12 @@ a {
 .search-header {
   position: absolute;
   text-align: center;
-  width: 80%;
+  /* width: 80%; */
+  width: 95%;
   color: white;
   top: 30%;
-  left: 10%;
+  /* left: 10%; */
+  left: 2.5%;
 }
 
 .search-header h2 {
@@ -428,7 +430,7 @@ a {
   }
 
   .banner-search {
-    width: 90%;
+    width: 110%;
     border-radius: 50px;
     margin: 9px 0 10px auto;
   }
@@ -732,6 +734,17 @@ select option:first-child {
   margin-bottom: 1rem;
 }
 .filters .btn {
+  display: block;
+}
+
+.filters.all-listings {
+  width: unset;
+  margin: 2rem auto 0 auto;
+}
+.filters.all-listings input, .filters.all-listings select {
+  margin-bottom: 1rem;
+}
+.filters.all-listings .btn {
   display: block;
 }
 

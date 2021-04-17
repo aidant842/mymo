@@ -126,3 +126,16 @@ select option:first-child {
     }
 }
 
+.filters.all-listings {
+    width: unset;
+    margin: 2rem auto 0 auto;
+
+    input, select {
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        display: block;
+    }
+}
+
