@@ -37,6 +37,8 @@ def all_listings_view(request):
             filtered_rent = for_rent_listings.filter(queries)
 
             result_list = list(chain(filtered_sale, filtered_rent))
+            result_list.sort(key=attrgetter('date_created'), reverse=True)
+            total_listings = len(result_list)
 
     """ setup paginator """
 
@@ -50,8 +52,6 @@ def all_listings_view(request):
 
     except EmptyPage:
         result_list = paginator.page(paginator.num_pages)
-
-    total_listings = len(result_list)
 
     template = 'listings/all_listings.html'
     context = {
