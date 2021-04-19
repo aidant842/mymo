@@ -412,6 +412,13 @@ a {
   height: max-content;
 }
 
+.card-image {
+  height: 256.53px;
+  width: 100%;
+  background-size: cover;
+  background-position: top;
+}
+
 @media only screen and (max-width: 940px) {
   .search-bar-container {
     width: 80%;
@@ -840,9 +847,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .image-container img {
   position: relative;
   display: block;
-  width: 100%;
+  /* width: 100%; */
+  max-width: 100%;
   height: auto;
-  min-width: 50vw;
+  /* min-width: 50vw; */
+  max-height: 800px;
 }
 
 .agent-header {
@@ -853,39 +862,69 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 
 /************** Modal Section *****************/
-.modal {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.modal-body {
+.modal.image-modal {
   padding: 0 !important;
 }
 
-.modal-content .btn-close {
+.btn-close.image-modal {
   position: absolute;
-  z-index: 9;
-  background-color: white;
   right: 5px;
   top: 5px;
+  z-index: 99;
 }
 
-.modal-dialog {
-  max-width: fit-content;
-  /* @media only screen and (min-width: 576px) {
-      max-width: 70%;
-  } */
+.carousel-item.image-modal {
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.carousel-item img {
-  max-height: 80vh;
-  /* width: 100%; */
+.modal-dialog.image-modal {
+  max-width: unset;
+  margin: 0;
 }
 
-.share-modal {
-  min-width: 200px;
-  min-height: 150px;
+.modal-body.image-modal {
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
 }
 
+/* .modal {
+    background: rgba(0,0,0, 0.2);
+}
+
+.modal-body {
+    padding: 0 !important;
+}
+
+.modal-content {
+    .btn-close {
+        position: absolute;
+        z-index: 9;
+        background-color: white;
+        right: 5px;
+        top: 5px;
+    }
+} */
+/* .modal-dialog {
+    max-width: fit-content;
+
+    /* @media only screen and (min-width: 576px) {
+        max-width: 70%;
+    } */
+/* } */
+/* .carousel-item {
+    img {
+        max-height: 80vh; */
+/* width: 100%; */
+/*     }
+} */
+/* .share-modal {
+    min-width: 200px;
+    min-height: 150px;
+} */
 /* --------------------------------------------------------------- */
 @media only screen and (max-width: 576px) {
   .modal-dialog {

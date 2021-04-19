@@ -16,28 +16,6 @@
 <div class="container my-5">
     <!-- Image -->
     <div class="image-container">
-        <!-- <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
-            <div id="header_carousel" class="carousel">
-                <div class="carousel-indicators">
-                    {% for p in photos %}
-                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
-                        class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                    {% endfor %}
-                </div>
-                <div class="carousel-inner">
-                    {% for p in photos %}
-                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                        {% if not p.images %}
-                        <img src="{{ p }}" class="d-block w-100" alt="{{ p }}">
-                        {% else %}
-                        <img src="{{ p.images.url }}" class="d-block w-100" alt="{{ p.images.url }}">
-                        {% endif %}
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            </a> -->
         <!-- Button trigger modal -->
         <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
             <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
@@ -321,7 +299,7 @@
 
 </div>
 <!-- Images Modal -->
-<div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -359,7 +337,53 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<div class="modal image-modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog image-modal">
+      <div class="modal-content">
+        <button type="button" class="btn-close image-modal" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-body image-modal">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-dark">
+                <div class="carousel-indicators">
+                    {% for p in photos %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
+                        class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    <!-- {% for p in photos %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+                        {% if not p.images %}
+                        <img src="{{ p }}" class="img-fluid" alt="{{ p }}">
+                        {% else %}
+                        <img src="{{ p.images.url }}" class="img-fluid" alt="{{ p.images.url }}">
+                        {% endif %}
+                    </div>
+                    {% endfor %} -->
+                    {% for p in photos %}
+                    {% if not p.images %}
+                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p}});"></div>
+                    {% else %}
+                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p.images.url}});"></div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- Share Modal -->
 <div class="modal fade" id="shareModal" tabindex="-1" area-hidden="true">
     <div class="modal-dialog">

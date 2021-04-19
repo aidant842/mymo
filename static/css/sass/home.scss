@@ -198,6 +198,14 @@
     height: max-content;
  }
 
+ .card-image {
+    height: 256.53px;
+    width: 100%;
+    background-size: cover;
+    background-position: top;
+ }
+
+
  // ***************** MEDIA QUERIES ***************** //
 @media only screen and (max-width: 940px) {
     .search-bar-container {

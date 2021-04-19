@@ -180,7 +180,7 @@ class RentListing(models.Model):
             to set the listing number if not already set """
 
         """ img = Image.open(self.header_image.path)
-        output_size = (300, 300)
+        output_size = (500, 3)
         img.thumbnail(output_size)
         img.save(self.header_image.path) """
 
