@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'profiles',
     'coupons',
     'analytics',
+    'estate_agents',
     'storages',
     'django_cleanup.apps.CleanupConfig',
 ]

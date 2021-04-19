@@ -240,9 +240,17 @@
         <p>
             {% if listing.user_profile.psr_number %}PSR No.: {{ listing.user_profile.psr_number }}{% endif %}
         </p>
-        <a href="{% url 'public_profile' listing.user_profile.id %}" class="btn form-btn">
-            View all properties
-        </a>
+        {% if listing.user_profile.is_agent %}
+        {% if listing.user_profile.company_name %}
+                <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" class="btn form-btn">
+                    View all properties
+                </a>
+            {% else %}
+                <a href="{% url 'estate_agents_profile' listing.user_profile.user listing.user_profile.id %}" class="btn form-btn">
+                    View all properties
+                </a>
+            {% endif %}
+        {% endif %}
         <a href="mailto:{{ listing.email }}" class="btn form-btn">
             Email Seller <i class="fas fa-envelope"></i>
         </a>

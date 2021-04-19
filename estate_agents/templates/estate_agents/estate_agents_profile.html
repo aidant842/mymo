@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% load static %} {% load tools %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="{% if profile.company_logo %} {{ profile.company_logo }}{% else %}https://mymoireland.s3.amazonaws.com/media/landing-img.jpg{% endif %}" />
+    <meta property="og:image:alt" content="{% if profile.company_logo %}Logo for {{ profile.company_name }} {% else %}MyMo.ie Logo{% endif %}" />
+    <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />
+    <meta name="description" content="Profile for {% if profile.is_agent %}{{ profile.company_name }}{% else %}{{ profile }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
+    {% endblock %}
+    
+
+<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %}</title>
+
+{% block content %}
+<div class="min-vh-100">
+    <div class="container mt-5">
+        {% if profile.company_name %}
+        <div class="agent-header purple d-flex justify-content-between align-items-center mb-3">
+            <h2>
+                {{ profile.company_name }}
+            </h2>
+            {% if profile.company_logo %}
+                <img src="{{ profile.company_logo.url }}" alt="Logo for {{ profile.company_name }}">
+            {% endif %}
+        </div>
+        {% if profile.psr_number %}
+            <p class="text-muted fs-6 mt-2">PSR No.: {{ profile.psr_number }}</p>
+        {% endif %}
+        {% endif %}
+        <hr>
+        <div class="row">
+            {% if profile.phone_number is not None %}
+                <!-- <strong>Phone:</strong> {{ profile.phone_number }} -->
+                <div class="col mx-auto">
+                    <a href="tel:{{ profile.phone_number }}" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
+                </div>
+            {% endif %}
+            {% if profile.email is not None %}
+                <!-- <strong>
+                    Email:
+                </strong>
+                 {{ profile.email }} -->
+                 <div class="col mx-auto">
+                     <a href="mailto:{{ profile.email }}" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
+                 </div>
+            {% endif %}
+            
+        </div>
+    </div>
+    <div class="card-container">
+        {% for listing in result_list %}
+            <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+            <div class="card h-100">
+                {% if listing.is_spotlight %}
+                {% if listing.user_profile.company_name %}
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    {{ listing.user_profile.company_name }}
+                    {% if listing.user_profile.company_logo %}
+                        <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% endif %}
+                <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+                <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
+                    <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
+                    <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
+                </div>
+                <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
+                    <h5 class="card-title">Co. {{ listing.county }}</h5>
+                    <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
+                    <p class="card-text"><i class="fas fa-bed"></i> {{ listing.no_of_bedrooms }} | <i class="fas fa-bath"></i> {{ listing.no_of_bathrooms }} | <i class="fas fa-chart-area"></i> {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
+                        {% if listing.ber_rating is None %} 
+                            BER Exempt
+                        {% else %}
+                            <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="54" height="18" alt="BER Rating: {{ listing.ber_rating }}">
+                        {% endif %} 
+                    </p>
+                    <hr class="card-hr"/>
+                    <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+                    {% if listing.is_spotlight %}
+                        <span class="spotlight-tag">SPOTLIGHT</span>
+                    {% endif %}
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

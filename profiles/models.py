@@ -20,6 +20,12 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def company_name_to_url(self):
+        if self.company_name:
+            return self.company_name.replace(' ', '-')
+        else:
+            return str(self.user)
+
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
