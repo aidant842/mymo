@@ -65,6 +65,13 @@
             </span>
         </div>
     </div>
+    <!-- Share Section -->
+    <div class="row mt-2 mb-5 mx-3">
+        <div class="col"></div>
+        <a type="button" data-bs-toggle="modal" data-bs-target="#shareModal">Share
+            <i class="fas fa-share-alt"></i>
+        </a>
+    </div>
     <!-- Overview -->
     <div class="row text-center mt-2">
         <!-- <div class="col border-end border-start border-secondary">
@@ -110,9 +117,11 @@
                 <i class="fas fa-map-marker-alt"></i>
                 {{ listing.area }}
                 Co. {{ listing.county }}
-                {{ listing.eircode }}
             </strong>
         </p>
+        {% if listing.eircode %}
+        <p><strong>Eirecode:</strong> {{ listing.eircode }}</p>
+        {% endif %}
         <p><strong>For sale by</strong>: {{ listing.selling_type }}</p>
         <p><strong>Property type</strong>: {{ listing.property_type }}</p>
         <p><strong>Tax designation</strong>: {{ listing.tax_designation }}</p>
@@ -253,16 +262,18 @@
             <strong>Listing Number</strong>: {{ listing.listing_number }}
         </p>
     </div>
-    <!-- Other listings from this user -->
+    <!-- Recent listings from this user -->
+    {% if show_recent_listings %}
     <div class="row mt-3 bg-light">
         <legend class="p-4">
-            Other Listings from this seller
+            Recent Listings from this seller
             <hr>
         </legend>
         <div class="card-container detail-page">
             {% for listing in result_list %}
             <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
                 <div class="card h-100">
+                    {% if listing.is_spotlight %}
                     {% if listing.user_profile.company_name %}
                     <div class="card-header d-flex justify-content-between align-items-center">
                         {{ listing.user_profile.company_name }}
@@ -271,9 +282,10 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    {% endif %}
                     <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
                     <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
-                        <span class="property-price">€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}</span>
+                        <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
                         <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
                     </div>
                     <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
@@ -297,9 +309,10 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 
 </div>
-<!-- Modal -->
+<!-- Images Modal -->
 <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -339,4 +352,30 @@
         </div>
     </div>
 </div>
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" area-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content share-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Share this Ad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid p-4">
+                <iframe 
+                src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmymo.ie%2Flistings%2Ffor_sale%2F56%2F&layout=button&size=large&width=77&height=28&appId" 
+                width="77" 
+                height="28" 
+                style="border:none;overflow:hidden" 
+                scrolling="no" 
+                frameborder="0" 
+                allowfullscreen="true" 
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+            </iframe>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 {% endblock %}

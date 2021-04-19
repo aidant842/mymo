@@ -38,6 +38,7 @@ def all_listings_view(request):
 
             result_list = list(chain(filtered_sale, filtered_rent))
             result_list.sort(key=attrgetter('date_created'), reverse=True)
+            result_list.sort(key=attrgetter('is_spotlight'), reverse=True)
             total_listings = len(result_list)
 
     """ setup paginator """
@@ -221,10 +222,18 @@ def for_rent_listings(request):
 def sale_listing_detail_view(request, listing_id):
     listing = get_object_or_404(SaleListing, pk=listing_id)
     profile = listing.user_profile.user.id
-    sale_listings = SaleListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
-    rent_listings = RentListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    show_recent_listings = False
+    sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
 
     result_list = list(chain(sale_listings, rent_listings))
+
+    for result in result_list:
+        if result.id == listing.id:
+            result_list.remove(result)
+
+    if len(result_list) >= 1:
+        show_recent_listings = True
 
     result_list.sort(key=attrgetter('date_created'), reverse=True)
     result_list = result_list[:3]
@@ -247,6 +256,7 @@ def sale_listing_detail_view(request, listing_id):
         'result_list': result_list,
         'photos': photos,
         'no_of_photos': no_of_photos,
+        'show_recent_listings': show_recent_listings,
     }
 
     if listing.is_listed:
@@ -259,10 +269,14 @@ def sale_listing_detail_view(request, listing_id):
 def rent_listing_detail_view(request, listing_id):
     listing = get_object_or_404(RentListing, pk=listing_id)
     profile = listing.user_profile.user.id
-    sale_listings = SaleListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
-    rent_listings = RentListing.objects.filter(is_listed=True, is_spotlight=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
+    rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
 
     result_list = list(chain(sale_listings, rent_listings))
+
+    for result in result_list:
+        if result.id == listing.id:
+            result_list.remove(result)
 
     result_list.sort(key=attrgetter('date_created'), reverse=True)
     result_list = result_list[:3]

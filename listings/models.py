@@ -85,6 +85,9 @@ class SaleListing(models.Model):
 
         self.category = self.product.category
 
+        if self.poa:
+            self.price = 0
+
         subject = render_to_string(
             'listings/listed_emails/listed_email_subject.txt',
             {'listing': self}
