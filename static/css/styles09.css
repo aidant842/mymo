@@ -873,11 +873,17 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   z-index: 99;
 }
 
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
 .carousel-item.image-modal {
   height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
 }
 
 .modal-dialog.image-modal {
