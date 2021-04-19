@@ -3,14 +3,14 @@
 {% block extra_meta %}
     <meta property="og:image" content="{% if profile.company_logo %} {{ profile.company_logo }}{% else %}https://mymoireland.s3.amazonaws.com/media/landing-img.jpg{% endif %}" />
     <meta property="og:image:alt" content="{% if profile.company_logo %}Logo for {{ profile.company_name }} {% else %}MyMo.ie Logo{% endif %}" />
-    <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:description" content="{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />
-    <meta name="description" content="Profile for {% if profile.is_agent %}{{ profile.company_name }}{% else %}{{ profile }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
+    <meta property="og:title" content="{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %} | MyMo.ie" />
+    <meta name="description" content="{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
     {% endblock %}
     
 
-<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %}</title>
+<title>{% block extra_title %}{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %}{% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">
@@ -87,5 +87,9 @@
             </a>
         {% endfor %}
     </div>
+</div>
+{% include 'pagination_all_listings.html' with page=result_list %}
+<div class="text-center">
+    <p class="text-muted">Total listings: {{ total_listings }}</p>
 </div>
 {% endblock %}

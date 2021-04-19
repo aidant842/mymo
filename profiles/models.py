@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     full_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(max_length=254, null=True, blank=True)
     phone_number = models.CharField(max_length=32, null=True, blank=True)
+    address = models.CharField(max_length=256, null=True, blank=True)
     psr_number = models.CharField(max_length=256, null=True, blank=True)
     is_agent = models.BooleanField(default=False)
     subscription_paid = models.BooleanField(default=False)

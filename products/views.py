@@ -41,7 +41,7 @@ def products_view(request):
 
 
 @login_required
-def product_detail(request, product_id):
+def product_detail(request, product_name, product_id):
     """ A view to return the form to fill out to create a listing """
     product = get_object_or_404(Product, pk=product_id)
     user = UserProfile.objects.get(user=request.user)
