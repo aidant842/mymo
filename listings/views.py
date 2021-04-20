@@ -126,7 +126,7 @@ def for_sale_listings(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 1)
+    paginator = Paginator(listings, 20)
     page = request.GET.get('page')
 
     try:
@@ -207,7 +207,7 @@ def for_rent_listings(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 1)
+    paginator = Paginator(listings, 20)
     page = request.GET.get('page')
 
     try:
