@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
     <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
@@ -13,12 +13,60 @@
 <title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}</title>
 
 {% block content %}
-<div class="filters-container all-listings">
+<!-- <div class="filters-container all-listings">
     <div class="filters all-listings">
         <form method="GET" action="{% url 'listings' %}" class="search-bar-container mb-4">
             <input type="text" class="banner-search" placeholder="Town, Area, City or County" name="q">
+            {{ filter_form.price }}
             <button type="submit" class="btn banner-search" value="">Search <i class="fas fa-search-location"></i></button>
         </form> 
+    </div>
+</div> -->
+<div class="filters-container">
+    <div class="filters">
+        <form method="GET" action=".">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.price | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.county | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.area | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.property_type | as_crispy_field }}
+                </div>
+            </div>
+            <a data-bs-toggle="collapse" href="#extraFilters" role="button" aria-expanded="false"
+                class="text-muted">
+                Extra Filters
+                <i class="fas fa-angle-down chevron"></i>
+            </a>
+            <div class="collapse multi-collapse" id="extraFilters">
+                <div class="row">
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.bedrooms | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.bathrooms | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.ber_rating | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.keyword | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.sort | as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+            <button class="btn form-btn w-50" type="submit" value="">Filter <i class="fas fa-filter"></i></button>
+        </form>
     </div>
 </div>
 <div class="min-vh-100">

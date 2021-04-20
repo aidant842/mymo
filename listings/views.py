@@ -21,25 +21,85 @@ def all_listings_view(request):
     for_sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
     for_rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
     result_list = list(chain(for_sale_listings, for_rent_listings))
-    result_list.sort(key=attrgetter('date_created'), reverse=True)
-    result_list.sort(key=attrgetter('is_spotlight'), reverse=True)
-    query = None
+    """ result_list.sort(key=attrgetter('date_created'), reverse=True)
+    result_list.sort(key=attrgetter('is_spotlight'), reverse=True) """
+    query_dictionary = {}
+    price_query = request.GET.get('price')
+    county_query = request.GET.get('county')
+    property_type_query = request.GET.get('property_type')
+    no_of_bedrooms_query = request.GET.get('bedrooms')
+    no_of_bathrooms_query = request.GET.get('bathrooms')
+    ber_rating_query = request.GET.get('ber_rating')
+    area_query = request.GET.get('area')
+    keyword_query = request.GET.get('keyword')
+    sort = request.GET.get('sort', None)
 
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            """ if not query:
-                return redirect(reverse('listings')) """
 
-            """ queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query) """
-            queries = Q(area__icontains=query) | Q(county__icontains=query)
-            filtered_sale = for_sale_listings.filter(queries)
-            filtered_rent = for_rent_listings.filter(queries)
+    """ queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query) """
+    """ queries = Q(area__icontains=query) | Q(county__icontains=query)
+    filtered_sale = for_sale_listings.filter(queries)
+    filtered_rent = for_rent_listings.filter(queries) """
 
-            result_list = list(chain(filtered_sale, filtered_rent))
-            result_list.sort(key=attrgetter('date_created'), reverse=True)
-            result_list.sort(key=attrgetter('is_spotlight'), reverse=True)
-            total_listings = len(result_list)
+    if price_query != '' and price_query is not None:
+        query_dictionary['price_query'] = price_query
+        price_query = int(price_query)
+        for_sale_listings = for_sale_listings.filter(price__lte=price_query,)
+        for_rent_listings = for_rent_listings.filter(price__lte=price_query,)
+
+    if county_query != '' and county_query is not None:
+        query_dictionary['county_query'] = county_query
+        for_sale_listings = for_sale_listings.filter(county__icontains=county_query,)
+        for_rent_listings = for_rent_listings.filter(county__icontains=county_query,)
+
+    if property_type_query != '' and property_type_query is not None:
+        query_dictionary['property_type_query'] = property_type_query
+        for_sale_listings = for_sale_listings.filter(property_type__icontains=property_type_query,)
+        for_rent_listings = for_rent_listings.filter(property_type__icontains=property_type_query,)
+
+    if no_of_bedrooms_query != '' and no_of_bathrooms_query is not None:
+        query_dictionary['no_of_bedrooms_query'] = no_of_bedrooms_query
+        for_sale_listings = for_sale_listings.filter(no_of_bedrooms__gte=no_of_bedrooms_query,)
+        for_rent_listings = for_rent_listings.filter(no_of_bedrooms__gte=no_of_bedrooms_query,)
+
+    if no_of_bathrooms_query != '' and no_of_bathrooms_query is not None:
+        query_dictionary['no_of_bathrooms_query'] = no_of_bathrooms_query
+        for_sale_listings = for_sale_listings.filter(no_of_bathrooms__gte=no_of_bathrooms_query,)
+        for_rent_listings = for_rent_listings.filter(no_of_bathrooms__gte=no_of_bathrooms_query,)
+
+    if ber_rating_query != '' and ber_rating_query is not None:
+        query_dictionary['ber_rating_query'] = ber_rating_query
+        for_sale_listings = for_sale_listings.filter(ber_rating__icontains=ber_rating_query,)
+        for_rent_listings = for_rent_listings.filter(ber_rating__icontains=ber_rating_query,)
+
+    if area_query != '' and area_query is not None:
+        query_dictionary['area_query'] = area_query
+        area_queries = Q(area__icontains=area_query) | Q(county__icontains=area_query)
+        for_sale_listings = for_sale_listings.filter(area_queries)
+        for_rent_listings = for_rent_listings.filter(area_queries)
+
+    if keyword_query != '' and keyword_query is not None:
+        query_dictionary['keyword_query'] = keyword_query
+        keyword_queries = Q(area__icontains=keyword_query) | Q(description__icontains=keyword_query) | Q(county__icontains=keyword_query) | Q(company_name__icontains=keyword_query)
+        for_sale_listings = for_sale_listings.filter(keyword_queries)
+        for_rent_listings = for_rent_listings.filter(keyword_queries)
+
+    result_list = list(chain(for_sale_listings, for_rent_listings))
+
+    if sort != '' and sort is not None:
+        query_dictionary['sort'] = sort
+        sortkey = sort.split('-')[0]
+        direction = sort.split('-')[1]
+        if direction == 'desc' or sortkey == 'date_created':
+            sortkey = f'-{sortkey}'
+        result_list.sort(key=attrgetter(f'{sortkey}'))
+    else:
+        result_list.sort(key=attrgetter('date_created'), reverse=True)
+        result_list.sort(key=attrgetter('is_spotlight'), reverse=True)
+
+    """ result_list = list(chain(filtered_sale, filtered_rent)) """
+    """ result_list.sort(key=attrgetter('date_created'), reverse=True)
+    result_list.sort(key=attrgetter('is_spotlight'), reverse=True) """
+    total_listings = len(result_list)
 
     """ setup paginator """
 
@@ -58,10 +118,10 @@ def all_listings_view(request):
     context = {
         'filter_form': filter_form,
         'result_list': result_list,
-        'search_term': query,
         'total_listings': total_listings,
-        'query': query,
     }
+    """ 'query': query, """
+    """ 'search_term': query, """
 
     return render(request, template, context)
 
