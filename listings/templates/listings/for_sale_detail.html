@@ -269,7 +269,8 @@
                     </div>
                     {% endif %}
                     {% endif %}
-                    <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+                    <div class="card-image" style="background-image: url({{listing.header_image.url}});"></div>
+                    <!-- <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}"> -->
                     <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                         <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
                         <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
@@ -352,15 +353,6 @@
                     {% endfor %}
                 </div>
                 <div class="carousel-inner">
-                    <!-- {% for p in photos %}
-                    <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                        {% if not p.images %}
-                        <img src="{{ p }}" class="img-fluid" alt="{{ p }}">
-                        {% else %}
-                        <img src="{{ p.images.url }}" class="img-fluid" alt="{{ p.images.url }}">
-                        {% endif %}
-                    </div>
-                    {% endfor %} -->
                     {% for p in photos %}
                     {% if not p.images %}
                     <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p}});"></div>

@@ -233,7 +233,8 @@
                     </div>
                     {% endif %}
                     {% endif %}
-                    <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}">
+                    <div class="card-image" style="background-image: url({{listing.header_image.url}});"></div>
+                    <!-- <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}"> -->
                     <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                         <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
                         <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
@@ -262,7 +263,44 @@
 
 </div>
 <!-- Modal -->
-<div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
+<div class="modal image-modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog image-modal">
+      <div class="modal-content">
+        <button type="button" class="btn-close image-modal" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-body image-modal">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-dark">
+                <div class="carousel-indicators">
+                    {% for p in photos %}
+                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
+                        class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
+                    {% endfor %}
+                </div>
+                <div class="carousel-inner">
+                    {% for p in photos %}
+                    {% if not p.images %}
+                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p}});"></div>
+                    {% else %}
+                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p.images.url}});"></div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -300,7 +338,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Share Modal -->
 <div class="modal fade" id="shareModal" tabindex="-1" area-hidden="true">
     <div class="modal-dialog">
