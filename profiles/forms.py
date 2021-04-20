@@ -20,6 +20,7 @@ class AgentProfileForm(forms.ModelForm):
             'full_name',
             'email',
             'phone_number',
+            'address',
             'psr_number',
             'company_logo',
         ]
