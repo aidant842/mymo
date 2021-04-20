@@ -31,8 +31,8 @@ def all_listings_view(request):
             """ if not query:
                 return redirect(reverse('listings')) """
 
-            queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query)
-
+            """ queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query) """
+            queries = Q(area__icontains=query) | Q(county__icontains=query)
             filtered_sale = for_sale_listings.filter(queries)
             filtered_rent = for_rent_listings.filter(queries)
 
@@ -81,7 +81,8 @@ def for_sale_listings(request):
     no_of_bedrooms_query = request.GET.get('bedrooms')
     no_of_bathrooms_query = request.GET.get('bathrooms')
     ber_rating_query = request.GET.get('ber_rating')
-    custom_query = request.GET.get('query')
+    area_query = request.GET.get('area')
+    keyword_query = request.GET.get('keyword')
     sort = request.GET.get('sort', None)
 
     if price_query != '' and price_query is not None:
@@ -103,10 +104,14 @@ def for_sale_listings(request):
     if ber_rating_query != '' and ber_rating_query is not None:
         query_dictionary['ber_rating_query'] = ber_rating_query
         listings = listings.filter(ber_rating__icontains=ber_rating_query,)
-    if custom_query != '' and custom_query is not None:
-        query_dictionary['custom_query'] = custom_query
-        queries = Q(area__icontains=custom_query) | Q(description__icontains=custom_query) | Q(county__icontains=custom_query) | Q(company_name__icontains=custom_query) 
-        listings = listings.filter(queries)
+    if area_query != '' and area_query is not None:
+        query_dictionary['area_query'] = area_query
+        area_queries = Q(area__icontains=area_query) | Q(county__icontains=area_query)
+        listings = listings.filter(area_queries)
+    if keyword_query != '' and keyword_query is not None:
+        query_dictionary['keyword_query'] = keyword_query
+        keyword_queries = Q(area__icontains=keyword_query) | Q(description__icontains=keyword_query) | Q(county__icontains=keyword_query) | Q(company_name__icontains=keyword_query)
+        listings = listings.filter(keyword_queries)
     if sort != '' and sort is not None:
         query_dictionary['sort'] = sort
         sortkey = sort.split('-')[0]
@@ -121,7 +126,7 @@ def for_sale_listings(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 20)
+    paginator = Paginator(listings, 1)
     page = request.GET.get('page')
 
     try:
@@ -157,7 +162,8 @@ def for_rent_listings(request):
     no_of_bedrooms_query = request.GET.get('bedrooms')
     no_of_bathrooms_query = request.GET.get('bathrooms')
     ber_rating_query = request.GET.get('ber_rating')
-    custom_query = request.GET.get('query')
+    area_query = request.GET.get('area')
+    keyword_query = request.GET.get('keyword')
     sort = request.GET.get('sort')
 
     if price_query != '' and price_query is not None:
@@ -179,10 +185,14 @@ def for_rent_listings(request):
     if ber_rating_query != '' and ber_rating_query is not None:
         query_dictionary['ber_rating_query'] = ber_rating_query
         listings = listings.filter(ber_rating__icontains=ber_rating_query,)
-    if custom_query != '' and custom_query is not None:
-        query_dictionary['custom_query'] = custom_query
-        queries = Q(area__icontains=custom_query) | Q(description__icontains=custom_query) | Q(county__icontains=custom_query) | Q(company_name__icontains=custom_query) 
-        listings = listings.filter(queries)
+    if area_query != '' and area_query is not None:
+        query_dictionary['area_query'] = area_query
+        area_queries = Q(area__icontains=area_query) | Q(county__icontains=area_query)
+        listings = listings.filter(area_queries)
+    if keyword_query != '' and keyword_query is not None:
+        query_dictionary['keyword_query'] = keyword_query
+        keyword_queries = Q(area__icontains=keyword_query) | Q(description__icontains=keyword_query) | Q(county__icontains=keyword_query) | Q(company_name__icontains=keyword_query)
+        listings = listings.filter(keyword_queries)
     if sort != '' and sort is not None:
         query_dictionary['sort'] = sort
         sortkey = sort.split('-')[0]
@@ -197,7 +207,7 @@ def for_rent_listings(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 20)
+    paginator = Paginator(listings, 1)
     page = request.GET.get('page')
 
     try:
@@ -212,6 +222,7 @@ def for_rent_listings(request):
     context = {
         'filter_form': filter_form,
         'listings': listings,
+        'query_dictionary': query_dictionary,
         'total_listings': total_listings,
         'page': page,
     }

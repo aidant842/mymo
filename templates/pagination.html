@@ -3,9 +3,9 @@
         <li class="page-item">
             {% if page.has_previous %}
             <a class="page-link" href="?price={{ query_dictionary.price_query }}&county={{ query_dictionary.county_query }}
-&query={{ query_dictionary.custom_query }}&property_type={{ query_dictionary.property_type_query }}
+&area={{ query_dictionary.area_query }}&property_type={{ query_dictionary.property_type_query }}
 &bedrooms={{ query_dictionary.no_of_bedrooms_query }}&bathrooms={{ query_dictionary.no_of_bathrooms_query }}
-&ber_rating={{ query_dictionary.ber_rating_query }}&sort={{ query_dictionary.sort }}&page={{ page.previous_page_number }}">
+&ber_rating={{ query_dictionary.ber_rating_query }}&keyword={{ query_dictionary.keyword_query }}&sort={{ query_dictionary.sort }}&page={{ page.previous_page_number }}">
                 Previous</a>
             {% endif %}
         </li>
@@ -16,9 +16,9 @@
             {% if page.has_next %}
             <a class="page-link"
                 href="?price={{ query_dictionary.price_query }}&county={{ query_dictionary.county_query }}
-&query={{ query_dictionary.custom_query }}&property_type={{ query_dictionary.property_type_query }}
+&area={{ query_dictionary.area_query }}&property_type={{ query_dictionary.property_type_query }}
 &bedrooms={{ query_dictionary.no_of_bedrooms_query }}&bathrooms={{ query_dictionary.no_of_bathrooms_query }}
-&ber_rating={{ query_dictionary.ber_rating_query }}&sort={{ query_dictionary.sort }}&page={{ page.next_page_number }}">
+&ber_rating={{ query_dictionary.ber_rating_query }}&keyword={{ query_dictionary.keyword_query }}&sort={{ query_dictionary.sort }}&page={{ page.next_page_number }}">
                 Next</a>
             {% endif %}
         </li>

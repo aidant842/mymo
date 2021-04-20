@@ -24,7 +24,7 @@
                     {{ filter_form.county | as_crispy_field }}
                 </div>
                 <div class="col-xxl-3 col-lg-6 col-sm-12">
-                    {{ filter_form.query | as_crispy_field }}
+                    {{ filter_form.area | as_crispy_field }}
                 </div>
                 <div class="col-xxl-3 col-lg-6 col-sm-12">
                     {{ filter_form.property_type | as_crispy_field }}
@@ -46,6 +46,11 @@
                     <div class="col-xxl-3 col-lg-6 col-sm-12">
                         {{ filter_form.ber_rating | as_crispy_field }}
                     </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.keyword | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xxl-3 col-lg-6 col-sm-12">
                         {{ filter_form.sort | as_crispy_field }}
                     </div>
