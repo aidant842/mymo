@@ -118,7 +118,11 @@
         {% endfor %}
     </div>
 </div>
+{% if 'q' in request.GET %}
 {% include 'pagination_all_listings.html' with page=result_list %}
+{% else %}
+{% include 'pagination.html' with page=result_list %}
+{% endif %}
 <div class="text-center">
     <p class="text-muted">Total listings: {{ total_listings }}</p>
 </div>

@@ -14,15 +14,10 @@ from .forms import FilterForm
 def all_listings_view(request):
     """ A view to return all listings """
 
-    """ IF ADDING FILTERS TO THIS VIEW """
-    """ FILTER FORSALE AND FORRENT FIRST, THEN CHAIN INTO LIST """
-
     filter_form = FilterForm()
     for_sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
     for_rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),)
     result_list = list(chain(for_sale_listings, for_rent_listings))
-    """ result_list.sort(key=attrgetter('date_created'), reverse=True)
-    result_list.sort(key=attrgetter('is_spotlight'), reverse=True) """
     query_dictionary = {}
     price_query = request.GET.get('price')
     county_query = request.GET.get('county')
@@ -33,12 +28,14 @@ def all_listings_view(request):
     area_query = request.GET.get('area')
     keyword_query = request.GET.get('keyword')
     sort = request.GET.get('sort', None)
+    reverse = False
+    query = None
 
-
-    """ queries = Q(area__icontains=query) | Q(description__icontains=query) | Q(county__icontains=query) | Q(company_name__icontains=query) """
-    """ queries = Q(area__icontains=query) | Q(county__icontains=query)
-    filtered_sale = for_sale_listings.filter(queries)
-    filtered_rent = for_rent_listings.filter(queries) """
+    if 'q' in request.GET:
+        query = request.GET['q']
+        queries = Q(area__icontains=query) | Q(county__icontains=query)
+        for_sale_listings = for_sale_listings.filter(queries)
+        for_rent_listings = for_rent_listings.filter(queries)
 
     if price_query != '' and price_query is not None:
         query_dictionary['price_query'] = price_query
@@ -90,15 +87,12 @@ def all_listings_view(request):
         sortkey = sort.split('-')[0]
         direction = sort.split('-')[1]
         if direction == 'desc' or sortkey == 'date_created':
-            sortkey = f'-{sortkey}'
-        result_list.sort(key=attrgetter(f'{sortkey}'))
+            reverse = True
+        result_list.sort(key=attrgetter(f'{sortkey}'), reverse=reverse)
     else:
         result_list.sort(key=attrgetter('date_created'), reverse=True)
         result_list.sort(key=attrgetter('is_spotlight'), reverse=True)
 
-    """ result_list = list(chain(filtered_sale, filtered_rent)) """
-    """ result_list.sort(key=attrgetter('date_created'), reverse=True)
-    result_list.sort(key=attrgetter('is_spotlight'), reverse=True) """
     total_listings = len(result_list)
 
     """ setup paginator """
@@ -116,12 +110,12 @@ def all_listings_view(request):
 
     template = 'listings/all_listings.html'
     context = {
+        'query_dictionary': query_dictionary,
         'filter_form': filter_form,
         'result_list': result_list,
         'total_listings': total_listings,
+        'query': query,
     }
-    """ 'query': query, """
-    """ 'search_term': query, """
 
     return render(request, template, context)
 
