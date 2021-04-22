@@ -15,6 +15,14 @@
 {% block content %}
 <div class="container my-5">
     <a href="javascript:history.go(-1)" class="mb-4 btn form-btn return-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    <!-- Company banner -->
+    {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo %}
+    <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" id="fixedDiv">
+        <div class="banner purple d-flex justify-content-center align-items-center">
+            <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}">
+        </div>
+    </a>
+    {% endif %}
     <!-- Image -->
     <div class="image-container">
         <!-- Button trigger modal -->

@@ -848,12 +848,25 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .share-btn {
   text-align: end;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  color: #303e94;
+}
+
+.banner {
+  color: white;
+  position: sticky;
+  top: 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  z-index: 11;
 }
 
 .image-container {
   text-align: center;
   margin-top: 1.25rem;
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
 }
 .image-container p {
   position: absolute;
@@ -861,6 +874,16 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   background-color: #6a7fdb;
   color: white;
   padding: 10px;
+}
+.image-container .share-btn {
+  position: absolute;
+  z-index: 9;
+  background-color: #6a7fdb;
+  color: white;
+  padding: 10px;
+  display: flex;
+  right: 0;
+  font-size: 1.5rem;
 }
 .image-container img {
   position: relative;
