@@ -13,6 +13,12 @@ class UserProfileForm(forms.ModelForm):
 
 
 class AgentProfileForm(forms.ModelForm):
+    company_logo = forms.FileField(widget=forms.ClearableFileInput(
+                                    attrs={
+                                        'class': 'form-control',
+                                    }),
+                                   required=False)
+
     class Meta:
         model = UserProfile
         fields = [

@@ -126,6 +126,10 @@ select option:first-child {
     }
 }
 
+.filters-btn {
+    width: fit-content;
+}
+
 .filters.all-listings {
     width: unset;
     margin: 2rem auto 0 auto;
@@ -142,5 +146,11 @@ select option:first-child {
 .form-check-label {
     padding-top: 0.3rem;
     text-transform: uppercase;
+}
+
+#profile-update-form {
+    .form-group {
+        padding-top: 0.5rem;
+    }
 }
 

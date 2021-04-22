@@ -744,6 +744,10 @@ select option:first-child {
   display: block;
 }
 
+.filters-btn {
+  width: fit-content;
+}
+
 .filters.all-listings {
   width: unset;
   margin: 2rem auto 0 auto;
@@ -758,6 +762,10 @@ select option:first-child {
 .form-check-label {
   padding-top: 0.3rem;
   text-transform: uppercase;
+}
+
+#profile-update-form .form-group {
+  padding-top: 0.5rem;
 }
 
 ul {
@@ -834,8 +842,18 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   margin-top: 5rem;
 }
 
+.return-btn {
+  color: #303e94;
+}
+
+.share-btn {
+  text-align: end;
+  font-size: 1rem;
+}
+
 .image-container {
   text-align: center;
+  margin-top: 1.25rem;
 }
 .image-container p {
   position: absolute;
@@ -1033,6 +1051,16 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   .loading-text {
     font-size: 1rem;
   }
+}
+.breadcrumb-item {
+  color: white;
+}
+.breadcrumb-item a {
+  color: white !important;
+}
+
+.breadcrumb-item.active {
+  color: white !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

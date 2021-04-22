@@ -14,11 +14,15 @@
 
 {% block content %}
 <div class="container my-5">
+    <a href="javascript:history.go(-1)" class="mb-4 btn form-btn return-btn"><i class="fas fa-arrow-left"></i> Back</a>
     <!-- Image -->
     <div class="image-container">
         <!-- Button trigger modal -->
         <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
             <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
+            <p class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
+                <i class="fas fa-share-alt"></i>
+            </p>
             <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
         </a>
     </div>

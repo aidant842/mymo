@@ -621,6 +621,12 @@
                 {% endfor %}
             </div>
             <div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                
+                <legend class="pt-4">
+                    Account Settings
+                    <i class="fas fa-cog"></i>
+                </legend>
+                <hr>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form" class="my-3">
                         {% csrf_token %}
                         {% if profile.is_agent %}
@@ -628,9 +634,14 @@
                         {% else %}
                         {{ user_profile_form | crispy }}
                         {% endif %}
-                        <button class="btn form-btn" id="submit-button">Save <i class="far fa-save"></i></button>
+                        <button class="btn form-btn mt-4" id="submit-button">Save <i class="far fa-save"></i></button>
                 </form>
-                <a href="{% url 'account_change_password' %}">Change Password</a>
+                <legend class="pt-4">
+                    Password Settings
+                    <i class="fas fa-cog"></i>
+                </legend>
+                <hr>
+                <a href="{% url 'account_change_password' %}" class="btn form-btn">Change Password</a>
             </div>
         </div>
     

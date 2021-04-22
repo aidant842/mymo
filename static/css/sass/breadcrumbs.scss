@@ -1,0 +1,11 @@
+.breadcrumb-item {
+    color: $font-color;
+
+    a {
+        color: $font-color !important;
+    }
+}
+
+.breadcrumb-item.active {
+    color: $font-color!important;
+}

@@ -13,8 +13,22 @@
     margin-top: 5rem;
 }
 
+.return-btn {
+    color: $secondary-color;
+}
+
+.share-btn {
+    text-align: end;
+    font-size: 1.25rem;
+    color: $secondary-color;
+}
+
 .image-container {
     text-align: center;
+    margin-top: 1.25rem;
+    position: relative;
+    width: fit-content;
+    margin: 1.25rem auto 0 auto;
 
     p {
         position: absolute;
@@ -22,6 +36,17 @@
         background-color: $tertiary-color;
         color: $font-color;
         padding: 10px;
+    }
+
+    .share-btn {
+        position: absolute;
+        z-index: 9;
+        background-color: $tertiary-color;
+        color: $font-color;
+        padding: 10px;
+        display: flex;
+        right: 0;
+        font-size: 1.5rem;
     }
 
     img {
