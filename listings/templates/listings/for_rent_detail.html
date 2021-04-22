@@ -16,7 +16,7 @@
 <div class="container my-5">
     <a href="javascript:history.go(-1)" class="mb-4 btn form-btn return-btn"><i class="fas fa-arrow-left"></i> Back</a>
     <!-- Company banner -->
-    {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo %}
+    {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
     <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}">
         <div class="banner purple d-flex justify-content-center align-items-center">
             <!-- <span>{{ listing.user_profile.company_name }}</span>
