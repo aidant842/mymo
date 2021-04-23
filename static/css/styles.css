@@ -852,6 +852,10 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: #303e94;
 }
 
+.return-btn-container {
+  padding-bottom: 0.5rem;
+}
+
 .banner {
   color: white;
   position: sticky;

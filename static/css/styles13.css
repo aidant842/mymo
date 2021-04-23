@@ -857,6 +857,8 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 
 .banner {
+  background-color: #6a7fdb;
+  width: 100%;
   color: white;
   position: sticky;
   top: 0;
@@ -1090,4 +1092,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white !important;
 }
 
-/*# sourceMappingURL=styles11.css.map */
+/*# sourceMappingURL=styles13.css.map */

@@ -23,7 +23,13 @@
     color: $secondary-color;
 }
 
+.return-btn-container {
+    padding-bottom: 0.5rem;
+}
+
 .banner {
+    background-color: $tertiary-color;
+    width: 100%;
     color: $font-color;
     position: sticky;
     top: 0;

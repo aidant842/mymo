@@ -13,18 +13,24 @@
 <title>{% block extra_title %}{{ listing.property_type.capitalize }} to Rent, {{ listing.area.capitalize }}, Co. {{ listing.county.capitalize }} on MyMo.ie {% endblock %}</title>
 
 {% block content %}
+<div class="w-100 purple return-btn-container">
+    <div class="container">
+        <a href="javascript:history.go(-1)" class="text-white"><i class="fas fa-arrow-left"></i> Back</a>
+    </div>
+</div>
+<!-- Company banner -->
+{% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
+<a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}">
+    <div class="banner d-flex justify-content-center align-items-center p-2">
+        <span>{{ listing.user_profile.company_name }}</span>
+        <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="50px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
+        <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
+    </div>
+</a>
+<div class="container mb-5">
+{% else %}
 <div class="container my-5">
-    <a href="javascript:history.go(-1)" class="mb-4 btn form-btn return-btn"><i class="fas fa-arrow-left"></i> Back</a>
-    <!-- Company banner -->
-    {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
-    <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}">
-        <div class="banner purple d-flex justify-content-center align-items-center">
-            <!-- <span>{{ listing.user_profile.company_name }}</span>
-            <img src="{{ listing.user_profile.company_logo.url }}" width="50px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
-            <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}">
-        </div>
-    </a>
-    {% endif %}
+{% endif %}
     <!-- Image -->
     <div class="image-container">
         <!-- Button trigger modal -->
