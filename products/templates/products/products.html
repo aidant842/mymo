@@ -32,6 +32,7 @@
                     <div class="card-body spotlight">
                         <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
                         <p class="card-text">The ultimate way to advertise your property</p>
+                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price spotlight">
@@ -64,7 +65,7 @@
                         </li>
                     </ul>
                     <div class="card-body">
-                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
+                        <!-- <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a> -->
                     </div>
                 </div>
                 {% endif %}
@@ -77,6 +78,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
                         <p class="card-text">Advertise your house on MyMo</p>
+                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price">
@@ -95,9 +97,13 @@
                             {% endif %}
                         </li>
                         <li class="list-group-item">Unlimited Photos</li>
+                        <li class="list-group-item">&#x2718;</li>
+                        <li class="list-group-item">&#x2718;</li>
+                        <li class="list-group-item">&#x2718;</li>
+                        <li class="list-group-item">&#x2718;</li>
                     </ul>
                     <div class="card-body">
-                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
+                        <!-- <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a> -->
                     </div>
                 </div>
                 {% endif %}
