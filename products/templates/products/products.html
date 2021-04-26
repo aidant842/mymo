@@ -36,12 +36,12 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price spotlight">
-                           <p class="text-decoration-line-through fs-4">
+                           <span class="text-decoration-line-through fs-4 d-block">
                                €{{ product.pre_sale_price | display_price}}
-                           </p> 
-                           <p>
+                           </span> 
+                           <span class="d-block">
                                €{{ product.price | display_price }}
-                           </p>
+                           </span>
                         </li>
                         <li class="list-group-item spotlight">
                             {% if product.category.name == 'rent' %}
@@ -82,12 +82,12 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price">
-                            <p class="text-decoration-line-through fs-4">
+                            <span class="text-decoration-line-through fs-4 d-block">
                                 €{{ product.pre_sale_price | display_price}}
-                            </p> 
-                            <p>
+                            </span> 
+                            <span class="d-block">
                                 €{{ product.price | display_price }}
-                            </p>
+                            </span>
                          </li>
                         <li class="list-group-item">
                             {% if product.category.name == 'rent' %}
