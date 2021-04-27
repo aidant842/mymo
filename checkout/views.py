@@ -85,7 +85,7 @@ def create_listings(request):
                         return redirect('checkout')
                 else:
                     messages.error(request, 'form error, try re-uploading images')
-                    return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
+                    return redirect(reverse('product_detail', kwargs={'product_name':product.name ,'product_id':product.id}))
             elif product.category.name == 'rent':
                 listing_form = RentListingForm(request.POST, request.FILES)
                 images_form = RentImageForm(request.POST, request.FILES)
@@ -106,7 +106,7 @@ def create_listings(request):
                             listing=listing,
                             images=image
                         )
-                    if user.is_agent and user.subscription_paid  and not product.is_premium:
+                    if user.is_agent and user.subscription_paid  and not product.is_premium or product.price == 0:
                         listing.is_paid = True
                         listing.user_profile = user
                         listing.save()
@@ -118,7 +118,7 @@ def create_listings(request):
                         return redirect('checkout')
                 else:
                     messages.error(request, 'form error, try re-uploading images')
-                    return redirect(reverse('product_detail', kwargs={'product_id':product.id}))
+                    return redirect(reverse('product_detail', kwargs={'product_name':product.name, 'product_id':product.id}))
     request.session.set_expiry(1800)
 
 

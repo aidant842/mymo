@@ -86,7 +86,11 @@
                                 €{{ product.pre_sale_price | display_price}}
                             </span> 
                             <span class="d-block">
+                                {% if product.price == 0 %}
+                                FREE
+                                {% else %}
                                 €{{ product.price | display_price }}
+                                {% endif %}
                             </span>
                          </li>
                         <li class="list-group-item">
