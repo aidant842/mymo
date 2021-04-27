@@ -6,9 +6,13 @@ from listings.models import SaleListing, RentListing
 
 from itertools import chain
 
+import os
+
 
 def index(request):
     """ A view to return the home """
+
+    request.session['dev'] = 'DEVELOPMENT' in os.environ
 
     all_sale_listings_count = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now()).count()
     all_rent_listings_count = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(),).count()
