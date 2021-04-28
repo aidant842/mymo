@@ -273,14 +273,16 @@
             <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
                 <div class="card h-100">
                     {% if listing.is_spotlight %}
-                    {% if listing.user_profile.company_name %}
                     <div class="card-header d-flex justify-content-between align-items-center">
+                    {% if listing.user_profile.company_name %}
                         {{ listing.user_profile.company_name }}
-                        {% if listing.user_profile.company_logo %}
-                            <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
-                        {% endif %}
-                    </div>
+                    {% else %}
+                        {{ listing.full_name }}
                     {% endif %}
+                    {% if listing.user_profile.company_logo %}
+                        <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
+                    {% endif %}
+                    </div>
                     {% endif %}
                     <div class="card-image" style="background-image: url({{listing.header_image.url}});"></div>
                     <!-- <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}"> -->
@@ -299,7 +301,7 @@
                             {% endif %} 
                         </p>
                         <hr class="card-hr"/>
-                        <p class="card-text">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
+                        <p class="card-text {% if not listing.is_spotlight %} text-muted {% endif %}">{% if listing.company_name %} {{ listing.company_name }} {% else %} {{ listing.full_name }} {% endif %}</p>
                         {% if listing.is_spotlight %}
                             <span class="spotlight-tag">SPOTLIGHT</span>
                         {% endif %}
