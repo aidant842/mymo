@@ -294,6 +294,10 @@ a {
   text-align: center;
 }
 
+.alert {
+  margin-bottom: 0 !important;
+}
+
 .card-header {
   background-color: #303e94;
   color: white;
@@ -840,6 +844,10 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   width: 80%;
   text-align: center;
   margin-top: 5rem;
+}
+
+.bullets {
+  list-style-type: disc;
 }
 
 .return-btn {

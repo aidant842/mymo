@@ -301,6 +301,7 @@ a {
 .card-header {
   background-color: #303e94;
   color: white;
+  height: 67px;
 }
 .card-header img {
   width: 50px;
