@@ -54,7 +54,7 @@ def error_500_view(request):
     return render(request, template, status=500)
 
 
-def error_400_view(request):
+def error_400_view(request, exception):
     """ A view to redirect from bad request to mymo homepage """
 
     return redirect('https://mymo.ie')
