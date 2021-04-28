@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.http import HttpResponsePermanentRedirect
 from operator import attrgetter
 
 from listings.models import SaleListing, RentListing
@@ -57,4 +58,4 @@ def error_500_view(request):
 def error_400_view(request, exception):
     """ A view to redirect from bad request to mymo homepage """
 
-    return redirect('https://mymo.ie')
+    return HttpResponsePermanentRedirect('https://mymo.ie')
