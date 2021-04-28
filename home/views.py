@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from operator import attrgetter
 
@@ -52,3 +52,9 @@ def error_500_view(request):
     template = 'home/500.html'
 
     return render(request, template, status=500)
+
+
+def error_400_view(request):
+    """ A view to redirect from bad request to mymo homepage """
+
+    return redirect('https://mymo.ie')
