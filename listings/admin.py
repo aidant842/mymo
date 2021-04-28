@@ -32,6 +32,7 @@ class SaleListingAdmin(admin.ModelAdmin):
     )
 
     search_fields = ['listing_number']
+    list_filter = ['is_listed', 'is_paid']
 
     def save_model(self, request, obj, form, change):
         obj.save()
@@ -62,6 +63,7 @@ class RentListingAdmin(admin.ModelAdmin):
     )
 
     search_fields = ['listing_number']
+    list_filter = ['is_listed', 'is_paid']
 
     def save_model(self, request, obj, form, change):
         obj.save()
