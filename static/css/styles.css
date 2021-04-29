@@ -671,11 +671,12 @@ legend a {
   border-radius: 10px;
 }
 
-/* input:focus, select:focus { */
-/* border-color: $tertiary-color !important; */
-/* box-shadow: 0 0 0 0.25rem rgba($tertiary-color, 0.5) !important; */
-/* box-shadow: none !important; */
-/* } */
+input:focus, select:focus {
+  border-color: #6a7fdb !important;
+  box-shadow: 0 0 0 0.25rem rgba(106, 127, 219, 0.5) !important;
+  /* box-shadow: none !important; */
+}
+
 .scroll-section {
   max-height: 50px;
   overflow-y: auto;
@@ -765,7 +766,6 @@ select option:first-child {
 
 .form-check-label {
   padding-top: 0.3rem;
-  text-transform: uppercase;
 }
 
 #profile-update-form .form-group {
