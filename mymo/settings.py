@@ -106,7 +106,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 3
+SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 if 'DEVELOPMENT' in os.environ:
