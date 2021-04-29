@@ -107,6 +107,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+""" SITE_ID = 3 """
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 if 'DEVELOPMENT' in os.environ:

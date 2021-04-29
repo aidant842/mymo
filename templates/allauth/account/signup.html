@@ -18,7 +18,7 @@
         <h1>{% trans "Sign Up" %}</h1>
         <hr>
 
-        <!-- {% get_providers as socialaccount_providers %}
+        {% get_providers as socialaccount_providers %}
 
         {% if socialaccount_providers %}
         <p>{% blocktrans with site.name as site_name %}Please sign in with one
@@ -37,11 +37,11 @@
 
         {% include "socialaccount/snippets/login_extra.html" %}
 
-        {% else %} -->
+        {% else %}
 
         <p>{% blocktrans %}Already have an account? Please <a href="{{ login_url }}">Log
                 in</a>.{% endblocktrans %}</p>
-        <!-- {% endif %} -->
+        {% endif %}
         <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
             {% csrf_token %}
             {{ form | crispy }}
