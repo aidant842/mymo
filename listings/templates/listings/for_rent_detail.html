@@ -45,7 +45,11 @@
     <!-- Price and BER -->
     <div class="row text-center mt-5 mb-5 mx-3">
         <div class="col text-start fs-3 fw-bold">
+            {% if listing.poa %}
+            POA / {{ listing.rent_type }}
+            {% else %}
             € <span>{{ listing.price }} / {{ listing.rent_type }}</span>
+            {% endif %}
         </div>
         <div class="col text-end">
             <span>
