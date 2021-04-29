@@ -1,4 +1,4 @@
-{% extends "account/base.html" %} {% load crispy_forms_tags %}
+{% extends "account/base.html" %} {% load crispy_forms_tags %} {% load static %}
 
 {% block extra_meta %}
     <meta property="og:description" content="Sign up To Ireland's Best Online Property Market | MyMo.ie" />
@@ -40,4 +40,9 @@
         <p>If you are an agent please email <a href="mailto:support@mymo.ie">support@mymo.ie</a> or call <a href="tel:+353877648382">0877648382</a> to setup an account.</p>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/addIcons.js' %}"></script>  
 {% endblock %}

@@ -57,6 +57,31 @@ input:focus, select:focus {
     grid-column: 3;
 }
 
+.socialaccount_providers {
+    padding: 0;
+    color: white !important;
+}
+
+.socialaccount_providers a {
+    @extend %button-style;
+    color: white !important;
+    max-width: 180px;
+    display: block;
+    list-style: none;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 6px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.socialaccount_providers a i {
+    position: absolute;
+    left: 10%;
+    top: 25%;
+}
+
 /* Stripe elements */
 
 .StripeElement,

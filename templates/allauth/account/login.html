@@ -1,5 +1,6 @@
 {% extends "account/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block extra_meta %}
     <meta property="og:description" content="Sign in To Ireland's Best Online Property Market | MyMo.ie" />
@@ -25,7 +26,7 @@
         {% if socialaccount_providers %}
         <p>{% blocktrans with site.name as site_name %}Please sign in with one
             of your existing third party accounts. Or, <a href="{{ signup_url }}">Sign Up</a>
-            for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+            for a MyMo account and sign in below:{% endblocktrans %}</p>
 
         <div class="socialaccount_ballot">
 
@@ -33,7 +34,7 @@
                 {% include "socialaccount/snippets/provider_list.html" with process="login" %}
             </ul>
 
-            <div class="login-or">{% trans 'or' %}</div>
+            <div class="login-or">{% trans 'OR' %}</div>
 
         </div>
 
@@ -56,4 +57,9 @@
         <p>If you are an agent please email <a href="mailto:support@mymo.ie">support@mymo.ie</a> or call <a href="tel:+353877648382">0877648382</a> to setup an account.</p>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/addIcons.js' %}"></script>  
 {% endblock %}
