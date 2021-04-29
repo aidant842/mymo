@@ -9,7 +9,7 @@ class DateInputWidget(forms.DateInput):
 
 
 class SaleListingForm(forms.ModelForm):
-    FACILITY_CHOICES = [
+    """ FACILITY_CHOICES = [
         ('', 'Select Facility'),
         ('Alarm', 'Alarm'),
         ('Gas Fired Central Heating', 'Gas Fired Central Heating'),
@@ -17,16 +17,23 @@ class SaleListingForm(forms.ModelForm):
         ('Parking', 'Parking'),
         ('wheelchair Access', 'wheelchair Access'),
         ('Wired for Cable Television', 'Wired for Cable Television'),
-    ]
+    ] """
 
     PROPERTY_TYPE_CHOICES = [
         ('', 'Select type of property'),
-        ('Apartment', 'Apartment'),
-        ('Bungalow', 'Bungalow'),
-        ('Duplex', 'Duplex'),
         ('House', 'House'),
-        ('Site', 'Site'),
+        ('Terraced House', 'Terraced House'),
+        ('Detached house', 'Detached house'),
+        ('Semi-detached house', 'Semi-detached house'),
+        ('Townhouse', 'Townhouse'),
+        ('Bungalow', 'Bungalow'),
+        ('Cottage', 'Cottage'),
+        ('Manor', 'Manor'),
+        ('Apartment', 'Apartment'),
         ('Studio Apartment', 'Studio Apartment'),
+        ('Duplex', 'Duplex'),
+        ('Site', 'Site'),
+        ('Land', 'Land'),
     ]
 
     SELLING_TYPE_CHOICES = [
@@ -90,7 +97,7 @@ class SaleListingForm(forms.ModelForm):
         ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
     ]
 
-    facility_1 = forms.CharField(widget=forms.Select
+    """ facility_1 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
                                  required=False)
@@ -113,7 +120,7 @@ class SaleListingForm(forms.ModelForm):
     facility_6 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
-                                 required=False)
+                                 required=False) """
     property_type = forms.CharField(widget=forms.Select
                                     (choices=PROPERTY_TYPE_CHOICES,
                                      attrs={'class': 'form-select'}))
@@ -177,17 +184,17 @@ class SaleListingForm(forms.ModelForm):
             'header_image',
         ]
 
-        def __init__(self, *args, **kwargs):
+        """ def __init__(self, *args, **kwargs):
 
             super().__init__(*args, **kwargs)
 
             self.fields['full_name'].widget.attrs['autofocus'] = True
             for field in self.fields:
-                self.fields[field].widget.attrs['class'] = 'form-style'
+                self.fields[field].widget.attrs['class'] = 'form-style' """
 
 
 class RentListingForm(forms.ModelForm):
-    FACILITY_CHOICES = [
+    """ FACILITY_CHOICES = [
         ('', 'Select Facility'),
         ('Alarm', 'Alarm'),
         ('Gas Fired Central Heating', 'Gas Fired Central Heating'),
@@ -195,16 +202,23 @@ class RentListingForm(forms.ModelForm):
         ('Parking', 'Parking'),
         ('wheelchair Access', 'wheelchair Access'),
         ('Wired for Cable Television', 'Wired for Cable Television'),
-    ]
+    ] """
 
     PROPERTY_TYPE_CHOICES = [
         ('', 'Select type of property'),
-        ('Apartment', 'Apartment'),
-        ('Bungalow', 'Bungalow'),
-        ('Duplex', 'Duplex'),
         ('House', 'House'),
-        ('Site', 'Site'),
+        ('Terraced House', 'Terraced House'),
+        ('Detached house', 'Detached house'),
+        ('Semi-detached house', 'Semi-detached house'),
+        ('Townhouse', 'Townhouse'),
+        ('Bungalow', 'Bungalow'),
+        ('Cottage', 'Cottage'),
+        ('Manor', 'Manor'),
+        ('Apartment', 'Apartment'),
         ('Studio Apartment', 'Studio Apartment'),
+        ('Duplex', 'Duplex'),
+        ('Site', 'Site'),
+        ('Land', 'Land'),
     ]
 
     FLOOR_AREA_TYPE_CHOICES = [
@@ -254,6 +268,7 @@ class RentListingForm(forms.ModelForm):
     RENT_TYPE_CHOICES = [
         ('Monthly', 'Monthly'),
         ('Weekly', 'Weekly'),
+        ('Nightly', 'Nightly'),
     ]
 
     IE_COUNTY_CHOICES = [
@@ -272,7 +287,7 @@ class RentListingForm(forms.ModelForm):
         ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
     ]
 
-    facility_1 = forms.CharField(widget=forms.Select
+    """ facility_1 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
                                  required=False)
@@ -295,7 +310,7 @@ class RentListingForm(forms.ModelForm):
     facility_6 = forms.CharField(widget=forms.Select
                                  (choices=FACILITY_CHOICES,
                                   attrs={'class': 'form-select'}),
-                                 required=False)
+                                 required=False) """
     property_type = forms.CharField(widget=forms.Select
                                     (choices=PROPERTY_TYPE_CHOICES,
                                      attrs={'class': 'form-select'}))
@@ -341,6 +356,7 @@ class RentListingForm(forms.ModelForm):
             'property_type',
             'rent_type',
             'price',
+            'poa',
             'available_from',
             'lease_term',
             'no_of_single_bedrooms',
@@ -354,6 +370,11 @@ class RentListingForm(forms.ModelForm):
             'facility_4',
             'facility_5',
             'facility_6',
+            'top_features_1',
+            'top_features_2',
+            'top_features_3',
+            'top_features_4',
+            'top_features_5',
             'floor_area_type',
             'floor_area',
             'ber_rating',
@@ -361,15 +382,15 @@ class RentListingForm(forms.ModelForm):
             'header_image',
         ]
 
-        def __init__(self, *args, **kwargs):
-            """ Add placeholders and classes, remove auto generated labels
-                and set autofocus on first field """
+        """ def __init__(self, *args, **kwargs): """
+        """ Add placeholders and classes, remove auto generated labels
+            and set autofocus on first field """
 
-            super().__init__(*args, **kwargs)
+        """ super().__init__(*args, **kwargs)
 
-            self.fields['full_name'].widget.attrs['autofocus'] = True
-            for field in self.fields:
-                self.fields[field].widget.attrs['class'] = 'form-style'
+        self.fields['full_name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-style' """
 
 
 class SaleImageForm(forms.ModelForm):

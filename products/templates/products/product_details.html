@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <h6 class="fw-bold">OR</h6>
+                        <h6 class="fw-bold" id="or">OR</h6>
                     </div>
                     <div class="row mb-2">
                         <div class="col d-flex align-items-center">
@@ -228,14 +228,28 @@
                 {{ listing_form.property_type | as_crispy_field }}
                 <div class="row">
                     <div class="col">
-                        {{ listing_form.rent_type | as_crispy_field }}
-                    </div>
-                    <div class="col">
                         {{ listing_form.price | as_crispy_field }}
                     </div>
                 </div>
-                {{ listing_form.available_from | as_crispy_field }}
-                {{ listing_form.lease_term | as_crispy_field }}
+                <div class="row">
+                    <h6 class="fw-bold" id="or">OR</h6>
+                </div>
+                <div class="row mb-2">
+                    <div class="col d-flex align-items-center">
+                        {{ listing_form.poa | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="col">
+                    {{ listing_form.rent_type | as_crispy_field }}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{ listing_form.lease_term | as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ listing_form.available_from | as_crispy_field }}
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
@@ -249,6 +263,21 @@
                 </div>
                 {{ listing_form.no_of_bathrooms | as_crispy_field }}
                 {{ listing_form.furnishing | as_crispy_field }}
+                <div class="features">
+                    {{ listing_form.top_features_1 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_2 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_3 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_4 | as_crispy_field }}
+                </div>
+                <div class="features" hidden>
+                    {{ listing_form.top_features_5 | as_crispy_field }}
+                </div>
                 <div class="row">
                     <div class="col">
                         {{ listing_form.facility_1 | as_crispy_field }}
@@ -298,6 +327,13 @@
                 <!-- To display images from images form -->
                 <div class="image-preview">
                 </div>
+                {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                        <p> {{ errors }} </p>
+                    {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </fieldset>
             <hr>
             {% if user.is_agent and user.subscription_paid and not product.is_premium or product.price == 0 %}
@@ -387,28 +423,17 @@
             $('#id_poa').change(function () {
                 if($(this).is(':checked')) {
                     $('#id_price').attr('required', false);
-                    $('#id_price').attr('hidden', true);
+                    $('#div_id_price').attr('hidden', true);
+                    $('#or').attr('hidden', true);
                     $('#id_price').val(0)
                 } else {
                     $('#id_price').attr('required', true);
-                    $('#id_price').attr('hidden', false);
+                    $('#div_id_price').attr('hidden', false);
+                    $('#or').attr('hidden', false);
                 }
             });
         }
     };
-
-/*     const realHeaderImg = $('#id_header_image');
-    const cloneBtn = $('#headerImgClone');
-    const realImgsBtn = $('#id_images');
-    const imagesCloneBtn = $('#imagesClone'); */
-
-/*     cloneBtn.click(function () {
-        realHeaderImg.click();
-    });
-
-    imagesCloneBtn.click(function () {
-        realImgsBtn.click();
-    }); */
 
     displayFeatures();
     setPriceDisabled();
