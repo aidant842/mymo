@@ -123,6 +123,16 @@
     padding: 0;
 }
 
+.copy-btn {
+    width: 77px !important;
+    height: 28px !important;
+    min-width: 0;
+    min-height: 0;
+    border-radius: 4px !important;
+    padding: 3px 0;
+    font-size: small;
+}
+
 /* .modal {
     background: rgba(0,0,0, 0.2);
 }

@@ -400,22 +400,32 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="container-fluid p-4">
+            <div class="container-fluid p-4 d-grid">
                 <iframe 
-                src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmymo.ie%2Flistings%2Ffor_sale%2F56%2F&layout=button&size=large&width=77&height=28&appId" 
-                width="77" 
-                height="28" 
-                style="border:none;overflow:hidden" 
-                scrolling="no" 
-                frameborder="0" 
-                allowfullscreen="true" 
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-            </iframe>
-            <div class="snapchat-creative-kit-share"></div>
+                    src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmymo.ie%2Flistings%2Ffor_sale%2F{{ listing.id }}%2F&layout=button&size=large&width=77&height=28&appId" 
+                    width="77" 
+                    height="28" 
+                    style="border:none;overflow:hidden" 
+                    scrolling="no" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
+            
+                <a class="clipboard btn form-btn copy-btn"><i class="fas fa-copy"></i> <span id="copy-confirm">Copy</span></a>
+                    
+                <!-- <div class="snapchat-creative-kit-share"></div> -->
+
+                </div>
             </div>
         </div>
       </div>
     </div>
   </div>
   
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'js/copyUrl.js' %}"></script>
 {% endblock %}
