@@ -10,7 +10,7 @@
     {% endblock %}
     
 
-<title>{% block extra_title %}Uh Oh! It's seems that page cannot be found.{% endblock %}</title>
+<title>{% block extra_title %}Uh Oh! It's seems that page cannot be found.{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="container min-vh-100 d-flex align-items-center justify-content-center">

@@ -10,7 +10,7 @@
     {% endblock %}
     
 
-<title>{% block extra_title %}Uh Oh! It's seems that there was an error.{% endblock %}</title>
+<title>{% block extra_title %}Uh Oh! It's seems that there was an error.{% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="container min-vh-100 d-flex align-items-center justify-content-center">

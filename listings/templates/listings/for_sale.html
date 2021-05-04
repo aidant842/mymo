@@ -5,13 +5,13 @@
     <meta property="og:image:alt" content="MyMo.ie Logo" />
     <meta property="og:description" content="Find private houses, apartments, sites and properties for sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin Ireland {% endif %}. Search through {{ total_listings }} properties for Sale in Ireland now on MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Apartments, Properties & Sites for Sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %}| MyMo.ie" />
+    <meta property="og:title" content="Houses, Apartments, Properties & Sites for Sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %}| MyMo.ie" />
     <meta name="description" content="Find private houses, apartments, sites and properties for sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin Ireland {% endif %}. Search through {{ total_listings }} properties for Sale in Ireland now on MyMo.ie."/>
     <meta name="keywords" content="Houses for Sale Dublin, Houses for Sale Kildare, Houses for Private Sale, Apartments for Sale Dublin, Houses for Sale by Owner, Sites for Sale, Property for Sale Galway"/>
 {% endblock %}
     
 
-<title>{% block extra_title %}Apartments, Properties & Sites for Sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %} {% endblock %}</title>
+<title>{% block extra_title %}Houses, Apartments, Properties & Sites for Sale in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %}{% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="filters-container">

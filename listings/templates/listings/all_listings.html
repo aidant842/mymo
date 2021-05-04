@@ -10,7 +10,7 @@
 {% endblock %}
     
 
-<title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}</title>
+<title>{% block extra_title %}Property for Sale or to Rent in {% if request.GET.q %} {{ request.GET.q.capitalize }} {% else %} Ireland {% endif %} {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <!-- <div class="filters-container all-listings">

@@ -11,7 +11,7 @@
 {% endblock %}
     
 
-<title>{% block extra_title %}List Your Home Now for Sale and Rent {% endblock %}</title>
+<title>{% block extra_title %}List Your Home Now for Sale and Rent {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <section class="product-section">

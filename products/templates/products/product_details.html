@@ -10,7 +10,7 @@
 {% endblock %}
     
 
-<title>{% block extra_title %}{%if product.is_premium %}Premium {% endif %}Listing Entry for {{ product.category.name.capitalize }}{% endblock %}</title>
+<title>{% block extra_title %}{%if product.is_premium %}Premium {% endif %}Listing Entry for {{ product.category.name.capitalize }}{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">

@@ -11,7 +11,7 @@
 {% endblock %}
     
 
-<title>{% block extra_title %}Apartments, Properties & Sites for Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %} {% endblock %}</title>
+<title>{% block extra_title %}Apartments, Properties & Sites for Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %} {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="filters-container">

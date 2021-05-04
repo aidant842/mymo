@@ -10,7 +10,7 @@
     {% endblock %}
     
 
-<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %}</title>
+<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">

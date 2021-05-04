@@ -10,7 +10,7 @@
     {% endblock %}
     
 
-<title>{% block extra_title %}{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %}{% endblock %}</title>
+<title>{% block extra_title %}{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %}{% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">
