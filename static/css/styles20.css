@@ -954,7 +954,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: #555;
 }
 .agent-header img {
-  width: 80px;
+  width: 150px;
 }
 
 /************** Modal Section *****************/
@@ -1041,6 +1041,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 @media only screen and (max-width: 576px) {
   .modal-dialog {
     margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .agent-header img {
+    width: 80px;
   }
 }
 .loader-bg {
@@ -1151,4 +1156,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white !important;
 }
 
-/*# sourceMappingURL=styles19.css.map */
+/*# sourceMappingURL=styles20.css.map */

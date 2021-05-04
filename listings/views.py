@@ -285,7 +285,12 @@ def for_rent_listings(request):
 
 
 def sale_listing_detail_view(request, listing_id):
-    listing = get_object_or_404(SaleListing, pk=listing_id)
+    try:
+        listing = get_object_or_404(SaleListing, pk=listing_id)
+    except Exception as e:
+        messages.error(request, f'{e}')
+        return redirect(reverse('for_sale_listings'))
+
     profile = listing.user_profile.user.id
     show_recent_listings = False
     sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
@@ -324,16 +329,24 @@ def sale_listing_detail_view(request, listing_id):
         'show_recent_listings': show_recent_listings,
     }
 
-    if listing.is_listed:
+    return render(request, template, context)
+
+    """ if listing or listing.is_listed:
         return render(request, template, context)
     else:
         messages.error(request, 'Listing does not exist or has expired')
-        return redirect(reverse('home'))
+        return redirect(reverse('for_sale_listings')) """
 
 
 def rent_listing_detail_view(request, listing_id):
-    listing = get_object_or_404(RentListing, pk=listing_id)
+    try:
+        listing = get_object_or_404(RentListing, pk=listing_id)
+    except Exception as e:
+        messages.error(request, f'{e}')
+        return redirect(reverse('for_rent_listings'))
+
     profile = listing.user_profile.user.id
+    show_recent_listings = False
     sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
     rent_listings = RentListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
 
@@ -342,6 +355,9 @@ def rent_listing_detail_view(request, listing_id):
     for result in result_list:
         if result.id == listing.id:
             result_list.remove(result)
+
+    if len(result_list) >= 1:
+        show_recent_listings = True
 
     result_list.sort(key=attrgetter('date_created'), reverse=True)
     result_list = result_list[:3]
@@ -363,6 +379,7 @@ def rent_listing_detail_view(request, listing_id):
         'listing': listing,
         'result_list': result_list,
         'photos': photos,
+        'show_recent_listings': show_recent_listings,
     }
     if listing.is_listed:
         return render(request, template, context)

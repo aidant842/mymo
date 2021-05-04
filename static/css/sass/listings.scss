@@ -80,9 +80,10 @@
 }
 
 .agent-header {
-    color: $font-color;
+    background: #eff0f0 !important;
+    color: #555;
     img {
-        width: 80px;
+        width: 150px;
     }
 }
 
@@ -176,5 +177,13 @@
 @media only screen and (max-width: 576px) {
     .modal-dialog {
         margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .agent-header {
+        img {
+            width: 80px;
+        }
     }
 }

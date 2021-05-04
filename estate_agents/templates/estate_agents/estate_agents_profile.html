@@ -14,38 +14,40 @@
 
 {% block content %}
 <div class="min-vh-100">
-    <div class="container mt-5">
+    <div class="agent-header">
         {% if profile.company_name %}
-        <div class="agent-header purple d-flex justify-content-between align-items-center mb-3">
-            <h2>
-                {{ profile.company_name }}
-            </h2>
-            {% if profile.company_logo %}
-                <img src="{{ profile.company_logo.url }}" alt="Logo for {{ profile.company_name }}">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>
+                    {{ profile.company_name }}
+                </h2>
+                {% if profile.company_logo %}
+                    <img src="{{ profile.company_logo.url }}" alt="Logo for {{ profile.company_name }}">
+                {% endif %}
+            </div>
+            {% if profile.psr_number %}
+                <p class="text-muted fs-6 mt-2">PSR No.: {{ profile.psr_number }}</p>
             {% endif %}
-        </div>
-        {% if profile.psr_number %}
-            <p class="text-muted fs-6 mt-2">PSR No.: {{ profile.psr_number }}</p>
-        {% endif %}
-        {% endif %}
-        <hr>
-        <div class="row">
-            {% if profile.phone_number is not None %}
-                <!-- <strong>Phone:</strong> {{ profile.phone_number }} -->
-                <div class="col mx-auto">
-                    <a href="tel:{{ profile.phone_number }}" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
-                </div>
             {% endif %}
-            {% if profile.email is not None %}
-                <!-- <strong>
-                    Email:
-                </strong>
-                 {{ profile.email }} -->
-                 <div class="col mx-auto">
-                     <a href="mailto:{{ profile.email }}" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
-                 </div>
-            {% endif %}
-            
+            <hr>
+            <div class="row">
+                {% if profile.phone_number is not None %}
+                    <!-- <strong>Phone:</strong> {{ profile.phone_number }} -->
+                    <div class="col mx-auto">
+                        <a href="tel:{{ profile.phone_number }}" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
+                    </div>
+                {% endif %}
+                {% if profile.email is not None %}
+                    <!-- <strong>
+                        Email:
+                    </strong>
+                     {{ profile.email }} -->
+                     <div class="col mx-auto">
+                         <a href="mailto:{{ profile.email }}" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
+                     </div>
+                {% endif %}
+                
+            </div>
         </div>
     </div>
     <div class="card-container">
