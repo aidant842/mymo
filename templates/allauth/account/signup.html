@@ -1,16 +1,17 @@
 {% extends "account/base.html" %} {% load crispy_forms_tags %} {% load static %}
 
 {% block extra_meta %}
-    <meta property="og:description" content="Sign up To Ireland's Best Online Property Market | MyMo.ie" />
+    <meta property="og:description" content="Sign up to Ireland's Best Online Property Marketplace. Search through thousands of houses, apartments and properties for sale and rent in Kildare, Galway, Dublin Ireland." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Sign up | MyMo.ie" />
-    <meta name="description" content="Sign up to Ireland's Best Online Property Market | MyMo.ie">
+    <meta property="og:title" content="Sign up to Ireland's Best Online Property Marketplace | MyMo.ie" />
+    <meta name="description" content="Sign up to Ireland's Best Online Property Marketplace. Search through thousands of houses, apartments and properties for sale and rent in Kildare, Galway, Dublin Ireland.">
+    <meta name="keywords" content="Apartments for Sale Dublin, Houses for Sale Kildare, Property for Sale Galway"/>
 {% endblock %}
 
 {% load i18n %}
 <!-- {% load account socialaccount %} -->
 
-<title>{% block extra_title %}Sign Up {% endblock %}</title>
+<title>{% block extra_title %}Sign up to Ireland's Best Online Property Marketplace {% endblock %}</title>
 
 {% block content %}
 <div class="container allauth-container">

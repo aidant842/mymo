@@ -3,14 +3,15 @@
 {% block extra_meta %}
     <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
     <meta property="og:image:alt" content="MyMo.ie Logo" />
-    <meta property="og:description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie." />
+    <meta property="og:description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Kildare, Galway, Dublin Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Property to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Ireland {% endif %}| MyMo.ie" />
-    <meta name="description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie.">
-    {% endblock %}
+    <meta property="og:title" content="Apartments, Properties & Sites for Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %}| MyMo.ie" />
+    <meta name="description" content="Find Houses, Apartments and Properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Kildare, Galway, Dublin Ireland{% endif %}. Search through {{ total_listings }} properties to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }}{% else %}Ireland{% endif %} now on MyMo.ie.">
+    <meta name="keywords" content="Rent Dublin, Rent Galway, Houses for Rent, Apartments for Rent, Properties for Rent"/>
+{% endblock %}
     
 
-<title>{% block extra_title %}Property to Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Ireland {% endif %} {% endblock %}</title>
+<title>{% block extra_title %}Apartments, Properties & Sites for Rent in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin {% endif %} {% endblock %}</title>
 
 {% block content %}
 <div class="filters-container">

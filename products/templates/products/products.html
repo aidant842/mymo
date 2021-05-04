@@ -3,14 +3,15 @@
 {% block extra_meta %}
     <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
     <meta property="og:image:alt" content="MyMo.ie Logo" />
-    <meta property="og:description" content="Choose A Product To List Your Property {% if request.GET.category == 'sale' %}For Sale{% elif request.GET.category == 'rent' %}To Rent{% endif %} on MyMo.ie, Ireland's Best Online Property Marketplace. | MyMo.ie" />
+    <meta property="og:description" content="Choose a Product to List Your Property on MyMo.ie, Ireland's Best Online Property Marketplace. Contact us +00353 877648382." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Choose a product to list your Property {% if request.GET.category == 'sale' %}for Sale{% elif request.GET.category == 'rent' %}to Rent{% endif %} on MyMo.ie | MyMo.ie" />
-    <meta name="description" content="Choose A Product To List Your Property {% if request.GET.category == 'sale' %}For Sale{% elif request.GET.category == 'rent' %}To Rent{% endif %} on MyMo.ie, Ireland's Best Online Property Marketplace. | MyMo.ie">
+    <meta property="og:title" content="List Your Home Now for Sale and Rent | MyMo.ie" />
+    <meta name="description" content="Choose a Product to List Your Property on MyMo.ie, Ireland's Best Online Property Marketplace. Contact us +00353 877648382.">
+    <meta name="keywords" content="Apartments for Sale Dublin, Houses for Sale Kildare, Property for Sale Galway"/>
 {% endblock %}
     
 
-<title>{% block extra_title %}Choose a product to list your Property {% if request.GET.category == 'sale' %}for Sale{% elif request.GET.category == 'rent' %}to Rent{% endif %} on MyMo.ie {% endblock %}</title>
+<title>{% block extra_title %}List Your Home Now for Sale and Rent {% endblock %}</title>
 
 {% block content %}
 <section class="product-section">
