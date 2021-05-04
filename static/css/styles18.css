@@ -499,10 +499,12 @@ footer a {
   padding: 2rem 1rem;
   justify-items: center;
   color: white !important;
+  align-items: baseline;
 }
 
 .footer-logo-section {
   grid-column: 1;
+  text-align: center;
 }
 
 .footer-social-section a {
@@ -519,6 +521,20 @@ footer a {
 
 .footer-social-section h4 {
   margin-bottom: 1rem;
+}
+
+.popular-searches {
+  background-color: #eff0f0 !important;
+}
+.popular-searches legend {
+  color: #555 !important;
+}
+.popular-searches ul li a {
+  color: #555;
+}
+.popular-searches ul li a:hover {
+  text-decoration: underline;
+  color: #6a7fdb;
 }
 
 @media only screen and (max-width: 650px) {

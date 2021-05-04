@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles18.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles19.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -178,6 +178,41 @@
 
     {% block content %}
     {% endblock %}
+    <!-- Popular Searches -->
+    <div class="popular-searches p-4 mt-5">
+        <div class="row">
+            <div class="col">
+                <legend class="text-center">
+                    Popular Searches
+                </legend>
+                <ul class="p-0">
+                    <li>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites for Sale</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Rent Dublin</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <legend class="text-center">
+                    Popular Searches By Area
+                </legend>
+                <ul class="p-0">
+                    <li>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Sale Dublin</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Property for Sale Galway</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses for Sale Dublin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="m-0">
     {% block footer %}
     <footer>
         <div class="footer">
@@ -185,7 +220,7 @@
                 <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
                 </a>
-                <p>Ireland's Best Online Property Market.</p>
+                <p>Whether you are looking for Repossessed Houses, Houses for Sale By Owner, Houses for Private Sale we have it all on Ireland's Best Online Property Market.</p>
             </div>
             <div class="footer-contact-section">
                 <h4>Contact Us</h4>

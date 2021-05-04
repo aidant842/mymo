@@ -4,13 +4,21 @@ from django import forms
 class FilterForm(forms.Form):
 
     PROPERTY_TYPE_CHOICES = [
-        (None, 'Select type of property'),
-        ('Apartment', 'Apartment'),
-        ('Bungalow', 'Bungalow'),
-        ('Duplex', 'Duplex'),
+        ('', 'Select type of property'),
         ('House', 'House'),
-        ('Site', 'Site'),
+        ('Terraced House', 'Terraced House'),
+        ('Detached house', 'Detached house'),
+        ('Semi-detached house', 'Semi-detached house'),
+        ('Townhouse', 'Townhouse'),
+        ('Repossessed House', 'Repossessed House'),
+        ('Bungalow', 'Bungalow'),
+        ('Cottage', 'Cottage'),
+        ('Manor', 'Manor'),
+        ('Apartment', 'Apartment'),
         ('Studio Apartment', 'Studio Apartment'),
+        ('Duplex', 'Duplex'),
+        ('Site', 'Site'),
+        ('Land', 'Land'),
     ]
 
     BER_CHOICES = [

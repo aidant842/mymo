@@ -13,10 +13,12 @@ footer {
     padding: 2rem 1rem;
     justify-items: center;
     color: $font-color !important;
+    align-items: baseline;
 }
 
 .footer-logo-section {
     grid-column: 1;
+    text-align: center;
 }
 
 .footer-social-section a {
@@ -33,6 +35,22 @@ footer {
 
 .footer-social-section h4 {
     margin-bottom: 1rem;
+}
+
+.popular-searches {
+    background-color: #eff0f0 !important;
+    legend {
+        color: #555 !important;
+    }
+
+    ul li a {
+        color: #555;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+        color: $tertiary-color;
+    }
 }
 
  // ***************** MEDIA QUERIES ***************** //
