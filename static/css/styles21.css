@@ -484,6 +484,49 @@ a {
   -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
 } */
+/* SITEMAP */
+.sitemap ul {
+  text-align: unset;
+}
+.sitemap li {
+  /* You need to turn on relative positioning so the line is placed relative to the item rather than absolutely on the page */
+  position: relative;
+  /* Use padding to space things out rather than margins as the line would get broken up otherwise */
+  margin: 0;
+  padding-bottom: 1em;
+  padding-left: 20px;
+}
+.sitemap ul li a {
+  color: #555;
+}
+.sitemap ul li a:hover {
+  text-decoration: underline;
+  color: #6a7fdb;
+}
+.sitemap li:before {
+  background-color: #6a7fdb;
+  width: 1px;
+  content: "";
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 5px;
+}
+.sitemap li::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  background: #6a7fdb;
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 0;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+}
+
 footer {
   background-color: #303e94;
   min-height: 15vh;

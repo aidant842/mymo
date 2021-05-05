@@ -39,6 +39,14 @@ def index(request):
     return render(request, template, context)
 
 
+def sitemap(request):
+    """ A View to return the sitemap """
+
+    template = 'home/sitemap.html'
+
+    return render(request, template)
+
+
 def error_404_view(request, exception):
     """ A view to return custom 404 page """
 

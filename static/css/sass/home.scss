@@ -278,3 +278,55 @@
   -webkit-transition: all 0.2s ease;
           transition: all 0.2s ease;
 } */
+
+/* SITEMAP */
+.sitemap {
+
+    ul{
+        text-align: unset;
+    }
+
+    li {
+        /* You need to turn on relative positioning so the line is placed relative to the item rather than absolutely on the page */
+        position: relative;
+      
+        /* Use padding to space things out rather than margins as the line would get broken up otherwise */
+        margin: 0;
+        padding-bottom: 1em;
+        padding-left: 20px;
+    }
+
+    ul li a {
+        color: #555;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+        color: $tertiary-color;
+    }
+    
+    li:before {
+        background-color: $tertiary-color;
+        width: 1px;
+        content: '';
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 5px;
+    }
+    
+    li::after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        background: $tertiary-color;
+        background-repeat: no-repeat;
+        background-size: contain;
+        left: 0;
+        top: 2px;
+        width: 12px;
+        height: 12px;
+      }
+}

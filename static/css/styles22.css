@@ -485,130 +485,48 @@ a {
           transition: all 0.2s ease;
 } */
 /* SITEMAP */
-/* The actual timeline (the vertical ruler) */
-.timeline {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
+.sitemap ul {
+  text-align: unset;
 }
-
-/* The actual timeline (the vertical ruler) */
-.timeline::after {
+.sitemap li {
+  /* You need to turn on relative positioning so the line is placed relative to the item rather than absolutely on the page */
+  position: relative;
+  /* Use padding to space things out rather than margins as the line would get broken up otherwise */
+  margin: 0;
+  padding-bottom: 1em;
+  padding-left: 20px;
+}
+.sitemap ul li a {
+  color: #555;
+}
+.sitemap ul li a:hover {
+  text-decoration: underline;
+  color: #6a7fdb;
+}
+.sitemap li:before {
+  background-color: #6a7fdb;
+  width: 1px;
   content: "";
   position: absolute;
-  width: 6px;
-  background-color: white;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  margin-left: -3px;
+  top: 0px;
+  bottom: 0px;
+  left: 5px;
 }
-
-/* Container around content */
-.container {
-  padding: 10px 40px;
-  position: relative;
-  background-color: inherit;
-  width: 50%;
-}
-
-/* The circles on the timeline */
-.container::after {
+.sitemap li::after {
   content: "";
   position: absolute;
-  width: 25px;
-  height: 25px;
-  right: -17px;
-  background-color: white;
-  border: 4px solid #FF9F55;
-  top: 15px;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-/* Place the container to the left */
-.left {
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  background: #6a7fdb;
+  background-repeat: no-repeat;
+  background-size: contain;
   left: 0;
+  top: 2px;
+  width: 12px;
+  height: 12px;
 }
 
-/* Place the container to the right */
-.right {
-  left: 50%;
-}
-
-/* Add arrows to the left container (pointing right) */
-.left::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  right: 30px;
-  border: medium solid white;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent white;
-}
-
-/* Add arrows to the right container (pointing left) */
-.right::before {
-  content: " ";
-  height: 0;
-  position: absolute;
-  top: 22px;
-  width: 0;
-  z-index: 1;
-  left: 30px;
-  border: medium solid white;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent white transparent transparent;
-}
-
-/* Fix the circle for containers on the right side */
-.right::after {
-  left: -16px;
-}
-
-/* The actual content */
-.content {
-  padding: 20px 30px;
-  background-color: white;
-  position: relative;
-  border-radius: 6px;
-}
-
-/* Media queries - Responsive timeline on screens less than 600px wide */
-@media screen and (max-width: 600px) {
-  /* Place the timelime to the left */
-  .timeline::after {
-    left: 31px;
-  }
-
-  /* Full-width containers */
-  .container {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-
-  /* Make sure that all arrows are pointing leftwards */
-  .container::before {
-    left: 60px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-  }
-
-  /* Make sure all circles are at the same spot */
-  .left::after, .right::after {
-    left: 15px;
-  }
-
-  /* Make all right containers behave like the left ones */
-  .right {
-    left: 0%;
-  }
-}
 footer {
   background-color: #303e94;
   min-height: 15vh;
@@ -1286,4 +1204,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white !important;
 }
 
-/*# sourceMappingURL=styles20.css.map */
+/*# sourceMappingURL=styles22.css.map */

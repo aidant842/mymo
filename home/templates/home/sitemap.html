@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
+    <meta property="og:image:alt" content="MyMo.ie Logo" />
+    <meta property="og:description" content="We are Ireland's best online property marketplace. Search through thousands of repossessed houses, apartments & properties for sale and rent in Kildare, Galway, Dublin." />
+    <meta property="og:url" content="https://www.mymo.ie/" />
+    <meta property="og:title" content="MyMo.ie - Houses, Apartments and Properties for Sale and Rent in Ireland | MyMo.ie" />
+    <meta name="description" content="We are Ireland's best online property marketplace. Search through thousands of repossessed houses, apartments & properties for sale and rent in Kildare, Galway, Dublin."/>
+    <meta name="keywords" content="Apartments for Sale Dublin, Houses for Sale by Owner, Repossessed Houses, Sites for Sale, Property for Sale Galway"/>
+{% endblock %}
+
+{% block content %}
+<div class="container sitemap">
+    <h1 class="text-center">Sitemap</h1>
+    <hr>
+    
+    <ul>
+        <li>
+            <a href="{% url 'home' %}" title="Click here to go home">
+                Home
+            </a>
+
+            <ul>
+                <li>
+                    <a href="{% url 'listings' %}" title="Click here to see Apartments, Properties, Sites and Land for Sale or Rent in Ireland">
+                        All Listings
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">
+                Buy
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Rent in Ireland">
+                Rent
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'account_login' %}" title="Click here to Log In">
+                Login
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'account_login' %}" title="Click here to Sign Up for a MyMo.ie account">
+                Sign Up
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'products' %}" title="List Home Now for Sale and Rent">
+                Place Ad
+            </a>
+            <ul>
+                <li>
+                    <a href="{% url 'products' %}?category=sale" title="List Home Now for Sale">
+                        Sale
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'products' %}?category=rent" title="List Home Now for Rent">
+                        Rent
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{% endblock %}
