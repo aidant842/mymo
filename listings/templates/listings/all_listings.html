@@ -39,8 +39,8 @@
                     {{ filter_form.property_type | as_crispy_field }}
                 </div>
             </div>
-            <a data-bs-toggle="collapse" href="#extraFilters" role="button" aria-expanded="false"
-                class="text-muted">
+            <a data-bs-toggle="collapse" title="Click here to show extra filters" href="#extraFilters" role="button" aria-expanded="false"
+                class="text-muted btn form-btn filters-btn">
                 Extra Filters
                 <i class="fas fa-angle-down chevron"></i>
             </a>
@@ -79,18 +79,20 @@
     {% endif %}
     <div class="card-container">
         {% for listing in result_list %}
-        <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+        <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}" title="Click to view this Property">
             <div class="card h-100">
                 {% if listing.is_spotlight %}
-                {% if listing.user_profile.company_name %}
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    {{ listing.user_profile.company_name }}
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                    {% if listing.user_profile.company_name %}
+                        {{ listing.user_profile.company_name }}
+                    {% else %}
+                        {{ listing.full_name }}
+                    {% endif %}
                     {% if listing.user_profile.company_logo %}
                         <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
                     {% endif %}
-                </div>
-                {% endif %}
-                {% endif %}
+                    </div>
+                    {% endif %}
                 <div class="card-image" style="background-image: url({{listing.header_image.url}});"></div>
                 <!-- <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}"> -->
                 <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">

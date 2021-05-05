@@ -2,7 +2,7 @@
     <ul class="pagination justify-content-center">
         <li class="page-item">
             {% if page.has_previous %}
-            <a class="page-link" href="?q={{ query }}&page={{ page.previous_page_number }}">
+            <a class="page-link" href="?q={{ query }}&page={{ page.previous_page_number }}" title="Click here to go to the previous page">
                 Previous</a>
             {% endif %}
         </li>
@@ -12,7 +12,8 @@
         <li class="page-item">
             {% if page.has_next %}
             <a class="page-link"
-                href="?q={{ query }}&page={{ page.next_page_number }}">
+                href="?q={{ query }}&page={{ page.next_page_number }}"
+                title="Click here to go to the next page">
                 Next</a>
             {% endif %}
         </li>

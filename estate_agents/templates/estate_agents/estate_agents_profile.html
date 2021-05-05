@@ -34,7 +34,7 @@
                 {% if profile.phone_number is not None %}
                     <!-- <strong>Phone:</strong> {{ profile.phone_number }} -->
                     <div class="col mx-auto">
-                        <a href="tel:{{ profile.phone_number }}" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
+                        <a href="tel:{{ profile.phone_number }}" title="Call this seller" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
                     </div>
                 {% endif %}
                 {% if profile.email is not None %}
@@ -43,7 +43,7 @@
                     </strong>
                      {{ profile.email }} -->
                      <div class="col mx-auto">
-                         <a href="mailto:{{ profile.email }}" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
+                         <a href="mailto:{{ profile.email }}" title="Email this seller" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
                      </div>
                 {% endif %}
                 
@@ -52,7 +52,7 @@
     </div>
     <div class="card-container">
         {% for listing in result_list %}
-            <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+            <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}" title="Click to view this Property">
             <div class="card h-100">
                 {% if listing.is_spotlight %}
                 <div class="card-header d-flex justify-content-between align-items-center">

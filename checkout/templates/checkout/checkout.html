@@ -31,9 +31,10 @@
                 </fieldset>
                 <hr>
                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                <a href="{% url 'product_detail' product.name product.id %}" class="btn form-btn">Make amendments <i class="fas fa-edit"></i></a>
-                <button class="btn form-btn" id="submitBtn">Make Payment</button>
+                <a href="{% url 'product_detail' product.name product.id %}" title="Go back to make changes to your listing" class="btn form-btn">Make amendments <i class="fas fa-edit"></i></a>
+                <button class="btn form-btn" id="submitBtn">Checkout securely <i class="fas fa-lock"></i></button>
             </form>
+            <p class="fs-6 text-muted mt-3"><i class="fas fa-lock"></i> Payments secured via SSL and Stripe</p>
             <form action="{% url 'apply_coupon' %}" method="POST" class="mt-5">
                 {% csrf_token %}
                 <fieldset>

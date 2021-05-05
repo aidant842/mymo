@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles20.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles21.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -82,7 +82,7 @@
         <nav
             class="navbar navbar-expand-md navbar-dark purple">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">
+                <a class="navbar-brand" href="{% url 'home' %}" title="Click here to return home">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -94,10 +94,10 @@
                     <ul class="navbar-nav mb-3 mb-md-0">
                         <div class="left">
                             <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}">Buy</a>
+                                <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}" title="Properties and Sites for Sale">Buy</a>
                             </li>
                             <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}">Rent</a>
+                                <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}" title="Apartments and Properties for Rent">Rent</a>
                             </li>
                         </div>
                         <div class="right">
@@ -108,21 +108,21 @@
                                     </li>
                                 {% endif %}
                                 <li class="nav-item">
-                                    <a href="{% url 'profile' %}" class="hover-link nav-link">Profile</a>
+                                    <a href="{% url 'profile' %}" class="hover-link nav-link" title="Click here to view your Profile">Profile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'account_logout' %}" class="hover-link nav-link">Logout</a>
+                                    <a href="{% url 'account_logout' %}" class="hover-link nav-link" title="Click here to logout">Logout</a>
                                 </li>
                                 {% else %}
                                 <li class="nav-item">
-                                    <a class="hover-link nav-link" href="{% url 'account_login' %}">Login</a>
+                                    <a class="hover-link nav-link" href="{% url 'account_login' %}" title="Click here to Login">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="hover-link nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                                    <a class="hover-link nav-link" href="{% url 'account_signup' %}" title="Click here to Sign Up">Sign Up</a>
                                 </li>
                                 {% endif %}
                             <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'products' %}">Place Ad</a>
+                                <a class="hover-link nav-link" href="{% url 'products' %}" title="List Home Now for Sale and Rent">Place Ad</a>
                             </li>
                         </div>
                     </ul>
@@ -187,10 +187,10 @@
                 </legend>
                 <ul class="p-0">
                     <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites for Sale</a>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view sites for Sale">Sites for Sale</a>
                     </li>
                     <li>
-                        <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Rent Dublin</a>
+                        <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view properties for Rent in Dublin">Rent Dublin</a>
                     </li>
                 </ul>
             </div>
@@ -200,13 +200,13 @@
                 </legend>
                 <ul class="p-0">
                     <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Sale Dublin</a>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments for Sale in Dublin">Apartments for Sale Dublin</a>
                     </li>
                     <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Property for Sale Galway</a>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments, Properties and Sites for Sale in Galway">Property for Sale Galway</a>
                     </li>
                     <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses for Sale Dublin</a>
+                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Properties for Sale in Dublin">Houses for Sale Dublin</a>
                     </li>
                 </ul>
             </div>
@@ -217,7 +217,7 @@
     <footer>
         <div class="footer">
             <div class="footer-logo-section">
-                <a class="navbar-brand" href="{% url 'home' %}">
+                <a class="navbar-brand" href="{% url 'home' %}" title="Click here to go home">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
                 </a>
                 <p>Whether you are looking for Repossessed Houses, Houses for Sale By Owner, Houses for Private Sale we have it all on Ireland's Best Online Property Market.</p>
@@ -225,12 +225,12 @@
             <div class="footer-contact-section">
                 <h4>Contact Us</h4>
                 <!-- <p><i class="fas fa-map-marker-alt"></i> Location</p> -->
-                <p><i class="fas fa-phone-alt"></i> <a href="tel:+00353877648382">+00353 877648382</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:support@mymo.ie">support@mymo.ie</a></p>
+                <p><i class="fas fa-phone-alt"></i> <a href="tel:+00353877648382" title="Click here to call us">+00353 877648382</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:support@mymo.ie" title="Click here to Email us">support@mymo.ie</a></p>
             </div>
             <div class="footer-social-section">
                 <h4>Follow Us</h4>
-                <a href="https://www.facebook.com/mymo.ie/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/mymo.ie/" title="Click here to view our Facebook Page" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
                 <!-- <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a> -->
             </div>
         </div>

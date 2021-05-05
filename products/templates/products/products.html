@@ -19,7 +19,7 @@
     <h3 class="mb-4 text-muted">List your home now!</h3>
     <div>
         {% for cat in categories %}
-        <a class="btn" href="{% url 'products' %}?category={{ cat.name }}">For {{ cat.name.capitalize }}</a>
+        <a class="btn" title="Click here to see details about listing your property for {{ cat.name.capitalize }}" href="{% url 'products' %}?category={{ cat.name }}">For {{ cat.name.capitalize }}</a>
         {% endfor %}
     </div>
 
@@ -33,7 +33,7 @@
                     <div class="card-body spotlight">
                         <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
                         <p class="card-text">The ultimate way to advertise your property</p>
-                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
+                        <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn stretched-link">Advertise Now</a>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price spotlight">
@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
                         <p class="card-text">Advertise your house on MyMo</p>
-                        <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a>
+                        <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn stretched-link">Advertise Now</a>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item td-price">

@@ -31,7 +31,7 @@
                     {{ filter_form.property_type | as_crispy_field }}
                 </div>
             </div>
-            <a data-bs-toggle="collapse" href="#extraFilters" role="button" aria-expanded="false"
+            <a data-bs-toggle="collapse" title="Click here to show extra filters" href="#extraFilters" role="button" aria-expanded="false"
                 class="text-muted btn form-btn filters-btn">
                 Extra Filters
                 <i class="fas fa-angle-down chevron"></i>
@@ -71,7 +71,7 @@
     {% endif %}
     <div class="card-container">
         {% for listing in listings %}
-            <a href="{% url 'rent_listing_detail' listing.id %}">
+            <a href="{% url 'rent_listing_detail' listing.id %}" title="Click to view this Property">
                 <div class="card h-100">
                     {% if listing.is_spotlight %}
                     <div class="card-header d-flex justify-content-between align-items-center">

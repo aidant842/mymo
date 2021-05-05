@@ -13,7 +13,7 @@
 {% block content %}
 <section class="home-landing-section">
     <div class="alert alert-dismissible fade show" role="alert">
-        <strong>List your rental property for FREE!</strong> Click <a href="{% url 'products' %}?category=rent" class="alert-link">HERE</a> to get started.
+        <strong>List your rental property for FREE!</strong> Click <a href="{% url 'products' %}?category=rent" title="Click here to start listing your rental property for FREE" class="alert-link">HERE</a> to get started.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <div class="main-img-container">
@@ -31,7 +31,7 @@
     <h3 class="text-center">Spotlight Listings</h3>
     <div class="card-container">
         {% for listing in result_list %}
-        <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+        <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}" title="Click to view this Property">
         <div class="card h-100">
             {% if listing.is_spotlight %}
             <div class="card-header d-flex justify-content-between align-items-center">

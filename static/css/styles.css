@@ -499,10 +499,12 @@ footer a {
   padding: 2rem 1rem;
   justify-items: center;
   color: white !important;
+  align-items: baseline;
 }
 
 .footer-logo-section {
   grid-column: 1;
+  text-align: center;
 }
 
 .footer-social-section a {
@@ -521,6 +523,20 @@ footer a {
   margin-bottom: 1rem;
 }
 
+.popular-searches {
+  background-color: #eff0f0 !important;
+}
+.popular-searches legend {
+  color: #555 !important;
+}
+.popular-searches ul li a {
+  color: #555;
+}
+.popular-searches ul li a:hover {
+  text-decoration: underline;
+  color: #6a7fdb;
+}
+
 @media only screen and (max-width: 650px) {
   .footer {
     display: block;
@@ -528,6 +544,11 @@ footer a {
   }
   .footer .navbar-brand {
     margin-right: 0;
+  }
+
+  .popular-searches legend {
+    font-size: 1rem;
+    font-weight: 600;
   }
 }
 .product-section {
@@ -934,10 +955,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 
 .agent-header {
-  color: white;
+  background: #eff0f0 !important;
+  color: #555;
 }
 .agent-header img {
-  width: 80px;
+  width: 150px;
 }
 
 /************** Modal Section *****************/
@@ -1024,6 +1046,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 @media only screen and (max-width: 576px) {
   .modal-dialog {
     margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .agent-header img {
+    width: 80px;
   }
 }
 .loader-bg {

@@ -2,7 +2,7 @@
     <ul class="pagination justify-content-center">
         <li class="page-item">
             {% if page.has_previous %}
-            <a class="page-link" href="?price={{ query_dictionary.price_query }}&county={{ query_dictionary.county_query }}
+            <a class="page-link" title="Click here to go to the previous page" href="?price={{ query_dictionary.price_query }}&county={{ query_dictionary.county_query }}
 &area={{ query_dictionary.area_query }}&property_type={{ query_dictionary.property_type_query }}
 &bedrooms={{ query_dictionary.no_of_bedrooms_query }}&bathrooms={{ query_dictionary.no_of_bathrooms_query }}
 &ber_rating={{ query_dictionary.ber_rating_query }}&keyword={{ query_dictionary.keyword_query }}&sort={{ query_dictionary.sort }}&page={{ page.previous_page_number }}">
@@ -15,6 +15,7 @@
         <li class="page-item">
             {% if page.has_next %}
             <a class="page-link"
+                title="Click here to go to the next page"
                 href="?price={{ query_dictionary.price_query }}&county={{ query_dictionary.county_query }}
 &area={{ query_dictionary.area_query }}&property_type={{ query_dictionary.property_type_query }}
 &bedrooms={{ query_dictionary.no_of_bedrooms_query }}&bathrooms={{ query_dictionary.no_of_bathrooms_query }}

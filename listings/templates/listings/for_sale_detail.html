@@ -16,12 +16,12 @@
 {% block content %}
 <div class="w-100 purple return-btn-container">
     <div class="container">
-        <a href="javascript:history.go(-1)" class="text-white"><i class="fas fa-arrow-left"></i> Back</a>
+        <a href="javascript:history.go(-1)" title="Click here to go back" class="text-white"><i class="fas fa-arrow-left"></i> Back</a>
     </div>
 </div>
 <!-- Company banner -->
 {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
-<a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}">
+<a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" title="Click here to view other Properties for Sale or Rent from {{ listing.user_profile.company_name }}">
     <div class="banner d-flex justify-content-center align-items-center p-2">
         <span>{{ listing.user_profile.company_name }}</span>
         <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="50px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
@@ -35,7 +35,7 @@
     <!-- Image -->
     <div class="image-container">
         <!-- Button trigger modal -->
-        <a class="mb-5" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
+        <a class="mb-5" title="Click here to view images of this Property" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
             <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
             <p class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
                 <i class="fas fa-share-alt"></i>
@@ -234,19 +234,19 @@
         </p>
         {% if listing.user_profile.is_agent %}
         {% if listing.user_profile.company_name %}
-                <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" class="btn form-btn">
+                <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" title="Click to view other properties for Sale or Rent from {{ listing.user_profile.company_name }}" class="btn form-btn">
                     View all properties
                 </a>
             {% else %}
-                <a href="{% url 'estate_agents_profile' listing.user_profile.user listing.user_profile.id %}" class="btn form-btn">
+                <a href="{% url 'estate_agents_profile' listing.user_profile.user listing.user_profile.id %}" title="Click to view other properties for Sale or Rent from {{ listing.user_profile.user }}" class="btn form-btn">
                     View all properties
                 </a>
             {% endif %}
         {% endif %}
-        <a href="mailto:{{ listing.email }}" class="btn form-btn">
+        <a href="mailto:{{ listing.email }}" title="Click to send an Email to this seller" class="btn form-btn">
             Email Seller <i class="fas fa-envelope"></i>
         </a>
-        <a href="tel:{{ listing.phone }}" class="btn form-btn">
+        <a href="tel:{{ listing.phone }}" title="Click to call this seller" class="btn form-btn">
             Call Seller <i class="fas fa-phone"></i>
         </a>
     </div>
@@ -271,7 +271,7 @@
         </legend>
         <div class="card-container detail-page">
             {% for listing in result_list %}
-            <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}">
+            <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}" title="Click to view this Property">
                 <div class="card h-100">
                     {% if listing.is_spotlight %}
                     <div class="card-header d-flex justify-content-between align-items-center">
@@ -413,7 +413,7 @@
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
                 </iframe>
             
-                <a class="clipboard btn form-btn copy-btn"><i class="fas fa-copy"></i> <span id="copy-confirm">Copy</span></a>
+                <a class="clipboard btn form-btn copy-btn" title="Click here to copy URL"><i class="fas fa-copy"></i> <span id="copy-confirm">Copy</span></a>
                     
                 <!-- <div class="snapchat-creative-kit-share"></div> -->
 
@@ -421,7 +421,7 @@
             </div>
         </div>
       </div>
-    </div>
+</div>
   </div>
   
 {% endblock %}
