@@ -4,6 +4,10 @@ footer {
     a {
         color: $font-color !important;
     }
+
+    a:hover {
+        color: $tertiary-color !important;
+    }
 }
 
 .footer {
@@ -37,7 +41,7 @@ footer {
     margin-bottom: 1rem;
 }
 
-.popular-searches {
+.popular-searches, .property-dropdowns {
     background-color: #eff0f0 !important;
     legend {
         color: #555 !important;

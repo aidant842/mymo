@@ -534,6 +534,9 @@ footer {
 footer a {
   color: white !important;
 }
+footer a:hover {
+  color: #6a7fdb;
+}
 
 .footer {
   display: grid;

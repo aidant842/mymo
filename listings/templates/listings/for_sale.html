@@ -69,6 +69,7 @@
         <p>Please try a different query</p>
     </div>
     {% endif %}
+    {% if not total_listings == 0 %}
     <div class="container mt-5 text-center">
         <h1 class="h6">
             {% if request.GET.property_type %}
@@ -82,8 +83,10 @@
             {% else %}
                 Ireland 
             {% endif %}
-            - {{ total_listings }} Results</h1>
+            - {{ total_listings }} Results
+        </h1>
     </div>
+    {% endif %}
     <div class="card-container">
         {% for listing in listings %}
             <a href="{% url 'sale_listing_detail' listing.id %}" title="Click to view this Property">

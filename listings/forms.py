@@ -109,7 +109,7 @@ class FilterForm(forms.Form):
                             required=False)
 
     keyword = forms.CharField(widget=forms.TextInput(
-                            attrs={'placeholder': 'Keyword, e.g Big Garden'}),
+                            attrs={'placeholder': 'Keyword, e.g Big Garden, Auction'}),
                             label="",
                             required=False)
 

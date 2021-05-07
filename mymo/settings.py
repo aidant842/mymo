@@ -90,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'home.context_processors.counties_processor',
             ],
         },
     },
@@ -107,7 +108,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-""" SITE_ID = 3 """
+SITE_ID = 3
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

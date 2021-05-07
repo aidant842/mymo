@@ -114,7 +114,7 @@
 <body>
     <header>
         <nav
-            class="navbar navbar-expand-md navbar-dark purple">
+            class="navbar navbar-expand-md navbar-dark purple sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}" title="Click here to return home">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
@@ -156,7 +156,7 @@
                                 </li>
                                 {% endif %}
                             <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'products' %}" title="List Home Now for Sale and Rent">Place Ad</a>
+                                <a class="hover-link nav-link" href="{% url 'products' %}" title="List your Property Now for Sale and Rent">Place Ad</a>
                             </li>
                         </div>
                     </ul>
@@ -215,35 +215,158 @@
     {% block footer %}
     <!-- Popular Searches -->
     <div class="popular-searches p-4 mt-5">
-        <div class="row">
-            <div class="col">
-                <legend class="text-center">
-                    Popular Searches
-                </legend>
-                <ul class="p-0">
-                    <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view sites for Sale">Sites for Sale</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view properties for Rent in Dublin">Rent Dublin</a>
-                    </li>
-                </ul>
+        <div class="container">
+            <div class="footer-logo-section">
+                <a class="navbar-brand" href="{% url 'home' %}" title="Click here to go home">
+                    <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
+                </a>
+                <p>Whether you are looking for Repossessed Houses, Houses for Sale By Owner, Houses for Private Sale we have it all on Ireland's Best Online Property Market.</p>
             </div>
-            <div class="col">
-                <legend class="text-center">
-                    Popular Searches By Area
-                </legend>
-                <ul class="p-0">
-                    <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments for Sale in Dublin">Apartments for Sale Dublin</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments, Properties and Sites for Sale in Galway">Property for Sale Galway</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Properties for Sale in Dublin">Houses for Sale Dublin</a>
-                    </li>
-                </ul>
+            <div class="property-dropdowns text-center mt-5">
+                <div class="row">
+                    <div class="col">
+                        <legend class="h6">
+                            <a data-bs-toggle="collapse" href="#propertySale" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Properties for Sale <i class="fas fa-chevron-down"></i>
+                            </a>
+                        </legend>
+                        <div class="collapse" id="propertySale">
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                <li class="p-1">
+                                    <a href="{% url 'listings' %}?price=&county=&area=&property_type=repossessed+house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Repossessed Houses</a>
+                                </li>
+                                {% for county in counties %}
+                                <li class="p-1">
+                                    <a href="{% url 'for_sale_listings' %}?price=&county={{county}}&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses for Sale {{ county }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                {% for county in counties %}
+                                    <li class="p-1">
+                                        <a href="{% url 'for_sale_listings' %}?price=&county={{county}}&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Sale {{ county }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <legend class="h6">
+                            <a data-bs-toggle="collapse" href="#propertyRent" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Properties for Rent <i class="fas fa-chevron-down"></i>
+                            </a>
+                        </legend>
+                        <div class="collapse" id="propertyRent">
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'for_rent_listings' %}?price=&county=&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                {% for county in counties %}
+                                <li class="p-1">
+                                    <a href="{% url 'for_rent_listings' %}?price=&county={{county}}&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses for Rent {{ county }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'for_rent_listings' %}?price=&county=&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                {% for county in counties %}
+                                    <li class="p-1">
+                                        <a href="{% url 'for_rent_listings' %}?price=&county={{county}}&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Rent {{ county }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <legend class="h6">
+                            <a data-bs-toggle="collapse" href="#allProperties" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Browse Properties <i class="fas fa-chevron-down"></i>
+                            </a>
+                        </legend>
+                        <div class="collapse" id="allProperties">
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'listings' %}">Properties</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                <li class="p-1">
+                                    <a href="{% url 'for_sale_by_owner' %}">Houses for Sale by Owner</a>
+                                </li>
+                                <li class="p-1">
+                                    <a href="{% url 'listings' %}?price=&county=&area=&property_type=repossessed+house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Repossessed Houses</a>
+                                </li>
+                                {% for county in counties %}
+                                <li class="p-1">
+                                    <a href="{% url 'listings' %}?price=&county={{county}}&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Properties for Sale or Rent {{ county }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                            <legend class="h6">
+                                <a href="{% url 'listings' %}?price=&county=&area=&property_type=site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites</a>
+                            </legend>
+                            <hr>
+                            <ul>
+                                {% for county in counties %}
+                                    <li class="p-1">
+                                        <a href="{% url 'listings' %}?price=&county={{county}}&area=&property_type=site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites for Sale or Rent {{ county }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col">
+                    <legend class="text-center">
+                        Popular Searches
+                    </legend>
+                    <ul class="p-0">
+                        <li>
+                            <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view sites for Sale">Sites for Sale</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view properties for Rent in Dublin">Rent Dublin</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <legend class="text-center">
+                        Popular Searches By Area
+                    </legend>
+                    <ul class="p-0">
+                        <li>
+                            <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments for Sale in Dublin">Apartments for Sale Dublin</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments, Properties and Sites for Sale in Galway">Property for Sale Galway</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Properties for Sale in Dublin">Houses for Sale Dublin</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

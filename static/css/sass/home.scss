@@ -35,7 +35,7 @@
     left: 2.5%;
 }
 
-.search-header h2 {
+.search-header h1 {
     padding-bottom: 1rem;
 }
 
@@ -135,6 +135,7 @@
 .card {
     min-width: 100% !important;
     transition: 1.5s;
+    box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
 }
 
 .card-body {
@@ -142,7 +143,9 @@
 }
 
 .card:hover {
-    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19); */
+    transform: scale(1.01) translate(0px, -8px);
+    transition: all 300ms ease-in-out 0s;
 }
 
 .card-img-top {
