@@ -69,6 +69,21 @@
         <p>Please try a different query</p>
     </div>
     {% endif %}
+    <div class="container mt-5 text-center">
+        <h1 class="h6">
+            {% if request.GET.property_type %}
+                {{ request.GET.property_type }}{% if not request.GET.property_type.lower == 'land' %}s{% endif %}
+            {% else %}
+                Property
+            {% endif %}
+            for Sale in 
+            {% if request.GET.county %}
+                Co. {{ request.GET.county.capitalize }}
+            {% else %}
+                Ireland 
+            {% endif %}
+            - {{ total_listings }} Results</h1>
+    </div>
     <div class="card-container">
         {% for listing in listings %}
             <a href="{% url 'sale_listing_detail' listing.id %}" title="Click to view this Property">

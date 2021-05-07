@@ -28,19 +28,19 @@
         <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
     </div>
 </a>
-<div class="container mb-5">
+<div class="container mb-5 bg-light">
 {% else %}
-<div class="container my-5">
+<div class="container my-5 bg-light">
 {% endif %}
     <!-- Image -->
     <div class="image-container mb-5">
         <!-- Button trigger modal -->
         <a title="Click here to view images of this Property" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
-            <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
-            <p class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
-                <i class="fas fa-share-alt"></i>
-            </p>
             <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
+            <button class="view-images"><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</button>
+            <button class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
+                <i class="fas fa-share-alt"></i>
+            </button>
         </a>
     </div>
     <!-- Price and BER -->
@@ -66,12 +66,6 @@
     </div>
     <!-- Overview -->
     <div class="row text-center mt-2">
-        <!-- <div class="col border-end border-start border-secondary">
-            <i class="fas fa-euro-sign"></i>
-            <span>
-                {{ listing.price }}
-            </span>
-        </div> -->
         <div class="col border-start border-end border-secondary">
             <p>
                 {{ listing.no_of_bedrooms }}
@@ -92,25 +86,16 @@
             </p>
             <i class="fas fa-chart-area"></i>
         </div>
-        <!-- <div class="col border-end border-secondary">
-            <p>
-                {% if listing.ber_rating is None %} 
-                    BER Exempt
-                {% else %}
-                    <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="75" height="25" alt="BER Rating: {{ listing.ber_rating }}">
-                {% endif %}
-            </p>
-        </div> -->
     </div>
     <!-- Area -->
     <div class="row mt-5 bg-light p-4">
-        <p>
+        <h1 class="h6">
             <strong>
                 <i class="fas fa-map-marker-alt"></i>
-                {{ listing.area }}
-                Co. {{ listing.county }}
+                {{ listing.area.title }},
+                Co. {{ listing.county.capitalize }}
             </strong>
-        </p>
+        </h1>
         {% if listing.eircode %}
         <p><strong>Eirecode:</strong> {{ listing.eircode }}</p>
         {% endif %}
@@ -204,7 +189,9 @@
         <hr>
         {% if listing.user_profile.company_name %}
         <div class="agent-header purple d-flex justify-content-between align-items-center mb-3">
-            {{ listing.user_profile.company_name }}
+            <p class="mb-0">
+                {{ listing.user_profile.company_name }}
+            </p>
             {% if listing.user_profile.company_logo %}
                 <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
             {% endif %}
@@ -315,46 +302,6 @@
     {% endif %}
 
 </div>
-<!-- Images Modal -->
-<!-- <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        {% for p in photos %}
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
-                            class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                        {% endfor %}
-                    </div>
-                    <div class="carousel-inner">
-                        {% for p in photos %}
-                        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                            {% if not p.images %}
-                            <img src="{{ p }}" class="img-fluid" alt="{{ p }}">
-                            {% else %}
-                            <img src="{{ p.images.url }}" class="img-fluid" alt="{{ p.images.url }}">
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 <div class="modal image-modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog image-modal">
       <div class="modal-content">

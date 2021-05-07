@@ -1012,7 +1012,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .agent-header {
   background: #eff0f0 !important;
-  color: #555;
+  /* color: #555; */
 }
 .agent-header img {
   width: 150px;
@@ -1217,4 +1217,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white !important;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles25.css.map */

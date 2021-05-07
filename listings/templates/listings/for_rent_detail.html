@@ -28,9 +28,9 @@
         <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
     </div>
 </a>
-<div class="container mb-5">
+<div class="container mb-5 bg-light">
 {% else %}
-<div class="container my-5">
+<div class="container my-5 bg-light">
 {% endif %}
     <!-- Image -->
     <div class="image-container mb-5">
@@ -102,13 +102,13 @@
     </div>
     <!-- Area -->
     <div class="row mt-5 bg-light p-4">
-        <p>
+        <h1 class="h6">
             <strong>
                 <i class="fas fa-map-marker-alt"></i>
-                {{ listing.area }}
-                Co. {{ listing.county }}
+                {{ listing.area.title }},
+                Co. {{ listing.county.capitalize }}
             </strong>
-        </p>
+        </h1>
         {% if listing.eircode %}
         <p><strong>Eirecode:</strong> {{ listing.eircode }}</p>
         {% endif %}
@@ -173,7 +173,9 @@
         <hr>
         {% if listing.user_profile.company_name %}
         <div class="agent-header purple d-flex justify-content-between align-items-center mb-3">
-            {{ listing.user_profile.company_name }}
+            <p class="m-0">
+                {{ listing.user_profile.company_name }}
+            </p>
             {% if listing.user_profile.company_logo %}
                 <img src="{{ listing.user_profile.company_logo.url }}" alt="Logo for {{ listing.user_profile.company_name }}">
             {% endif %}
@@ -392,4 +394,8 @@
       </div>
 </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'js/copyUrl.js' %}"></script>
 {% endblock %}
