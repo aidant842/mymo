@@ -970,6 +970,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   max-width: max-content;
   max-height: max-content;
   margin: 0 auto;
+  display: block;
 }
 .image-container p {
   position: absolute;
@@ -1008,11 +1009,12 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   height: auto;
   /* min-width: 50vw; */
   max-height: 800px;
+  cursor: pointer;
 }
 
 .agent-header {
   background: #eff0f0 !important;
-  color: #555;
+  /* color: #555; */
 }
 .agent-header img {
   width: 150px;

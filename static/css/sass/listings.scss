@@ -49,6 +49,7 @@
     max-width: max-content;
     max-height: max-content;
     margin: 0 auto;
+    display: block;
 
     p {
         position: absolute;
@@ -90,6 +91,7 @@
         height: auto;
         /* min-width: 50vw; */
         max-height: 800px;
+        cursor: pointer;
     }
 }
 
