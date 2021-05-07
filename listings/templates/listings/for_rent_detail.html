@@ -33,14 +33,14 @@
 <div class="container my-5">
 {% endif %}
     <!-- Image -->
-    <div class="image-container">
+    <div class="image-container mb-5">
         <!-- Button trigger modal -->
-        <a class="" title="Click here to view images of this Property" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
-            <p class=""><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</p>
-            <span class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
-                <i class="fas fa-share-alt"></i>
-            </span>
+        <a title="Click here to view images of this Property" type="button" data-bs-toggle="modal" data-bs-target="#imagesModal">
             <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
+            <button class="view-images"><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</button>
+            <button class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
+                <i class="fas fa-share-alt"></i>
+            </button>
         </a>
     </div>
     <!-- Price and BER -->

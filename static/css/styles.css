@@ -967,8 +967,10 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   text-align: center;
   margin-top: 1.25rem;
   position: relative;
-  width: fit-content;
-  margin: 0 auto;
+  max-width: max-content;
+  max-height: max-content;
+  /* margin: 0 auto; */
+  display: contents;
 }
 .image-container p {
   position: absolute;
@@ -985,7 +987,19 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   padding: 10px;
   display: flex;
   right: 0;
+  top: 0;
   font-size: 1.5rem;
+  border: none;
+}
+.image-container .view-images {
+  position: absolute;
+  z-index: 9;
+  background-color: #6a7fdb;
+  color: white;
+  padding: 10px;
+  left: 0;
+  top: 0;
+  border: none;
 }
 .image-container img {
   position: relative;
