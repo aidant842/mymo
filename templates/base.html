@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles26.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles27.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -217,11 +217,19 @@
     <div class="popular-searches p-4 mt-5">
         <div class="container">
             <div class="footer-logo-section">
-                <a class="navbar-brand" href="{% url 'home' %}" title="Click here to go home">
-                    <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
-                </a>
-                <p>Whether you are looking for Repossessed Houses, Houses for Sale By Owner, Houses for Private Sale we have it all on Ireland's Best Online Property Market.</p>
+                <!-- <a class="navbar-brand" href="{% url 'home' %}" title="Click here to go home">
+                    <img src="{{ MEDIA_URL }}mymo.svg" alt="MyMo Logo">
+                </a> -->
+                <h6>Looking for a Property?</h6>
+                <p>
+                    Whether you are looking for Repossessed Houses, Houses for Sale By Owner or Houses for Private Sale we have it all, search through our extensive database of Houses, Apartments and Properties for Sale or Rent in Ireland.
+                </p>
+                <h6>Looking to Advertise?</h6>
+                <p>
+                    Whether you are an Estate Agent or choosing to advertise yourself, we can help your House, Apartment or Property gain exposure.
+                </p>
             </div>
+            <hr>
             <div class="property-dropdowns text-center mt-5">
                 <div class="row">
                     <div class="col">
@@ -237,6 +245,12 @@
                             </legend>
                             <hr>
                             <ul>
+                                <li class="p-1">
+                                    <a href="{% url 'for_sale_by_owner' %}">Houses for Sale by Owner</a>
+                                </li>
+                                <li class="p-1">
+                                    <a href="{% url 'for_sale_by_owner' %}">Houses for Private Sale</a>
+                                </li>
                                 <li class="p-1">
                                     <a href="{% url 'listings' %}?price=&county=&area=&property_type=repossessed+house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Repossessed Houses</a>
                                 </li>
@@ -310,6 +324,9 @@
                             <ul>
                                 <li class="p-1">
                                     <a href="{% url 'for_sale_by_owner' %}">Houses for Sale by Owner</a>
+                                </li>
+                                <li class="p-1">
+                                    <a href="{% url 'for_sale_by_owner' %}">Houses for Private Sale</a>
                                 </li>
                                 <li class="p-1">
                                     <a href="{% url 'listings' %}?price=&county=&area=&property_type=repossessed+house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Repossessed Houses</a>
