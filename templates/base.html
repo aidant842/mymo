@@ -352,37 +352,44 @@
                             <hr>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col">
-                    <legend class="text-center">
-                        Popular Searches
-                    </legend>
-                    <ul class="p-0">
-                        <li>
-                            <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view sites for Sale">Sites for Sale</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view properties for Rent in Dublin">Rent Dublin</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <legend class="text-center">
-                        Popular Searches By Area
-                    </legend>
-                    <ul class="p-0">
-                        <li>
-                            <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments for Sale in Dublin">Apartments for Sale Dublin</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments, Properties and Sites for Sale in Galway">Property for Sale Galway</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Properties for Sale in Dublin">Houses for Sale Dublin</a>
-                        </li>
-                    </ul>
+                    <div class="col">
+                        <legend class="h6">
+                            <a data-bs-toggle="collapse" href="#popularSearches" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Popular Searches <i class="fas fa-chevron-down"></i>
+                            </a>
+                        </legend>
+                        <div class="collapse" id="popularSearches">
+                            <ul class="p-0">
+                                <li>
+                                    <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=Site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view sites for Sale">Sites for Sale</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'for_rent_listings' %}?price=&county=dublin&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view properties for Rent in Dublin">Rent Dublin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <legend class="h6">
+                            <a data-bs-toggle="collapse" href="#popularSearchesByArea" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Popular Searches By Area <i class="fas fa-chevron-down"></i>
+                            </a>
+                            
+                        </legend>
+                        <div class="collapse" id="popularSearchesByArea">
+                            <ul class="p-0">
+                                <li>
+                                    <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=Apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments for Sale in Dublin">Apartments for Sale Dublin</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'for_sale_listings' %}?price=&county=galway&area=&property_type=&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Apartments, Properties and Sites for Sale in Galway">Property for Sale Galway</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'for_sale_listings' %}?price=&county=dublin&area=&property_type=House&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=" title="Click here to view Properties for Sale in Dublin">Houses for Sale Dublin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
