@@ -220,19 +220,23 @@
                 <a class="navbar-brand m-0" href="{% url 'home' %}" title="Click here to go home">
                     <img src="{{ MEDIA_URL }}mymo-purp.jpg" alt="MyMo Logo">
                 </a>
-                <h6>Looking for a Property?</h6>
-                <p>
-                    Whether you are looking for Repossessed Houses, Houses for Sale By Owner or Houses for Private Sale we have it all, search through our extensive database of Houses, Apartments and Properties for Sale or Rent in Ireland.
-                </p>
-                <h6>Looking to Advertise?</h6>
-                <p>
-                    Whether you are an Estate Agent or choosing to advertise yourself, we can help your House, Apartment or Property gain exposure.
-                </p>
+                <a href="{% url 'listings' %}" title="Click here to see Apartments, Properties, Sites and Land for Sale or Rent in Ireland">
+                    <h6 class="fw-bold">Looking for a Property?</h6>
+                    <p>
+                        Whether you are looking for Repossessed Houses, Houses for Sale By Owner or Houses for Private Sale we have it all, search through our extensive database of Houses, Apartments and Properties for Sale or Rent in Ireland.
+                    </p>
+                </a>
+                <a href="{% url 'products' %}" title="List Home Now for Sale and Rent">
+                    <h6 class="fw-bold">Looking to Advertise?</h6>
+                    <p>
+                        Whether you are an Estate Agent or choosing to advertise yourself, we can help your House, Apartment or Property gain exposure.
+                    </p>
+                </a>
             </div>
             <hr>
             <div class="property-dropdowns text-center mt-5">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-6 col-md-3 col-lg pt-3">
                         <legend class="h6">
                             <a data-bs-toggle="collapse" href="#propertySale" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Properties for Sale <i class="fas fa-chevron-down"></i>
@@ -244,7 +248,7 @@
                                 <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 <li class="p-1">
                                     <a href="{% url 'for_sale_by_owner' %}">Houses for Sale by Owner</a>
                                 </li>
@@ -275,7 +279,7 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6 col-md-3 col-lg pt-3">
                         <legend class="h6">
                             <a data-bs-toggle="collapse" href="#propertyRent" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Properties for Rent <i class="fas fa-chevron-down"></i>
@@ -287,7 +291,7 @@
                                 <a href="{% url 'for_rent_listings' %}?price=&county=&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 {% for county in counties %}
                                 <li class="p-1">
                                     <a href="{% url 'for_rent_listings' %}?price=&county={{county}}&area=&property_type=house&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Houses for Rent {{ county }}</a>
@@ -309,7 +313,7 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6 col-md-3 col-lg pt-3">
                         <legend class="h6">
                             <a data-bs-toggle="collapse" href="#allProperties" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Browse Properties <i class="fas fa-chevron-down"></i>
@@ -321,7 +325,7 @@
                                 <a href="{% url 'listings' %}">Properties</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 <li class="p-1">
                                     <a href="{% url 'for_sale_by_owner' %}">Houses for Sale by Owner</a>
                                 </li>
@@ -352,7 +356,7 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6 col-md-3 col-lg pt-3">
                         <legend class="h6">
                             <a data-bs-toggle="collapse" href="#popularSearches" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Popular Searches <i class="fas fa-chevron-down"></i>
@@ -369,7 +373,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-sm-6 col-md-3 col-lg pt-3">
                         <legend class="h6">
                             <a data-bs-toggle="collapse" href="#popularSearchesByArea" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Popular Searches By Area <i class="fas fa-chevron-down"></i>

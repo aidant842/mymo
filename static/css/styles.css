@@ -252,7 +252,7 @@ a {
   left: 2.5%;
 }
 
-.search-header h2 {
+.search-header h1 {
   padding-bottom: 1rem;
 }
 
@@ -350,6 +350,7 @@ a {
 .card {
   min-width: 100% !important;
   transition: 1.5s;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 8px 0px;
 }
 
 .card-body {
@@ -357,7 +358,9 @@ a {
 }
 
 .card:hover {
-  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.19); */
+  transform: scale(1.01) translate(0px, -8px);
+  transition: all 300ms ease-in-out 0s;
 }
 
 .card-img-top {
@@ -535,7 +538,7 @@ footer a {
   color: white !important;
 }
 footer a:hover {
-  color: #6a7fdb;
+  color: #6a7fdb !important;
 }
 
 .footer {
@@ -569,16 +572,19 @@ footer a:hover {
   margin-bottom: 1rem;
 }
 
-.popular-searches {
+.popular-searches, .property-dropdowns {
   background-color: #eff0f0 !important;
 }
-.popular-searches legend {
-  color: #555 !important;
-}
-.popular-searches ul li a {
+.popular-searches a, .property-dropdowns a {
   color: #555;
 }
-.popular-searches ul li a:hover {
+.popular-searches legend, .property-dropdowns legend {
+  color: #555 !important;
+}
+.popular-searches ul li a, .property-dropdowns ul li a {
+  color: #555;
+}
+.popular-searches ul li a:hover, .property-dropdowns ul li a:hover {
   text-decoration: underline;
   color: #6a7fdb;
 }
