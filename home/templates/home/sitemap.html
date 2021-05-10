@@ -3,12 +3,14 @@
 {% block extra_meta %}
     <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
     <meta property="og:image:alt" content="MyMo.ie Logo" />
-    <meta property="og:description" content="We are Ireland's best online property marketplace. Search through thousands of repossessed houses, apartments & properties for sale and rent in Kildare, Galway, Dublin." />
-    <meta property="og:url" content="https://www.mymo.ie/" />
-    <meta property="og:title" content="MyMo.ie - Houses, Apartments and Properties for Sale and Rent in Ireland | MyMo.ie" />
-    <meta name="description" content="We are Ireland's best online property marketplace. Search through thousands of repossessed houses, apartments & properties for sale and rent in Kildare, Galway, Dublin."/>
+    <meta property="og:description" content="Need some help navigating our website? Check out this handy Sitemap." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" />
+    <meta property="og:title" content="Sitemap for MyMo.ie | MyMo.ie" />
+    <meta name="description" content="Need some help navigating our website? Check out this handy Sitemap."/>
     <meta name="keywords" content="Apartments for Sale Dublin, Houses for Sale by Owner, Repossessed Houses, Sites for Sale, Property for Sale Galway"/>
 {% endblock %}
+
+<title>{% block extra_title %}Sitemap for MyMo.ie{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="container sitemap">
