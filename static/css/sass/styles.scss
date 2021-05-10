@@ -22,7 +22,7 @@ body::-webkit-scrollbar-track {
   
 body::-webkit-scrollbar-thumb {
     background-color: rgba(0,0,0,0.3);    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */
+    border-radius: 3px;       /* roundness of the scroll thumb */
     /* border: 3px solid orange; */  /* creates padding around scroll thumb */
 }
 
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
     min-height: 40px;
     color: $font-color !important;
     border: 1px solid $font-color;
-    border-radius: 10px !important;
+    border-radius: 3px !important;
     margin: 0 1rem;
 }
 
@@ -52,7 +52,11 @@ a {
 }
 
 .btn {
-    @extend %button-style
+    @extend %button-style;
+}
+
+.no-border {
+    border: none !important;
 }
 
 .btn:hover {
@@ -65,6 +69,10 @@ a {
 
 .hidden {
     display: none;
+}
+
+.bg-dark-purp {
+    background-color: $secondary-color !important;
 }
 
 /* ---------------- Toasts ------------------- */
@@ -95,7 +103,7 @@ a {
     color: $font-color;
     cursor: pointer;
     padding: 10px 15px;
-    border-radius: 10px;
+    border-radius: 3px;
     font-size: 18px;
     transition: bottom 1s ease-in-out;
 }

@@ -6,6 +6,31 @@
     } */
 }
 
+.login-form {
+    width: 100%;
+
+    img {
+        width: 100%;
+
+        @media only screen and (min-width: 767px){
+            width: 75%;
+        }
+    }
+
+    @media only screen and (min-width: 767px){
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
+#div_id_login {
+    position: relative;
+}
+
+.login-icons {
+    position: absolute;
+}
+
 .max-width-60 {
     max-width: 60%;
 }

@@ -108,7 +108,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-""" SITE_ID = 3 """
+SITE_ID = 3
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -137,6 +137,17 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'mymo.wsgi.application'
+
+ACCOUNT_FORMS = {
+    "login": "profiles.forms.SelfLoginForm",
+    "signup": "allauth.account.forms.SignupForm",
+    "add_email": "allauth.account.forms.AddEmailForm",
+    "change_password": "allauth.account.forms.ChangePasswordForm",
+    "set_password": "allauth.account.forms.SetPasswordForm",
+    "reset_password": "allauth.account.forms.ResetPasswordForm",
+    "reset_password_from_key": "allauth.account.forms.ResetPasswordKeyForm",
+    "disconnect": "allauth.socialaccount.forms.DisconnectForm",
+}
 
 
 # Database

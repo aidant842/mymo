@@ -1,6 +1,16 @@
 from django import forms
 from .models import UserProfile
 
+from allauth.account.forms import LoginForm, PasswordField
+
+
+class SelfLoginForm(LoginForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["login"].label = ""
+        self.fields["password"].label = ""
+
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
