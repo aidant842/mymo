@@ -20,6 +20,8 @@
         <div class="form-container">
     
             <div class="login-form">
+                <h1 class="text-center fw-bold text-muted">Log In</h1>
+                <hr>
                 <div class="container text-center">
                     <img src="{{MEDIA_URL}}mymo-purp.jpg" class="img-fluid" alt="MyMo.ie Logo">
                 </div>
@@ -28,7 +30,7 @@
                     {% csrf_token %}
                     {{ form.login | as_crispy_field }}
                     {{ form.password | as_crispy_field }}
-                    <button class="primaryAction btn form-btn d-block w-100" type="submit"><span class="me-3"><i class="fas fa-sign-in-alt"></i></span><h1 class="text-center h6 d-inline">{% trans "Log In" %}</h1></button>
+                    <button class="primaryAction btn form-btn d-block w-100" type="submit"><span class="me-3"><i class="fas fa-sign-in-alt"></i></span>{% trans "Log In" %}</button>
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
