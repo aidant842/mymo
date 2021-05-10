@@ -16,6 +16,10 @@
         padding: 0 1rem !important;
         color: $font-color !important;
     }
+
+    .nav-link.buy-link {
+        padding: 0 !important;
+    }
 }
 
 .navbar-collapse {
@@ -72,9 +76,24 @@
     transition: 1s;
 }
 
+.mobile-buy-dropdown {
+    border: none;
+    text-align: center;
+    li a {
+        color: $font-color !important;
+    }
+
+    li a:hover {
+        background-color: $secondary-color;
+    }
+}
+
+/* .full-width-dropdown {
+    top: 265% !important;
+} */
 
 // ***************** MEDIA QUERIES ***************** //
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 767px){
     .left, .right {
         display: block;
         /* width: 55%; */

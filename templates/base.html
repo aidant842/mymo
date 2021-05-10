@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles27.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles28.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -114,7 +114,7 @@
 <body>
     <header>
         <nav
-            class="navbar navbar-expand-md navbar-dark purple sticky-top">
+            class="navbar navbar-expand-md navbar-dark purple">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}" title="Click here to return home">
                     <img src="{{ MEDIA_URL }}mymo.png" alt="MyMo Logo">
@@ -124,12 +124,67 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-3 mb-md-0">
-                        <div class="left">
-                            <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}" title="Properties and Sites for Sale">Buy</a>
+                <ul class="navbar-nav mb-3 mb-md-0 d-none d-md-flex">
+                    <div class="left">
+                        <div class="btn-group">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-inline buy-link" href="{% url 'for_sale_listings' %}">
+                                Buy
+                                </a>
+                                <a class="dropdown-toggle dropdown-toggle-split text-white" data-bs-toggle="navbarDropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">Buy</a></li>
+                                <li><a class="dropdown-item" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Buy- For Sale By Owner</a></li>
+                                </ul>
                             </li>
+                        </div>
+                        <li class="nav-item">
+                            <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}" title="Apartments and Properties for Rent">Rent</a>
+                        </li>
+                    </div>
+                    <div class="right">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a href="{% url 'admin:index' %}" class="hover-link nav-link">Admin</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="{% url 'profile' %}" class="hover-link nav-link" title="Click here to view your Profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'account_logout' %}" class="hover-link nav-link" title="Click here to logout">Logout</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'account_login' %}" title="Click here to Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'account_signup' %}" title="Click here to Sign Up">Sign Up</a>
+                            </li>
+                            {% endif %}
+                        <li class="nav-item">
+                            <a class="hover-link nav-link" href="{% url 'products' %}" title="List your Property Now for Sale and Rent">Place Ad</a>
+                        </li>
+                    </div>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mb-3 mb-md-0 d-md-none">
+                        <div class="left">
+                            <!-- <li class="nav-item">
+                                <a class="hover-link nav-link" href="{% url 'for_sale_listings' %}" title="Properties and Sites for Sale">Buy</a>
+                            </li> -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Buy
+                                </a>
+                                <ul class="dropdown-menu purple mobile-buy-dropdown" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">Buy</a></li>
+                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Buy - For Sale By Owner</a></li>
+                                    </ul>
+                              </li>
                             <li class="nav-item">
                                 <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}" title="Apartments and Properties for Rent">Rent</a>
                             </li>
@@ -425,6 +480,7 @@
 
     {% block postloadjs %}
     <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/nav.js' %}"></script>
     <script>
         var option = {
             animation: true,
