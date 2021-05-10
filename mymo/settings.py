@@ -108,7 +108,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-SITE_ID = 3
+""" SITE_ID = 3 """
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
