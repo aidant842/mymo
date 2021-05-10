@@ -31,29 +31,29 @@
     <p class="text-center">Whether you’re buying, selling or renting, we can help you move forward.</p>
     <div class="card-container">
         <div class="card text-center h-100">
+            <img src="{{ MEDIA_URL }}sell-house.jpg" class="card-img-top" alt="Advertise a Property">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">Advertise a Property</h5>
+                <p class="card-text">Whether you are an Estate Agent or choosing to advertise yourself, we can help your property gain exposure.</p>
+                <a href="{% url 'products' %}" class="btn form-btn stretched-link" title="List your Property Now for Sale or Rent">Start Here</a>
+            </div>
+            </div>
+        <div class="card text-center h-100">
             <img src="{{ MEDIA_URL }}buy-house.jpg" class="card-img-top" alt="Buy a Property">
             <div class="card-body">
               <h5 class="card-title fw-bold">Buy a Property</h5>
               <p class="card-text">Search through our extensive database of Houses, Apartments and Properties for Sale in Ireland.</p>
               <a href="{% url 'for_sale_listings' %}" class="btn form-btn stretched-link" title="Properties and Sites for Sale">Find Properties</a>
             </div>
-          </div>
-          <div class="card text-center h-100">
-            <img src="{{ MEDIA_URL }}sell-house.jpg" class="card-img-top" alt="Advertise a Property">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Advertise a Property</h5>
-              <p class="card-text">Whether you are an Estate Agent or choosing to advertise yourself, we can help your property gain exposure.</p>
-              <a href="{% url 'products' %}" class="btn form-btn stretched-link" title="List your Property Now for Sale or Rent">Start Here</a>
-            </div>
-          </div>
-          <div class="card text-center h-100">
-            <img src="{{ MEDIA_URL }}rent-house.jpg" class="card-img-top" alt="Rent a Property">
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Rent a Property</h5>
-              <p class="card-text">Search through our extensive database of Houses, Apartments and Properties for Rent in Ireland.</p>
-              <a href="{% url 'for_rent_listings' %}" class="btn form-btn stretched-link" title="Apartments and Properties for Rent">Find Rentals</a>
-            </div>
-          </div>
+        </div>
+        <div class="card text-center h-100">
+        <img src="{{ MEDIA_URL }}rent-house.jpg" class="card-img-top" alt="Rent a Property">
+        <div class="card-body">
+            <h5 class="card-title fw-bold">Rent a Property</h5>
+            <p class="card-text">Search through our extensive database of Houses, Apartments and Properties for Rent in Ireland.</p>
+            <a href="{% url 'for_rent_listings' %}" class="btn form-btn stretched-link" title="Apartments and Properties for Rent">Find Rentals</a>
+        </div>
+        </div>
     </div>
     <h3 class="text-center">Spotlight Listings</h3>
     <div class="card-container">
