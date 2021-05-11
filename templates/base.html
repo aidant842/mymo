@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles29.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles30.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -134,9 +134,29 @@
                                 <a class="dropdown-toggle dropdown-toggle-split text-white" data-bs-toggle="navbarDropdown" aria-expanded="false">
                                 <span class="visually-hidden">Toggle Dropdown</span>
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">Buy</a></li>
-                                <li><a class="dropdown-item" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Buy- For Sale By Owner</a></li>
+                                <ul class="dropdown-menu desktop" aria-labelledby="navbarDropdown">
+                                <div class="parent">
+                                    <li class="child">
+                                        <div class="title">
+                                            <a class="dropdown-item stretched-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">
+                                                Buy
+                                            </a>
+                                        </div>
+                                        <div class="desc">
+                                           <span>Search Apartments, Property, Sites and Land for Sale in Ireland.</span>
+                                        </div>
+                                    </li>
+                                    <li class="child">
+                                        <div class="title">
+                                            <a class="dropdown-item stretched-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">
+                                                Buy - For Sale By Owner
+                                            </a>
+                                        </div>
+                                        <div class="desc">
+                                            <span>Search Apartments, Property, Sites and Land for Sale By Owner in Ireland</span>
+                                        </div>
+                                    </li>
+                                </div>
                                 </ul>
                             </li>
                         </div>

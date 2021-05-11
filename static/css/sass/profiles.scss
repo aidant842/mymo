@@ -6,7 +6,7 @@
     } */
 }
 
-.login-form {
+.login-form, .signup-form {
     width: 100%;
 
     img {
@@ -21,14 +21,6 @@
         width: 50%;
         margin: 0 auto;
     }
-}
-
-#div_id_login {
-    position: relative;
-}
-
-.login-icons {
-    position: absolute;
 }
 
 .max-width-60 {

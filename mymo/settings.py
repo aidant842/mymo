@@ -140,7 +140,7 @@ WSGI_APPLICATION = 'mymo.wsgi.application'
 
 ACCOUNT_FORMS = {
     "login": "profiles.forms.SelfLoginForm",
-    "signup": "allauth.account.forms.SignupForm",
+    "signup": "profiles.forms.SelfSignupForm",
     "add_email": "allauth.account.forms.AddEmailForm",
     "change_password": "allauth.account.forms.ChangePasswordForm",
     "set_password": "allauth.account.forms.SetPasswordForm",

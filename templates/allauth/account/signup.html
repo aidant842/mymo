@@ -16,51 +16,35 @@
 {% block content %}
 <div class="container allauth-container">
     <div class="form-container">
-        <h1>{% trans "Sign Up" %}</h1>
-        <hr>
-
-        {% get_providers as socialaccount_providers %}
-
-        {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as site_name %}Please sign up with one
-            of your existing third party accounts. Or, <a href="{{ login_url }}" title="Click here to Login">Login</a>
-            if you already have an account:{% endblocktrans %}</p>
-
-        <div class="socialaccount_ballot">
-
-            <ul class="socialaccount_providers">
-                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-            </ul>
-
-            <div class="login-or">{% trans 'OR' %}</div>
-
+        <div class="signup-form">
+            <div class="container text-center">
+                <img src="{{MEDIA_URL}}mymo-purp.jpg" class="img-fluid" alt="MyMo.ie Logo">
+            </div>
+            <h1 class="fw-bold h5 text-start">Sign Up</h1>
+            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn form-btn d-block w-100" type="submit"><span class="me-3"><i class="fas fa-user-plus"></i></span>{% trans "Sign Up" %}</button>
+            </form>
+            <a href="{{ login_url }}" class="btn form-btn w-100 p-4 bg-dark-purp"><i class="fas fa-sign-in-alt"></i> Use Existing Account</a>
+            {% get_providers as socialaccount_providers %}
+    
+            {% if socialaccount_providers %}
+    
+            <div class="socialaccount_ballot">
+                <ul class="socialaccount_providers">
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </ul>
+            </div>
+            {% include "socialaccount/snippets/login_extra.html" %}
+            {% endif %}
+            <p>If you are an agent please email <a href="mailto:support@mymo.ie" title="Click here to Email Us">support@mymo.ie</a> or call <a href="tel:+353877648382" title="Click here to call us">0877648382</a> to setup an account.</p>
         </div>
 
-        {% include "socialaccount/snippets/login_extra.html" %}
-
-        {% else %}
-
-        <p>{% blocktrans %}Already have an account? Please <a href="{{ login_url }}" title="Click here to Login">Log
-                in</a>.{% endblocktrans %}</p>
-        {% endif %}
-        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-            {% csrf_token %}
-            {{ form | crispy }}
-            {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-            <div class="row">
-                <div class="col">
-                    <button class="btn form-btn d-block" type="submit">{% trans "Sign Up" %} &raquo;</button>
-                </div>
-                <div class="col d-flex justify-content-end mt-4">
-                    <p>
-                        Already have an account? Please <a href="{% url 'account_login' %}" title="Click here to Login">Login.</a>
-                    </p>
-                </div>
-            </div>
-        </form>
-        <p>If you are an agent please email <a href="mailto:support@mymo.ie" title="Click here to Email Us">support@mymo.ie</a> or call <a href="tel:+353877648382" title="Click here to call us">0877648382</a> to setup an account.</p>
+        
     </div>
 </div>
 {% endblock %}

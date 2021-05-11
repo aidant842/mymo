@@ -20,7 +20,7 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   /* color of the scroll thumb */
-  border-radius: 20px;
+  border-radius: 3px;
   /* roundness of the scroll thumb */
   /* border: 3px solid orange; */
   /* creates padding around scroll thumb */
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
   min-height: 40px;
   color: white !important;
   border: 1px solid white;
-  border-radius: 10px !important;
+  border-radius: 3px !important;
   margin: 0 1rem;
 }
 
@@ -51,12 +51,20 @@ a {
   text-decoration: none;
 }
 
+.no-border {
+  border: none !important;
+}
+
 :focus {
   outline: none !important;
 }
 
 .hidden {
   display: none;
+}
+
+.bg-dark-purp {
+  background-color: #303e94 !important;
 }
 
 /* ---------------- Toasts ------------------- */
@@ -85,7 +93,7 @@ a {
   color: white;
   cursor: pointer;
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 3px;
   font-size: 18px;
   transition: bottom 1s ease-in-out;
 }
@@ -136,6 +144,9 @@ a {
 .navbar-nav .nav-link {
   padding: 0 1rem !important;
   color: white !important;
+}
+.navbar-nav .nav-link.buy-link {
+  padding: 0 !important;
 }
 
 .navbar-collapse {
@@ -191,7 +202,21 @@ a {
   transition: 1s;
 }
 
-@media only screen and (max-width: 768px) {
+.mobile-buy-dropdown {
+  border: none;
+  text-align: center;
+}
+.mobile-buy-dropdown li a {
+  color: white !important;
+}
+.mobile-buy-dropdown li a:hover {
+  background-color: #303e94;
+}
+
+/* .full-width-dropdown {
+    top: 265% !important;
+} */
+@media only screen and (max-width: 767px) {
   .left, .right {
     display: block;
     /* width: 55%; */
@@ -337,6 +362,47 @@ a {
   }
 }
 
+.three-card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  padding: 3rem 0 3rem 0;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.three-card-container .card {
+  margin: 0 auto;
+  min-width: unset !important;
+  max-width: 400px;
+}
+@media only screen and (max-width: 500px) {
+  .three-card-container {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 996px) {
+  .three-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 300px));
+    min-width: 100%;
+  }
+}
+@media only screen and (min-width: 1322px) {
+  .three-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 320px));
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .three-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 350px));
+  }
+}
+@media only screen and (min-width: 1638px) {
+  .three-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
+  }
+}
+
 .card-container.detail-page {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
@@ -414,7 +480,7 @@ a {
   color: white;
   background: #303e94;
   width: fit-content;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px 15px;
   font-size: small;
   height: max-content;
@@ -424,7 +490,8 @@ a {
   height: 256.53px;
   width: 100%;
   background-size: cover;
-  background-position: top;
+  /* background-position: top; */
+  background-position: center;
 }
 
 @media only screen and (max-width: 940px) {
@@ -776,7 +843,7 @@ legend a {
   width: 250px;
   margin: 1rem;
   box-shadow: 0px 10px 13px -7px #000000;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 
 input:focus, select:focus {
@@ -802,7 +869,6 @@ input:focus, select:focus {
 
 .socialaccount_providers a {
   color: white !important;
-  max-width: 180px;
   display: block;
   list-style: none;
   text-align: center;
@@ -961,6 +1027,32 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   } */
 }
 
+.login-form {
+  width: 100%;
+}
+.login-form img {
+  width: 100%;
+}
+@media only screen and (min-width: 767px) {
+  .login-form img {
+    width: 75%;
+  }
+}
+@media only screen and (min-width: 767px) {
+  .login-form {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+#div_id_login {
+  position: relative;
+}
+
+.login-icons {
+  position: absolute;
+}
+
 .max-width-60 {
   max-width: 60%;
 }
@@ -1105,7 +1197,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   height: 28px !important;
   min-width: 0;
   min-height: 0;
-  border-radius: 4px !important;
+  border-radius: 3px !important;
   padding: 3px 0;
   font-size: small;
 }

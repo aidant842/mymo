@@ -1027,30 +1027,22 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   } */
 }
 
-.login-form {
+.login-form, .signup-form {
   width: 100%;
 }
-.login-form img {
+.login-form img, .signup-form img {
   width: 100%;
 }
 @media only screen and (min-width: 767px) {
-  .login-form img {
+  .login-form img, .signup-form img {
     width: 75%;
   }
 }
 @media only screen and (min-width: 767px) {
-  .login-form {
+  .login-form, .signup-form {
     width: 50%;
     margin: 0 auto;
   }
-}
-
-#div_id_login {
-  position: relative;
-}
-
-.login-icons {
-  position: absolute;
 }
 
 .max-width-60 {

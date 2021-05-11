@@ -20,12 +20,10 @@
         <div class="form-container">
     
             <div class="login-form">
-                <h1 class="text-center fw-bold text-muted">Log In</h1>
-                <hr>
                 <div class="container text-center">
                     <img src="{{MEDIA_URL}}mymo-purp.jpg" class="img-fluid" alt="MyMo.ie Logo">
                 </div>
-                <!-- <hr> -->
+                <h1 class="fw-bold h5 text-start">Log In</h1>
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     {{ form.login | as_crispy_field }}
@@ -35,7 +33,7 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
                 </form>
-                <a href="{{ signup_url }}" class="btn form-btn w-100 p-4 bg-dark-purp"><i class="fas fa-user-plus"></i> Get an Account</a>
+                <a href="{{ signup_url }}" class="btn form-btn w-100 p-4 bg-dark-purp"><i class="fas fa-user-plus"></i> Create Account</a>
                 {% get_providers as socialaccount_providers %}
         
                 {% if socialaccount_providers %}
@@ -48,9 +46,6 @@
                 </div>
         
                 {% include "socialaccount/snippets/login_extra.html" %}
-            {% else %}
-            <p>{% blocktrans %}If you have not created an account yet, please
-                <a href="{{ signup_url }}" title="Click here to Sign Up">Sign Up</a> first.{% endblocktrans %}</p>
             {% endif %}
             <p class="text-center">If you are an agent please email <a href="mailto:support@mymo.ie" title="Click here to Email Us">support@mymo.ie</a> or call <a href="tel:+353877648382" title="Click here to call us">0877648382</a> to setup an account.</p>
             </div>
