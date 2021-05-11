@@ -1430,6 +1430,14 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white !important;
 }
 
+.agent-cards .card {
+  height: 200px;
+}
+@media only screen and (max-width: 991px) {
+  .agent-cards .card {
+    height: 334px;
+  }
+}
 .agent-cards .card-body {
   height: 100%;
 }

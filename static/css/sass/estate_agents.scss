@@ -1,4 +1,11 @@
 .agent-cards{
+    .card {
+        height: 200px;
+
+        @media only screen and (max-width: 991px) {
+            height: 334px;
+        }
+    }
     .card-body {
         height: 100%;
         @media only screen and (max-width: 767px) {
