@@ -38,9 +38,19 @@
     background-color: #303e94 !important;
     width: 100% !important;
     padding: 0 5rem;
+}
 
+.navbar.purple {
+    background-color: #303e94 !important;
+    width: 100% !important;
+    padding: 0 5rem;
+
+    
     @media only screen and (max-width: 991px) {
         padding: revert;
+    }
+    @media only screen and (max-width: 767px) {
+        padding: 0 5rem;
     }
 }
 
