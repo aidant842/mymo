@@ -627,7 +627,7 @@
                     <i class="fas fa-cog"></i>
                 </legend>
                 <hr>
-                <form action="{% url 'profile' %}" method="POST" id="profile-update-form" class="my-3">
+                <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data" id="profile-update-form" class="my-3">
                         {% csrf_token %}
                         {% if profile.is_agent %}
                         {{ agent_profile_form | crispy }}

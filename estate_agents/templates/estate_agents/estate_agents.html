@@ -35,10 +35,10 @@
             <div class="card mb-3">
                 <a href="{% url 'estate_agents_profile' agent.company_name_to_url agent.id %}" class="stretched-link" title="Click to view other properties for Sale or Rent from {{ agent.company_name }}"></a>
                 <div class="row g-0">
-                    <div class="col-lg-4 text-center img-col">
+                    <div class="col-lg-2 text-center img-col">
                     {% if agent.company_logo %}
-                    <!-- <div class="w-100" style="background-image: url({{agent.company_logo.url}});"></div> -->
-                    <img src="{{ agent.company_logo.url }}" class="" alt="{{agent.company_name}} Logo">
+                    <div class="p-4" style="background-image: url({{agent.company_logo.url}});"></div>
+                    <!-- <img src="{{ agent.company_logo.url }}" class="" alt="{{agent.company_name}} Logo"> -->
                     {% endif %}
                     </div>
                     <div class="col-lg-8">

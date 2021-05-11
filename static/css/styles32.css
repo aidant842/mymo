@@ -162,6 +162,11 @@ a.page-link:hover {
 .navbar-nav .nav-link.buy-link {
   padding: 0 !important;
 }
+@media only screen and (max-width: 991px) {
+  .navbar-nav {
+    font-size: 0.9rem;
+  }
+}
 
 .navbar-collapse {
   justify-content: space-around;
@@ -175,6 +180,11 @@ a.page-link:hover {
   background-color: #303e94 !important;
   width: 100% !important;
   padding: 0 5rem;
+}
+@media only screen and (max-width: 991px) {
+  .purple {
+    padding: revert;
+  }
 }
 
 .navbar-dark .navbar-brand {
@@ -1438,6 +1448,18 @@ a.hover-link:hover:after, a.hover-link:focus:after {
     height: 334px;
   }
 }
+.agent-cards .img-col div {
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
+}
+@media only screen and (max-width: 991px) {
+  .agent-cards .img-col div {
+    height: 130px;
+  }
+}
 .agent-cards .card-body {
   height: 100%;
 }
@@ -1445,17 +1467,6 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   .agent-cards .card-body {
     text-align: center;
   }
-}
-.agent-cards .card-body .img-col {
-  height: 200px;
-}
-@media only screen and (max-width: 991px) {
-  .agent-cards .card-body .img-col {
-    height: 334px;
-  }
-}
-.agent-cards .card-body .img-col img {
-  height: 100%;
 }
 .agent-cards .card-body .buttons {
   position: absolute;

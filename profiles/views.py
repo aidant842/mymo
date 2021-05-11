@@ -29,7 +29,7 @@ def profile(request):
 
     if request.method == 'POST':
         if profile.is_agent:
-            agent_profile_form = AgentProfileForm(request.POST, instance=profile)
+            agent_profile_form = AgentProfileForm(request.POST, request.FILES, instance=profile)
             if agent_profile_form.is_valid():
                 agent_profile_form.save()
                 messages.success(request, 'Changes made successfully.')

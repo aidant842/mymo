@@ -6,22 +6,26 @@
             height: 334px;
         }
     }
+
+    .img-col {
+        div {
+            height: 200px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-origin: content-box;
+            
+            @media only screen and (max-width: 991px) {
+                height: 130px;
+            }
+        }
+
+    }
+
     .card-body {
         height: 100%;
         @media only screen and (max-width: 767px) {
             text-align: center;
-        }
-
-        .img-col {
-            height: 200px;
-
-            @media only screen and (max-width: 991px) {
-                height: 334px;
-            }
-
-            img {
-                height: 100%;
-            }
         }
         .buttons {
             position: absolute;

@@ -20,6 +20,10 @@
     .nav-link.buy-link {
         padding: 0 !important;
     }
+
+    @media only screen and (max-width: 991px) {
+        font-size: 0.9rem;
+    }
 }
 
 .navbar-collapse {
@@ -34,6 +38,10 @@
     background-color: #303e94 !important;
     width: 100% !important;
     padding: 0 5rem;
+
+    @media only screen and (max-width: 991px) {
+        padding: revert;
+    }
 }
 
 .navbar-dark .navbar-brand {
