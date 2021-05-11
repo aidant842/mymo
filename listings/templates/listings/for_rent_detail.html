@@ -324,45 +324,7 @@
       </div>
     </div>
 </div>
-<!-- <div class="modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            <div class="modal-body">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        {% for p in photos %}
-                        <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
-                            class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                        {% endfor %}
-                    </div>
-                    <div class="carousel-inner">
-                        {% for p in photos %}
-                        <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                            {% if not p.images %}
-                            <img src="{{ p }}" class="img-fluid" alt="{{ p }}">
-                            {% else %}
-                            <img src="{{ p.images.url }}" class="img-fluid" alt="{{ p.images.url }}">
-                            {% endif %}
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+
 <!-- Share Modal -->
 <div class="modal fade" id="shareModal" tabindex="-1" area-hidden="true">
     <div class="modal-dialog">

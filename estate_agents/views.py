@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 from .forms import AgentFilter
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 from profiles.models import UserProfile
@@ -13,9 +14,34 @@ from itertools import chain
 
 
 def estate_agents(request):
-    users = UserProfile.objects.all()
     agents = UserProfile.objects.filter(is_agent=True)
     agent_filter = AgentFilter()
+    query_dictionary = {}
+    county_query = request.GET.get('county')
+    name_query = request.GET.get('name')
+
+    if name_query != '' and name_query is not None:
+        query_dictionary['name_query'] = name_query
+
+        agents = agents.filter(Q(company_name__icontains=name_query))
+
+    if county_query != '' and county_query is not None:
+        query_dictionary['county_query'] = county_query
+        agents = agents.filter(Q(address__icontains=county_query))
+
+    """ setup paginator """
+
+    paginator = Paginator(agents, 20)
+    page = request.GET.get('page')
+
+    try:
+        agents = paginator.page(page)
+    except PageNotAnInteger:
+        agents = paginator.page(1)
+
+    except EmptyPage:
+        agents = paginator.page(paginator.num_pages)
+
     template = 'estate_agents/estate_agents.html'
     context = {
         'agent_filter': agent_filter,

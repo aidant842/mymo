@@ -17,11 +17,49 @@
     <div class="agent-header">
         <div class="container p-4">
             <form method="GET" action="">
-                {{ agent_filter | crispy }}
+                <div class="row">
+                    <div class="col-12 col-md-6 p-2">
+                        {{ agent_filter.county | as_crispy_field }}
+                    </div>
+                    <div class="col-12 col-md-6 p-2">
+                        {{ agent_filter.name | as_crispy_field }}
+                    </div>
+                </div>
                 <button class="btn form-btn w-50" type="submit" value="">Search <i class="fas fa-search"></i></button>
             </form>
         </div>
     </div>
+    <div class="container mt-5 agent-cards">
+        <h1 class="h4 pb-2">Estate Agents {% if request.GET.county %} {{ request.GET.county }}{% else %} Ireland{% endif %}</h1>
+        {% for agent in agents %}
+        <!-- <a href="{% url 'estate_agents_profile' agent.company_name_to_url agent.id %}" title="Click to view other properties for Sale or Rent from {{ agent.company_name }}"> -->
+            <div class="card mb-3">
+                <a href="{% url 'estate_agents_profile' agent.company_name_to_url agent.id %}" class="stretched-link" title="Click to view other properties for Sale or Rent from {{ agent.company_name }}"></a>
+                <div class="row g-0">
+                    <div class="col-lg-4 text-center">
+                    {% if agent.company_logo %}
+                    <!-- <div class="w-100" style="background-image: url({{agent.company_logo.url}});"></div> -->
+                    <img src="{{ agent.company_logo.url }}" class="img-fluid w-50" alt="{{agent.company_name}} Logo">
+                    {% endif %}
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">{{ agent.company_name }}</h5>
+                            <p class="card-text">{{ agent.address.title }}</p>
+                            {% if agent.psr_number %}
+                                <p class="text-muted fs-6">PSR No.: {{ agent.psr_number }}</p>
+                            {% endif %}
+                            <div class="buttons">
+                                <a href="tel:{{ agent.phone_number }}" title="Call this Agent" class="btn form-btn">Call <i class="fas fa-phone"></i></a>
+                                <a href="mailto:{{ agent.email }}" title="Email this Agent" class="btn form-btn">E-mail <i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </a> -->  
+        {% endfor %}
+    </div>
 </div>
-{% include 'pagination.html' with page=result_list %}
+{% include 'agents_pagination.html' with page=agents %}
 {% endblock %}
