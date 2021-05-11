@@ -3,15 +3,25 @@ from django.utils import timezone
 from django.contrib import messages
 from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import AgentFilter
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
 from profiles.models import UserProfile
+from listings.forms import FilterForm
 
 from operator import attrgetter
 from itertools import chain
 
 
 def estate_agents(request):
-    return redirect('home')
+    users = UserProfile.objects.all()
+    agents = UserProfile.objects.filter(is_agent=True)
+    agent_filter = AgentFilter()
+    template = 'estate_agents/estate_agents.html'
+    context = {
+        'agent_filter': agent_filter,
+        'agents': agents,
+    }
+    return render(request, template, context)
 
 
 def estate_agents_profile(request, name, profile_id):

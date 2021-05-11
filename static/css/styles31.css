@@ -51,6 +51,20 @@ a {
   text-decoration: none;
 }
 
+a.page-link {
+  background-color: #303e94 !important;
+  color: white;
+}
+
+p.page-link {
+  background-color: #6a7fdb;
+  color: white;
+}
+
+a.page-link:hover {
+  color: white !important;
+}
+
 .no-border {
   border: none !important;
 }
@@ -1212,7 +1226,6 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .agent-header {
   background: #eff0f0 !important;
-  /* color: #555; */
 }
 .agent-header img {
   width: 150px;

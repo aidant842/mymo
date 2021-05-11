@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load static %} {% load tools %} {% load crispy_forms_tags %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="{% if profile.company_logo %} {{ profile.company_logo }}{% else %}https://mymoireland.s3.amazonaws.com/media/landing-img.jpg{% endif %}" />
+    <meta property="og:image:alt" content="{% if profile.company_logo %}Logo for {{ profile.company_name }} {% else %}MyMo.ie Logo{% endif %}" />
+    <meta property="og:description" content="Find an Estate Agent in Ireland on Ireland's Best Online Property Marketplace MyMo.ie." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Find an Estate Agent in Ireland | MyMo.ie" />
+    <meta name="description" content="Find an Estate Agent in Ireland on Ireland's Best Online Property Marketplace MyMo.ie.">
+{% endblock %}
+    
+
+<title>{% block extra_title %}Find an Estate Agent in Ireland{% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
+
+{% block content %}
+<div class="min-vh-100">
+    <div class="agent-header">
+        <div class="container p-4">
+            <form method="GET" action="">
+                {{ agent_filter | crispy }}
+                <button class="btn form-btn w-50" type="submit" value="">Search <i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'pagination.html' with page=result_list %}
+{% endblock %}

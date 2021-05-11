@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% load tools %}
+{% extends 'base.html' %} {% load static %} {% load tools %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
     <meta property="og:image" content="{% if profile.company_logo %} {{ profile.company_logo }}{% else %}https://mymoireland.s3.amazonaws.com/media/landing-img.jpg{% endif %}" />
@@ -13,6 +13,7 @@
 <title>{% block extra_title %}{% if profile.is_agent and profile.company_name %} {{ profile.company_name }} {% else %} {{ profile | title }} {% endif %}, Estate Agent {% if profile.address %} in {{ profile.address }} {% endif %}{% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
+
 <div class="min-vh-100">
     <div class="agent-header">
         {% if profile.company_name %}
@@ -25,6 +26,7 @@
                     <img src="{{ profile.company_logo.url }}" alt="Logo for {{ profile.company_name }}">
                 {% endif %}
             </div>
+            {% if %}
             {% if profile.psr_number %}
                 <p class="text-muted fs-6 mt-2">PSR No.: {{ profile.psr_number }}</p>
             {% endif %}
@@ -32,16 +34,11 @@
             <hr>
             <div class="row">
                 {% if profile.phone_number is not None %}
-                    <!-- <strong>Phone:</strong> {{ profile.phone_number }} -->
                     <div class="col mx-auto">
                         <a href="tel:{{ profile.phone_number }}" title="Call this seller" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
                     </div>
                 {% endif %}
                 {% if profile.email is not None %}
-                    <!-- <strong>
-                        Email:
-                    </strong>
-                     {{ profile.email }} -->
                      <div class="col mx-auto">
                          <a href="mailto:{{ profile.email }}" title="Email this seller" class="btn form-btn w-100">E-mail <i class="fas fa-envelope"></i></a>
                      </div>
@@ -67,7 +64,6 @@
                 </div>
                 {% endif %}
                 <div class="card-image" style="background-image: url({{listing.header_image.url}});"></div>
-                <!-- <img src="{{ listing.header_image.url }}" class="card-img-top" alt="Photo of {{ listing }}"> -->
                 <div class="{% if listing.is_spotlight %} card-img-overlay-spotlight {% endif %} card-img-overlay">
                     <span class="property-price">{% if listing.poa %} POA {% else %}€ {{ listing.price }} {% if listing.rent_type %} / {{ listing.rent_type }}{% endif %}{% endif %}</span>
                     <span class="for-rent-sale">FOR {{ listing.category | upper }}</span>
@@ -93,7 +89,7 @@
         {% endfor %}
     </div>
 </div>
-{% include 'pagination_all_listings.html' with page=result_list %}
+{% include 'pagination.html' with page=result_list %}
 <div class="text-center">
     <p class="text-muted">Total listings: {{ total_listings }}</p>
 </div>

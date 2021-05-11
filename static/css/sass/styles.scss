@@ -51,6 +51,20 @@ a {
     text-decoration: none;
 }
 
+a.page-link {
+    background-color: $secondary-color !important;
+    color: $font-color;
+}
+
+p.page-link {
+    background-color: $tertiary-color;
+    color: $font-color;
+}
+
+a.page-link:hover {
+    color: white !important;
+}
+
 .btn {
     @extend %button-style;
 }
