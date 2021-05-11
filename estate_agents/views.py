@@ -14,7 +14,8 @@ from itertools import chain
 
 
 def estate_agents(request):
-    agents = UserProfile.objects.filter(is_agent=True).exclude(id=1)
+    agents = UserProfile.objects.filter(is_agent=True)
+    """ .exclude(id=1) """
     agent_filter = AgentFilter()
     query_dictionary = {}
     county_query = request.GET.get('county')

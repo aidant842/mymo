@@ -11,6 +11,18 @@
         @media only screen and (max-width: 767px) {
             text-align: center;
         }
+
+        .img-col {
+            height: 200px;
+
+            @media only screen and (max-width: 991px) {
+                height: 334px;
+            }
+
+            img {
+                height: 100%;
+            }
+        }
         .buttons {
             position: absolute;
             bottom: 10px;

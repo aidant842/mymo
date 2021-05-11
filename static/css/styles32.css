@@ -1446,6 +1446,17 @@ a.hover-link:hover:after, a.hover-link:focus:after {
     text-align: center;
   }
 }
+.agent-cards .card-body .img-col {
+  height: 200px;
+}
+@media only screen and (max-width: 991px) {
+  .agent-cards .card-body .img-col {
+    height: 334px;
+  }
+}
+.agent-cards .card-body .img-col img {
+  height: 100%;
+}
 .agent-cards .card-body .buttons {
   position: absolute;
   bottom: 10px;
