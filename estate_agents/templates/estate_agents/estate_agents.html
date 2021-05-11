@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="container mt-5 agent-cards">
-        <h1 class="h4 pb-2">Estate Agents {% if request.GET.county %} {{ request.GET.county }}{% else %} Ireland{% endif %}</h1>
+        <h1 class="h4 pb-2">Estate Agents {% if request.GET.county %} Co. {{ request.GET.county.title }}{% else %} Ireland{% endif %}</h1>
         {% for agent in agents %}
             <div class="card mb-3">
                 <a href="{% url 'estate_agents_profile' agent.company_name_to_url agent.id %}" class="stretched-link" title="Click to view other properties for Sale or Rent from {{ agent.company_name }}"></a>
