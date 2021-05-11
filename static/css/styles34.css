@@ -186,13 +186,15 @@ a.page-link:hover {
   background-color: #303e94 !important;
   width: 100% !important;
   padding: 0 5rem;
-  /* @media only screen and (max-width: 767px) {
-      padding: 0 5rem;
-  } */
 }
 @media only screen and (max-width: 991px) {
   .navbar.purple {
     padding: revert;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .navbar.purple {
+    padding: 0 2rem;
   }
 }
 
@@ -1489,4 +1491,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   }
 }
 
-/*# sourceMappingURL=styles33.css.map */
+/*# sourceMappingURL=styles34.css.map */
