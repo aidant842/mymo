@@ -1196,6 +1196,10 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   z-index: 11;
 }
 
+.listing-description {
+  overflow-wrap: break-word;
+}
+
 .image-container {
   text-align: center;
   margin-top: 1.25rem;
@@ -1492,4 +1496,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles36.css.map */
