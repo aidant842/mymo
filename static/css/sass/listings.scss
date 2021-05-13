@@ -61,7 +61,7 @@
 
     .share-btn {
         position: absolute;
-        z-index: 9;
+        /* z-index: 9; */
         background-color: $tertiary-color;
         color: $font-color;
         padding: 10px;
@@ -74,7 +74,7 @@
 
     .view-images {
         position: absolute;
-        z-index: 9;
+        /* z-index: 9; */
         background-color: $tertiary-color;
         color: $font-color;
         padding: 10px;
@@ -149,13 +149,13 @@
     font-size: small;
 }
 
+.modal-body {
+    font-size: large;
+}
 /* .modal {
     background: rgba(0,0,0, 0.2);
 }
 
-.modal-body {
-    padding: 0 !important;
-}
 
 .modal-content {
     .btn-close {

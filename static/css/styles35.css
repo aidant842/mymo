@@ -148,7 +148,7 @@ a.page-link:hover {
   min-height: 105px;
   width: 80%;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 100;
 }
 
 .navbar-nav {
@@ -1214,7 +1214,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 .image-container .share-btn {
   position: absolute;
-  z-index: 9;
+  /* z-index: 9; */
   background-color: #6a7fdb;
   color: white;
   padding: 10px;
@@ -1226,7 +1226,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 }
 .image-container .view-images {
   position: absolute;
-  z-index: 9;
+  /* z-index: 9; */
   background-color: #6a7fdb;
   color: white;
   padding: 10px;
@@ -1298,13 +1298,14 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   font-size: small;
 }
 
+.modal-body {
+  font-size: large;
+}
+
 /* .modal {
     background: rgba(0,0,0, 0.2);
 }
 
-.modal-body {
-    padding: 0 !important;
-}
 
 .modal-content {
     .btn-close {
@@ -1491,4 +1492,4 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles35.css.map */
