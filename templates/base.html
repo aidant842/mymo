@@ -43,6 +43,9 @@
     {% endblock %}
 
     {% block corejs %}
+    <!-- Start cookieyes banner -->
+    <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/ee9b6bba70517a671e941660.js"></script>
+    <!-- End cookieyes banner --> 
     <!-- <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="8624fb02-b0be-4e16-a8bb-18e0d5d49601" data-blockingmode="auto" type="text/javascript"></script> -->
     {% if not request.session.dev %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -243,7 +246,6 @@
             </div>
         </nav>
     </header>
-    <script src="https://consent.cookiefirst.com/banner.js" data-cookiefirst-key="bf2ef739-4726-494a-87c6-7249eabb0c95"></script>
     <!-- <script id="CookieDeclaration" src="https://consent.cookiebot.com/8624fb02-b0be-4e16-a8bb-18e0d5d49601/cd.js" type="text/javascript" async></script> -->
     <!-- Message container -->
     {% if messages %}
