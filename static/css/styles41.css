@@ -106,6 +106,35 @@ a.page-link:hover {
   border-radius: 10px;
 }
 
+.cky-consent-bar {
+  display: block;
+  background: white;
+  color: #565662;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d4d8df;
+  inset: auto auto 20px 20px;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 15px -4px #000000;
+  box-shadow: 0px 0px 15px -4px #000000;
+}
+@media only screen and (min-width: 992px) {
+  .cky-consent-bar {
+    width: 280px !important;
+    border-radius: 10px !important;
+  }
+}
+
+.cky-consent-bar.cky-logo-active .cky-content-logo-outer-wrapper {
+  display: block !important;
+  align-items: center;
+}
+
+.cky-consent-bar.cky-logo-active .cky-logo {
+  margin-right: 0;
+  margin-bottom: 30px;
+}
+
 /* ---------------- Toasts ------------------- */
 .message-container {
   position: fixed;

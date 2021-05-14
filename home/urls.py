@@ -4,5 +4,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('sitemap/', views.sitemap, name='sitemap'),
-    path('cookie-declaration/', views.cookie_declaration, name='cookie_declaration'),
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
+    path('cookie-policy/', views.cookie_policy, name='cookie_policy'),
 ]

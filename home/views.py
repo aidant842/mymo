@@ -47,10 +47,18 @@ def sitemap(request):
     return render(request, template)
 
 
-def cookie_declaration(request):
-    """ A View to return the Cookie Declaration """
+def privacy_policy(request):
+    """ A View to return the Privacy Policy """
 
-    template = 'home/cookie_declaration.html'
+    template = 'home/privacy_policy.html'
+
+    return render(request, template)
+
+
+def cookie_policy(request):
+    """ A View to return the Cookie Policy """
+
+    template = 'home/cookie_policy.html'
 
     return render(request, template)
 

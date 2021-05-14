@@ -94,6 +94,47 @@ a.page-link:hover {
   height: 90px;
 }
 
+.cookie-consent {
+  text-align: center;
+  position: relative;
+  -webkit-box-shadow: 0px 0px 15px -4px #000000;
+  box-shadow: 0px 0px 15px -4px #000000;
+  padding: 1rem;
+  padding-top: 3rem;
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.cky-consent-bar {
+  display: block;
+  background: white;
+  color: #565662;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d4d8df;
+  inset: auto auto 20px 20px;
+  text-align: center;
+  -webkit-box-shadow: 0px 0px 15px -4px #000000;
+  box-shadow: 0px 0px 15px -4px #000000;
+}
+@media only screen and (min-width: 992px) {
+  .cky-consent-bar {
+    width: 280px !important;
+    border-radius: 10px !important;
+  }
+}
+
+.cky-consent-bar.cky-logo-active .cky-content-logo-outer-wrapper {
+  display: block !important;
+  align-items: center;
+}
+
+.cky-consent-bar.cky-logo-active .cky-logo {
+  margin-right: 0;
+  margin-bottom: 30px;
+}
+
 /* ---------------- Toasts ------------------- */
 .message-container {
   position: fixed;
@@ -779,7 +820,7 @@ footer a:hover {
   color: #6a7fdb;
 }
 
-@media only screen and (max-width: 378px) {
+@media only screen and (max-width: 390px) {
   .extra-links {
     font-size: 0.8rem;
   }
