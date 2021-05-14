@@ -89,30 +89,9 @@ a.page-link:hover {
     background-color: $secondary-color !important;
 }
 
-/* .center {
+.center {
     text-align: center;
     margin: 5px;
-} */
-
-.center.desktop {
-    display: inline-block;
-    max-width: 920px;
-    text-align: center;
-    margin: 5px;
-    @media only screen and (max-width: 1201px) {
-        display: none;
-    }
-}
-
-.center.mobile {
-    display: inline-block;
-    height: 90px;
-    text-align: center;
-    margin: 5px;
-    display: none;
-    @media only screen and (max-width: 1200px) {
-        display: block;
-    }
 }
 
 /* ---------------- Toasts ------------------- */
