@@ -779,6 +779,12 @@ footer a:hover {
   color: #6a7fdb;
 }
 
+@media only screen and (max-width: 390px) {
+  .extra-links {
+    font-size: 0.8rem;
+  }
+}
+
 @media only screen and (max-width: 360px) {
   .footer {
     display: block;

@@ -500,7 +500,16 @@
                 <!-- <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a> -->
             </div>
         </div>
-        <a href="{% url 'sitemap' %}" class="d-block text-center text-white pb-1" title="Click here to view the Sitemap for MyMo.ie">Sitemap</a>
+        <div class="container p-4 extra-links">
+            <div class="row">
+                <div class="col border-end border-secondary">
+                    <a href="{% url 'sitemap' %}" class="d-block text-center text-white pb-1" title="Click here to view the Sitemap for MyMo.ie">Sitemap</a>
+                </div>
+                <div class="col">
+                    <a href="{% url 'cookie_declaration' %}" class="d-block text-center text-white pb-1" title="Click here to view the Cookie Declaration for MyMo.ie">Cookie Declaration</a>
+                </div>
+            </div>
+        </div>
     </footer>
     {% endblock %}
 

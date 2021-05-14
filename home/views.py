@@ -47,6 +47,14 @@ def sitemap(request):
     return render(request, template)
 
 
+def cookie_declaration(request):
+    """ A View to return the sitemap """
+
+    template = 'home/cookie_declaration.html'
+
+    return render(request, template)
+
+
 def error_404_view(request, exception):
     """ A view to return custom 404 page """
 
