@@ -94,6 +94,14 @@ a.page-link:hover {
     margin: 5px;
 }
 
+.ad-format {
+    display:inline-block;
+    min-width:290px;
+    max-width:970px;
+    width:100%;
+    height:90px
+}
+
 /* ---------------- Toasts ------------------- */
 
 .message-container {
