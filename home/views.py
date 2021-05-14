@@ -48,7 +48,7 @@ def sitemap(request):
 
 
 def cookie_declaration(request):
-    """ A View to return the sitemap """
+    """ A View to return the Cookie Declaration """
 
     template = 'home/cookie_declaration.html'
 
