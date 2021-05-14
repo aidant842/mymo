@@ -81,22 +81,30 @@ a.page-link:hover {
   background-color: #303e94 !important;
 }
 
-.center {
+/* .center {
+    text-align: center;
+    margin: 5px;
+} */
+.center.desktop {
+  display: inline-block;
+  max-width: 920px;
   text-align: center;
   margin: 5px;
 }
-
-.center.desktop {
-  text-align: center;
-  margin: 5px;
+@media only screen and (max-width: 1201px) {
+  .center.desktop {
+    display: none;
+  }
 }
 
 .center.mobile {
+  display: inline-block;
+  height: 90px;
   text-align: center;
   margin: 5px;
   display: none;
 }
-@media only screen and (max-width: 1247px) {
+@media only screen and (max-width: 1200px) {
   .center.mobile {
     display: block;
   }
