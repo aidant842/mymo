@@ -10,6 +10,8 @@ from django.template.loader import render_to_string
 from products.models import Category, Product
 from profiles.models import UserProfile
 
+from datetime import timedelta, datetime
+
 from PIL import Image
 
 
@@ -71,8 +73,8 @@ class SaleListing(models.Model):
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
-    expiration_date = models.DateTimeField(null=True, blank=True)
-    premium_expiration = models.DateTimeField(blank=True, null=True)
+    expiration_date = models.DateTimeField(null=True, blank=True, default=datetime.now()+timedelta(days=365))
+    premium_expiration = models.DateTimeField(blank=True, null=True, default=datetime.now()+timedelta(days=30))
     email_sent = models.BooleanField(default=False)
 
     def _generate_listing_number(self):
@@ -170,8 +172,8 @@ class RentListing(models.Model):
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
-    expiration_date = models.DateTimeField(null=True, blank=True)
-    premium_expiration = models.DateTimeField(blank=True, null=True)
+    expiration_date = models.DateTimeField(null=True, blank=True, default=datetime.now()+timedelta(days=90))
+    premium_expiration = models.DateTimeField(blank=True, null=True, default=datetime.now()+timedelta(days=30))
     email_sent = models.BooleanField(default=False)
 
     def _generate_listing_number(self):
