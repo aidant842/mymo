@@ -41,6 +41,13 @@
             <button class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
                 <i class="fas fa-share-alt"></i>
             </button>
+            <a href="{% url 'favourite_sale_add' listing.id %}" class="favourite-btn">
+                {% if favourited %}
+                <i class="fas fa-heart"></i>
+                {% else %}
+                <i class="far fa-heart"></i>
+                {% endif %}
+            </a>
         </a>
     </div>
     <!-- Price and BER -->

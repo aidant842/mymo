@@ -117,8 +117,12 @@ a.page-link:hover {
   text-align: center;
   -webkit-box-shadow: 0px 0px 15px -4px #000000;
   box-shadow: 0px 0px 15px -4px #000000;
-  width: 280px im !important;
-  border-radius: 10px !important;
+}
+@media only screen and (min-width: 992px) {
+  .cky-consent-bar {
+    width: 280px !important;
+    border-radius: 10px !important;
+  }
 }
 
 .cky-consent-bar.cky-logo-active .cky-content-logo-outer-wrapper {
@@ -127,7 +131,7 @@ a.page-link:hover {
 }
 
 .cky-consent-bar.cky-logo-active .cky-logo {
-  margin-right: 0;
+  margin-right: 0 !important;
   margin-bottom: 30px;
 }
 

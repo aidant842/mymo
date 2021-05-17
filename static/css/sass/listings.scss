@@ -21,11 +21,11 @@
     color: $secondary-color;
 }
 
-.share-btn {
+/* .share-btn {
     text-align: end;
     font-size: 1.25rem;
     color: $secondary-color;
-}
+} */
 
 .return-btn-container {
     padding-bottom: 0.5rem;
@@ -85,6 +85,16 @@
         left: 0;
         top: 0;
         border: none;
+    }
+
+    .favourite-btn {
+        position: absolute;
+        color: $font-color;
+        padding: 0 10px;
+        right: 0;
+        bottom: 0;
+        font-size: 2rem;
+        background-color: $tertiary-color;
     }
 
     img {

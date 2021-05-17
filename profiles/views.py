@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import UserProfile
 from .forms import UserProfileForm, AgentProfileForm
 from checkout.models import Order
@@ -50,6 +51,9 @@ def profile(request):
     user_profile_form = UserProfileForm(instance=profile)
     agent_profile_form = AgentProfileForm(instance=profile)
     average_views = listing_analytics.average_listing_views
+    users_sale_favourites = SaleListing.objects.filter(favourites=request.user, is_listed=True, expiration_date__gt=timezone.now())
+    users_rent_favourites = RentListing.objects.filter(favourites=request.user, is_listed=True, expiration_date__gt=timezone.now())
+    users_favourites = list(chain(users_sale_favourites, users_rent_favourites))
 
     template = 'profiles/profile.html'
     context = {
@@ -59,6 +63,7 @@ def profile(request):
         'agent_profile_form': agent_profile_form,
         'profile_listings': profile_listings,
         'average_views': average_views,
+        'users_favourites': users_favourites,
     }
 
     return render(request, template, context)
@@ -79,3 +84,35 @@ def delete_listing(request, listing_id):
 
     messages.success(request, 'Your listing was successfully removed.')
     return redirect('profile')
+
+
+@login_required
+def favourite_sale_add(request, listing_id):
+    try:
+        listing = get_object_or_404(SaleListing, id=listing_id)
+    except SaleListing.DoesNotExist:
+        messages.error(request, 'Sorry an error has occured, object does not exist')
+        return redirect('home')
+    if listing.favourites.filter(id=request.user.id).exists():
+        listing.favourites.remove(request.user)
+        messages.success(request, 'Removed listing from your favourites.')
+    else:
+        listing.favourites.add(request.user)
+        messages.success(request, 'Added listing to your favourites.')
+    return redirect(reverse('sale_listing_detail', kwargs={'listing_id': listing.id}))
+
+
+@login_required
+def favourite_rent_add(request, listing_id):
+    try:
+        listing = get_object_or_404(RentListing, id=listing_id)
+    except RentListing.DoesNotExist:
+        messages.error(request, 'Sorry an error has occured, object does not exist')
+        return redirect('home')
+    if listing.favourites.filter(id=request.user.id).exists():
+        listing.favourites.remove(request.user)
+        messages.success(request, 'Removed listing from your favourites.')
+    else:
+        listing.favourites.add(request.user)
+        messages.success(request, 'Added listing to your favourites.')
+    return redirect(reverse('rent_listing_detail', kwargs={'listing_id': listing.id}))

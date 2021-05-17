@@ -1235,12 +1235,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: #303e94;
 }
 
-.share-btn {
-  text-align: end;
-  font-size: 1.25rem;
-  color: #303e94;
-}
-
+/* .share-btn {
+    text-align: end;
+    font-size: 1.25rem;
+    color: $secondary-color;
+} */
 .return-btn-container {
   padding-bottom: 0.5rem;
 }
@@ -1297,6 +1296,15 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   left: 0;
   top: 0;
   border: none;
+}
+.image-container .favourite-btn {
+  position: absolute;
+  color: white;
+  padding: 0 10px;
+  right: 0;
+  bottom: 0;
+  font-size: 2rem;
+  background-color: #6a7fdb;
 }
 .image-container img {
   position: relative;

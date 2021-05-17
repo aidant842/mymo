@@ -376,6 +376,10 @@ def sale_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_sale_listings'))
 
+    favourited = bool
+
+    if listing.favourites.filter(id=request.user.id).exists():
+        favourited = True
     profile = listing.user_profile.user.id
     show_recent_listings = False
     sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
@@ -412,6 +416,7 @@ def sale_listing_detail_view(request, listing_id):
         'photos': photos,
         'no_of_photos': no_of_photos,
         'show_recent_listings': show_recent_listings,
+        'favourited': favourited,
     }
 
     return render(request, template, context)
@@ -430,6 +435,10 @@ def rent_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_rent_listings'))
 
+    favourited = bool
+
+    if listing.favourites.filter(id=request.user.id).exists():
+        favourited = True
     profile = listing.user_profile.user.id
     show_recent_listings = False
     sale_listings = SaleListing.objects.filter(is_listed=True, expiration_date__gt=timezone.now(), user_profile=profile)
@@ -465,6 +474,7 @@ def rent_listing_detail_view(request, listing_id):
         'result_list': result_list,
         'photos': photos,
         'show_recent_listings': show_recent_listings,
+        'favourited': favourited,
     }
     if listing.is_listed:
         return render(request, template, context)

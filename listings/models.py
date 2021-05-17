@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
 from products.models import Category, Product
 from profiles.models import UserProfile
 
@@ -73,9 +74,11 @@ class SaleListing(models.Model):
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
-    expiration_date = models.DateTimeField(null=True, blank=True, default=datetime.now()+timedelta(days=365))
-    premium_expiration = models.DateTimeField(blank=True, null=True, default=datetime.now()+timedelta(days=30))
+    expiration_date = models.DateTimeField(null=True, blank=True)
+    premium_expiration = models.DateTimeField(blank=True, null=True)
     email_sent = models.BooleanField(default=False)
+    favourites = models.ManyToManyField(
+        User, default=None, blank=True)
 
     def _generate_listing_number(self):
 
@@ -110,6 +113,11 @@ class SaleListing(models.Model):
                 [cust_email]
             )
             self.email_sent = True
+
+        if not self.expiration_date:
+            self.expiration_date = datetime.now()+timedelta(days=365)
+        if not self.premium_expiration:
+            self.premium_expiration = datetime.now()+timedelta(days=30)
 
         if not self.listing_number:
             self.listing_number = self._generate_listing_number()
@@ -172,9 +180,11 @@ class RentListing(models.Model):
     product = models.ForeignKey(Product, null=True,
                                 blank=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(default=timezone.now)
-    expiration_date = models.DateTimeField(null=True, blank=True, default=datetime.now()+timedelta(days=90))
-    premium_expiration = models.DateTimeField(blank=True, null=True, default=datetime.now()+timedelta(days=30))
+    expiration_date = models.DateTimeField(null=True, blank=True)
+    premium_expiration = models.DateTimeField(blank=True, null=True)
     email_sent = models.BooleanField(default=False)
+    favourites = models.ManyToManyField(
+        User, default=None, blank=True)
 
     def _generate_listing_number(self):
 
@@ -186,11 +196,6 @@ class RentListing(models.Model):
     def save(self, *args, **kwargs):
         """ Override origonal save method
             to set the listing number if not already set """
-
-        """ img = Image.open(self.header_image.path)
-        output_size = (500, 3)
-        img.thumbnail(output_size)
-        img.save(self.header_image.path) """
 
         self.category = self.product.category
 
@@ -214,6 +219,11 @@ class RentListing(models.Model):
                 [cust_email]
             )
             self.email_sent = True
+
+        if not self.expiration_date:
+            self.expiration_date = datetime.now()+timedelta(days=365)
+        if not self.premium_expiration:
+            self.premium_expiration = datetime.now()+timedelta(days=30)
 
         if not self.no_of_bedrooms:
             self.no_of_bedrooms = self._calc_no_of_bedrooms()
