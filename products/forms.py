@@ -47,7 +47,7 @@ class SaleListingForm(forms.ModelForm):
 
     FLOOR_AREA_TYPE_CHOICES = [
         ('Square Meters', 'Square Meters'),
-        ('Feet', 'Feet'),
+        ('Square Feet', 'Square Feet'),
         ('Acres', 'Acres'),
         ('Hectares', 'Hectares'),
     ]
@@ -225,7 +225,7 @@ class RentListingForm(forms.ModelForm):
 
     FLOOR_AREA_TYPE_CHOICES = [
         ('Square Meters', 'Square Meters'),
-        ('Feet', 'Feet'),
+        ('Square Feet', 'Square Feet'),
         ('Acres', 'Acres'),
         ('Hectares', 'Hectares'),
     ]
@@ -268,9 +268,10 @@ class RentListingForm(forms.ModelForm):
     ]
 
     RENT_TYPE_CHOICES = [
-        ('Monthly', 'Monthly'),
-        ('Weekly', 'Weekly'),
-        ('Nightly', 'Nightly'),
+        ('Night', 'Night'),
+        ('Week', 'Week'),
+        ('Month', 'Month'),
+        ('Year', 'Year'),
     ]
 
     IE_COUNTY_CHOICES = [

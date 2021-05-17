@@ -117,6 +117,8 @@ def create_listings(request):
                     else:
                         return redirect('checkout')
                 else:
+                    for error in listing_form.errors:
+                        print(error)
                     messages.error(request, 'form error, try re-uploading images')
                     return redirect(reverse('product_detail', kwargs={'product_name':product.name, 'product_id':product.id}))
     request.session.set_expiry(1800)

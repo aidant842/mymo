@@ -91,7 +91,7 @@
                             {{ listing_form.poa | as_crispy_field }}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="bedBathInputs">
                         <div class="col">
                             {{ listing_form.no_of_bedrooms | as_crispy_field }}
                         </div>
@@ -250,7 +250,7 @@
                         {{ listing_form.available_from | as_crispy_field }}
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="rentBedsInputs">
                     <div class="col">
                         {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
                     </div>
@@ -261,8 +261,12 @@
                         {{ listing_form.no_of_twin_bedrooms | as_crispy_field }}
                     </div>
                 </div>
-                {{ listing_form.no_of_bathrooms | as_crispy_field }}
-                {{ listing_form.furnishing | as_crispy_field }}
+                <div class="row" id="rentBathroomsInput">
+                    {{ listing_form.no_of_bathrooms | as_crispy_field }}
+                </div>
+                <div class="row">
+                    {{ listing_form.furnishing | as_crispy_field }}
+                </div>
                 <div class="features">
                     {{ listing_form.top_features_1 | as_crispy_field }}
                 </div>
@@ -369,73 +373,6 @@
 
 {% block postloadjs %}
 {{ block.super }}
-
 <script src="{% static 'checkout/js/loading-overlay.js' %}"></script>
-
-<script>
-    function readHeaderURL(input) {
-        document.querySelector('.header-image-preview').innerHTML = '';
-        if (input.files && input.files[0]) {
-            var files = input.files
-
-            for (let file of files) {
-                if (file.size < 6000000) {
-                    let img = new Image;
-                    img.src = URL.createObjectURL(file);
-                    document.querySelector('.header-image-preview').appendChild(img);
-                } else {
-                    alert('One or more of your files is too large, max 6MB');
-                }
-            }
-
-        }
-    }
-
-    function readURL(input) {
-        document.querySelector('.image-preview').innerHTML = '';
-        if (input.files && input.files[0]) {
-            var files = input.files
-
-            for (let file of files) {
-                if (file.size < 6000000) {
-                    let img = new Image;
-                    img.src = URL.createObjectURL(file);
-                    document.querySelector('.image-preview').appendChild(img);
-                } else {
-                    alert('One or more of your files is too large, max 6MB');
-                }
-            }
-
-        }
-    }
-
-    function displayFeatures() {
-        $('.features').keyup(function () {
-            $(this).next('.features').attr('hidden', false);
-            if ($(this).find('.textInput').val() == '') {
-                $(this).next('.features').attr('hidden', true);
-            }
-        });
-    }
-
-    function setPriceDisabled() {
-        if($('#id_poa')) {
-            $('#id_poa').change(function () {
-                if($(this).is(':checked')) {
-                    $('#id_price').attr('required', false);
-                    $('#div_id_price').attr('hidden', true);
-                    $('#or').attr('hidden', true);
-                    $('#id_price').val(0)
-                } else {
-                    $('#id_price').attr('required', true);
-                    $('#div_id_price').attr('hidden', false);
-                    $('#or').attr('hidden', false);
-                }
-            });
-        }
-    };
-
-    displayFeatures();
-    setPriceDisabled();
-</script>
+<script src="{% static 'js/product_form.js' %}"></script>
 {% endblock %}

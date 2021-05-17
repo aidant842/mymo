@@ -349,7 +349,7 @@
                                 <a href="{% url 'for_sale_listings' %}?price=&county=&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 {% for county in counties %}
                                     <li class="p-1">
                                         <a href="{% url 'for_sale_listings' %}?price=&county={{county}}&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Sale {{ county }}</a>
@@ -383,7 +383,7 @@
                                 <a href="{% url 'for_rent_listings' %}?price=&county=&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 {% for county in counties %}
                                     <li class="p-1">
                                         <a href="{% url 'for_rent_listings' %}?price=&county={{county}}&area=&property_type=apartment&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Apartments for Rent {{ county }}</a>
@@ -426,7 +426,7 @@
                                 <a href="{% url 'listings' %}?price=&county=&area=&property_type=site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites</a>
                             </legend>
                             <hr>
-                            <ul>
+                            <ul class="p-0">
                                 {% for county in counties %}
                                     <li class="p-1">
                                         <a href="{% url 'listings' %}?price=&county={{county}}&area=&property_type=site&bedrooms=&bathrooms=&ber_rating=&keyword=&sort=">Sites for Sale or Rent {{ county }}</a>

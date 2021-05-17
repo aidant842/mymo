@@ -70,13 +70,8 @@
         </div>
     </div>
     <!-- Overview -->
+    {% if listing.property_type|lower != 'site' and listing.property_type|lower != 'land' %}
     <div class="row text-center mt-2">
-        <!-- <div class="col border-end border-start border-secondary">
-            <i class="fas fa-euro-sign"></i>
-            <span>
-                {{ listing.price }}
-            </span>
-        </div> -->
         <div class="col border-start border-end border-secondary">
             <p>
                 {{ listing.no_of_bedrooms }}
@@ -89,26 +84,25 @@
             </p>
             <i class="fas fa-bath"></i>
         </div>
-        
         <div class="col border-end border-secondary">
             <p>
-                {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% else %}
-                {{ listing.floor_area_type }} {% endif %}
+                {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% elif listing.floor_area_type == 'Square Feet' %} ft<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %}
             </p>
             <i class="fas fa-chart-area"></i>
         </div>
-        <!-- <div class="col border-end border-secondary">
-            <p>
-                {% if listing.ber_rating is None %} 
-                    BER Exempt
-                {% else %}
-                    <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="75" height="25" alt="BER Rating: {{ listing.ber_rating }}">
-                {% endif %}
-            </p>
-        </div> -->
     </div>
+    {% else %}
+    <div class="row px-4 mt-2">
+        <div class="col">
+            <i class="fas fa-chart-area"></i>
+            <span>
+                {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% elif listing.floor_area_type == 'Square Feet' %} ft<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %}
+            </span>
+        </div>
+    </div>
+    {% endif %}
     <!-- Area -->
-    <div class="row mt-5 bg-light p-4">
+    <div class="row mt-3 bg-light p-4">
         <h1 class="h6">
             <strong>
                 <i class="fas fa-map-marker-alt"></i>
@@ -132,7 +126,9 @@
         {% if listing.no_of_twin_bedrooms != 0 %}
             <p><strong>No. of twin bedrooms</strong>: {{ listing.no_of_twin_bedrooms }}</p>
         {% endif %}
+        {% if listing.property_type|lower != 'site' and listing.property_type|lower != 'land' %}
         <p><strong>Furnishings</strong>: {{ listing.furnishing }}</p>
+        {% endif %}
         
     </div>
     <!------ Ads ------>
@@ -300,7 +296,12 @@
                     <div class="card-body {% if listing.is_spotlight %} spotlight {% endif %}">
                         <h5 class="card-title">Co. {{ listing.county }}</h5>
                         <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ listing.area }}</p>
-                        <p class="card-text"><i class="fas fa-bed"></i> {{ listing.no_of_bedrooms }} | <i class="fas fa-bath"></i> {{ listing.no_of_bathrooms }} | <i class="fas fa-chart-area"></i> {{ listing.floor_area }} {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
+                        <p class="card-text">
+                            {% if listing.property_type|lower != 'site' and listing.property_type|lower != 'land' %}
+                            <i class="fas fa-bed"></i> {{ listing.no_of_bedrooms }} | <i class="fas fa-bath"></i> {{ listing.no_of_bathrooms }} |
+                            {% endif %}
+                            <i class="fas fa-chart-area"></i> {{ listing.floor_area }}
+                            {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% elif listing.floor_area_type == 'Square Feet' %} ft<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
                             {% if listing.ber_rating is None %} 
                                 BER Exempt
                             {% else %}
