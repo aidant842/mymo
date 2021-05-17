@@ -32,6 +32,10 @@
                 <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button"
                     role="tab" aria-controls="settings" aria-selected="false">Settings</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="listings2-tab" data-bs-toggle="tab" data-bs-target="#listings2" type="button"
+                    role="tab" aria-controls="listings2" aria-selected="false">Listings rework</button>
+            </li>
         </ul>
     
         <div class="tab-content">
@@ -64,7 +68,7 @@
                 <hr>
                 {% endfor %}
             </div>
-            <div class="tab-pane" id="listings" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane" id="listings" role="tabpanel" aria-labelledby="listings-tab">
                 <h1>Listings</h1>
                 <hr>
                 {% for listing in profile_listings %}
@@ -701,10 +705,109 @@
                 <hr>
                 <a href="{% url 'account_change_password' %}" title="Click here to change your password" class="btn form-btn">Change Password</a>
             </div>
+            <div class="tab-pane" id="listings2" role="tabpanel" aria-labelledby="listings-tab">
+                <div class="container mt-5 profile-cards">
+                    <h1 class="h4 pb-2">Listings</h1>
+                    <hr>
+                    {% for listing in profile_listings %}
+                        <div class="card mb-3">
+                            {% if listing.category.name == 'sale' %}
+                            <a href="{% url 'sale_listing_detail' listing.id %}" class="stretched-link" title=""></a>
+                            {% else %}
+                            <a href="{% url 'rent_listing_detail' listing.id %}" class="stretched-link" title=""></a>
+                            {% endif %}
+                            <div class="row g-0">
+                                <div class="col-lg-4 text-center img-col">
+                                <div class="p-1" style="background-image: url({{listing.header_image.url}});"></div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold w-75">{{ listing.area.title }}, {{ listing.county.title }}</h5>
+                                        <p class="fw-bold">€ {{ listing.price }}</p>
+                                        <div class="alerts mb-2">
+                                            {% if not listing.is_paid %}
+                                            <div class="alert alert-danger w-50 mb-2" role="alert">
+                                                Listing not yet paid for
+                                            </div>
+                                            {% elif not listing.is_listed %}
+                                            <div class="alert alert-warning w-50 mb-2" role="alert">
+                                                Listing under review
+                                            </div>
+                                            {% else %}
+                                            <div class="alert alert-success w-50 mb-2" role="alert">
+                                                Listing is live!
+                                            </div>
+                                            {% endif %}
+
+                                            {% if listing.times_viewed > average_views %}
+                                            <div class="alert alert-success w-50 mb-2" role="alert">
+                                                Listing is performing above average
+                                            </div>
+                                            {% else %}
+                                            <div class="alert alert-danger w-50 mb-2" role="alert">
+                                                Listing performing below average
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <p class="mb-0">
+                                            Times Viewed: {{listing.times_viewed}}
+                                        </p>
+                                        <p>
+                                            Times Saved: {{listing.times_saved}}
+                                        </p>
+                                        <div class="buttons">
+                                            <a href="#" title="Call this Agent" class="btn form-btn">Edit Listing</a>
+                                            <!-- Remove Listing Button -->
+                                            <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal">
+                                                Remove listing
+                                            </button>
+                                        </div>
+                                        {% if listing.is_spotlight %}
+                                        <div class="fw-bold">
+                                            SPOTLIGHT
+                                        </div>
+                                        {% endif %}
+                                        <div class="for-sale-rent">
+                                            FOR {{ listing.category.name.upper }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Remove listing Modal -->
+                        <div class="modal" id="confirm-delete-modal" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Remove Listing?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="text-center p-4">
+                                            <p>
+                                                Are you sure you would like to remove this Listing?
+                                            </p>
+                                            <p>
+                                                You should only remove a listing if it has sold or it is no longer for sale.
+                                            </p>
+                                            <p>
+                                                This is permanent and you will have to re-advertise this property again!
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <form action="{% url 'delete_listing' listing.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn float-end mb-2">Remove Listing</button>
+                                            <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    
-    
-    
     </div>
 </div>
 

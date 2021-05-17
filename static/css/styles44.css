@@ -1569,4 +1569,46 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   }
 }
 
+.profile-cards .img-col div {
+  height: 276px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
+}
+.profile-cards .card-body {
+  height: 100%;
+}
+@media only screen and (max-width: 767px) {
+  .profile-cards .card-body {
+    text-align: center;
+  }
+}
+.profile-cards .card-body .buttons {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  z-index: 5;
+}
+@media only screen and (max-width: 767px) {
+  .profile-cards .card-body .buttons {
+    position: revert;
+  }
+}
+.profile-cards .card-body .alerts .alert {
+  padding: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+.profile-cards .card-body .for-sale-rent {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #303e94;
+  border-radius: 3px;
+  color: white;
+  width: fit-content;
+  padding: 5px 15px;
+  font-size: small;
+}
+
 /*# sourceMappingURL=styles44.css.map */

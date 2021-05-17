@@ -98,6 +98,7 @@ def favourite_sale_add(request, listing_id):
         messages.success(request, 'Removed listing from your favourites.')
     else:
         listing.favourites.add(request.user)
+        listing.times_saved = listing.times_saved + 1
         messages.success(request, 'Added listing to your favourites.')
     return redirect(reverse('sale_listing_detail', kwargs={'listing_id': listing.id}))
 
@@ -114,5 +115,7 @@ def favourite_rent_add(request, listing_id):
         messages.success(request, 'Removed listing from your favourites.')
     else:
         listing.favourites.add(request.user)
+        listing.times_saved = listing.times_saved + 1
+        listing.save()
         messages.success(request, 'Added listing to your favourites.')
     return redirect(reverse('rent_listing_detail', kwargs={'listing_id': listing.id}))

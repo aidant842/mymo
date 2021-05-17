@@ -79,6 +79,7 @@ class SaleListing(models.Model):
     email_sent = models.BooleanField(default=False)
     favourites = models.ManyToManyField(
         User, default=None, blank=True)
+    times_saved = models.PositiveIntegerField(default=0, blank=True)
 
     def _generate_listing_number(self):
 
@@ -185,6 +186,7 @@ class RentListing(models.Model):
     email_sent = models.BooleanField(default=False)
     favourites = models.ManyToManyField(
         User, default=None, blank=True)
+    times_saved = models.PositiveIntegerField(default=0, blank=True)
 
     def _generate_listing_number(self):
 
