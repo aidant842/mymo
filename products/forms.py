@@ -35,6 +35,8 @@ class SaleListingForm(forms.ModelForm):
         ('Duplex', 'Duplex'),
         ('Site', 'Site'),
         ('Land', 'Land'),
+        ('Commercial Unit', 'Commercial Unit'),
+        ('Industrial Unit', 'Industrial Unit'),
     ]
 
     SELLING_TYPE_CHOICES = [
@@ -221,6 +223,8 @@ class RentListingForm(forms.ModelForm):
         ('Duplex', 'Duplex'),
         ('Site', 'Site'),
         ('Land', 'Land'),
+        ('Commercial Unit', 'Commercial Unit'),
+        ('Industrial Unit', 'Industrial Unit'),
     ]
 
     FLOOR_AREA_TYPE_CHOICES = [

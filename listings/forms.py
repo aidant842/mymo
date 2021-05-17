@@ -19,6 +19,8 @@ class FilterForm(forms.Form):
         ('Duplex', 'Duplex'),
         ('Site', 'Site'),
         ('Land', 'Land'),
+        ('Commercial Unit', 'Commercial Unit'),
+        ('Industrial Unit', 'Industrial Unit'),
     ]
 
     BER_CHOICES = [
