@@ -83,7 +83,7 @@
         </script>
     </div>
     <!---------  ------------->
-    <h3 class="text-center">Spotlight Listings</h3>
+    <h3 class="text-center text-muted">Recently Added Spotlight Listings</h3>
     <div class="card-container">
         {% for listing in result_list %}
         <a href="{% if listing.product.category.name == 'sale' %} {% url 'sale_listing_detail' listing.id %} {% elif listing.product.category.name == 'rent' %} {% url 'rent_listing_detail' listing.id %} {% endif %}" title="Click to view this Property">
