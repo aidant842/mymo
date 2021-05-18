@@ -131,7 +131,7 @@
                         <i class="fas fa-bed"></i> {{ listing.no_of_bedrooms }} | <i class="fas fa-bath"></i> {{ listing.no_of_bathrooms }} |
                         {% endif %}
                         <i class="fas fa-chart-area"></i> {{ listing.floor_area }}
-                        {% if listing.floor_area_type == 'Square Meters' %} m<sup>2</sup> {% elif listing.floor_area_type == 'Square Feet' %} ft<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
+                        {% if listing.floor_area_type|lower == 'square meters' %} m<sup>2</sup> {% elif listing.floor_area_type|lower == 'square feet' %} ft<sup>2</sup> {% else %}{{ listing.floor_area_type }} {% endif %} |
                         {% if listing.ber_rating is None %} 
                             BER Exempt
                         {% else %}
