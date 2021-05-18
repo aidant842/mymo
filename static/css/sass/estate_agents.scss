@@ -34,7 +34,9 @@
             z-index: 5;
 
             @media only screen and (max-width: 767px) {
-                position: revert;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
     }
@@ -71,7 +73,9 @@
             z-index: 5;
 
             @media only screen and (max-width: 992px) {
-                position: revert;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
 
