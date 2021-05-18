@@ -9,15 +9,6 @@ class DateInputWidget(forms.DateInput):
 
 
 class SaleListingForm(forms.ModelForm):
-    """ FACILITY_CHOICES = [
-        ('', 'Select Facility'),
-        ('Alarm', 'Alarm'),
-        ('Gas Fired Central Heating', 'Gas Fired Central Heating'),
-        ('Oil Fired Central Heating', 'Oil Fired Central Heating'),
-        ('Parking', 'Parking'),
-        ('wheelchair Access', 'wheelchair Access'),
-        ('Wired for Cable Television', 'Wired for Cable Television'),
-    ] """
 
     PROPERTY_TYPE_CHOICES = [
         ('', 'Select type of property'),
@@ -100,30 +91,6 @@ class SaleListingForm(forms.ModelForm):
         ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
     ]
 
-    """ facility_1 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_2 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_3 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_4 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_5 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_6 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False) """
     property_type = forms.CharField(widget=forms.Select
                                     (choices=PROPERTY_TYPE_CHOICES,
                                      attrs={'class': 'form-select'}))
@@ -187,25 +154,8 @@ class SaleListingForm(forms.ModelForm):
             'header_image',
         ]
 
-        """ def __init__(self, *args, **kwargs):
-
-            super().__init__(*args, **kwargs)
-
-            self.fields['full_name'].widget.attrs['autofocus'] = True
-            for field in self.fields:
-                self.fields[field].widget.attrs['class'] = 'form-style' """
-
 
 class RentListingForm(forms.ModelForm):
-    """ FACILITY_CHOICES = [
-        ('', 'Select Facility'),
-        ('Alarm', 'Alarm'),
-        ('Gas Fired Central Heating', 'Gas Fired Central Heating'),
-        ('Oil Fired Central Heating', 'Oil Fired Central Heating'),
-        ('Parking', 'Parking'),
-        ('wheelchair Access', 'wheelchair Access'),
-        ('Wired for Cable Television', 'Wired for Cable Television'),
-    ] """
 
     PROPERTY_TYPE_CHOICES = [
         ('', 'Select type of property'),
@@ -294,30 +244,6 @@ class RentListingForm(forms.ModelForm):
         ('wexford', 'Wexford'), ('wicklow', 'Wicklow'),
     ]
 
-    """ facility_1 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_2 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_3 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_4 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_5 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False)
-    facility_6 = forms.CharField(widget=forms.Select
-                                 (choices=FACILITY_CHOICES,
-                                  attrs={'class': 'form-select'}),
-                                 required=False) """
     property_type = forms.CharField(widget=forms.Select
                                     (choices=PROPERTY_TYPE_CHOICES,
                                      attrs={'class': 'form-select'}))

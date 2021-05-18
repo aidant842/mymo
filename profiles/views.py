@@ -4,10 +4,12 @@ from django.views.decorators.http import require_POST
 from django.utils import timezone
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.forms import inlineformset_factory
 from .models import UserProfile
-from .forms import UserProfileForm, AgentProfileForm
+from .forms import UserProfileForm, AgentProfileForm, SaleEditForm, RentEditForm
 from checkout.models import Order
 from listings.models import SaleListing, RentListing, SaleListingImage, RentListingImage
+from products.forms import SaleListingForm, RentListingForm, SaleImageForm, RentImageForm
 from products.models import Product
 from analytics.models import ListingAnalytics
 
@@ -119,3 +121,54 @@ def favourite_rent_add(request, listing_id):
         listing.save()
         messages.success(request, 'Added listing to your favourites.')
     return redirect(reverse('rent_listing_detail', kwargs={'listing_id': listing.id}))
+
+
+@login_required
+def edit_listing(request, listing_id):
+
+    profile = UserProfile.objects.get(user=request.user)
+    profile_sale_listings = SaleListing.objects.filter(user_profile=profile)
+    profile_rent_listings = RentListing.objects.filter(user_profile=profile)
+    profile_listings = list(chain(profile_sale_listings, profile_rent_listings))
+    for listing in profile_listings:
+        if listing.id == listing_id:
+            editable_listing = listing
+
+    if request.method == 'POST':
+        if editable_listing.category.name == 'sale':
+            edit_form = SaleEditForm(request.POST, instance=editable_listing)
+            if edit_form.is_valid():
+                listing = edit_form.save(commit=False)
+                listing.is_listed = False
+                listing.email_sent = False
+                listing.save()
+                messages.success(request, 'Thank you, your listing will be reviewed again within 48 hours.')
+                return redirect('profile')
+            else:
+                messages.error(request, 'form error, ensure all required fields are filled.')
+                return redirect(reverse('edit_listing', kwargs={'listing_id': listing_id}))
+        else:
+            edit_form = RentEditForm(request.POST, instance=editable_listing)
+            if edit_form.is_valid():
+                listing = edit_form.save(commit=False)
+                listing.is_listed = False
+                listing.email_sent = False
+                listing.save()
+                messages.success(request, 'Thank you, your listing will be reviewed again within 48 hours.')
+                return redirect('profile')
+            else:
+                messages.error(request, 'form error, ensure all required fields are filled.')
+                return redirect(reverse('edit_listing', kwargs={'listing_id': listing_id}))
+    else:
+        if editable_listing.product.category.name == 'sale':
+            listing_form = SaleEditForm(instance=editable_listing)
+        else:
+            listing_form = RentEditForm(instance=editable_listing)
+
+    template = 'profiles/edit_listing.html'
+    context = {
+        'listing_form': listing_form,
+        'listing_id': listing_id,
+        'editable_listing': editable_listing,
+    }
+    return render(request, template, context)
