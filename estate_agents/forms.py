@@ -31,12 +31,12 @@ class AgentFilter(forms.Form):
 
 class ContactForm(forms.Form):
     full_name = forms.CharField(widget=forms.TextInput(
-                            attrs={'placeholder': 'Full Name'}),
+                            attrs={'placeholder': 'Full Name (required)'}),
                            label="",
-                           required=False)
+                           required=True)
     email = forms.EmailField(widget=forms.TextInput(
                              attrs={'type': 'email',
-                                    'placeholder': 'E-mail address'}),
+                                    'placeholder': 'E-mail address (required)'}),
                              label="",
                              required=True)
 
@@ -46,6 +46,6 @@ class ContactForm(forms.Form):
                            required=False)
 
     message = forms.CharField(widget=forms.Textarea(
-                              attrs={'placeholder': 'Your Message'}),
+                              attrs={'placeholder': 'Your Message (required)'}),
                               label="",
                               required=True)
