@@ -64,12 +64,37 @@
                             {% endif %}
                             <div class="buttons">
                                 <a href="tel:{{ agent.phone_number }}" title="Call this Agent" class="btn form-btn">Call <i class="fas fa-phone"></i></a>
-                                <a href="mailto:{{ agent.email }}" title="Email this Agent" class="btn form-btn">E-mail <i class="fas fa-envelope"></i></a>
+                                {% if request.user.is_authenticated %}
+                                <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal{{ agent.user.id }}">
+                                    Email Seller <i class="fas fa-envelope"></i>
+                                </a>
+                                {% else %}
+                                <a href="{% url 'account_login' %}" title="Click to send an Email to this seller" class="btn form-btn">Email Seller <i class="fas fa-envelope"></i></a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <!-- Contact Modal -->
+            <div class="modal fade" id="contactModal{{ agent.user.id }}" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Contact {{ agent.company_name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form action="{% url 'contact_agent' %}" method="POST" enctype="multipart/form-data" class="contact-form">
+                            {% csrf_token %}
+                            {{ contact_form | crispy }}
+                            <input type="hidden" name="profile_id" value="{{ agent.user.id }}">
+                            <button type="submit" class="btn form-btn w-100">Submit</button>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
 </div>
@@ -84,6 +109,7 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
+
 <!---------  ------------->
 {% include 'agents_pagination.html' with page=agents %}
 {% endblock %}

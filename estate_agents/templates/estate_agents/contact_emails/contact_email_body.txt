@@ -1,0 +1,21 @@
+Hi there,
+{% if listing %}
+{{ cust_name }} is interested in one of your listings on MyMo.ie.
+https://mymo.ie/listings/for_{{ listing.category.name }}/{{ listing.id }}/
+{% else %}
+{{ cust_name }} has sent you a message.
+{% endif %}
+
+This is what they said:
+{{ message | safe }}
+
+You can reply to them via the following methods:
+{% if cust_email %}
+Email: {{ cust_email }}
+{% endif %}
+{% if cust_phone %}
+Phone: {{ cust_phone }}
+{% endif %}
+
+Regards,
+MyMo Team.

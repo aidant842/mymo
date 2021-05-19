@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
 
 {% block extra_meta %}
     <meta property="og:image" content="{{ listing.header_image.url }}" />
@@ -231,9 +231,13 @@
             </a>
             {% endif %}
         {% endif %}
-        <a href="mailto:{{ listing.email }}" title="Click to send an Email to this seller" class="btn form-btn">
+        {% if request.user.is_authenticated %}
+        <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
             Email Seller <i class="fas fa-envelope"></i>
         </a>
+        {% else %}
+        <a href="{% url 'account_login' %}" title="Click to send an Email to this seller" class="btn form-btn">Email Seller <i class="fas fa-envelope"></i></a>
+        {% endif %}
         <a href="tel:{{ listing.phone }}" title="Click to call this seller" class="btn form-btn">
             Call Seller <i class="fas fa-phone"></i>
         </a>
@@ -391,6 +395,28 @@
         </div>
       </div>
 </div>
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact {% if listing.user_profile.company_name %}{{ listing.user_profile.company_name }} {% else %} {{ listing.full_name }}{% endif %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'contact_agent' %}" method="POST" enctype="multipart/form-data" class="contact-form">
+                {% csrf_token %}
+                {{ contact_form | crispy }}
+                <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                <input type="hidden" name="product_id" value="{{ listing.product.id }}">
+                <input type="hidden" name="profile_id" value="{{ listing.user_profile.user.id }}">
+                <button type="submit" class="btn form-btn w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
 </div>
 {% endblock %}
 {% block postloadjs %}

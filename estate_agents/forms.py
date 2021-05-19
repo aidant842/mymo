@@ -27,3 +27,25 @@ class AgentFilter(forms.Form):
                             attrs={'placeholder': 'Name'}),
                            label="",
                            required=False)
+
+
+class ContactForm(forms.Form):
+    full_name = forms.CharField(widget=forms.TextInput(
+                            attrs={'placeholder': 'Full Name'}),
+                           label="",
+                           required=False)
+    email = forms.EmailField(widget=forms.TextInput(
+                             attrs={'type': 'email',
+                                    'placeholder': 'E-mail address'}),
+                             label="",
+                             required=True)
+
+    phone_number = forms.CharField(widget=forms.TextInput(
+                            attrs={'placeholder': 'Phone'}),
+                           label="",
+                           required=False)
+
+    message = forms.CharField(widget=forms.Textarea(
+                              attrs={'placeholder': 'Your Message'}),
+                              label="",
+                              required=True)

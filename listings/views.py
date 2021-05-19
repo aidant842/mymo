@@ -9,6 +9,7 @@ from operator import attrgetter
 
 from .models import SaleListing, RentListing, SaleListingImage, RentListingImage
 from .forms import FilterForm
+from estate_agents.forms import ContactForm
 
 
 def all_listings_view(request):
@@ -376,6 +377,9 @@ def sale_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_sale_listings'))
 
+    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                        'phone_number': request.user.userprofile.phone_number,
+                                        'full_name': request.user.userprofile.full_name,})
     favourited = bool
 
     if listing.favourites.filter(id=request.user.id).exists():
@@ -417,6 +421,7 @@ def sale_listing_detail_view(request, listing_id):
         'no_of_photos': no_of_photos,
         'show_recent_listings': show_recent_listings,
         'favourited': favourited,
+        'contact_form': contact_form,
     }
 
     return render(request, template, context)
@@ -435,6 +440,9 @@ def rent_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_rent_listings'))
 
+    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                        'phone_number': request.user.userprofile.phone_number,
+                                        'full_name': request.user.userprofile.full_name,})
     favourited = bool
 
     if listing.favourites.filter(id=request.user.id).exists():
@@ -475,6 +483,7 @@ def rent_listing_detail_view(request, listing_id):
         'photos': photos,
         'show_recent_listings': show_recent_listings,
         'favourited': favourited,
+        'contact_form': contact_form,
     }
     if listing.is_listed:
         return render(request, template, context)
