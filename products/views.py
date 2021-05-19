@@ -16,8 +16,9 @@ import stripe
 
 def products_view(request):
     """ A view to return the products """
-
-    user = UserProfile.objects.get(user=request.user)
+    user = ''
+    if request.user.is_authenticated:
+        user = UserProfile.objects.get(user=request.user)
 
     if 'product_id' in request.session:
         del request.session['product_id']
