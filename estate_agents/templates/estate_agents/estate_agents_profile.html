@@ -42,13 +42,15 @@
                         <a href="tel:{{ profile.phone_number }}" title="Call this seller" class="btn form-btn w-100">Call <i class="fas fa-phone"></i></a>
                     </div>
                 {% endif %}
-                {% if request.user.is_authenticated %}
-                <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
-                    Email Seller <i class="fas fa-envelope"></i>
-                </a>
-                {% else %}
-                <a href="{% url 'account_login' %}" title="Click to send an Email to this seller" class="btn form-btn">Email Seller <i class="fas fa-envelope"></i></a>
-                {% endif %}
+                <div class="col mx-auto">
+                    {% if request.user.is_authenticated %}
+                    <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        Email Seller <i class="fas fa-envelope"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'account_login' %}" title="Click to send an Email to this seller" class="btn form-btn">E-mail <i class="fas fa-envelope"></i></a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
