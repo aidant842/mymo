@@ -1,9 +1,9 @@
 .product-section {
-    height: 100vh;
+    /* height: 100vh; */
     width: 95%;
     margin: 5rem auto;
     text-align: center;
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .products-width {
@@ -23,9 +23,28 @@
 }
 
 .product-table {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    margin-top: 5rem;
+    margin-top: 5rem; */
+
+    .card-group {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        .card {
+            max-width: 430px;
+            min-width: unset !important;
+            height: 520px !important;
+            width: 430px;
+
+            @media (min-width: 991px) {
+                flex: 1 0 0%;
+                margin-bottom: 0;
+            }
+        }
+    }
+
 }
 
 .td-price {
@@ -96,3 +115,7 @@ th.premium p {
 #id_header_image {
     display: none;
 } */
+
+.list-group-item {
+    border: none !important;
+}

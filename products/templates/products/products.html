@@ -23,103 +23,96 @@
         {% endfor %}
     </div>
 
-
-    <div class="product-table mb-4">
-        <div class="row row-cols-1 row-cols-md-2 g-4 products-width">
-            <div class="col">
-                {% for product in products %}
-                {% if product.is_premium == True %}
-                <div class="card bg-light spotlight spotlight-shadow h-100">
-                    <div class="card-body spotlight">
-                        <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
-                        <p class="card-text">The ultimate way to advertise your property</p>
-                        <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn no-border stretched-link">Advertise Now</a>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item td-price spotlight">
-                           <span class="text-decoration-line-through fs-4 d-block">
-                               €{{ product.pre_sale_price | display_price}}
-                           </span> 
-                           <span class="d-block">
-                               €{{ product.price | display_price }}
-                           </span>
-                        </li>
-                        <li class="list-group-item spotlight">
-                            {% if product.category.name == 'rent' %}
-                                90 Days
-                            {% else %}
-                                365 Days Live
-                            {% endif %}
-                        </li>
-                        <li class="list-group-item spotlight">Unlimited Photos</li>
-                        <li class="list-group-item spotlight">
-                            Premium Listing for 30 days
-                        </li>
-                        <li class="list-group-item spotlight">
-                            Priority Listing
-                        </li>
-                        <li class="list-group-item spotlight">
-                            Visualy enhanced advert
-                        </li>
-                        <li class="list-group-item spotlight">
-                            Company banner above listing
-                        </li>
-                    </ul>
-                    <div class="card-body">
-                        <!-- <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a> -->
-                    </div>
+    <div class="container mt-5 mb-5 product-table">
+        <div class="card-group">
+            {% for product in products %}
+            {% if product.is_premium == True %}
+            <div class="card bg-light spotlight spotlight-shadow h-100">
+                <div class="card-body spotlight">
+                    <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
+                    <p class="card-text">The ultimate way to advertise your property</p>
+                    <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn no-border stretched-link">Advertise Now</a>
                 </div>
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div class="col">
-                {% for product in products %}
-                {% if product.is_premium == False %}
-                <div class="card bg-light h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
-                        <p class="card-text">Advertise your house on MyMo</p>
-                        <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn stretched-link">Advertise Now</a>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        {% if user.is_agent and user.subscription_paid %}
-                        <li class="list-group-item td-price">
-                            <span class="d-block">UNLIMITED</span>
-                        </li>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item td-price spotlight">
+                        <span class="text-decoration-line-through fs-4 d-block">
+                            €{{ product.pre_sale_price | display_price}}
+                        </span> 
+                        <span class="d-block">
+                            €{{ product.price | display_price }}
+                        </span>
+                    </li>
+                    <li class="list-group-item spotlight">
+                        {% if product.category.name == 'rent' %}
+                            90 Days Live
                         {% else %}
-                        <li class="list-group-item td-price">
-                            <span class="text-decoration-line-through fs-4 d-block">
-                                €{{ product.pre_sale_price | display_price}}
-                            </span> 
-                            <span class="d-block">
-                                {% if product.price == 0 %}
-                                FREE
-                                {% else %}
-                                €{{ product.price | display_price }}
-                                {% endif %}
-                            </span>
-                        </li>
+                            365 Days Live
                         {% endif %}
-                        <li class="list-group-item">
-                            {% if product.category.name == 'rent' %}
-                                90 Days
-                            {% else %}
-                                365 Days Live
-                            {% endif %}
-                        </li>
-                        <li class="list-group-item">Unlimited Photos</li>
-                        <li class="list-group-item">&#x2718;</li>
-                        <li class="list-group-item">&#x2718;</li>
-                        <li class="list-group-item">&#x2718;</li>
-                        <li class="list-group-item">&#x2718;</li>
-                    </ul>
-                    <div class="card-body">
-                        <!-- <a href="{% url 'product_detail' product.name product.id %}" class="card-link btn stretched-link">Advertise Now</a> -->
-                    </div>
+                    </li>
+                    <li class="list-group-item spotlight">Unlimited Photos</li>
+                    <li class="list-group-item spotlight">
+                        Premium Listing for 30 days
+                    </li>
+                    <li class="list-group-item spotlight">
+                        Priority Listing
+                    </li>
+                    <li class="list-group-item spotlight">
+                        Visualy enhanced advert
+                    </li>
+                    <li class="list-group-item spotlight">
+                        Company banner above listing
+                    </li>
+                </ul>
+                <div class="card-body">
                 </div>
-                {% endif %}
-                {% endfor %}
             </div>
+            {% endif %}
+            {% endfor %}
+            {% for product in products %}
+            {% if product.is_premium == False %}
+            <div class="card bg-light h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.friendly_name}} - {{ product.category.name.capitalize }}</h5>
+                    <p class="card-text">Advertise your house on MyMo</p>
+                    <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn stretched-link">Advertise Now</a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if user.is_agent and user.subscription_paid %}
+                    <li class="list-group-item td-price">
+                        <span class="d-block">UNLIMITED</span>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item td-price">
+                        <span class="text-decoration-line-through fs-4 d-block">
+                            €{{ product.pre_sale_price | display_price}}
+                        </span> 
+                        <span class="d-block">
+                            {% if product.price == 0 %}
+                            FREE
+                            {% else %}
+                            €{{ product.price | display_price }}
+                            {% endif %}
+                        </span>
+                    </li>
+                    {% endif %}
+                    <li class="list-group-item">
+                        {% if product.category.name == 'rent' %}
+                            90 Days Live
+                        {% else %}
+                            365 Days Live
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item">Unlimited Photos</li>
+                    <li class="list-group-item">&#x2718;</li>
+                    <li class="list-group-item">&#x2718;</li>
+                    <li class="list-group-item">&#x2718;</li>
+                    <li class="list-group-item">&#x2718;</li>
+                </ul>
+                <div class="card-body">
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
     <p class="fs-6 text-muted mt-3"><i class="fas fa-lock"></i> Payments secured via SSL and Stripe</p>
