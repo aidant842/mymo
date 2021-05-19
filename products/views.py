@@ -17,11 +17,12 @@ import stripe
 def products_view(request):
     """ A view to return the products """
 
-    """ Filter by category """
+    user = UserProfile.objects.get(user=request.user)
 
     if 'product_id' in request.session:
         del request.session['product_id']
 
+    """ Filter by category """
     selected_category = request.GET.get('category', None)
 
     if selected_category:
@@ -35,7 +36,8 @@ def products_view(request):
 
     context = {
         'products': products,
-        'categories': categories
+        'categories': categories,
+        'user': user,
     }
     return render(request, template, context)
 

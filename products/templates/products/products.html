@@ -82,6 +82,11 @@
                         <a href="{% url 'product_detail' product.name product.id %}" title="Click here to advertise your Property" class="card-link btn stretched-link">Advertise Now</a>
                     </div>
                     <ul class="list-group list-group-flush">
+                        {% if user.is_agent and user.subscription_paid %}
+                        <li class="list-group-item td-price">
+                            <span class="d-block">UNLIMITED</span>
+                        </li>
+                        {% else %}
                         <li class="list-group-item td-price">
                             <span class="text-decoration-line-through fs-4 d-block">
                                 €{{ product.pre_sale_price | display_price}}
@@ -93,7 +98,8 @@
                                 €{{ product.price | display_price }}
                                 {% endif %}
                             </span>
-                         </li>
+                        </li>
+                        {% endif %}
                         <li class="list-group-item">
                             {% if product.category.name == 'rent' %}
                                 90 Days

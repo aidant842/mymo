@@ -170,5 +170,6 @@ def edit_listing(request, listing_id):
         'listing_form': listing_form,
         'listing_id': listing_id,
         'editable_listing': editable_listing,
+        'profile': profile,
     }
     return render(request, template, context)

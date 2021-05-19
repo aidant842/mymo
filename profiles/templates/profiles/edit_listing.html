@@ -30,7 +30,7 @@
                 </legend>
                 <div id="contactInfo">
                     <hr>
-                    {% if user.is_agent %}
+                    {% if profile.is_agent %}
                     {{ listing_form.company_name | as_crispy_field }}
                     {% endif %}
                     {{ listing_form.full_name | as_crispy_field }}
@@ -187,7 +187,7 @@
                     Contact Info
                 </legend>
                 <hr>
-                {% if user.is_agent %}
+                {% if profile.is_agent %}
                 {{ listing_form.company_name | as_crispy_field }}
                 {% endif %}
                 {{ listing_form.full_name | as_crispy_field }}
