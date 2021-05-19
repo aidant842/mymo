@@ -377,9 +377,12 @@ def sale_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_sale_listings'))
 
-    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
-                                        'phone_number': request.user.userprofile.phone_number,
-                                        'full_name': request.user.userprofile.full_name,})
+    if request.user.is_authenticated:
+        contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                            'phone_number': request.user.userprofile.phone_number,
+                                            'full_name': request.user.userprofile.full_name,})
+    else:
+        contact_form = ContactForm()
     favourited = bool
 
     if listing.favourites.filter(id=request.user.id).exists():
@@ -440,9 +443,12 @@ def rent_listing_detail_view(request, listing_id):
         messages.error(request, f'{e}')
         return redirect(reverse('for_rent_listings'))
 
-    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
-                                        'phone_number': request.user.userprofile.phone_number,
-                                        'full_name': request.user.userprofile.full_name,})
+    if request.user.is_authenticated:
+        contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                            'phone_number': request.user.userprofile.phone_number,
+                                            'full_name': request.user.userprofile.full_name,})
+    else:
+        contact_form = ContactForm()
     favourited = bool
 
     if listing.favourites.filter(id=request.user.id).exists():

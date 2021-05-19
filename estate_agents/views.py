@@ -24,9 +24,13 @@ def estate_agents(request):
     query_dictionary = {}
     county_query = request.GET.get('county')
     name_query = request.GET.get('name')
-    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
-                                        'phone_number': request.user.userprofile.phone_number,
-                                        'full_name': request.user.userprofile.full_name,})
+
+    if request.user.is_authenticated:
+        contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                            'phone_number': request.user.userprofile.phone_number,
+                                            'full_name': request.user.userprofile.full_name,})
+    else:
+        contact_form = ContactForm()
 
     if name_query != '' and name_query is not None:
         query_dictionary['name_query'] = name_query
@@ -61,9 +65,12 @@ def estate_agents(request):
 
 def estate_agents_profile(request, name, profile_id):
     profile = get_object_or_404(UserProfile, pk=profile_id)
-    contact_form = ContactForm(initial={'email': request.user.userprofile.email,
-                                        'phone_number': request.user.userprofile.phone_number,
-                                        'full_name': request.user.userprofile.full_name,})
+    if request.user.is_authenticated:
+        contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                            'phone_number': request.user.userprofile.phone_number,
+                                            'full_name': request.user.userprofile.full_name,})
+    else:
+        contact_form = ContactForm()
     if not name == profile.company_name_to_url():
         raise Http404
     if not profile.is_agent:
