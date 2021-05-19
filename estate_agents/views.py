@@ -138,5 +138,5 @@ def contact_agent(request):
                 cust_email,
                 [agents_email],
             )
-    messages.success(request, 'E-mail sent to Agent.')
+    messages.success(request, 'E-mail sent to Agent, please check your E-mail for a reply.')
     return redirect(request.META.get('HTTP_REFERER'))
