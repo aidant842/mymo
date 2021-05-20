@@ -60,7 +60,7 @@ class AgentProfileForm(forms.ModelForm):
 class SaleEditForm(forms.ModelForm):
 
     PROPERTY_TYPE_CHOICES = [
-        ('', 'Select type of property'),
+        ('', 'Select type of property *'),
         ('House', 'House'),
         ('Terraced House', 'Terraced House'),
         ('Detached house', 'Detached house'),
@@ -80,7 +80,7 @@ class SaleEditForm(forms.ModelForm):
     ]
 
     SELLING_TYPE_CHOICES = [
-        ('', 'Select type of sale'),
+        ('', 'Select type of sale *'),
         ('Private Treaty', 'Private Treaty'),
         ('Public Auction', 'Public Auction'),
         ('Public Tender', 'Public Tender'),
@@ -95,7 +95,7 @@ class SaleEditForm(forms.ModelForm):
     ]
 
     BER_CHOICES = [
-        ('', 'Select Option'),
+        ('', 'BER Rating *'),
         ('A1', 'A1'),
         ('A2', 'A2'),
         ('A3', 'A3'),
@@ -115,7 +115,7 @@ class SaleEditForm(forms.ModelForm):
     ]
 
     TAX_DESIGNATION_CHOICES = [
-        ('', 'Select Option'),
+        ('', 'Tax Designation *'),
         ('Not a tax based property', 'Not a tax based property'),
         ('Section 23', 'Section 23'),
         ('Section 27', 'Section 27'),
@@ -125,7 +125,7 @@ class SaleEditForm(forms.ModelForm):
     ]
 
     IE_COUNTY_CHOICES = [
-        (None, 'County'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
+        (None, 'County *'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
         ('clare', 'Clare'), ('cork', 'Cork'),
         ('donegal', 'Donegal'), ('dublin', 'Dublin'),
         ('galway', 'Galway'), ('kerry', 'Kerry'),
@@ -142,22 +142,22 @@ class SaleEditForm(forms.ModelForm):
 
     property_type = forms.CharField(widget=forms.Select
                                     (choices=PROPERTY_TYPE_CHOICES,
-                                     attrs={'class': 'form-select'}))
+                                     attrs={'class': 'form-select form-control'}))
     selling_type = forms.CharField(widget=forms.Select
                                    (choices=SELLING_TYPE_CHOICES,
-                                    attrs={'class': 'form-select'}))
+                                    attrs={'class': 'form-select form-control'}))
     floor_area_type = forms.CharField(widget=forms.Select
                                       (choices=FLOOR_AREA_TYPE_CHOICES,
-                                       attrs={'class': 'form-select'}))
+                                       attrs={'class': 'form-select form-control'}))
     ber_rating = forms.CharField(widget=forms.Select
                                  (choices=BER_CHOICES,
-                                  attrs={'class': 'form-select'}))
+                                  attrs={'class': 'form-select form-control'}))
     tax_designation = forms.CharField(widget=forms.Select
                                       (choices=TAX_DESIGNATION_CHOICES,
-                                       attrs={'class': 'form-select'}))
+                                       attrs={'class': 'form-select form-control'}))
     county = forms.CharField(widget=forms.Select
                              (choices=IE_COUNTY_CHOICES,
-                              attrs={'class': 'form-select'}))
+                              attrs={'class': 'form-select form-control'}))
 
     class Meta:
         model = SaleListing
@@ -194,6 +194,57 @@ class SaleEditForm(forms.ModelForm):
             'description',
         ]
 
+    def __init__(self, *args, **kwargs):
+
+        """ Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field """
+
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'company_name': 'Company Name',
+            'full_name': 'Full Name',
+            'email': 'E-mail Address',
+            'phone': 'Phone Number',
+            'call_between_hrs': 'Available Hours',
+            'county': 'County',
+            'area': 'Town/Area',
+            'eircode': 'Eircode',
+            'property_type': 'Property Type',
+            'selling_type': 'Type of Sale',
+            'price': '€ Property Price',
+            'poa': 'POA',
+            'no_of_bedrooms': 'Number of bedrooms',
+            'no_of_bathrooms': 'Number of bathrooms',
+            'facility_1': 'First Facility',
+            'facility_2': 'Second Facility',
+            'facility_3': 'Third Facility',
+            'facility_4': 'Fourth Facility',
+            'facility_5': 'Fifth Facility',
+            'facility_6': 'Sixth Facility',
+            'floor_area_type': 'Floor Area Type',
+            'floor_area': 'Floor Area',
+            'ber_rating': 'BER Rating',
+            'tax_designation': 'Tax Designation',
+            'top_features_1': 'First Top Feature',
+            'top_features_2': 'Second Top Feature',
+            'top_features_3': 'Third Top Feature',
+            'top_features_4': 'Fourth Top Feature',
+            'top_features_5': 'Fifth Top Feature',
+            'description': 'Description',
+            'header_image': 'Header Image',
+        }
+
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            """ self.fields[field].widget.attrs['validate'] = True """
+            if field != 'poa' and field != 'header_image':
+                self.fields[field].label = False
+
 
 class DateInputWidget(forms.DateInput):
     input_type = 'date'
@@ -202,7 +253,7 @@ class DateInputWidget(forms.DateInput):
 class RentEditForm(forms.ModelForm):
 
     PROPERTY_TYPE_CHOICES = [
-        ('', 'Select type of property'),
+        ('', 'Select type of property *'),
         ('House', 'House'),
         ('Terraced House', 'Terraced House'),
         ('Detached house', 'Detached house'),
@@ -229,7 +280,7 @@ class RentEditForm(forms.ModelForm):
     ]
 
     BER_CHOICES = [
-        ('', 'Select Option'),
+        ('', 'BER Rating *'),
         ('A1', 'A1'),
         ('A2', 'A2'),
         ('A3', 'A3'),
@@ -249,6 +300,7 @@ class RentEditForm(forms.ModelForm):
     ]
 
     LEASE_TERM_CHOICES = [
+        ('', 'Lease Term *'),
         ('No Minimum Lease', 'No Minimum Lease'),
         ('3 Months', '3 Months'),
         ('6 Months', '6 Months'),
@@ -259,13 +311,14 @@ class RentEditForm(forms.ModelForm):
     ]
 
     FURNISHING_CHOICES = [
-        ('', 'Select furnished type'),
+        ('', 'Select furnished type *'),
         ('Furnished', 'Furnished'),
         ('Unfurnished', 'Unfurnished'),
         ('Either', 'Either'),
     ]
 
     RENT_TYPE_CHOICES = [
+        ('', 'Rent Type *'),
         ('Night', 'Night'),
         ('Week', 'Week'),
         ('Month', 'Month'),
@@ -273,7 +326,7 @@ class RentEditForm(forms.ModelForm):
     ]
 
     IE_COUNTY_CHOICES = [
-        (None, 'County'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
+        (None, 'County *'), ('carlow', 'Carlow'), ('cavan', 'Cavan'),
         ('clare', 'Clare'), ('cork', 'Cork'),
         ('donegal', 'Donegal'), ('dublin', 'Dublin'),
         ('galway', 'Galway'), ('kerry', 'Kerry'),
@@ -309,6 +362,10 @@ class RentEditForm(forms.ModelForm):
     county = forms.CharField(widget=forms.Select
                              (choices=IE_COUNTY_CHOICES,
                               attrs={'class': 'form-select'}))
+    available_from = forms.CharField(widget=forms.TextInput(
+        attrs={'onfocus': '(this.type="date")', 'onblur': '(this.type="text")',
+               'localize': 'true'}
+    ))
 
     class Meta:
         model = RentListing
@@ -349,3 +406,58 @@ class RentEditForm(forms.ModelForm):
             'ber_rating',
             'description',
         ]
+
+    def __init__(self, *args, **kwargs):
+
+        """ Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field """
+
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'company_name': 'Company Name',
+            'full_name': 'Full Name',
+            'email': 'E-mail Address',
+            'phone': 'Phone Number',
+            'call_between_hrs': 'Available Hours',
+            'county': 'County',
+            'area': 'Town/Area',
+            'eircode': 'Eircode',
+            'property_type': 'Property Type',
+            'rent_type': 'Type of Rent',
+            'price': '€ Property Price',
+            'poa': 'POA',
+            'available_from': 'Available From',
+            'lease_term': 'Lease Term',
+            'no_of_single_bedrooms': 'No. Single Bedrooms',
+            'no_of_double_bedrooms': 'No. Double Bedrooms',
+            'no_of_twin_bedrooms': 'No. Twin Bedrooms',
+            'no_of_bathrooms': 'No. bathrooms',
+            'furnishing': 'Furnishing',
+            'facility_1': 'First Facility',
+            'facility_2': 'Second Facility',
+            'facility_3': 'Third Facility',
+            'facility_4': 'Fourth Facility',
+            'facility_5': 'Fifth Facility',
+            'facility_6': 'Sixth Facility',
+            'floor_area_type': 'Floor Area Type',
+            'floor_area': 'Floor Area',
+            'ber_rating': 'BER Rating',
+            'tax_designation': 'Tax Designation',
+            'top_features_1': 'First Top Feature',
+            'top_features_2': 'Second Top Feature',
+            'top_features_3': 'Third Top Feature',
+            'top_features_4': 'Fourth Top Feature',
+            'top_features_5': 'Fifth Top Feature',
+            'description': 'Description',
+            'header_image': 'Header Image',
+        }
+
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            if field != 'poa' and field != 'header_image':
+                self.fields[field].label = False
