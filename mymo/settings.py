@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'django_celery_beat',
     'crispy_forms',
+    'crispy_bootstrap5',
     'custom_tools',
     'localflavor',
     'home',
@@ -108,7 +109,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-""" SITE_ID = 3 """
+SITE_ID = 3
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -140,6 +141,7 @@ WSGI_APPLICATION = 'mymo.wsgi.application'
 
 ACCOUNT_FORMS = {
     "login": "profiles.forms.SelfLoginForm",
+    """ "login": "allauth.account.forms.LoginForm", """
     "signup": "profiles.forms.SelfSignupForm",
     "add_email": "allauth.account.forms.AddEmailForm",
     "change_password": "allauth.account.forms.ChangePasswordForm",
@@ -238,7 +240,8 @@ if 'USE_AWS' in os.environ:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Stripe
 STRIPE_CURRENCY = 'eur'

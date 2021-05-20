@@ -43,6 +43,15 @@ function displayFeatures() {
     });
 }
 
+function displayFacilities() {
+    $('.facilities').keyup(function () {
+        $(this).next('.facilities').attr('hidden', false);
+        if ($(this).find('.textInput').val() == '') {
+            $(this).next('.facilities').attr('hidden', true);
+        }
+    });
+}
+
 function setPriceDisabled() {
     if($('#id_poa')) {
         $('#id_poa').change(function () {
@@ -97,5 +106,6 @@ function removeIfLand() {
 };
 
 removeIfLand();
+displayFacilities();
 displayFeatures();
 setPriceDisabled();

@@ -229,13 +229,13 @@
             {{ listing.full_name }}
         </p>
         <p>
-            {{ listing.phone }}
+            <i class="fas fa-phone"></i> {{ listing.phone }}
         </p>
         <p>
-            Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
+            <i class="fas fa-envelope"></i> {{ listing.email }}
         </p>
         <p>
-            {{ listing.email }}
+            <i class="fas fa-clock"></i> Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
         </p>
         <p>
             {% if listing.user_profile.psr_number %}PSR No.: {{ listing.user_profile.psr_number }}{% endif %}

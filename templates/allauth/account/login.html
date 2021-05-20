@@ -26,9 +26,10 @@
                 <h1 class="fw-bold h5 text-start">Log In</h1>
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
+                    {{ form | as_crispy_errors }}
                     {{ form.login | as_crispy_field }}
                     {{ form.password | as_crispy_field }}
-                    <button class="primaryAction btn form-btn d-block w-100" type="submit"><span class="me-3"><i class="fas fa-sign-in-alt"></i></span>{% trans "Log In" %}</button>
+                    <button class="btn form-btn d-block w-100" type="submit"><span class="me-3"><i class="fas fa-sign-in-alt"></i></span>{% trans "Log In" %}</button>
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}

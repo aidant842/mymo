@@ -24,8 +24,6 @@
 <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" title="Click to view other Properties for Sale or Rent from {{ listing.user_profile.company_name }}">
     <div class="banner d-flex justify-content-center align-items-center p-2">
         <span>{{ listing.user_profile.company_name }}</span>
-        <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="50px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
-        <!-- <img src="{{ listing.user_profile.company_logo.url }}" width="75px" alt="Logo for {{ listing.user_profile.company_name }}"> -->
     </div>
 </a>
 <div class="container mb-5 bg-light">
@@ -198,24 +196,17 @@
             {% endif %}
         </div>
         {% endif %}
-        <!-- {% if listing.company_name %}
-            <h4 class="purple text-center p-2 text-white">
-                <strong>
-                    {{ listing.company_name }}
-                </strong>
-            </h4>
-        {% endif %} -->
         <p>
             {{ listing.full_name }}
         </p>
         <p>
-            {{ listing.phone }}
+            <i class="fas fa-phone"></i> {{ listing.phone }}
         </p>
         <p>
-            Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
+            <i class="fas fa-envelope"></i> {{ listing.email }}
         </p>
         <p>
-            {{ listing.email }}
+            <i class="fas fa-clock"></i> Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
         </p>
         <p>
             {% if listing.user_profile.psr_number %}PSR No.: {{ listing.user_profile.psr_number }}{% endif %}

@@ -21,6 +21,7 @@
         {% if product.category.name == 'sale' %}
         <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
             {% csrf_token %}
+            {{ form | as_crispy_errors }}
             <fieldset>
                 <legend class="fieldset-label">
                     <i class="far fa-address-book"></i>
@@ -34,10 +35,10 @@
                     {{ listing_form.full_name | as_crispy_field }}
                     {{ listing_form.email | as_crispy_field }}
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.phone | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.call_between_hrs | as_crispy_field }}
                         </div>
                     </div>
@@ -52,10 +53,10 @@
                 <div id="propertyLocation">
                     <hr>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.county | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.area | as_crispy_field }}
                         </div>
                         {{ listing_form.eircode | as_crispy_field }}
@@ -71,10 +72,10 @@
                 <div id="propertyInfo">
                     <hr>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.property_type | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.selling_type | as_crispy_field }}
                         </div>
                     </div>
@@ -92,48 +93,44 @@
                         </div>
                     </div>
                     <div class="row" id="bedBathInputs">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.no_of_bedrooms | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.no_of_bathrooms | as_crispy_field }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            {{ listing_form.facility_1 | as_crispy_field }}
-                        </div>
-                        <div class="col">
-                            {{ listing_form.facility_2 | as_crispy_field }}
-                        </div>
-                        <div class="col">
-                            {{ listing_form.facility_3 | as_crispy_field }}
-                        </div>
+                    <div class="facilities">
+                        {{ listing_form.facility_1 | as_crispy_field }}
+                    </div>
+                    <div class="facilities" hidden>
+                        {{ listing_form.facility_2 | as_crispy_field }}
+                    </div>
+                    <div class="facilities" hidden>
+                        {{ listing_form.facility_3 | as_crispy_field }}
+                    </div>
+                    <div class="facilities" hidden>
+                        {{ listing_form.facility_4 | as_crispy_field }}
+                    </div>
+                    <div class="facilities" hidden>
+                        {{ listing_form.facility_5 | as_crispy_field }}
+                    </div>
+                    <div class="facilities" hidden>
+                        {{ listing_form.facility_6 | as_crispy_field }}
                     </div>
                     <div class="row">
-                        <div class="col">
-                            {{ listing_form.facility_4 | as_crispy_field }}
-                        </div>
-                        <div class="col">
-                            {{ listing_form.facility_5 | as_crispy_field }}
-                        </div>
-                        <div class="col">
-                            {{ listing_form.facility_6 | as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.floor_area_type | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.floor_area | as_crispy_field }}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.ber_rating | as_crispy_field }}
                         </div>
-                        <div class="col">
+                        <div class="col-md-6">
                             {{ listing_form.tax_designation | as_crispy_field }}
                         </div>
                     </div>
@@ -164,12 +161,10 @@
                 <div id="propertyImages">
                     <hr>
                     {{ listing_form.header_image | as_crispy_field }}
-                    <!-- <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a> -->
                     <!-- To display image from header image -->
                     <div class="header-image-preview">
                     </div>
                     {{ images_form | crispy }}
-                    <!-- <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a> -->
                     <!-- To display images from images form -->
                     <div class="image-preview">
                     </div>
@@ -189,6 +184,7 @@
         <!------------------------------------------------ RENT FORM ------------------------------------------------------------------------->
         <form action="{% url 'create_listings' %}" method="POST" enctype="multipart/form-data" class="checkout-form">
             {% csrf_token %}
+            {{ form | as_crispy_errors }}
             <fieldset>
                 <legend class="fieldset-label">
                     <i class="far fa-address-book"></i>
@@ -201,10 +197,10 @@
                 {{ listing_form.full_name | as_crispy_field }}
                 {{ listing_form.email | as_crispy_field }}
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.phone | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.call_between_hrs | as_crispy_field }}
                     </div>
                 </div>
@@ -217,10 +213,10 @@
                 </legend>
                 <hr>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.county | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.area | as_crispy_field }}
                     </div>
                 </div>
@@ -235,9 +231,7 @@
                 <hr>
                 {{ listing_form.property_type | as_crispy_field }}
                 <div class="row">
-                    <div class="col">
-                        {{ listing_form.price | as_crispy_field }}
-                    </div>
+                    {{ listing_form.price | as_crispy_field }}
                 </div>
                 <div class="row">
                     <h6 class="fw-bold" id="or">OR</h6>
@@ -251,21 +245,21 @@
                     {{ listing_form.rent_type | as_crispy_field }}
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.lease_term | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.available_from | as_crispy_field }}
                     </div>
                 </div>
                 <div class="row" id="rentBedsInputs">
-                    <div class="col">
+                    <div class="col-md-4">
                         {{ listing_form.no_of_single_bedrooms | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         {{ listing_form.no_of_double_bedrooms | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-4">
                         {{ listing_form.no_of_twin_bedrooms | as_crispy_field }}
                     </div>
                 </div>
@@ -290,33 +284,29 @@
                 <div class="features" hidden>
                     {{ listing_form.top_features_5 | as_crispy_field }}
                 </div>
-                <div class="row">
-                    <div class="col">
-                        {{ listing_form.facility_1 | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.facility_2 | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.facility_3 | as_crispy_field }}
-                    </div>
+                <div class="facilities">
+                    {{ listing_form.facility_1 | as_crispy_field }}
+                </div>
+                <div class="facilities" hidden>
+                    {{ listing_form.facility_2 | as_crispy_field }}
+                </div>
+                <div class="facilities" hidden>
+                    {{ listing_form.facility_3 | as_crispy_field }}
+                </div>
+                <div class="facilities" hidden>
+                    {{ listing_form.facility_4 | as_crispy_field }}
+                </div>
+                <div class="facilities" hidden>
+                    {{ listing_form.facility_5 | as_crispy_field }}
+                </div>
+                <div class="facilities" hidden>
+                    {{ listing_form.facility_6 | as_crispy_field }}
                 </div>
                 <div class="row">
-                    <div class="col">
-                        {{ listing_form.facility_4 | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.facility_5 | as_crispy_field }}
-                    </div>
-                    <div class="col">
-                        {{ listing_form.facility_6 | as_crispy_field }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.floor_area_type | as_crispy_field }}
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         {{ listing_form.floor_area | as_crispy_field }}
                     </div>
                 </div>
@@ -331,12 +321,10 @@
                 </legend>
                 <hr>
                 {{ listing_form.header_image | as_crispy_field }}
-                <!-- <a class="btn mx-0 my-1" id="headerImgClone">Choose Image</a> -->
                 <!-- To display image from header image -->
                 <div class="header-image-preview">
                 </div>
                 {{ images_form | crispy }}
-                <!-- <a class="btn mx-0 my-1" id="imagesClone">Choose Images</a> -->
                 <!-- To display images from images form -->
                 <div class="image-preview">
                 </div>

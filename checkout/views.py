@@ -83,9 +83,9 @@ def create_listings(request):
                         return redirect('home')
                     else:
                         return redirect('checkout')
-                else:
+                """ else:
                     messages.error(request, 'form error, try re-uploading images')
-                    return redirect(reverse('product_detail', kwargs={'product_name':product.name ,'product_id':product.id}))
+                    return redirect(reverse('product_detail', kwargs={'product_name':product.name ,'product_id':product.id})) """
             elif product.category.name == 'rent':
                 listing_form = RentListingForm(request.POST, request.FILES)
                 images_form = RentImageForm(request.POST, request.FILES)
@@ -116,12 +116,21 @@ def create_listings(request):
                         return redirect('home')
                     else:
                         return redirect('checkout')
-                else:
-                    for error in listing_form.errors:
-                        print(error)
+                """ else:
                     messages.error(request, 'form error, try re-uploading images')
-                    return redirect(reverse('product_detail', kwargs={'product_name':product.name, 'product_id':product.id}))
+                    return redirect(reverse('product_detail', kwargs={'product_name':product.name, 'product_id':product.id})) """
+
+    template = 'products/product_details.html'
+
+    context = {
+        'product': product,
+        'listing_form': listing_form,
+        'images_form': images_form,
+        'user': user,
+    }
     request.session.set_expiry(1800)
+    messages.error(request, 'form error, try re-uploading images')
+    return render(request, template, context)
 
 
 @login_required
