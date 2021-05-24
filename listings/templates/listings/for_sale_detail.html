@@ -19,6 +19,11 @@
         <a href="javascript:history.go(-1)" title="Click here to go back" class="text-white"><i class="fas fa-arrow-left"></i> Back</a>
     </div>
 </div>
+{% if listing.sold %}
+<div class="alert alert-danger text-center fw-bold" role="alert">
+    Please Note: This Property has already been sold.
+</div>
+  {% endif %}
 <!-- Company banner -->
 {% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
 <a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" title="Click here to view other Properties for Sale or Rent from {{ listing.user_profile.company_name }}">

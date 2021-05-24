@@ -58,6 +58,7 @@ def tasks():
                     date_sold=listing.date_sold,
                 )
                 listing.delete()
+                print(f'Completed creating new SoldListing objects, and deleted old SaleListing object {timezone.now()}')
 
 
 @shared_task
