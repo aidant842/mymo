@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'custom_tools',
     'localflavor',
+    'ckeditor',
     'home',
     'products',
     'listings',
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
     'coupons',
     'analytics',
     'estate_agents',
+    'price_register',
     'storages',
     'django_cleanup.apps.CleanupConfig',
 ]
@@ -109,7 +111,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-""" SITE_ID = 3 """
+SITE_ID = 3
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -242,6 +244,18 @@ if 'USE_AWS' in os.environ:
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ],
+        'width': '100%',
+    },
+}
 
 # Stripe
 STRIPE_CURRENCY = 'eur'

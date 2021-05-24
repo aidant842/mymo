@@ -326,6 +326,8 @@
 
 {% block postloadjs %}
 {{ block.super }}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 <script src="{% static 'checkout/js/loading-overlay.js' %}"></script>
 <script src="{% static 'js/product_form.js' %}"></script>
 {% endblock %}

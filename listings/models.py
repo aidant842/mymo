@@ -80,6 +80,9 @@ class SaleListing(models.Model):
     favourites = models.ManyToManyField(
         User, default=None, blank=True)
     times_saved = models.PositiveIntegerField(default=0, blank=True)
+    sold = models.BooleanField(default=False)
+    date_sold = models.DateTimeField(blank=True, null=True)
+    price_sold = models.PositiveIntegerField(blank=True, null=True)
 
     def _generate_listing_number(self):
 
@@ -254,4 +257,25 @@ class RentListingImage(models.Model):
         return self.listing.listing_number
 
 
+class SoldListing(models.Model):
+    listing_number = models.CharField(max_length=32, null=True, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     default=None)
+    county = models.CharField(max_length=256, blank=False, null=False)
+    area = models.CharField(max_length=256, blank=False, null=False)
+    eircode = models.CharField(max_length=256, blank=True, null=True)
+    property_type = models.CharField(max_length=256, blank=False, null=False)
+    price = models.PositiveIntegerField(blank=False, null=False)
+    no_of_bedrooms = models.PositiveIntegerField(blank=False, null=False)
+    no_of_bathrooms = models.PositiveIntegerField(blank=False, null=False)
+    floor_area = models.DecimalField(max_digits=10,
+                                     decimal_places=2, null=False, blank=False)
+    floor_area_type = models.CharField(max_length=256,
+                                       blank=True, default='Square Meters')
+    ber_rating = models.CharField(max_length=256, blank=False, null=False)
+    date_sold = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.listing_number
 

@@ -142,7 +142,7 @@
                                     <li class="child">
                                         <div class="title">
                                             <a class="dropdown-item stretched-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">
-                                                Buy
+                                                All Property
                                             </a>
                                         </div>
                                         <div class="desc">
@@ -152,11 +152,21 @@
                                     <li class="child">
                                         <div class="title">
                                             <a class="dropdown-item stretched-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">
-                                                Buy - For Sale By Owner
+                                                For Sale By Owner
                                             </a>
                                         </div>
                                         <div class="desc">
                                             <span>Search Apartments, Property, Sites and Land for Sale By Owner in Ireland</span>
+                                        </div>
+                                    </li>
+                                    <li class="child">
+                                        <div class="title">
+                                            <a class="dropdown-item stretched-link" href="{% url 'sold_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">
+                                                Sold
+                                            </a>
+                                        </div>
+                                        <div class="desc">
+                                            <span>Search recently sold Apartments, Property, Sites and Land.</span>
                                         </div>
                                     </li>
                                 </div>
@@ -204,8 +214,9 @@
                                   Buy
                                 </a>
                                 <ul class="dropdown-menu mobile purple mobile-buy-dropdown" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">Buy - All</a></li>
-                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Buy - For Sale By Owner</a></li>
+                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">All Property</a></li>
+                                    <li><a class="dropdown-item hover-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">For Sale By Owner</a></li>
+                                    <li><a class="dropdown-item hover-link" href="{% url 'sold_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Sold</a></li>
                                     </ul>
                               </li>
                             <li class="nav-item">

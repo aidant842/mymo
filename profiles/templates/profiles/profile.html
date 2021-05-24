@@ -5,12 +5,12 @@
     <meta property="og:image:alt" content="MyMo.ie Logo" />
     <meta property="og:description" content="Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %} on Ireland's Best Online Property Marketplace MyMo.ie." />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="Profile for{% if profile.is_agent %} {{ profile.company_name }}{% else %} {{ profile }}{% endif %} | MyMo.ie" />
+    <meta property="og:title" content="{% if profile.is_agent %} Profile for {{ profile.company_name }} {% else %} My Profile {% endif %} | MyMo.ie" />
     <meta name="description" content="Profile for {% if profile.is_agent %}{{ profile.company_name }}{% else %}{{ profile }}{% endif %} on Ireland's Best Online Property Marketplace MyMo.ie.">
     {% endblock %}
     
 
-<title>{% block extra_title %}Profile for {% if profile.is_agent %} {{ profile.company_name }} {% else %} {{ profile }} {% endif %}{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
+<title>{% block extra_title %}{% if profile.is_agent %} Profile for {{ profile.company_name }} {% else %} My Profile {% endif %}{% endblock %} {% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="min-vh-100">
@@ -120,6 +120,11 @@
                                             <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal{{ listing.id }}">
                                                 Remove listing
                                             </button>
+                                            {% if listing.category.name == 'sale' and listing.sold is False %}
+                                            <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-sold-modal{{ listing.id }}">
+                                                Mark as Sold
+                                            </button>
+                                            {% endif %}
                                         </div>
                                         {% if listing.is_spotlight %}
                                         <div class="fw-bold">
@@ -127,7 +132,11 @@
                                         </div>
                                         {% endif %}
                                         <div class="for-sale-rent">
+                                            {% if listing.sold %}
+                                            SOLD
+                                            {% else %}
                                             FOR {{ listing.category.name.upper }}
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -157,6 +166,40 @@
                                         <form action="{% url 'delete_listing' listing.id %}" method="POST">
                                             {% csrf_token %}
                                             <button type="submit" class="btn float-end mb-2">Remove Listing</button>
+                                            <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Remove listing Modal -->
+                        <div class="modal" id="confirm-sold-modal{{ listing.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Mark listing as sold?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="text-center p-4">
+                                            <p>
+                                                Are you sure you would like to mark this Listing as Sold?
+                                            </p>
+                                            <p>
+                                                This will mark the listing as sold, and move it to the sold section.
+                                            </p>
+                                            <p>
+                                                The full listing will be available for 2 weeks under the sold section until it is archived under the Property Price Register.
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <form action="{% url 'mark_as_sold' listing.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="price_sold">€</span>
+                                                <input type="number" name="price_sold" class="form-control" placeholder="Price sold for" aria-label="price_sold" aria-describedby="price_sold" required>
+                                              </div>
+                                            <button type="submit" class="btn float-end mb-2">Mark as sold</button>
                                             <button type="button" class="btn float-end mb-2" data-bs-dismiss="modal">Close</button>
                                         </form>
                                     </div>

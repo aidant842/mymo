@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.profile, name='profile'),
     path('remove_listing/<int:listing_id>/', views.delete_listing, name='delete_listing'),
+    path('mark_as_sold/<int:listing_id>/', views.mark_as_sold, name='mark_as_sold'),
     path('edit_listing/<int:listing_id>/', views.edit_listing, name='edit_listing'),
     path('favourite_sale_add/<int:listing_id>/', views.favourite_sale_add, name='favourite_sale_add'),
     path('favourite_rent_add/<int:listing_id>/', views.favourite_rent_add, name='favourite_rent_add'),

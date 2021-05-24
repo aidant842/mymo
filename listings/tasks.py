@@ -6,7 +6,7 @@ import datetime
 
 from celery.decorators import task
 
-from .models import SaleListing, RentListing
+from .models import SaleListing, RentListing, SoldListing
 from analytics.models import ListingAnalytics
 
 
@@ -18,26 +18,46 @@ def tasks():
     listings = list(chain(sale_listings, rent_listings))
 
     for listing in listings:
-        # Delete an expired listing that wasn't renewed after 10 days from being unlisted
-        if not listing.is_listed and listing.expiration_date < timezone.now():
-            listing.delete()
-            print(f'Completed deleting expired listings that were not renewed at {timezone.now()}')
+        if not listing.sold:
+            # Delete an expired listing that wasn't renewed after 10 days from being unlisted
+            if not listing.is_listed and listing.expiration_date < timezone.now():
+                listing.delete()
+                print(f'Completed deleting expired listings that were not renewed at {timezone.now()}')
 
-        # Delete a listing that was created but not paid for after 24 hours from creation
-        elif not listing.is_paid and listing.expiration_date < timezone.now():
-            listing.delete()
-            print(f'Completed delete if not paid after 24 hours of creation at {timezone.now()}')
-        # Unlist listing that has expired, and set expiration for 10 days from being unlisted
-        elif listing.expiration_date < timezone.now():
-            listing.is_listed = False
-            listing.expiration_date = timezone.now() + datetime.timedelta(days=10)
-            listing.save()
-            print(f'Completed unlisting at {timezone.now()}')
-        # Remove premium status after 30 days
-        elif listing.is_spotlight and listing.premium_expiration < timezone.now():
-            listing.is_spotlight = False
-            listing.save()
-            print(f'Completed remove premium status at {timezone.now()}')
+            # Delete a listing that was created but not paid for after 24 hours from creation
+            elif not listing.is_paid and listing.expiration_date < timezone.now():
+                listing.delete()
+                print(f'Completed delete if not paid after 24 hours of creation at {timezone.now()}')
+            # Unlist listing that has expired, and set expiration for 10 days from being unlisted
+            elif listing.expiration_date < timezone.now():
+                listing.is_listed = False
+                listing.expiration_date = timezone.now() + datetime.timedelta(days=10)
+                listing.save()
+                print(f'Completed unlisting at {timezone.now()}')
+            # Remove premium status after 30 days
+            elif listing.is_spotlight and listing.premium_expiration < timezone.now():
+                listing.is_spotlight = False
+                listing.save()
+                print(f'Completed remove premium status at {timezone.now()}')
+        else:
+            if listing.expiration_date < timezone.now():
+                # If listing is sold and expired, archive it in soldListings and delete the origonal listing
+                SoldListing.objects.create(
+                    listing_number=listing.list_number,
+                    user_profile=listing.user_profile,
+                    county=listing.county,
+                    area=listing.area,
+                    eircode=listing.eircode,
+                    property_type=listing.property_type,
+                    price=listing.price_sold,
+                    no_of_bedrooms=listing.no_of_bedrooms,
+                    no_of_bathrooms=listing.no_of_bathrooms,
+                    floor_area=listing.floor_area,
+                    floor_area_type=listing.floor_area_type,
+                    ber_rating=listing.ber_rating,
+                    date_sold=listing.date_sold,
+                )
+                listing.delete()
 
 
 @shared_task

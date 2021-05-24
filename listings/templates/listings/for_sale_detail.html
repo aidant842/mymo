@@ -161,12 +161,12 @@
     </div>
     {% endif %}
     <!-- Description -->
-    <div class="listing-description row mt-3 bg-light p-4">
+    <div class="listing-description mt-3 bg-light p-4">
         <legend>
             Description
         </legend>
         <hr>
-        <p>{{ listing.description | linebreaks }}</p>
+        <p>{{ listing.description | safe | linebreaks }}</p>
     </div>
     <!-- Top Features -->
     {% if listing.top_features_1 %}

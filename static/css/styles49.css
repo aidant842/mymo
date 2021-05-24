@@ -1180,6 +1180,10 @@ select option:first-child {
   }
 }
 
+.django-ckeditor-widget {
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -1376,6 +1380,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .contact-form input {
   margin: 0.5rem 0;
+}
+
+.listing-description ul {
+  text-align: initial;
+  list-style-type: disc;
 }
 
 /************** Modal Section *****************/

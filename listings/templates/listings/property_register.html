@@ -1,0 +1,194 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+
+{% block extra_meta %}
+    <meta property="og:image" content="https://mymoireland.s3.amazonaws.com/media/landing-img.jpg" />
+    <meta property="og:image:alt" content="MyMo.ie Logo" />
+    <meta property="og:description" content="Find the prices of private houses, apartments, sites and properties Sold in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin Ireland {% endif %}. Search through {{ total_listings }} properties for Sale in Ireland now on MyMo.ie." />
+    <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
+    <meta property="og:title" content="Property Price Register | MyMo.ie" />
+    <meta name="description" content="Find private houses, apartments, sites and properties Sold in {% if request.GET.county %}Co. {{ request.GET.county.capitalize }} {% else %}Kildare, Galway, Dublin Ireland {% endif %}. Search through {{ total_listings }} properties for Sale in Ireland now on MyMo.ie."/>
+    <meta name="keywords" content="Houses for Sale Dublin, Houses for Sale Kildare, Houses for Private Sale, Apartments for Sale Dublin, Houses for Sale by Owner, Sites for Sale, Property for Sale Galway"/>
+{% endblock %}
+    
+
+<title>{% block extra_title %}Property Price Register {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
+
+{% block content %}
+<div class="filters-container">
+    <div class="filters">
+        <form method="GET" action=".">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.price | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.county | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.area | as_crispy_field }}
+                </div>
+                <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    {{ filter_form.property_type | as_crispy_field }}
+                </div>
+            </div>
+            <a data-bs-toggle="collapse" title="Click here to show extra filters" href="#extraFilters" role="button" aria-expanded="false"
+                class="text-muted btn form-btn filters-btn">
+                Extra Filters
+                <i class="fas fa-angle-down chevron"></i>
+            </a>
+            <div class="collapse multi-collapse" id="extraFilters">
+                <div class="row">
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.bedrooms | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.bathrooms | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.ber_rating | as_crispy_field }}
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.keyword | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                        {{ filter_form.sort | as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+            <button class="btn form-btn w-50" type="submit" value="">Search <i class="fas fa-search-location"></i></button>
+        </form>
+    </div>
+</div>
+<!------ Ads ------>
+<!-- horizontal ad -->
+<div class="center">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle ad-format"
+        data-ad-client="ca-pub-5373140058791800"
+        data-ad-slot="4502886369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<!---------  ------------->
+<div class="min-vh-100">
+    {% if total_listings == 0 %}
+    <div class="no-results">
+        <h5><i class="fas fa-question"></i></h5>
+        <h5>Sorry no results were found for that query</h5>
+        <p>Please try a different query</p>
+    </div>
+    {% endif %}
+    {% if not total_listings == 0 %}
+    <div class="container mt-5 text-center">
+        <h1 class="h6">
+            {% if request.GET.property_type %}
+                {{ request.GET.property_type }}{% if not request.GET.property_type.lower == 'land' %}s{% endif %}
+            {% else %}
+                Property
+            {% endif %}
+            Sold in
+            {% if request.GET.county %}
+                Co. {{ request.GET.county.capitalize }}
+            {% else %}
+                Ireland 
+            {% endif %}
+            - {{ total_listings }} Results
+        </h1>
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="card mb-3">
+            <a href="{% url 'sale_listing_detail' listing.id %}" class="stretched-link" title="Click here to view details"></a>
+            <div class="row g-0">
+                <div class="col-lg-4 text-center img-col">
+                <div class="p-1" style="background-image: url({{listing.header_image.url}});"></div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ listing.area.title }}, {{ listing.county.title }}</h5>
+                        <p class="fw-bold">€ {{ listing.price }}</p>
+                        <div class="alerts mb-2">
+                            {% if not listing.is_paid %}
+                            <div class="alert alert-danger mb-2" role="alert">
+                                Listing not yet paid for
+                            </div>
+                            {% elif not listing.is_listed %}
+                            <div class="alert alert-warning mb-2" role="alert">
+                                Listing under review
+                            </div>
+                            {% else %}
+                            <div class="alert alert-success mb-2" role="alert">
+                                Listing is live!
+                            </div>
+                            {% endif %}
+    
+                            {% if listing.times_viewed > average_views %}
+                            <div class="alert alert-success mb-2" role="alert">
+                                Listing is performing above average
+                            </div>
+                            {% else %}
+                            <div class="alert alert-danger mb-2" role="alert">
+                                Listing performing below average
+                            </div>
+                            {% endif %}
+                        </div>
+                        <p class="mb-0">
+                            Times Viewed: {{listing.times_viewed}}
+                        </p>
+                        <p>
+                            Times Saved: {{listing.times_saved}}
+                        </p>
+                        <div class="buttons">
+                            <a href="{% url 'edit_listing' listing.id %}" title="Call this Agent" class="btn form-btn">Edit Listing</a>
+                            <!-- Remove Listing Button -->
+                            <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal{{ listing.id }}">
+                                Remove listing
+                            </button>
+                            {% if listing.category.name == 'sale' and listing.sold is False %}
+                            <button type="button" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#confirm-sold-modal{{ listing.id }}">
+                                Mark as Sold
+                            </button>
+                            {% endif %}
+                        </div>
+                        {% if listing.is_spotlight %}
+                        <div class="fw-bold">
+                            SPOTLIGHT
+                        </div>
+                        {% endif %}
+                        <div class="for-sale-rent">
+                            {% if listing.sold %}
+                            SOLD
+                            {% else %}
+                            FOR {{ listing.category.name.upper }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'pagination.html' with page=listings %}
+<div class="text-center">
+    <p class="text-muted">Total listings: {{ total_listings }}</p>
+</div>
+<!------ Ads ------>
+<!-- horizontal ad -->
+<div class="center">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle ad-format"
+        data-ad-client="ca-pub-5373140058791800"
+        data-ad-slot="4502886369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<!---------  ------------->
+{% endblock %}

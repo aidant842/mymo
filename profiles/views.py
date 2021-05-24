@@ -15,6 +15,7 @@ from analytics.models import ListingAnalytics
 
 from operator import attrgetter
 from itertools import chain
+from datetime import timedelta, datetime
 
 
 @login_required
@@ -173,3 +174,17 @@ def edit_listing(request, listing_id):
         'profile': profile,
     }
     return render(request, template, context)
+
+
+@require_POST
+@login_required
+def mark_as_sold(request, listing_id):
+    listing = SaleListing.objects.get(id=listing_id)
+    listing.sold = True
+    listing.date_sold = datetime.now()
+    listing.price_sold = request.POST.get('price_sold')
+    listing.expiration_date = datetime.now() + timedelta(days=14)
+    listing.save()
+
+    messages.success(request, 'Marked property as Sold')
+    return redirect('profile')

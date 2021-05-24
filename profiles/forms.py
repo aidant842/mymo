@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile
 from listings.models import SaleListing, RentListing
+from ckeditor.widgets import CKEditorWidget
 
 from allauth.account.forms import LoginForm, SignupForm
 
@@ -158,6 +159,7 @@ class SaleEditForm(forms.ModelForm):
     county = forms.CharField(widget=forms.Select
                              (choices=IE_COUNTY_CHOICES,
                               attrs={'class': 'form-select form-control'}))
+    description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = SaleListing
