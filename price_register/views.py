@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from listings.forms import FilterForm
+from .forms import PropertyRegsiterFilter
 from listings.models import SoldListing, SaleListing, RentListing
 from estate_agents.forms import ContactForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -11,48 +11,29 @@ from operator import attrgetter
 
 
 def property_register(request):
-    filter_form = FilterForm()
+    filter_form = PropertyRegsiterFilter()
 
     listings = SoldListing.objects.all()
 
+    if request.user.is_authenticated:
+        contact_form = ContactForm(initial={'email': request.user.userprofile.email,
+                                            'phone_number': request.user.userprofile.phone_number,
+                                            'full_name': request.user.userprofile.full_name,})
+    else:
+        contact_form = ContactForm()
+
     query_dictionary = {}
-    price_query = request.GET.get('price')
     county_query = request.GET.get('county')
-    property_type_query = request.GET.get('property_type')
-    no_of_bedrooms_query = request.GET.get('bedrooms')
-    no_of_bathrooms_query = request.GET.get('bathrooms')
-    ber_rating_query = request.GET.get('ber_rating')
     area_query = request.GET.get('area')
-    keyword_query = request.GET.get('keyword')
     sort = request.GET.get('sort', None)
 
-    if price_query != '' and price_query is not None:
-        query_dictionary['price_query'] = price_query
-        price_query = int(price_query)
-        listings = listings.filter(price__lte=price_query,)
     if county_query != '' and county_query is not None:
         query_dictionary['county_query'] = county_query
         listings = listings.filter(county__icontains=county_query,)
-    if property_type_query != '' and property_type_query is not None:
-        query_dictionary['property_type_query'] = property_type_query
-        listings = listings.filter(property_type__icontains=property_type_query,)
-    if no_of_bedrooms_query != '' and no_of_bathrooms_query is not None:
-        query_dictionary['no_of_bedrooms_query'] = no_of_bedrooms_query
-        listings = listings.filter(no_of_bedrooms__gte=no_of_bedrooms_query,)
-    if no_of_bathrooms_query != '' and no_of_bathrooms_query is not None:
-        query_dictionary['no_of_bathrooms_query'] = no_of_bathrooms_query
-        listings = listings.filter(no_of_bathrooms__gte=no_of_bathrooms_query,)
-    if ber_rating_query != '' and ber_rating_query is not None:
-        query_dictionary['ber_rating_query'] = ber_rating_query
-        listings = listings.filter(ber_rating__icontains=ber_rating_query,)
     if area_query != '' and area_query is not None:
         query_dictionary['area_query'] = area_query
         area_queries = Q(area__icontains=area_query) | Q(county__icontains=area_query)
         listings = listings.filter(area_queries)
-    if keyword_query != '' and keyword_query is not None:
-        query_dictionary['keyword_query'] = keyword_query
-        keyword_queries = Q(area__icontains=keyword_query) | Q(description__icontains=keyword_query) | Q(county__icontains=keyword_query) | Q(company_name__icontains=keyword_query)
-        listings = listings.filter(keyword_queries)
     if sort != '' and sort is not None:
         query_dictionary['sort'] = sort
         sortkey = sort.split('-')[0]
@@ -67,7 +48,7 @@ def property_register(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 20)
+    paginator = Paginator(listings, 1)
     page = request.GET.get('page')
 
     try:
@@ -85,6 +66,7 @@ def property_register(request):
         'query_dictionary': query_dictionary,
         'total_listings': total_listings,
         'page': page,
+        'contact_form': contact_form,
     }
 
     return render(request, template, context)

@@ -15,46 +15,14 @@
 {% block content %}
 <div class="min-vh-100">
     <div class="filters-container">
-        <div class="filters">
+        <div class="filters container">
             <form method="GET" action=".">
                 <div class="row">
-                    <div class="col-xxl-3 col-lg-6 col-sm-12">
-                        {{ filter_form.price | as_crispy_field }}
-                    </div>
-                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
                         {{ filter_form.county | as_crispy_field }}
                     </div>
-                    <div class="col-xxl-3 col-lg-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
                         {{ filter_form.area | as_crispy_field }}
-                    </div>
-                    <div class="col-xxl-3 col-lg-6 col-sm-12">
-                        {{ filter_form.property_type | as_crispy_field }}
-                    </div>
-                </div>
-                <a data-bs-toggle="collapse" title="Click here to show extra filters" href="#extraFilters" role="button" aria-expanded="false"
-                    class="text-muted btn form-btn filters-btn">
-                    Extra Filters
-                    <i class="fas fa-angle-down chevron"></i>
-                </a>
-                <div class="collapse multi-collapse" id="extraFilters">
-                    <div class="row">
-                        <div class="col-xxl-3 col-lg-6 col-sm-12">
-                            {{ filter_form.bedrooms | as_crispy_field }}
-                        </div>
-                        <div class="col-xxl-3 col-lg-6 col-sm-12">
-                            {{ filter_form.bathrooms | as_crispy_field }}
-                        </div>
-                        <div class="col-xxl-3 col-lg-6 col-sm-12">
-                            {{ filter_form.ber_rating | as_crispy_field }}
-                        </div>
-                        <div class="col-xxl-3 col-lg-6 col-sm-12">
-                            {{ filter_form.keyword | as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xxl-3 col-lg-6 col-sm-12">
-                            {{ filter_form.sort | as_crispy_field }}
-                        </div>
                     </div>
                 </div>
                 <button class="btn form-btn w-50" type="submit" value="">Search <i class="fas fa-search-location"></i></button>
@@ -92,9 +60,9 @@
                             <p class="card-text">SOLD FOR: €{{ listing.price}}</p>
                             <p class="text-muted fs-6">Sold on: {{ listing.date_sold.date }}</p>
                             <div class="buttons">
-                                <a href="tel:{{ agent.phone_number }}" title="Call this Agent" class="btn form-btn">Call <i class="fas fa-phone"></i></a>
+                                <a href="tel:{{ listing.user_profile.phone_number }}" title="Call this Agent" class="btn form-btn">Call <i class="fas fa-phone"></i></a>
                                 {% if request.user.is_authenticated %}
-                                <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal{{ agent.user.id }}">
+                                <a title="Click to send an Email to this seller" class="btn form-btn" data-bs-toggle="modal" data-bs-target="#contactModal{{ listing.user_profile.user.id }}">
                                     Email Seller <i class="fas fa-envelope"></i>
                                 </a>
                                 {% else %}
@@ -106,18 +74,18 @@
                 </div>
             </div>
             <!-- Contact Modal -->
-            <div class="modal fade" id="contactModal{{ agent.user.id }}" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+            <div class="modal fade" id="contactModal{{ listing.user_profile.user.id }}" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contact {{ agent.company_name }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Contact {{ listing.user_profile.company_name }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                     <form action="{% url 'contact_agent' %}" method="POST" enctype="multipart/form-data" class="contact-form">
                             {% csrf_token %}
                             {{ contact_form | crispy }}
-                            <input type="hidden" name="profile_id" value="{{ agent.user.id }}">
+                            <input type="hidden" name="profile_id" value="{{ listing.user_profile.user.id }}">
                             <button type="submit" class="btn form-btn w-100">Submit</button>
                     </form>
                     </div>
@@ -140,5 +108,5 @@
 </div>
 
 <!---------  ------------->
-{% include 'agents_pagination.html' with page=agents %}
+{% include 'property_register_pagination.html' with page=listings %}
 {% endblock %}

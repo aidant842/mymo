@@ -1,0 +1,21 @@
+<nav aria-label="Page Navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            {% if page.has_previous %}
+            <a class="page-link" title="Click here to go to the previous page" href="?county={{ query_dictionary.county }}&area={{ query_dictionary.area }}&page={{ page.previous_page_number }}">
+                Previous</a>
+            {% endif %}
+        </li>
+        <li class="page-item">
+            <p class="page-link">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+        </li>
+        <li class="page-item">
+            {% if page.has_next %}
+            <a class="page-link"
+                title="Click here to go to the next page"
+                href="?county={{ query_dictionary.county }}&area={{ query_dictionary.area }}&page={{ page.next_page_number }}">
+                Next</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
