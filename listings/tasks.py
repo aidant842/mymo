@@ -43,7 +43,7 @@ def tasks():
             if listing.expiration_date < timezone.now():
                 # If listing is sold and expired, archive it in soldListings and delete the origonal listing
                 SoldListing.objects.create(
-                    listing_number=listing.list_number,
+                    listing_number=listing.listing_number,
                     user_profile=listing.user_profile,
                     county=listing.county,
                     area=listing.area,
