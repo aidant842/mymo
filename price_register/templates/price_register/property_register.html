@@ -57,8 +57,8 @@
                     <div class="col-lg-8">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">{{ listing.area }}, Co. {{ listing.county }} {% if listing.eircode %} {{ listing.eircode }} {% endif %}</h5>
-                            <p class="card-text">SOLD FOR: €{{ listing.price}}</p>
-                            <p class="text-muted fs-6">Sold on: {{ listing.date_sold.date }}</p>
+                            <p class="card-text">Sold for: €{{ listing.price}}</p>
+                            <p class="card-text">Sold on: {{ listing.date_sold.date }}</p>
                             <div class="buttons">
                                 <a href="tel:{{ listing.user_profile.phone_number }}" title="Call this Agent" class="btn form-btn">Call <i class="fas fa-phone"></i></a>
                                 {% if request.user.is_authenticated %}

@@ -48,7 +48,7 @@ def property_register(request):
 
     """ setup paginator """
 
-    paginator = Paginator(listings, 1)
+    paginator = Paginator(listings, 20)
     page = request.GET.get('page')
 
     try:
