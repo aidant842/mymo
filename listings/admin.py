@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SaleListing, RentListing, SaleListingImage, RentListingImage
+from .models import SaleListing, RentListing, SaleListingImage, RentListingImage, SoldListing
 
 
 class SaleListingImageAdmin(admin.StackedInline):
@@ -82,5 +82,10 @@ class RentListingImageAdmin(admin.ModelAdmin):
     pass
 
 
+class SoldListingAdmin(admin.ModelAdmin):
+    model = SoldListing
+
+
 admin.site.register(SaleListing, SaleListingAdmin)
 admin.site.register(RentListing, RentListingAdmin)
+admin.site.register(SoldListing, SoldListingAdmin)
