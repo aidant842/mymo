@@ -190,6 +190,7 @@ class RentListing(models.Model):
     favourites = models.ManyToManyField(
         User, default=None, blank=True)
     times_saved = models.PositiveIntegerField(default=0, blank=True)
+    sold = models.BooleanField(default=False)
 
     def _generate_listing_number(self):
 
