@@ -487,6 +487,10 @@ a.page-link:hover {
   margin-bottom: 0 !important;
 }
 
+.alert ul {
+  padding: 0;
+}
+
 .card-header {
   background-color: #303e94;
   color: white;
@@ -1176,6 +1180,10 @@ select option:first-child {
   }
 }
 
+.django-ckeditor-widget {
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -1372,6 +1380,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 
 .contact-form input {
   margin: 0.5rem 0;
+}
+
+.listing-description ul {
+  text-align: initial;
+  list-style-type: disc;
 }
 
 /************** Modal Section *****************/
@@ -1597,7 +1610,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .agent-cards .card-body {
   height: 100%;
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 992px) {
   .agent-cards .card-body {
     text-align: center;
   }

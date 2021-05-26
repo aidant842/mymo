@@ -24,55 +24,27 @@
     Please Note: This Property has already been sold.
 </div>
   {% endif %}
-<!-- Company banner -->
-{% if listing.user_profile.is_agent and listing.user_profile.company_name and listing.user_profile.company_logo and listing.is_spotlight %}
-<a href="{% url 'estate_agents_profile' listing.user_profile.company_name_to_url listing.user_profile.id %}" title="Click here to view other Properties for Sale or Rent from {{ listing.user_profile.company_name }}">
-    <div class="banner d-flex justify-content-center align-items-center p-2">
-        <span>{{ listing.user_profile.company_name }}</span>
-    </div>
-</a>
-<div class="container mb-5 bg-light">
-{% else %}
 <div class="container my-5 bg-light">
-{% endif %}
-    <!-- Image -->
-    <div class="image-container mb-5">
-        <!-- Button trigger modal -->
-        <a title="Click here to view images of this Property" data-bs-toggle="modal" data-bs-target="#imagesModal">
-            <img class="rounded mx-auto" src="{{ listing.header_image.url }}" alt="Photo of {{ listing }}">
-            <button class="view-images"><i class="fas fa-camera"></i> view Images({{ no_of_photos }})</button>
-            <button class="share-btn" type="button" data-bs-toggle="modal" data-bs-target="#shareModal">
-                <i class="fas fa-share-alt"></i>
-            </button>
-            <a href="{% url 'favourite_sale_add' listing.id %}" class="favourite-btn">
-                {% if favourited %}
-                <i class="fas fa-heart"></i>
-                {% else %}
-                <i class="far fa-heart"></i>
-                {% endif %}
-            </a>
-        </a>
-    </div>
-    <!-- Price and BER -->
-    <div class="row text-center mt-2 mb-5 mx-3">
-        <div class="col text-start fs-3 fw-bold">
-            {% if listing.poa %}
-            <span>
-                POA
-            </span>
+    <!-- Area -->
+    <div class="row mt-3 bg-light p-4">
+        <h1 class="h3">
+            <strong>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ listing.area.title }},
+                Co. {{ listing.county.title }}
+            </strong>
+        </h1>
+        {% if listing.eircode %}
+        <p><strong>Eirecode:</strong> {{ listing.eircode }}</p>
+        {% endif %}
+        <p><strong>Property type</strong>: {{ listing.property_type }}</p>
+        <p>
+            {% if listing.ber_rating is None %} 
+                BER Exempt
             {% else %}
-            € <span>{{ listing.price }}</span>
+                <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="75" height="25" alt="BER Rating: {{ listing.ber_rating }}">
             {% endif %}
-        </div>
-        <div class="col text-end">
-            <span>
-                {% if listing.ber_rating is None %} 
-                    BER Exempt
-                {% else %}
-                    <img src="{{MEDIA_URL}}ber_labels/{{ listing.ber_rating.upper }}.png" width="75" height="25" alt="BER Rating: {{ listing.ber_rating }}">
-                {% endif %}
-            </span>
-        </div>
+        </p>
     </div>
     <!-- Overview -->
     {% if listing.property_type|lower != 'site' and listing.property_type|lower != 'land' %}
@@ -106,21 +78,16 @@
         </div>
     </div>
     {% endif %}
-    <!-- Area -->
-    <div class="row mt-3 bg-light p-4">
-        <h1 class="h6">
-            <strong>
-                <i class="fas fa-map-marker-alt"></i>
-                {{ listing.area.title }},
-                Co. {{ listing.county.title }}
-            </strong>
-        </h1>
-        {% if listing.eircode %}
-        <p><strong>Eirecode:</strong> {{ listing.eircode }}</p>
-        {% endif %}
-        <p><strong>For sale by</strong>: {{ listing.selling_type }}</p>
-        <p><strong>Property type</strong>: {{ listing.property_type }}</p>
-        <p><strong>Tax designation</strong>: {{ listing.tax_designation }}</p>
+    <!-- Price and Date -->
+    <div class="row text-center mt-5 mx-3">
+        <div class="col text-start h5">
+            € <span>{{ listing.price }}</span>
+        </div>
+        <div class="col text-end h5">
+            <span>
+                {{ listing.date_sold.date }}
+            </span>
+        </div>
     </div>
     <!------ Ads ------>
     <!-- in feed ad -->
@@ -136,84 +103,6 @@
         </script>
     </div>
     <!---------  ------------->
-    <!-- Facilities -->
-    {% if listing.facility_1 %}
-    <div class="row mt-3 p-4">
-        <legend>
-            Facilities
-        </legend>
-        <hr>
-        <ul class="text-start bullets px-4">
-            {% if listing.facility_1 %}
-                <li>{{ listing.facility_1 }}</li>
-            {% endif %}
-            {% if listing.facility_2 %}
-                <li>{{ listing.facility_2 }}</li>
-            {% endif %}
-            {% if listing.facility_3 %}
-                <li>{{ listing.facility_3 }}</li>
-            {% endif %}
-            {% if listing.facility_4 %}
-                <li>{{ listing.facility_4 }}</li>
-            {% endif %}
-            {% if listing.facility_5 %}
-                <li>{{ listing.facility_5 }}</li>
-            {% endif %}
-            {% if listing.facility_6 %}
-                <li>{{ listing.facility_6 }}</li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
-    <!-- Description -->
-    <div class="listing-description mt-3 bg-light p-4">
-        <legend>
-            Description
-        </legend>
-        <hr>
-        <p>{{ listing.description | safe | linebreaks }}</p>
-    </div>
-    <!-- Top Features -->
-    {% if listing.top_features_1 %}
-    <div class="row mt-3 p-4">
-        <legend>
-            Top Features
-        </legend>
-        <hr>
-        <ul class="text-start bullets">
-            {% if listing.top_features_1 %}
-            <li>
-                {{ listing.top_features_1 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_2 %}
-            <li>
-                {{ listing.top_features_2 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_3 %}
-            <li>
-                {{ listing.top_features_3 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_4 %}
-            <li>
-                {{ listing.top_features_4 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_5 %}
-            <li>
-                {{ listing.top_features_5 }}
-            </li>
-            {% endif %}
-            {% if listing.top_features_6 %}
-            <li>
-                {{ listing.top_features_6 }}
-            </li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
     <!-- Listing Contact Info -->
     <div class="row mt-3 p-4 bg-light">
         <legend>
@@ -234,13 +123,10 @@
             {{ listing.full_name }}
         </p>
         <p>
-            <i class="fas fa-phone"></i> {{ listing.phone }}
+            <i class="fas fa-phone"></i> {{ listing.user_profile.phone_number }}
         </p>
         <p>
-            <i class="fas fa-envelope"></i> {{ listing.email }}
-        </p>
-        <p>
-            <i class="fas fa-clock"></i> Available Hours: {% if listing.call_between_hrs == None or '' %} Anytime {% else %} {{ listing.call_between_hrs }} {% endif %}
+            <i class="fas fa-envelope"></i> {{ listing.user_profile.email }}
         </p>
         <p>
             {% if listing.user_profile.psr_number %}PSR No.: {{ listing.user_profile.psr_number }}{% endif %}
@@ -267,18 +153,6 @@
             Call Seller <i class="fas fa-phone"></i>
         </a>
     </div>
-    <!-- Listing MetaData -->
-    <div class="row mt-3 p-4">
-        <p class="text-muted">
-            <strong>Times Viewed</strong>: {{ listing.times_viewed }}
-        </p>
-        <p class="text-muted">
-            <strong>Date Created</strong>: {{ listing.date_created.date }}
-        </p>
-        <p class="text-muted text-break">
-            <strong>Listing Number</strong>: {{ listing.listing_number }}
-        </p>
-    </div>
     <!------ Ads ------>
     <!-- in feed ad -->
     <div class="center">
@@ -293,7 +167,7 @@
         </script>
     </div>
     <!---------  ------------->
-    <!-- Recent listings from this user -->
+    <!-- Related listings -->
     {% if show_recent_listings %}
     <div class="row mt-3 bg-light">
         <legend class="p-4">
@@ -350,73 +224,6 @@
     </div>
     {% endif %}
 
-</div>
-<div class="modal image-modal fade" id="imagesModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog image-modal">
-      <div class="modal-content">
-        <button type="button" class="btn-close image-modal" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-body image-modal">
-            <div id="carouselExampleIndicators" class="carousel slide carousel-dark">
-                <div class="carousel-indicators">
-                    {% for p in photos %}
-                    <button type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide 3"
-                        class="{% if forloop.counter0 == 0 %} active {% endif %}"></button>
-                    {% endfor %}
-                </div>
-                <div class="carousel-inner">
-                    {% for p in photos %}
-                    {% if not p.images %}
-                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p}});"></div>
-                    {% else %}
-                    <div class="carousel-item image-modal {% if forloop.counter0 == 0 %} active {% endif %}" style="background-image: url({{p.images.url}});"></div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Share Modal -->
-<div class="modal fade" id="shareModal" tabindex="-1" area-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content share-modal">
-        <div class="modal-header">
-          <h5 class="modal-title">Share this Ad</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid p-4 d-grid">
-                <iframe 
-                    src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmymo.ie%2Flistings%2Ffor_sale%2F{{ listing.id }}%2F&layout=button&size=large&width=77&height=28&appId" 
-                    width="77" 
-                    height="28" 
-                    style="border:none;overflow:hidden" 
-                    scrolling="no" 
-                    frameborder="0" 
-                    allowfullscreen="true" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                </iframe>
-            
-                <a class="clipboard btn form-btn copy-btn" title="Click here to copy URL"><i class="fas fa-copy"></i> <span id="copy-confirm">Copy</span></a>
-                    
-                <!-- <div class="snapchat-creative-kit-share"></div> -->
-
-                </div>
-            </div>
-        </div>
-      </div>
 </div>
 
 <!-- Contact Modal -->

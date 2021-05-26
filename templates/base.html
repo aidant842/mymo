@@ -36,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles49.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles50.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -176,9 +176,40 @@
                         <li class="nav-item">
                             <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}" title="Apartments and Properties for Rent">Rent</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="hover-link nav-link" href="{% url 'estate_agents' %}" title="Click here to Search Estate Agents from all over Ireland.">Agent Finder</a>
-                        </li>
+                        <div class="btn-group">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-inline buy-link" href="{% url 'for_sale_listings' %}">
+                                Discover
+                                </a>
+                                <a class="dropdown-toggle dropdown-toggle-split text-white" data-bs-toggle="navbarDropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                                </a>
+                                <ul class="dropdown-menu desktop" aria-labelledby="navbarDropdown">
+                                <div class="parent">
+                                    <li class="child">
+                                        <div class="title">
+                                            <a class="dropdown-item stretched-link" href="{% url 'estate_agents' %}" title="Click here to Search Estate Agents from all over Ireland.">
+                                                Agent Finder
+                                            </a>
+                                        </div>
+                                        <div class="desc">
+                                           <span>Search Estate Agents all over Ireland.</span>
+                                        </div>
+                                    </li>
+                                    <li class="child">
+                                        <div class="title">
+                                            <a class="dropdown-item stretched-link" href="{% url 'property_register' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">
+                                                Property Price Regsiter
+                                            </a>
+                                        </div>
+                                        <div class="desc">
+                                            <span>Search for the latest properties that have sold in your area.</span>
+                                        </div>
+                                    </li>
+                                </div>
+                                </ul>
+                            </li>
+                        </div>
                     </div>
                     <div class="right">
                         {% if request.user.is_authenticated %}
@@ -210,10 +241,10 @@
                     <ul class="navbar-nav mb-3 mb-md-0 d-md-none">
                         <div class="left">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="buyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                   Buy
                                 </a>
-                                <ul class="dropdown-menu mobile purple mobile-buy-dropdown" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu mobile purple mobile-buy-dropdown" aria-labelledby="buyDropdown">
                                     <li><a class="dropdown-item hover-link" href="{% url 'for_sale_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale in Ireland">All Property</a></li>
                                     <li><a class="dropdown-item hover-link" href="{% url 'for_sale_by_owner' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">For Sale By Owner</a></li>
                                     <li><a class="dropdown-item hover-link" href="{% url 'sold_listings' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Sold</a></li>
@@ -222,9 +253,15 @@
                             <li class="nav-item">
                                 <a class="hover-link nav-link" href="{% url 'for_rent_listings' %}" title="Apartments and Properties for Rent">Rent</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="hover-link nav-link" href="{% url 'estate_agents' %}" title="Click here to Search Estate Agents from all over Ireland.">Agent Finder</a>
-                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="discoverDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Discover
+                                </a>
+                                <ul class="dropdown-menu mobile purple mobile-buy-dropdown" aria-labelledby="discoverDropdown">
+                                    <li><a class="dropdown-item hover-link" href="{% url 'estate_agents' %}" title="Click here to Search Estate Agents from all over Ireland.">Agent Finder</a></li>
+                                    <li><a class="dropdown-item hover-link" href="{% url 'property_register' %}" title="Click here to see Apartments, Property, Sites and Land for Sale By Owner in Ireland">Property Price Register</a></li>
+                                    </ul>
+                              </li>
                         </div>
                         <div class="right">
                             {% if request.user.is_authenticated %}

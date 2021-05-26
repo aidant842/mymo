@@ -1,3 +1,4 @@
+@use 'sass:math';
 $red: #F37272;
 $brown: #584E4A;
 $whitey: #f0f0f0;
@@ -34,7 +35,7 @@ a.hover-link {
   }
   &:after {
     opacity: 0;
-    transform: translateY($distance/2);
+    transform: translateY(math.div($distance, 2));
     transition: transform $duration $easeOutBack, opacity $duration;
   }
   &:hover,

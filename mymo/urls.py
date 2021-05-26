@@ -28,6 +28,7 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('apply_coupon/', include('coupons.urls')),
     path('estate-agents/', include('estate_agents.urls')),
+    path('price-regsiter/', include('price_register.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Custom error handling
