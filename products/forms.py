@@ -1,4 +1,5 @@
 from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 from listings.models import (SaleListing, RentListing,
                              SaleListingImage, RentListingImage)
@@ -117,6 +118,7 @@ class SaleListingForm(forms.ModelForm):
     county = forms.CharField(widget=forms.Select
                              (choices=IE_COUNTY_CHOICES,
                               attrs={'class': 'form-select form-control'}))
+    description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = SaleListing
@@ -331,6 +333,7 @@ class RentListingForm(forms.ModelForm):
         attrs={'onfocus': '(this.type="date")', 'onblur': '(this.type="text")',
                'localize': 'true'}
     ))
+    description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = RentListing

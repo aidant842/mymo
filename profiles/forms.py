@@ -368,6 +368,7 @@ class RentEditForm(forms.ModelForm):
         attrs={'onfocus': '(this.type="date")', 'onblur': '(this.type="text")',
                'localize': 'true'}
     ))
+    description = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = RentListing

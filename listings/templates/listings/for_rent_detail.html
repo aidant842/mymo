@@ -5,13 +5,13 @@
     <meta property="og:image:alt" content="Image of {{ listing.property_type }} to rent by {% if listing.company_name %}{{ listing.company_name }}{% else %}{{ listing.full_name }}{% endif %} on MyMo.ie }}" />
     <meta property="og:description" content="{{ listing.property_type.capitalize }} to Rent, {{ listing.area.title }}, Co. {{ listing.county.capitalize }} for €{{ listing.price }} / {{ listing.rent_type.capitalize }} by {% if listing.company_name %}{{ listing.company_name }}{% else %}{{ listing.full_name }}{% endif %} on MyMo.ie" />
     <meta property="og:url" content="https://www.mymo.ie{{ request.get_full_path }}" /> 
-    <meta property="og:title" content="{{ listing.property_type.capitalize }} to Rent, in Ireland | MyMo.ie" />
+    <meta property="og:title" content="{{ listing.property_type.capitalize }} to Rent, in Co. {{ listing.county.capitalize }}, Ireland | MyMo.ie" />
     <meta name="description" content="{{ listing.property_type.capitalize }} to Rent in {{ listing.area.title }}, Co. {{ listing.county.capitalize }} for €{{ listing.price }} / {{ listing.rent_type.capitalize }} by {% if listing.company_name %}{{ listing.company_name }}{% else %}{{ listing.full_name }}{% endif %} on MyMo.ie"/>
     <meta name="keywords" content="{{ listing.property_type.capitalize}} for Rent in Ireland" />
 {% endblock %}
     
 
-<title>{% block extra_title %}{{ listing.property_type.capitalize }} to Rent, in Ireland {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
+<title>{% block extra_title %}{{ listing.property_type.capitalize }} to Rent, in Co. {{ listing.county.capitalize }}, Ireland {% endblock %}{% block end_title_tag %} {{ block.super }} {% endblock %}</title>
 
 {% block content %}
 <div class="w-100 purple return-btn-container">
