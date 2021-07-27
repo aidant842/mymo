@@ -118,13 +118,13 @@ a.page-link:hover {
   -webkit-box-shadow: 0px 0px 15px -4px #000000;
   box-shadow: 0px 0px 15px -4px #000000;
 }
+
 @media only screen and (min-width: 992px) {
   .cky-consent-bar {
     width: 280px !important;
     border-radius: 10px !important;
   }
 }
-
 .cky-consent-bar.cky-logo-active .cky-content-logo-outer-wrapper {
   display: block !important;
   align-items: center;
@@ -209,19 +209,21 @@ a.page-link:hover {
   width: 100%;
   justify-content: space-between;
 }
+
 .navbar-nav .nav-link {
   padding: 0 1rem !important;
   color: white !important;
 }
+
 .navbar-nav .nav-link.buy-link {
   padding: 0 !important;
 }
+
 @media only screen and (max-width: 991px) {
   .navbar-nav {
     font-size: 0.9rem;
   }
 }
-
 .navbar-collapse {
   justify-content: space-around;
 }
@@ -241,6 +243,7 @@ a.page-link:hover {
   width: 100% !important;
   padding: 0 5rem;
 }
+
 @media only screen and (max-width: 991px) {
   .navbar.purple {
     padding: revert;
@@ -251,7 +254,6 @@ a.page-link:hover {
     padding: 0 2rem;
   }
 }
-
 .navbar-dark .navbar-brand {
   color: white !important;
 }
@@ -268,6 +270,7 @@ a.page-link:hover {
 .navbar-brand {
   margin-right: 69px;
 }
+
 .navbar-brand img {
   height: 100px;
   width: auto;
@@ -295,9 +298,11 @@ a.page-link:hover {
   border: none;
   text-align: center;
 }
+
 .mobile-buy-dropdown li a {
   color: white !important;
 }
+
 .mobile-buy-dropdown li a:hover {
   background-color: #303e94;
 }
@@ -316,22 +321,28 @@ a.page-link:hover {
   animation: fadeInDesktop 0.5s;
   opacity: 1;
 }
+
 .dropdown-menu.desktop .child {
   cursor: pointer;
   position: relative;
 }
+
 .dropdown-menu.desktop .parent:hover .child {
   opacity: 0.25;
 }
+
 .dropdown-menu.desktop .parent .child:hover {
   opacity: 1;
 }
+
 .dropdown-menu.desktop .dropdown-item:hover {
   background: white;
 }
+
 .dropdown-menu.desktop .dropdown-item {
   padding: 0;
 }
+
 .dropdown-menu.desktop .title {
   font-size: 15px;
   color: #2b2b2b;
@@ -342,9 +353,11 @@ a.page-link:hover {
   line-height: 14px;
   cursor: pointer;
 }
+
 .dropdown-menu.desktop .title a {
   font-weight: bold;
 }
+
 .dropdown-menu.desktop .desc {
   width: 200px;
   font-weight: 400;
@@ -381,6 +394,7 @@ a.page-link:hover {
     /* width: 55%; */
     margin: 0 auto;
   }
+
   .left li, .right li {
     padding: 10px 0;
   }
@@ -449,6 +463,7 @@ a.page-link:hover {
   display: flex;
   justify-content: space-evenly;
 }
+
 .search-bar-container input:focus {
   border: none;
   box-shadow: none !important;
@@ -496,6 +511,7 @@ a.page-link:hover {
   color: white;
   height: 67px;
 }
+
 .card-header img {
   width: 50px;
 }
@@ -524,12 +540,12 @@ a.page-link:hover {
   width: 80%;
   margin: 0 auto;
 }
+
 @media only screen and (max-width: 500px) {
   .card-container {
     width: 100%;
   }
 }
-
 .three-card-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -539,11 +555,13 @@ a.page-link:hover {
   width: 80%;
   margin: 0 auto;
 }
+
 .three-card-container .card {
   margin: 0 auto;
   min-width: unset !important;
   max-width: 400px;
 }
+
 @media only screen and (max-width: 500px) {
   .three-card-container {
     width: 100%;
@@ -570,7 +588,6 @@ a.page-link:hover {
     grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
   }
 }
-
 .card-container.detail-page {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 400px));
@@ -726,6 +743,7 @@ a.page-link:hover {
 .sitemap ul {
   text-align: unset;
 }
+
 .sitemap li {
   /* You need to turn on relative positioning so the line is placed relative to the item rather than absolutely on the page */
   position: relative;
@@ -734,13 +752,16 @@ a.page-link:hover {
   padding-bottom: 1em;
   padding-left: 20px;
 }
+
 .sitemap ul li a {
   color: #555;
 }
+
 .sitemap ul li a:hover {
   text-decoration: underline;
   color: #6a7fdb;
 }
+
 .sitemap li:before {
   background-color: #6a7fdb;
   width: 1px;
@@ -750,6 +771,7 @@ a.page-link:hover {
   bottom: 0px;
   left: 5px;
 }
+
 .sitemap li::after {
   content: "";
   position: absolute;
@@ -769,9 +791,11 @@ footer {
   background-color: #303e94;
   min-height: 15vh;
 }
+
 footer a {
   color: white !important;
 }
+
 footer a:hover {
   color: #6a7fdb !important;
 }
@@ -810,20 +834,25 @@ footer a:hover {
 .popular-searches, .property-dropdowns {
   background-color: #eff0f0 !important;
 }
+
 .popular-searches a, .property-dropdowns a {
   color: #555;
 }
+
 .popular-searches a:hover, .property-dropdowns a:hover {
   text-decoration: underline;
   color: #6a7fdb;
 }
+
 .popular-searches legend, .property-dropdowns legend {
   color: #555 !important;
   font-weight: inherit !important;
 }
+
 .popular-searches ul li a, .property-dropdowns ul li a {
   color: #555;
 }
+
 .popular-searches ul li a:hover, .property-dropdowns ul li a:hover {
   text-decoration: underline;
   color: #6a7fdb;
@@ -834,7 +863,6 @@ footer a:hover {
     font-size: 0.8rem;
   }
 }
-
 @media only screen and (max-width: 360px) {
   .footer {
     display: block;
@@ -856,20 +884,24 @@ footer a:hover {
   .footer {
     text-align: center;
   }
+
   .footer .footer-logo-section {
     grid-row: 1;
     grid-column: 1/4;
   }
+
   .footer .footer-contact-section {
     grid-row: 2;
     grid-column: 1/3;
     justify-self: start;
   }
+
   .footer .footer-social-section {
     grid-row: 2;
     grid-column: 2/4;
     justify-self: end;
   }
+
   .footer .navbar-brand {
     margin-right: 0;
   }
@@ -890,12 +922,12 @@ footer a:hover {
 .products-width {
   width: 75%;
 }
+
 @media only screen and (max-width: 576px) {
   .products-width {
     width: 95%;
   }
 }
-
 .product-section h1 {
   font-weight: 300;
 }
@@ -909,25 +941,27 @@ footer a:hover {
   justify-content: center;
   margin-top: 5rem; */
 }
+
 .product-table .card-group {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
 }
+
 .product-table .card-group .card {
   max-width: 430px;
   min-width: unset !important;
   height: 520px !important;
   width: 430px;
 }
+
 @media (min-width: 991px) {
   .product-table .card-group .card {
     flex: 1 0 0%;
     margin-bottom: 0;
   }
 }
-
 .td-price {
   font-size: xx-large;
 }
@@ -1126,19 +1160,21 @@ select option:first-child {
   padding: 1rem;
   position: relative;
 }
+
 @media only screen and (max-width: 400px) {
   .filters-container.all-listings {
     height: 200px;
   }
 }
-
 .filters {
   width: 75%;
   margin: 2rem auto 0 auto;
 }
+
 .filters input, .filters select {
   margin-bottom: 1rem;
 }
+
 .filters .btn {
   display: block;
 }
@@ -1151,9 +1187,11 @@ select option:first-child {
   width: unset;
   margin: 2rem auto 0 auto;
 }
+
 .filters.all-listings input, .filters.all-listings select {
   margin-bottom: 1rem;
 }
+
 .filters.all-listings .btn {
   display: block;
 }
@@ -1169,6 +1207,7 @@ select option:first-child {
 .form-container.product-detail {
   width: 50%;
 }
+
 @media only screen and (max-width: 1000px) {
   .form-container.product-detail {
     width: 80%;
@@ -1179,7 +1218,6 @@ select option:first-child {
     width: 90%;
   }
 }
-
 .django-ckeditor-widget {
   width: 100%;
 }
@@ -1196,6 +1234,7 @@ a.hover-link {
   text-decoration: none;
   padding-bottom: 8px;
 }
+
 a.hover-link:before, a.hover-link:after {
   content: "";
   position: absolute;
@@ -1205,23 +1244,28 @@ a.hover-link:before, a.hover-link:after {
   height: 2px;
   background-color: white;
 }
+
 a.hover-link:before {
   opacity: 0;
   transform: translateY(-8px);
   transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
 }
+
 a.hover-link:after {
   opacity: 0;
   transform: translateY(4px);
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
 }
+
 a.hover-link:hover:before, a.hover-link:hover:after, a.hover-link:focus:before, a.hover-link:focus:after {
   opacity: 1;
   transform: translateY(0);
 }
+
 a.hover-link:hover:before, a.hover-link:focus:before {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
 }
+
 a.hover-link:hover:after, a.hover-link:focus:after {
   transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
 }
@@ -1230,6 +1274,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   text-align: left;
   padding: 1rem 0;
 }
+
 .preview-list span {
   color: #6c757d !important;
 }
@@ -1244,9 +1289,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .login-form, .signup-form {
   width: 100%;
 }
+
 .login-form img, .signup-form img {
   width: 100%;
 }
+
 @media only screen and (min-width: 767px) {
   .login-form img, .signup-form img {
     width: 75%;
@@ -1258,7 +1305,6 @@ a.hover-link:hover:after, a.hover-link:focus:after {
     margin: 0 auto;
   }
 }
-
 .max-width-60 {
   max-width: 60%;
 }
@@ -1317,6 +1363,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   margin: 0 auto;
   display: block;
 }
+
 .image-container p {
   position: absolute;
   z-index: 9;
@@ -1324,6 +1371,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   color: white;
   padding: 10px;
 }
+
 .image-container .share-btn {
   position: absolute;
   /* z-index: 9; */
@@ -1336,6 +1384,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   font-size: 1.5rem;
   border: none;
 }
+
 .image-container .view-images {
   position: absolute;
   /* z-index: 9; */
@@ -1346,6 +1395,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   top: 0;
   border: none;
 }
+
 .image-container .favourite-btn {
   position: absolute;
   color: white;
@@ -1355,6 +1405,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   font-size: 2rem;
   background-color: #6a7fdb;
 }
+
 @media only screen and (max-width: 500px) {
   .image-container .favourite-btn {
     font-size: 1.6rem;
@@ -1374,6 +1425,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .agent-header {
   background: #eff0f0 !important;
 }
+
 .agent-header img {
   width: 150px;
 }
@@ -1579,6 +1631,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .breadcrumb-item {
   color: white;
 }
+
 .breadcrumb-item a {
   color: white !important;
 }
@@ -1590,6 +1643,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .agent-cards .card {
   height: 200px;
 }
+
 @media only screen and (max-width: 991px) {
   .agent-cards .card {
     height: 334px;
@@ -1602,6 +1656,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   background-size: contain;
   background-origin: content-box;
 }
+
 @media only screen and (max-width: 991px) {
   .agent-cards .img-col div {
     height: 130px;
@@ -1610,6 +1665,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .agent-cards .card-body {
   height: 100%;
 }
+
 @media only screen and (max-width: 992px) {
   .agent-cards .card-body {
     text-align: center;
@@ -1621,6 +1677,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   right: 15px;
   z-index: 5;
 }
+
 @media only screen and (max-width: 767px) {
   .agent-cards .card-body .buttons {
     position: relative;
@@ -1628,7 +1685,6 @@ a.hover-link:hover:after, a.hover-link:focus:after {
     transform: translateX(-50%);
   }
 }
-
 .profile-cards .img-col div {
   height: 276px;
   background-repeat: no-repeat;
@@ -1636,9 +1692,11 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   background-size: contain;
   background-origin: content-box;
 }
+
 .profile-cards .card-body {
   height: 100%;
 }
+
 @media only screen and (max-width: 992px) {
   .profile-cards .card-body {
     text-align: center;
@@ -1647,6 +1705,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
 .profile-cards .card-body .card-title {
   width: 75%;
 }
+
 @media only screen and (max-width: 992px) {
   .profile-cards .card-body .card-title {
     width: 100%;
@@ -1658,6 +1717,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   right: 15px;
   z-index: 5;
 }
+
 @media only screen and (max-width: 992px) {
   .profile-cards .card-body .buttons {
     position: relative;
@@ -1670,6 +1730,7 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   margin-bottom: 0.5rem !important;
   width: 50%;
 }
+
 @media only screen and (max-width: 992px) {
   .profile-cards .card-body .alerts .alert {
     width: 100%;
@@ -1686,5 +1747,8 @@ a.hover-link:hover:after, a.hover-link:focus:after {
   padding: 5px 15px;
   font-size: small;
 }
+
+/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles.scss.map */
 
 /*# sourceMappingURL=styles.css.map */
