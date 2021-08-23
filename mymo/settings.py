@@ -110,8 +110,14 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-""" SITE_ID = 1 """
-SITE_ID = 3
+if 'DEVELOPMENT' in os.environ:
+    """ Dev site """
+    SITE_ID = 3
+else:
+    """ Live site """
+    SITE_ID = 1 
+
+
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
